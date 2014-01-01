@@ -35,10 +35,10 @@ Expose command-line scripts from packages
 - [Why Are Version Constraints Combining Comparisons And Wildcards A Bad Idea](/cn-introduction/faqs/why-are-version-constraints-combining-comparisons-and-wildcards-a-bad-idea.md)
 - [Why Can't Composer Load Repositories Recursively](/cn-introduction/faqs/why-can%27t-composer-load-repositories-recursively.md)
 
-## PDF Docs
+## PDF 文档
 
-The whole documentation is also available as a [PDF download](http://getcomposer.org/book.pdf).
+整个文档也可以作为 [PDF 下载](http://getcomposer.org/book.pdf)。
 
-## API Docs
+## API 文档
 
-If you need to work with composer as a library you may also want to check out the [API Docs](http://getcomposer.org/apidoc/master/index.html)
+如果你需要在工作中使用 composer 作为库的管理，你或许也想看看 [API 文档](http://getcomposer.org/apidoc/master/index.html)。
