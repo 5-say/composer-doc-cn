@@ -13,19 +13,19 @@ Composer 中文文档
 - [Community](#/cn-introduction/06-community.md)
 
 ## Articles
-- Aliases  
+- [Aliases](/cn-introduction/articles/aliases.md)  
 Alias branch names to versions
-- Custom Installers  
+- [Custom Installers](/cn-introduction/articles/custom-installers.md)  
 Modify the way certain types of packages are installed
-- Handling Private Packages With Satis  
+- [Handling Private Packages With Satis](/cn-introduction/articles/handling-private-packages-with-satis.md)  
 Host your own composer repository
-- Plugins  
+- [Plugins](/cn-introduction/articles/plugins.md)  
 Modify and extend Composer's functionality
-- Scripts  
+- [Scripts](/cn-introduction/articles/scripts.md)  
 Script are callbacks that are called before/after installing packages
-- Troubleshooting  
+- [Troubleshooting](/cn-introduction/articles/troubleshooting.md)  
 Solving problems
-- Vendor Binaries  
+- [Vendor Binaries](/cn-introduction/articles/vendor-binaries.md)  
 Expose command-line scripts from packages
 
 ## FAQs
