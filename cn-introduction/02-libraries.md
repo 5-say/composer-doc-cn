@@ -76,36 +76,23 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
 > **注意：** 当你安装一个新的版本时，将会自动从它 `source` 中拉取。
 > 详细请查看 [`install`](03-cli.md#install) 命令。
 
-### Aliases
+### 别名
 
-It is possible to alias branch names to versions. For example, you could alias
-`dev-master` to `1.0.x-dev`, which would allow you to require `1.0.x-dev` in all
-the packages.
+它表示一个包版本的别名。例如，你可以为 `dev-master` 设置别名 `1.0.x-dev`，这样就可以通过 require `1.0.x-dev` 来得到 `dev-master` 版本的包。
 
-See [Aliases](articles/aliases.md) for more information.
+详细请查看[“别名”](articles/aliases.md)。
 
-## Lock file
+## 锁文件
 
-For your library you may commit the `composer.lock` file if you want to. This
-can help your team to always test against the same dependency versions.
-However, this lock file will not have any effect on other projects that depend
-on it. It only has an effect on the main project.
+如果你愿意，可以在你的项目中提交 `composer.lock` 文件。他将帮助你的团队始终针对同一个依赖版本进行测试。任何时候，这个锁文件都只对于你的项目产生影响。
 
-If you do not want to commit the lock file and you are using git, add it to
-the `.gitignore`.
+如果你不想提交锁文件，并且你正在使用 Git，那么请将它添加到 `.gitignore` 文件中。
 
-## Publishing to a VCS
+## 发布到 VCS（线上版本控制系统）
 
-Once you have a vcs repository (version control system, e.g. git) containing a
-`composer.json` file, your library is already composer-installable. In this
-example we will publish the `acme/hello-world` library on GitHub under
-`github.com/username/hello-world`.
+一旦你有一个包含 `composer.json` 文件的库存储在线上版本控制系统（例如：Git），你的库就可以被 Composer 所安装。在这个例子中，我们将 `acme/hello-world` 库发布在 GitHub 上的 `github.com/username/hello-world` 中。
 
-Now, to test installing the `acme/hello-world` package, we create a new
-project locally. We will call it `acme/blog`. This blog will depend on
-`acme/hello-world`, which in turn depends on `monolog/monolog`. We can
-accomplish this by creating a new `blog` directory somewhere, containing a
-`composer.json`:
+现在测试这个 `acme/hello-world` 包，我们在本地创建一个新的项目。我们将它命名为 `acme/blog`。此博客将依赖 `acme/hello-world`，而后者又依赖 `monolog/monolog`。我们可以在某处创建一个新的 `blog` 文件夹来完成它，并且需要包含 `composer.json` 文件：
 
     {
         "name": "acme/blog",
@@ -114,13 +101,9 @@ accomplish this by creating a new `blog` directory somewhere, containing a
         }
     }
 
-The name is not needed in this case, since we don't want to publish the blog
-as a library. It is added here to clarify which `composer.json` is being
-described.
+在这个例子中 `name` 不是必须的，因为我们并不想将它发布为一个库。在这里为 `composer.json` 文件添加描述。
 
-Now we need to tell the blog app where to find the `hello-world` dependency.
-We do this by adding a package repository specification to the blog's
-`composer.json`:
+现在我们需要告诉我们的应用，在哪里可以找到 `hello-world` 的依赖。为此我们需要在 `composer.json` 中添加 `repositories` 来源申明：
 
     {
         "name": "acme/blog",
@@ -135,11 +118,9 @@ We do this by adding a package repository specification to the blog's
         }
     }
 
-For more details on how package repositories work and what other types are
-available, see [Repositories](05-repositories.md).
+更多关于包的来源是如何工作的，以及还有什么其他的类型可供选择，请查看[来源](05-repositories.md)。
 
-That's all. You can now install the dependencies by running Composer's
-`install` command!
+这就是全部了。你现在可以使用 Composer 的 `install` 命令来安装你的依赖关系了！
 
 **Recap:** Any git/svn/hg repository containing a `composer.json` can be added
 to your project by specifying the package repository and declaring the
