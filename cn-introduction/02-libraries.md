@@ -2,6 +2,21 @@
 
 本章将告诉你如何通过 Composer 来安装你的库。
 
+---
+
+- [库](#库)
+  - [每一个项目都是一个包](#每一个项目都是一个包)
+  - [平台软件包](#平台软件包)
+  - [指明版本](#指明版本)
+    - [标签](#标签)
+    - [分支](#分支)
+    - [别名](#别名)
+  - [锁文件](#锁文件)
+  - [发布到 VCS（线上版本控制系统）](#发布到-VCS-线上版本控制系统)
+  - [发布到 packagist](#发布到-packagist)
+
+---
+
 ## 每一个项目都是一个包
 
 只要你有一个 `composer.json` 文件在目录中，那么整个目录就是一个包。当你添加一个 `require` 到项目中，你就是在创建一个依赖于其它库的包。你的项目和库之间唯一的区别是，你的项目是一个没有名字的包。
@@ -122,29 +137,19 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
 
 这就是全部了。你现在可以使用 Composer 的 `install` 命令来安装你的依赖关系了！
 
-**Recap:** Any git/svn/hg repository containing a `composer.json` can be added
-to your project by specifying the package repository and declaring the
-dependency in the `require` field.
+**小结：** 任何含有 `composer.json` 的 `GIT`、`SVN`、`HG` 存储库，都可以通过 `require` 字段指定“包来源”和“声明依赖”来添加到你的项目中。
 
-## Publishing to packagist
+## 发布到 packagist
 
-Alright, so now you can publish packages. But specifying the vcs repository
-every time is cumbersome. You don't want to force all your users to do that.
+好的，你现在可以发布你的包了，但你不会希望你的用户每次都这样繁琐的指定包的来源。
 
-The other thing that you may have noticed is that we did not specify a package
-repository for `monolog/monolog`. How did that work? The answer is packagist.
+你可能注意到了另一件事，我们并没有指定 `monolog/monolog` 的来源。它是怎么工作的？答案是 packagist。
 
-[Packagist](https://packagist.org/) is the main package repository for
-Composer, and it is enabled by default. Anything that is published on
-packagist is available automatically through Composer. Since monolog
-[is on packagist](https://packagist.org/packages/monolog/monolog), we can depend
-on it without having to specify any additional repositories.
+[Packagist](https://packagist.org/) 是 Composer 主要的一个包信息存储库，它默认是启用的。任何在 packagist 上发布的包都可以直接被 Composer 使用。就像 monolog
+它被 [发布在 packagist 上](https://packagist.org/packages/monolog/monolog)，我们可以直接使用它，而不必指定任何额外的来源信息。
 
-If we wanted to share `hello-world` with the world, we would publish it on
-packagist as well. Doing so is really easy.
+如果我们想与世界分享我们的 `hello-world`，我们最好将它发布到 packagist 上。这样做是很容易的。
 
-You simply hit the big "Submit Package" button and sign up. Then you submit
-the URL to your VCS repository, at which point packagist will start crawling
-it. Once it is done, your package will be available to anyone.
+你只需要点击那个大大的 "Submit Package" 按钮并注册。接着提交你库的来源地址，此时 packagist 就开始了抓取。一旦完成，你的包将可以提供给任何人使用。
 
-&larr; [Basic usage](01-basic-usage.md) |  [Command-line interface](03-cli.md) &rarr;
+&larr; [基本用法](01-basic-usage.md) |  [命令行](03-cli.md) &rarr;
