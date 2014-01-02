@@ -33,32 +33,24 @@ Composer 将那些已经安装在系统上，但并不是由 Composer 安装的�
 
 你可以使用 `composer show --platform` 命令来获取可用的平台软件包的列表。
 
-## Specifying the version
+## 指明版本
 
-You need to specify the package's version some way. When you publish your
-package on Packagist, it is able to infer the version from the VCS (git, svn,
-hg) information, so in that case you do not have to specify it, and it is
-recommended not to. See [tags](#tags) and [branches](#branches) to see how
-version numbers are extracted from these.
+你需要一些方法来指明自己开发的包的版本，当你在 Packagist 上发布自己的包，它能够从 VCS (git, svn,
+hg) 的信息推断出包的版本，因此你不必手动指明版本号，并且也不建议这样做。请查看 [标签](#标签) 和 [分支](#分支) 来了解版本号是如何被提取的。
 
-If you are creating packages by hand and really have to specify it explicitly,
-you can just add a `version` field:
+如果你想要手动创建并且真的要明确指定它，你只需要添加一个 `version` 字段：
 
     {
         "version": "1.0.0"
     }
 
-> **Note:** You should avoid specifying the version field explicitly, because
-> for tags the value must match the tag name.
+> **注意：** 你应该尽量避免手动设置版本号，因为标签的值必须与标签名相匹配。
 
-### Tags
+### 标签
 
-For every tag that looks like a version, a package version of that tag will be
-created. It should match 'X.Y.Z' or 'vX.Y.Z', with an optional suffix
-of `-patch`, `-alpha`, `-beta` or `-RC`. The suffixes can also be followed by
-a number.
+对于每一个看起来像版本号的标签，都会相应的创建一个包的版本。它应该符合 'X.Y.Z' 或者 'vX.Y.Z' 的形式，`-patch`、`-alpha`、`-beta` 或 `-RC` 这些后缀是可选的。在后缀之后也可以再跟上一个数字。
 
-Here are a few examples of valid tag names:
+下面是有效的标签名称的几个例子：
 
     1.0.0
     v1.0.0
@@ -67,11 +59,11 @@ Here are a few examples of valid tag names:
     v2.0.0-alpha
     v2.0.4-p1
 
-> **Note:** Even if your tag is prefixed with `v`, a [version constraint](01-basic-usage.md#package-versions)
-> in a `require` statement has to be specified without prefix
-> (e.g. tag `v1.0.0` will result in version `1.0.0`). 
+> **注意：** 即使你的标签带有前缀 `v`，
+> 由于在需要 `require` 一个[版本的约束](01-basic-usage.md#包版本)时是不允许这种前缀的，
+> 因此 `v` 将被省略（例如标签 `V1.0.0` 将创建 `1.0.0` 版本）。
 
-### Branches
+### 分支
 
 For every branch, a package development version will be created. If the branch
 name looks like a version, the version will be `{branchname}-dev`. For example
