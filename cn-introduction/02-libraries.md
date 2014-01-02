@@ -65,23 +65,16 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
 
 ### 分支
 
-For every branch, a package development version will be created. If the branch
-name looks like a version, the version will be `{branchname}-dev`. For example
-a branch `2.0` will get a version `2.0.x-dev` (the `.x` is added for technical
-reasons, to make sure it is recognized as a branch, a `2.0.x` branch would also
-be valid and be turned into `2.0.x-dev` as well. If the branch does not look
-like a version, it will be `dev-{branchname}`. `master` results in a
-`dev-master` version.
+对于每一个分支，都会相应的创建一个包的开发版本。如果分支名看起来像一个版本号，那么将创建一个如同 `{分支名}-dev` 的包版本号。例如一个分支 `2.0` 将产生一个 `2.0.x-dev` 包版本（加入了 `.x` 是出于技术的原因，以确保它被识别为一个分支，而 `2.0.x` 的分支名称也是允许的，它同样会被转换为 `2.0.x-dev`）。如果分支名看起来不像一个版本号，它将会创建 `dev-{分支名}` 形式的版本号。例如 `master` 将产生一个 `dev-master` 的版本号。
 
-Here are some examples of version branch names:
+下面是版本分支名称的一些示例：
 
     1.x
-    1.0 (equals 1.0.x)
+    1.0 (等同于 1.0.x)
     1.1.x
 
-> **Note:** When you install a development version, it will be automatically
-> pulled from its `source`. See the [`install`](03-cli.md#install) command
-> for more details.
+> **注意：** 当你安装一个新的版本时，将会自动从它 `source` 中拉取。
+> 详细请查看 [`install`](03-cli.md#install) 命令。
 
 ### Aliases
 
