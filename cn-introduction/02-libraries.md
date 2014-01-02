@@ -1,16 +1,12 @@
-# Libraries
+# 库
 
-This chapter will tell you how to make your library installable through Composer.
+本章将告诉你如何通过 Composer 来安装你的库。
 
-## Every project is a package
+## 每一个项目都是一个包
 
-As soon as you have a `composer.json` in a directory, that directory is a
-package. When you add a `require` to a project, you are making a package that
-depends on other packages. The only difference between your project and
-libraries is that your project is a package without a name.
+只要你有一个 `composer.json` 文件在目录中，那么整个目录就是一个包。当你添加一个 `require` 到项目中，你就是在创建一个依赖于其它库的包。你的项目和库之间唯一的区别是，你的项目是一个没有名字的包。
 
-In order to make that package installable you need to give it a name. You do
-this by adding a `name` to `composer.json`:
+为了使它成为一个可安装的包，你需要给它一个名称。你可以通过 `composer.json` 中的 `name` 来定义：
 
     {
         "name": "acme/hello-world",
@@ -19,18 +15,15 @@ this by adding a `name` to `composer.json`:
         }
     }
 
-In this case the project name is `acme/hello-world`, where `acme` is the
-vendor name. Supplying a vendor name is mandatory.
+在这种情况下项目的名称为 `acme/hello-world`，其中 `acme` 是供应商的名称。供应商的名称是必须填写的。
 
-> **Note:** If you don't know what to use as a vendor name, your GitHub
-username is usually a good bet. While package names are case insensitive, the
-convention is all lowercase and dashes for word separation.
+> **注意：** 如果你不知道拿什么作为供应商的名称，
+> 那么使用你 github 上的用户名通常是不错的选择。
+> 虽然包名不区分大小写，但惯例是使用小写字母，并用连字符作为单词的分隔。
 
 ## Platform packages
 
-Composer has platform packages, which are virtual packages for things that are
-installed on the system but are not actually installable by Composer. This
-includes PHP itself, PHP extensions and some system libraries.
+Composer has platform packages, which are virtual packages for things that are installed on the system but are not actually installable by Composer. 这包括PHP本身，PHP扩展和一些系统库。
 
 * `php` represents the PHP version of the user, allowing you to apply
    constraints, e.g. `>=5.4.0`. To require a 64bit version of php, you can
