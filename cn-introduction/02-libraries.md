@@ -21,25 +21,17 @@
 > 那么使用你 github 上的用户名通常是不错的选择。
 > 虽然包名不区分大小写，但惯例是使用小写字母，并用连字符作为单词的分隔。
 
-## Platform packages
+## 平台软件包
 
-Composer has platform packages, which are virtual packages for things that are installed on the system but are not actually installable by Composer. 这包括PHP本身，PHP扩展和一些系统库。
+Composer 将那些已经安装在系统上，但并不是由 Composer 安装的包视为一个虚拟的平台软件包。这包括PHP本身，PHP扩展和一些系统库。
 
-* `php` represents the PHP version of the user, allowing you to apply
-   constraints, e.g. `>=5.4.0`. To require a 64bit version of php, you can
-   require the `php-64bit` package.
+* `php` 表示用户的 PHP 版本要求，你可以对其做出限制。例如 `>=5.4.0`。如果需要64位版本的 PHP，你可以使用 `php-64bit` 进行限制。
 
-* `ext-<name>` allows you to require PHP extensions (includes core
-  extensions). Versioning can be quite inconsistent here, so it's often
-  a good idea to just set the constraint to `*`.  An example of an extension
-  package name is `ext-gd`.
+* `ext-<name>` 可以帮你指定需要的 PHP 扩展（包括核心扩展）。通常 PHP 拓展的版本可以是不一致的，将它们的版本约束为 `*` 是一个不错的主意。一个 PHP 扩展包的例子：包名可以写成 `ext-gd`。
 
-* `lib-<name>` allows constraints to be made on versions of libraries used by
-  PHP. The following are available: `curl`, `iconv`, `libxml`, `openssl`,
-  `pcre`, `uuid`, `xsl`.
+* `lib-<name>` 允许对 PHP 库的版本进行限制。以下是可供使用的名称：`curl`、`iconv`、`libxml`、`openssl`、`pcre`、`uuid`、`xsl`。
 
-You can use `composer show --platform` to get a list of your locally available
-platform packages.
+你可以使用 `composer show --platform` 命令来获取可用的平台软件包的列表。
 
 ## Specifying the version
 
