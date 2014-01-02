@@ -8,48 +8,44 @@
 
 下列选项可与每一个命令结合使用：
 
-* **--verbose (-v):** 增加反馈信息的详细度，
-  * -v 表示正常输出
-  * -vv 表示更详细的输出
-  * -vvv 则是为了 debug
-* **--help (-h):** Display help information.
-* **--quiet (-q):** Do not output any message.
-* **--no-interaction (-n):** Do not ask any interactive question.
-* **--working-dir (-d):** If specified, use the given directory as working directory.
-* **--profile:** Display timing and memory usage information
-* **--ansi:** Force ANSI output.
-* **--no-ansi:** Disable ANSI output.
-* **--version (-V):** Display this application version.
+* **--verbose (-v):** 增加反馈信息的详细度。
+  * -v 表示正常输出。
+  * -vv 表示更详细的输出。
+  * -vvv 则是为了 debug。
+* **--help (-h):** 显示帮助信息。
+* **--quiet (-q):** 禁止输出任何信息。
+* **--no-interaction (-n):** 不要询问任何交互问题。
+* **--working-dir (-d):** 如果指定的话，使用给定的目录作为工作目录。
+* **--profile:** 显示时间和内存使用信息。
+* **--ansi:** 强制 ANSI 输出。
+* **--no-ansi:** 关闭 ANSI 输出。
+* **--version (-V):** 显示当前应用程序的版本信息。
 
-## Process Exit Codes
+## 进程退出代码
 
-* **0:** OK
-* **1:** Generic/unknown error code
-* **2:** Dependency solving error code
+* **0:** 正常
+* **1:** 通用/未知错误
+* **2:** 依赖关系处理错误
 
-## init
+## 初始化 `init`
 
-In the [Libraries](02-libraries.md) chapter we looked at how to create a
-`composer.json` by hand. There is also an `init` command available that makes
-it a bit easier to do this.
+在 [“库”](02-libraries.md) 那一章我们看到了如何手动创建 `composer.json` 文件。实际上还有一个 `init` 命令可以更容易的做到这一点。
 
-When you run the command it will interactively ask you to fill in the fields,
-while using some smart defaults.
+当您运行该命令，它会以交互方式要求您填写一些信息，同时聪明的使用一些默认值。
 
     $ php composer.phar init
 
-### Options
+### 初始化选项
 
-* **--name:** Name of the package.
-* **--description:** Description of the package.
-* **--author:** Author name of the package.
-* **--homepage:** Homepage of the package.
-* **--require:** Package to require with a version constraint. Should be
-  in format `foo/bar:1.0.0`.
-* **--require-dev:** Development requirements, see **--require**.
-* **--stability (-s):** Value for the `minimum-stability` field.
+* **--name:** 包的名称。
+* **--description:** 包的描述。
+* **--author:** 包的作者。
+* **--homepage:** 包的主页。
+* **--require:** 需要依赖的其它包，必须要有一个版本约束。并且应该遵循 `foo/bar:1.0.0` 这样的格式。
+* **--require-dev:** 开发版的依赖包，内容格式与 **--require** 相同。
+* **--stability (-s):** `minimum-stability` 字段的值。
 
-## install
+## 安装 `install`
 
 The `install` command reads the `composer.json` file from the current
 directory, resolves the dependencies, and installs them into `vendor`.
@@ -63,7 +59,7 @@ everyone using the library will get the same versions of the dependencies.
 If there is no `composer.lock` file, composer will create one after dependency
 resolution.
 
-### Options
+### 安装选项
 
 * **--prefer-source:** There are two ways of downloading a package: `source`
   and `dist`. For stable versions composer will use the `dist` by default.
@@ -89,7 +85,7 @@ resolution.
   autoloader. This is recommended especially for production, but can take
   a bit of time to run so it is currently not done by default.
 
-## update
+## 更新 `update`
 
 In order to get the latest versions of the dependencies and to update the
 `composer.lock` file, you should use the `update` command.
@@ -107,7 +103,7 @@ You can also use wildcards to update a bunch of packages at once:
 
     $ php composer.phar update vendor/*
 
-### Options
+### 更新选项
 
 * **--prefer-source:** Install packages from `source` when available.
 * **--prefer-dist:** Install packages from `dist` when available.
@@ -126,7 +122,7 @@ You can also use wildcards to update a bunch of packages at once:
 * **--with-dependencies** Add also all dependencies of whitelisted packages to the whitelist.
   So all packages with their dependencies are updated recursively.
 
-## require
+## 申明依赖 `require`
 
 The `require` command adds new packages to the `composer.json` file from
 the current directory.
@@ -141,7 +137,7 @@ to the command.
 
     $ php composer.phar require vendor/package:2.* vendor/package2:dev-master
 
-### Options
+### 申明依赖的选项
 
 * **--prefer-source:** Install packages from `source` when available.
 * **--prefer-dist:** Install packages from `dist` when available.
