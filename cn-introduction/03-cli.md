@@ -4,9 +4,9 @@
 
 为了从命令行获得帮助信息，请运行 `composer` 或者 `composer list` 命令，然后结合 `--help` 命令来获得更多的帮助信息。
 
-## 全局选项
+## 全局参数
 
-下列选项可与每一个命令结合使用：
+下列参数可与每一个命令结合使用：
 
 * **--verbose (-v):** 增加反馈信息的详细度。
   * -v 表示正常输出。
@@ -35,7 +35,7 @@
 
     $ php composer.phar init
 
-### 初始化选项
+### 初始化参数
 
 * **--name:** 包的名称。
 * **--description:** 包的描述。
@@ -55,7 +55,7 @@
 
 如果没有 `composer.lock` 文件，composer 将在处理完依赖关系后创建它。
 
-### 安装选项
+### 安装参数
 
 * **--prefer-source:** 下载包的方式有两种： `source`
   和 `dist`。对于稳定版本 composer 将默认使用 `dist` 方式。而 `source` 表示版本控制源 。如果 `--prefer-source` 是被启用的，composer 将从 `source` 安装（如果有的话）。如果想要使用一个 bugfix 到你的项目，这是非常有用的。并且可以直接从本地的版本库直接获取依赖关系。
@@ -84,7 +84,7 @@
 
     $ php composer.phar update vendor/*
 
-### 更新选项
+### 更新参数
 
 * **--prefer-source:** 当有可用的包时，从 `source` 安装。
 * **--prefer-dist:** 当有可用的包时，从 `dist` 安装。
@@ -110,7 +110,7 @@
 
     $ php composer.phar require vendor/package:2.* vendor/package2:dev-master
 
-### 申明依赖的选项
+### 申明依赖的参数
 
 * **--prefer-source:** 当有可用的包时，从 `source` 安装。
 * **--prefer-dist:** 当有可用的包时，从 `dist` 安装。
@@ -118,46 +118,37 @@
 * **--no-update:** 禁用依赖关系的自动更新。
 * **--no-progress:** 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。
 
-## global
+## 全局执行 `global`
 
-The global command allows you to run other commands like `install`, `require`
-or `update` as if you were running them from the [COMPOSER_HOME](#composer-home)
-directory.
+`global` 命令允许你在 [COMPOSER_HOME](#composer-home) 目录下执行其它命令，像 `install`、`require` 或 `update`。
 
-This can be used to install CLI utilities globally and if you add
-`$COMPOSER_HOME/vendor/bin` to your `$PATH` environment variable. Here is an
-example:
+并且如果你将 `$COMPOSER_HOME/vendor/bin` 加入到了 `$PATH` 环境变量中，你就可以用它在命令行中安装全局应用，下面是一个例子：
 
     $ php composer.phar global require fabpot/php-cs-fixer:dev-master
 
-Now the `php-cs-fixer` binary is available globally (assuming you adjusted
-your PATH). If you wish to update the binary later on you can just run a
-global update:
+现在 `php-cs-fixer` 就可以在全局范围使用了（假设你已经设置了你的 PATH）。如果稍后你想更新它，你只需要运行 `global update`：
 
     $ php composer.phar global update
 
-## search
+## 搜索 `search`
 
-The search command allows you to search through the current project's package
-repositories. Usually this will be just packagist. You simply pass it the
-terms you want to search for.
+`search` 命令允许你为当前项目搜索依赖包，通常它只搜索 packagist.org 上的包，你可以简单的输入你的搜索条件。
 
     $ php composer.phar search monolog
 
-You can also search for more than one term by passing multiple arguments.
+您也可以通过传递多个参数来进行多条件搜索。
 
-### Options
+### 搜索参数
 
-* **--only-name (-N):** Search only in name.
+* **--only-name (-N):** 仅针对指定的名称搜索（完全匹配）。
 
-## show
+## 展示 `show`
 
-To list all of the available packages, you can use the `show` command.
+列出所有可用的软件包，你可以使用 `show` 命令。
 
     $ php composer.phar show
 
-If you want to see the details of a certain package, you can pass the package
-name.
+如果你想看到一个包的详细信息，你可以输入一个包名称。
 
     $ php composer.phar show monolog/monolog
 
@@ -176,22 +167,19 @@ name.
     requires
     php >=5.3.0
 
-You can even pass the package version, which will tell you the details of that
-specific version.
+你甚至可以输入一个软件包的版本号，来显示该版本的详细信息。
 
     $ php composer.phar show monolog/monolog 1.0.2
 
-### Options
+### 展示的参数
 
-* **--installed (-i):** List the packages that are installed.
-* **--platform (-p):** List only platform packages (php & extensions).
-* **--self (-s):** List the root package info.
+* **--installed (-i):** 列出已安装的依赖包。
+* **--platform (-p):** 仅列出平台软件包（PHP 与它的扩展）。
+* **--self (-s):** 仅列出当前项目信息。
 
-## depends
+## 依赖性检测 `depends`
 
-The `depends` command tells you which other packages depend on a certain
-package. You can specify which link types (`require`, `require-dev`)
-should be included in the listing. By default both are used.
+`depends` 命令可以查出已安装在你项目中的某个包，是否正在被其它的包所依赖，并列出他们。
 
     $ php composer.phar depends --link-type=require monolog/monolog
 
@@ -201,16 +189,13 @@ should be included in the listing. By default both are used.
     symfony/monolog-bridge
     symfony/symfony
 
-### Options
+### 依赖性检测的参数
 
-* **--link-type:** The link types to match on, can be specified multiple
-  times.
+* **--link-type:** 检测的类型，默认为 `require` 也可以是 `require-dev`。
 
-## validate
+## 有效性检测 `validate`
 
-You should always run the `validate` command before you commit your
-`composer.json` file, and before you tag a release. It will check if your
-`composer.json` is valid.
+在提交 `composer.json` 文件，和创建 tag 前，你应该始终运行 `validate` 命令。它将检测你的 `composer.json` 文件是否是有效的
 
     $ php composer.phar validate
 
