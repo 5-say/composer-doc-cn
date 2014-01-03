@@ -47,31 +47,19 @@
 
 ## 安装 `install`
 
-The `install` command reads the `composer.json` file from the current
-directory, resolves the dependencies, and installs them into `vendor`.
+`install` 命令从当前目录读取 `composer.json` 文件，处理了依赖关系，并把其安装到 `vendor` 目录下。
 
     $ php composer.phar install
 
-If there is a `composer.lock` file in the current directory, it will use the
-exact versions from there instead of resolving them. This ensures that
-everyone using the library will get the same versions of the dependencies.
+如果当前目录下存在 `composer.lock` 文件，它会从此文件读取依赖版本，而不是根据 `composer.json` 文件去获取依赖。这确保了该库的每个使用者都能得到相同的依赖版本。
 
-If there is no `composer.lock` file, composer will create one after dependency
-resolution.
+如果没有 `composer.lock` 文件，composer 将在处理完依赖关系后创建它。
 
 ### 安装选项
 
-* **--prefer-source:** There are two ways of downloading a package: `source`
-  and `dist`. For stable versions composer will use the `dist` by default.
-  The `source` is a version control repository. If `--prefer-source` is
-  enabled, composer will install from `source` if there is one. This is
-  useful if you want to make a bugfix to a project and get a local git
-  clone of the dependency directly.
-* **--prefer-dist:** Reverse of `--prefer-source`, composer will install
-  from `dist` if possible. This can speed up installs substantially on build
-  servers and other use cases where you typically do not run updates of the
-  vendors. It is also a way to circumvent problems with git if you do not
-  have a proper setup.
+* **--prefer-source:** 下载包的方式有两种： `source`
+  和 `dist`。对于稳定版本 composer 将默认使用 `dist` 方式。而 `source` 表示版本控制源 。如果 `--prefer-source` 是被启用的，composer 将从 `source` 安装（如果有的话）。如果想要使用一个 bugfix 到你的项目，这是非常有用的。并且可以直接从本地的版本库直接获取依赖关系。
+* **--prefer-dist:** 与 `--prefer-source` 相反，composer 将尽可能的从 `dist` 获取，这将大幅度的加快在 build servers 上的安装。这也是一个回避 git 问题的途径，如果你清楚任何正确的设置。
 * **--dry-run:** If you want to run through an installation without actually
   installing a package, you can use `--dry-run`. This will simulate the
   installation and show you what would happen.
