@@ -199,16 +199,13 @@
 
     $ php composer.phar validate
 
-## status
+## 依赖包状态检测 `status`
 
-If you often need to modify the code of your dependencies and they are
-installed from source, the `status` command allows you to check if you have
-local changes in any of them.
+如果你经常修改依赖包里的代码，并且它们是从 source（自定义源）进行安装的，那么 `status` 命令允许你进行检查，如果你有任何本地的更改它将会给予提示。
 
     $ php composer.phar status
 
-With the `--verbose` option you get some more information about what was
-changed:
+你可以使用 `--verbose` 系列参数（-v|vv|vvv）来获取更详细的详细：
 
     $ php composer.phar status -v
     You have changes in the following dependencies:
