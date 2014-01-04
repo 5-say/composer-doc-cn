@@ -25,25 +25,24 @@
   - [打印自动加载索引 `dump-autoload`](#打印自动加载索引-dump-autoload) - - [参数](#打印自动加载索引-参数)
   - [查看许可协议 `licenses`](#查看许可协议-licenses)
   - [执行脚本 `run-script`](#执行脚本-run-script)
-  - diagnose
-  - 归档 `archive`
-    - 归档-参数
-  - 获取帮助信息 `help`
-  - 环境变量
-    - COMPOSER
-    - COMPOSER_ROOT_VERSION
-    - COMPOSER_VENDOR_DIR
-    - COMPOSER_BIN_DIR
-    - http_proxy or HTTP_PROXY
-    - no_proxy
-    - HTTP_PROXY_REQUEST_FULLURI
-    - HTTPS_PROXY_REQUEST_FULLURI
-    - COMPOSER_HOME
-      - COMPOSER_HOME/config.json
-    - COMPOSER_CACHE_DIR
-    - COMPOSER_PROCESS_TIMEOUT
-    - COMPOSER_DISCARD_CHANGES
-    - COMPOSER_NO_INTERACTION
+  - [诊断 `diagnose`](#诊断-diagnose)
+  - [归档 `archive`](#归档-archive) - - [参数](#归档-参数)
+  - [获取帮助信息 `help`](#获取帮助信息-help)
+  - [环境变量](#环境变量)
+    - [COMPOSER](#composer)
+    - [COMPOSER_ROOT_VERSION](#composer_root_version)
+    - [COMPOSER_VENDOR_DIR](#composer_vendor_dir)
+    - [COMPOSER_BIN_DIR](#composer_bin_dir)
+    - [http_proxy or HTTP_PROXY](#http_proxy-or-http_proxy)
+    - [no_proxy](#no_proxy)
+    - [HTTP_PROXY_REQUEST_FULLURI](#http_proxy_request_fulluri)
+    - [HTTPS_PROXY_REQUEST_FULLURI](#https_proxy_request_fulluri)
+    - [COMPOSER_HOME](#composer_home)
+      - [COMPOSER_HOME/config.json](#composer_homeconfigjson)
+    - [COMPOSER_CACHE_DIR](#composer_cache_dir)
+    - [COMPOSER_PROCESS_TIMEOUT](#composer_process_timeout)
+    - [COMPOSER_DISCARD_CHANGES](#composer_discard_changes)
+    - [COMPOSER_NO_INTERACTION](#composer_no_interaction)
 
 ---
 
@@ -353,7 +352,7 @@
 
 你可以运行此命令来手动执行 [脚本](articles/scripts.md)，只需要指定脚本的名称，可选的 `--no-dev` 参数允许你禁用开发者模式。
 
-## diagnose
+## 诊断 `diagnose`
 
 如果你觉得发现了一个 bug 或是程序行为变得怪异，你可能需要运行 `diagnose` 命令，来帮助你检测一些常见的问题。
 
