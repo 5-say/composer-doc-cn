@@ -35,7 +35,7 @@
 
     $ php composer.phar init
 
-### 初始化参数
+### 初始化-参数
 
 * **--name:** 包的名称。
 * **--description:** 包的描述。
@@ -55,7 +55,7 @@
 
 如果没有 `composer.lock` 文件，composer 将在处理完依赖关系后创建它。
 
-### 安装参数
+### 安装-参数
 
 * **--prefer-source:** 下载包的方式有两种： `source`
   和 `dist`。对于稳定版本 composer 将默认使用 `dist` 方式。而 `source` 表示版本控制源 。如果 `--prefer-source` 是被启用的，composer 将从 `source` 安装（如果有的话）。如果想要使用一个 bugfix 到你的项目，这是非常有用的。并且可以直接从本地的版本库直接获取依赖关系。
@@ -84,7 +84,7 @@
 
     $ php composer.phar update vendor/*
 
-### 更新参数
+### 更新-参数
 
 * **--prefer-source:** 当有可用的包时，从 `source` 安装。
 * **--prefer-dist:** 当有可用的包时，从 `dist` 安装。
@@ -110,7 +110,7 @@
 
     $ php composer.phar require vendor/package:2.* vendor/package2:dev-master
 
-### 申明依赖的参数
+### 申明依赖-参数
 
 * **--prefer-source:** 当有可用的包时，从 `source` 安装。
 * **--prefer-dist:** 当有可用的包时，从 `dist` 安装。
@@ -138,7 +138,7 @@
 
 您也可以通过传递多个参数来进行多条件搜索。
 
-### 搜索参数
+### 搜索-参数
 
 * **--only-name (-N):** 仅针对指定的名称搜索（完全匹配）。
 
@@ -171,7 +171,7 @@
 
     $ php composer.phar show monolog/monolog 1.0.2
 
-### 展示的参数
+### 展示-参数
 
 * **--installed (-i):** 列出已安装的依赖包。
 * **--platform (-p):** 仅列出平台软件包（PHP 与它的扩展）。
@@ -189,7 +189,7 @@
     symfony/monolog-bridge
     symfony/symfony
 
-### 依赖性检测的参数
+### 依赖性检测-参数
 
 * **--link-type:** 检测的类型，默认为 `require` 也可以是 `require-dev`。
 
@@ -212,93 +212,74 @@
     vendor/seld/jsonlint:
         M README.mdown
 
-## self-update
+## 自我更新 `self-update`
 
-To update composer itself to the latest version, just run the `self-update`
-command. It will replace your `composer.phar` with the latest version.
+将 Composer 自身升级到最新版本，只需要运行 `self-update` 命令。它将替换你的 `composer.phar` 文件到最新版本。
 
     $ php composer.phar self-update
 
-If you would like to instead update to a specific release simply specify it:
+如果你想要升级到一个特定的版本，可以这样简单的指定它：
 
     $ composer self-update 1.0.0-alpha7
 
-If you have installed composer for your entire system (see [global installation](00-intro.md#globally)),
-you may have to run the command with `root` privileges
+如果你已经为整个系统安装 Composer（参见 [全局安装](00-intro.md#全局安装)），你可能需要在 `root` 权限下运行它：
 
     $ sudo composer self-update
 
-### Options
+### 自我更新-参数
 
-* **--rollback (-r):** Rollback to the last version you had installed.
-* **--clean-backups:** Delete old backups during an update. This makes the current version of composer the only backup available after the update.
+* **--rollback (-r):** 回滚到你已经安装的最后一个版本。
+* **--clean-backups:** 在更新过程中删除旧的备份，这使得更新过后的当前版本是唯一可用的备份。
 
-## config
+## 更改配置 `config`
 
-The `config` command allows you to edit some basic composer settings in either
-the local composer.json file or the global config.json file.
+`config` 命令允许你编辑 Composer 的一些基本设置，无论是本地的 `composer.json` 或者全局的 `config.json` 文件。
 
     $ php composer.phar config --list
 
-### Usage
+### 更改配置-使用方法
 
 `config [options] [setting-key] [setting-value1] ... [setting-valueN]`
 
-`setting-key` is a configuration option name and `setting-value1` is a
-configuration value.  For settings that can take an array of values (like
-`github-protocols`), more than one setting-value arguments are allowed.
+`setting-key` 是一个配置选项的名称，`setting-value1` 是一个配置的值。可以使用数组作为配置的值（像 `github-protocols`），多个 `setting-value` 是允许的。
 
-See the [config schema section](04-schema.md#config) for valid configuration
-options.
+有效的配置选项，请查看“架构”章节的 [config](04-schema.md#config) 。
 
-### Options
+### 更改配置-参数
 
-* **--global (-g):** Operate on the global config file located at
-`$COMPOSER_HOME/config.json` by default.  Without this option, this command
-affects the local composer.json file or a file specified by `--file`.
-* **--editor (-e):** Open the local composer.json file using in a text editor as
-defined by the `EDITOR` env variable.  With the `--global` option, this opens
-the global config file.
-* **--unset:** Remove the configuration element named by `setting-key`.
-* **--list (-l):** Show the list of current config variables.  With the `--global`
- option this lists the global configuration only.
-* **--file="..." (-f):** Operate on a specific file instead of composer.json. Note
- that this cannot be used in conjunction with the `--global` option.
+* **--global (-g):** 操作位于 `$COMPOSER_HOME/config.json` 的全局配置文件。如果不指定该参数，此命令将影响当前项目的 composer.json 文件，或 `--file` 参数所指向的文件。
+* **--editor (-e):** 使用文本编辑器打开 composer.json 文件。默认情况下始终是打开当前项目的文件。当存在 `--global` 参数时，将会打开全局 composer.json 文件。
+* **--unset:** 移除由 `setting-key` 指定名称的配置选项。
+* **--list (-l):** 显示当前配置选项的列表。当存在 `--global` 参数时，将会显示全局配置选项的列表。
+* **--file="..." (-f):** 在一个指定的文件上操作，而不是 composer.json。注意：不能与 `--global` 参数一起使用。
 
-### Modifying Repositories
+### 修改包来源
 
-In addition to modifying the config section, the `config` command also supports making
-changes to the repositories section by using it the following way:
+除了修改配置选项， `config` 命令还支持通过以下方法修改来源信息：
 
     $ php composer.phar config repositories.foo vcs http://github.com/foo/bar
 
-## create-project
+## 创建项目 `create-project`
 
-You can use Composer to create new projects from an existing package. This is
-the equivalent of doing a git clone/svn checkout followed by a composer install
-of the vendors.
+你可以使用 Composer 从现有的包中创建一个新的项目。这相当于执行了一个 `git clone` 或 `svn checkout` 命令后将这个包的依赖安装到它自己的 vendor 目录。
 
-There are several applications for this:
+此命令有几个常见的用途：
 
-1. You can deploy application packages.
-2. You can check out any package and start developing on patches for example.
-3. Projects with multiple developers can use this feature to bootstrap the
-   initial application for development.
+1. 你可以快速的部署你的应用。
+2. 你可以检出任何资源包，并开发它的补丁、用例。
+3. 多人开发项目，可以用它来加快应用的初始化。
 
-To create a new project using composer you can use the "create-project" command.
-Pass it a package name, and the directory to create the project in. You can also
-provide a version as third argument, otherwise the latest version is used.
+要创建基于 Composer 的新项目，你可以使用 "create-project" 命令。传递一个包名，它会为你创建项目的目录。你也可以在第三个参数中指定版本号，否则将获取最新的版本。
 
-If the directory does not currently exist, it will be created during installation.
+如果该目录目前不存在，则会在安装过程中自动创建。
 
     php composer.phar create-project doctrine/orm path 2.2.*
 
-It is also possible to run the command without params in a directory with an
-existing `composer.json` file to bootstrap a project.
+此外，你也可以无需使用这个命令，而是通过现有的 `composer.json` 文件来启动这个项目。
 
-By default the command checks for the packages on packagist.org.
+默认情况下，这个命令会在 packagist.org 上查找你指定的包。
 
-### Options
+### 创建项目-参数
 
 * **--repository-url:** Provide a custom repository to search for the package,
   which will be used instead of packagist. Can be either an HTTP URL pointing
