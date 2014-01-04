@@ -266,7 +266,7 @@
 此命令有几个常见的用途：
 
 1. 你可以快速的部署你的应用。
-2. 你可以检出任何资源包，并开发它的补丁、用例。
+2. 你可以检出任何资源包，并开发它的补丁。
 3. 多人开发项目，可以用它来加快应用的初始化。
 
 要创建基于 Composer 的新项目，你可以使用 "create-project" 命令。传递一个包名，它会为你创建项目的目录。你也可以在第三个参数中指定版本号，否则将获取最新的版本。
@@ -281,37 +281,24 @@
 
 ### 创建项目-参数
 
-* **--repository-url:** Provide a custom repository to search for the package,
-  which will be used instead of packagist. Can be either an HTTP URL pointing
-  to a `composer` repository, or a path to a local `packages.json` file.
-* **--stability (-s):** Minimum stability of package. Defaults to `stable`.
-* **--prefer-source:** Install packages from `source` when available.
-* **--prefer-dist:** Install packages from `dist` when available.
-* **--dev:** Install packages listed in `require-dev`.
-* **--no-install:** Disables installation of the vendors.
-* **--no-plugins:** Disables plugins.
-* **--no-scripts:** Disables the execution of the scripts defined in the root
-  package.
-* **--no-progress:** Removes the progress display that can mess with some
-  terminals or scripts which don't handle backspace characters.
-* **--keep-vcs:** Skip the deletion of the VCS metadata for the created
-  project. This is mostly useful if you run the command in non-interactive
-  mode.
+* **--repository-url:** 提供一个自定义的储存库来搜索包，这将被用来代替 packagist.org。可以是一个指向 `composer` 资源库的 HTTP URL，或者是指向某个 `packages.json` 文件的本地路径。
+* **--stability (-s):** 资源包的最低稳定版本，默认为 `stable`。
+* **--prefer-source:** 当有可用的包时，从 `source` 安装。
+* **--prefer-dist:** 当有可用的包时，从 `dist` 安装。
+* **--dev:** 安装 `require-dev` 字段中列出的包。
+* **--no-install:** 禁止安装包的依赖。
+* **--no-plugins:** 禁用 plugins。
+* **--no-scripts:** 禁止在根资源包中定义的脚本执行。
+* **--no-progress:** 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。
+* **--keep-vcs:** 创建时跳过缺失的 VCS 。如果你在非交互模式下运行创建命令，这将是非常有用的。
 
-## dump-autoload
+## 打印自动加载索引 `dump-autoload`
 
-If you need to update the autoloader because of new classes in a classmap
-package for example, you can use "dump-autoload" to do that without having to
-go through an install or update.
+某些情况下你需要更新 autoloader，例如在你的包中加入了一个新的类。你可以使用 `dump-autoload` 来完成，而不必执行 `install` 或 `update` 命令。
 
-Additionally, it can dump an optimized autoloader that converts PSR-0 packages
-into classmap ones for performance reasons. In large applications with many
-classes, the autoloader can take up a substantial portion of every request's
-time. Using classmaps for everything is less convenient in development, but
-using this option you can still use PSR-0 for convenience and classmaps for
-performance.
+此外，它可以打印一个优化过的，符合 PSR-0 规范的类的索引，这也是出于对性能的可考虑。在大型的应用中会有许多类文件，而 autoloader 会占用每个请求的很大一部分时间，使用 classmaps 或许在开发时不太方便，但它在保证性能的前提下，仍然可以获得 PSR-0 规范带来的便利。
 
-### Options
+### 打印自动加载索引-参数
 
 * **--optimize (-o):** Convert PSR-0 autoloading to classmap to get a faster
   autoloader. This is recommended especially for production, but can take
