@@ -300,89 +300,68 @@
 
 ### 打印自动加载索引-参数
 
-* **--optimize (-o):** Convert PSR-0 autoloading to classmap to get a faster
-  autoloader. This is recommended especially for production, but can take
-  a bit of time to run so it is currently not done by default.
+* **--optimize (-o):** 转换 PSR-0 autoloading 到 classmap 获得更快的载入速度。这特别适用于生产环境，但可能需要一些时间来运行，因此它目前不是默认设置。
 
-## licenses
+## 查看许可协议 `licenses`
 
-Lists the name, version and license of every package installed. Use
-`--format=json` to get machine readable output.
+列出已安装的每个包的名称、版本、许可协议。可以使用 `--format=json` 参数来获取 JSON 格式的输出。
 
-## run-script
+## 执行脚本 `run-script`
 
-To run [scripts](articles/scripts.md) manually you can use this command,
-just give it the script name and optionally --no-dev to disable the dev mode.
+你可以运行此命令来手动执行 [脚本](articles/scripts.md)，只需要指定脚本的名称，可选的 `--no-dev` 参数允许你禁用开发者模式。
 
 ## diagnose
 
-If you think you found a bug, or something is behaving strangely, you might
-want to run the `diagnose` command to perform automated checks for many common
-problems.
+如果你觉得发现了一个 bug 或是程序行为变得怪异，你可能需要运行 `diagnose` 命令，来帮助你检测一些常见的问题。
 
     $ php composer.phar diagnose
 
-## archive
+## 归档 `archive`
 
-This command is used to generate a zip/tar archive for a given package in a
-given version. It can also be used to archive your entire project without
-excluded/ignored files.
+此命令用来对指定包的指定版本进行 zip/tar 归档。它也可以用来归档你的整个项目，不包括 excluded/ignored（排除/忽略）的文件。
 
     $ php composer.phar archive vendor/package 2.0.21 --format=zip
 
-### Options
+### 归档-参数
 
-* **--format (-f):** Format of the resulting archive: tar or zip (default:
-  "tar")
-* **--dir:** Write the archive to this directory (default: ".")
+* **--format (-f):** 指定归档格式：tar 或 zip（默认为 tar）。
+* **--dir:** 指定归档存放的目录（默认为当前目录）。
 
-## help
+## 获取帮助信息 `help`
 
-To get more information about a certain command, just use `help`.
+使用 `help` 可以获取指定命令的帮助信息。
 
     $ php composer.phar help install
 
-## Environment variables
+## 环境变量
 
-You can set a number of environment variables that override certain settings.
-Whenever possible it is recommended to specify these settings in the `config`
-section of `composer.json` instead. It is worth noting that the env vars will
-always take precedence over the values specified in `composer.json`.
+你可以设置一些环境变量来覆盖默认的配置。建议尽可能的在 `composer.json` 的 `config` 字段中设置这些值，而不是通过命令行设置环境变量。值得注意的是环境变量中的值，将始终优先于 `composer.json` 中所指定的值。
 
 ### COMPOSER
 
-By setting the `COMPOSER` env variable it is possible to set the filename of
-`composer.json` to something else.
+环境变量 `COMPOSER` 可以为 `composer.json` 文件指定其它的文件名。
 
-For example:
+例如：
 
     $ COMPOSER=composer-other.json php composer.phar install
 
 ### COMPOSER_ROOT_VERSION
 
-By setting this var you can specify the version of the root package, if it can
-not be guessed from VCS info and is not present in `composer.json`.
+通过设置这个环境变量，你可以指定 root 包的版本，如果程序不能从 VCS 上猜测出版本号，并且未在 `composer.json` 文件中申明。
 
 ### COMPOSER_VENDOR_DIR
 
-By setting this var you can make composer install the dependencies into a
-directory other than `vendor`.
+通过设置这个环境变量，你可以指定 composer 将依赖安装在 `vendor` 以外的其它目录中。
 
 ### COMPOSER_BIN_DIR
 
-By setting this option you can change the `bin` ([Vendor Binaries](articles/vendor-binaries.md))
-directory to something other than `vendor/bin`.
+通过设置这个环境变量，你可以指定 `bin`（[Vendor Binaries](articles/vendor-binaries.md)）目录到 `vendor/bin` 以外的其它目录。
 
 ### http_proxy or HTTP_PROXY
 
-If you are using composer from behind an HTTP proxy, you can use the standard
-`http_proxy` or `HTTP_PROXY` env vars. Simply set it to the URL of your proxy.
-Many operating systems already set this variable for you.
+如果你是通过 HTTP 代理来使用 Composer，你可以使用 `http_proxy` 或 `HTTP_PROXY` 环境变量。只要简单的将它设置为代理服务器的 URL。许多操作系统已经为你的服务设置了此变量。
 
-Using `http_proxy` (lowercased) or even defining both might be preferable since
-some tools like git or curl will only use the lower-cased `http_proxy` version.
-Alternatively you can also define the git proxy using
-`git config --global http.proxy <proxy url>`.
+建议使用 `http_proxy`（小写）或者两者都进行定义。因为某些工具，像 git 或 curl 将使用 `http_proxy` 小写的版本。另外，你还可以使用 `git config --global http.proxy <proxy url>` 来单独设置 git 的代理。
 
 ### no_proxy
 
