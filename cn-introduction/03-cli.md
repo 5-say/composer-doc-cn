@@ -9,32 +9,22 @@
 - [命令行](#命令行)
 - [全局参数](#全局参数)
   - [进程退出代码](#进程退出代码)
-  - [初始化 `init`](#初始化-init) - [参数](#初始化-参数)
-  - [安装 `install`](#安装-install) - [参数](#安装-参数)
-  - [更新 `update`](#更新-update) - [参数](#更新-参数)
-  - 申明依赖 `require`
-    - 申明依赖-参数
-  - 全局执行 `global`
-  - 搜索 `search`
-    - 搜索-参数
-  - 展示 `show`
-    - 展示-参数
-  - 依赖性检测 `depends`
-    - 依赖性检测-参数
-  - 有效性检测 `validate`
-  - 依赖包状态检测 `status`
-  - 自我更新 `self-update`
-    - 自我更新-参数
-  - 更改配置 `config`
-    - 更改配置-使用方法
-    - 更改配置-参数
-    - 修改包来源
-  - 创建项目 `create-project`
-    - 创建项目-参数
-  - 打印自动加载索引 `dump-autoload`
-    - 打印自动加载索引-参数
-  - 查看许可协议 `licenses`
-  - 执行脚本 `run-script`
+  - [初始化 `init`](#初始化-init) - - [参数](#初始化-参数)
+  - [安装 `install`](#安装-install) - - [参数](#安装-参数)
+  - [更新 `update`](#更新-update) - - [参数](#更新-参数)
+  - [申明依赖 `require`](#申明依赖-require) - - [参数](#申明依赖-参数)
+  - [全局执行 `global`](#全局执行-global)
+  - [搜索 `search`](#搜索-search) - - [参数](#搜索-参数)
+  - [展示 `show`](#展示-show) - - [参数](#展示-参数)
+  - [依赖性检测 `depends`](#依赖性检测-depends) - - [参数](#依赖性检测-参数)
+  - [有效性检测 `validate`](#有效性检测-validate)
+  - [依赖包状态检测 `status`](#依赖包状态检测-status)
+  - [自我更新 `self-update`](#自我更新-self-update) - - [参数](#自我更新-参数)
+  - [更改配置 `config`](#更改配置-config) - - [使用方法](#更改配置-使用方法) - - [参数](#更改配置-参数) - - [修改包来源](#修改包来源)
+  - [创建项目 `create-project`](#创建项目-create-project) - - [参数](#创建项目-参数)
+  - [打印自动加载索引 `dump-autoload`](#打印自动加载索引-dump-autoload) - - [参数](#打印自动加载索引-参数)
+  - [查看许可协议 `licenses`](#查看许可协议-licenses)
+  - [执行脚本 `run-script`](#执行脚本-run-script)
   - diagnose
   - 归档 `archive`
     - 归档-参数
