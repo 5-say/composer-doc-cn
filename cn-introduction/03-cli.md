@@ -365,68 +365,53 @@
 
 ### no_proxy
 
-If you are behind a proxy and would like to disable it for certain domains, you
-can use the `no_proxy` env var. Simply set it to a comma separated list of
-domains the proxy should *not* be used for.
+如果你是使用代理服务器，并且想要对某些域名禁用代理，就可以使用 `no_proxy` 环境变量。只需要输入一个逗号相隔的域名 *排除* 列表。
 
-The env var accepts domains, IP addresses, and IP address blocks in CIDR
-notation. You can restrict the filter to a particular port (e.g. `:80`). You
-can also set it to `*` to ignore the proxy for all HTTP requests.
+此环境变量接受域名、IP 以及 CIDR地址块。你可以将它限制到一个端口（例如：`:80`）。你还可以把它设置为 `*` 来忽略所有的 HTTP 代理请求。
 
 ### HTTP_PROXY_REQUEST_FULLURI
 
-If you use a proxy but it does not support the request_fulluri flag, then you
-should set this env var to `false` or `0` to prevent composer from setting the
-request_fulluri option.
+如果你使用了 HTTP 代理，但它不支持 `request_fulluri` 标签，那么你应该设置这个环境变量为 `false` 或 `0` ，来防止 composer 从 `request_fulluri` 读取配置。
 
 ### HTTPS_PROXY_REQUEST_FULLURI
 
-If you use a proxy but it does not support the request_fulluri flag for HTTPS
-requests, then you should set this env var to `false` or `0` to prevent composer
-from setting the request_fulluri option.
+如果你使用了 HTTPS 代理，但它不支持 `request_fulluri` 标签，那么你应该设置这个环境变量为 `false` 或 `0` ，来防止 composer 从 `request_fulluri` 读取配置。
 
 ### COMPOSER_HOME
 
-The `COMPOSER_HOME` var allows you to change the composer home directory. This
-is a hidden, global (per-user on the machine) directory that is shared between
-all projects.
+`COMPOSER_HOME` 环境变量允许你改变 Composer 的主目录。这是一个隐藏的、所有项目共享的全局目录（对本机的所有用户都可用）。
 
-By default it points to `/home/<user>/.composer` on \*nix,
-`/Users/<user>/.composer` on OSX and
-`C:\Users\<user>\AppData\Roaming\Composer` on Windows.
+它在各个系统上的默认值分别为：
+- \*nix `/home/<user>/.composer`。
+- OSX `/Users/<user>/.composer`。
+- Windows `C:\Users\<user>\AppData\Roaming\Composer`。
 
 #### COMPOSER_HOME/config.json
 
-You may put a `config.json` file into the location which `COMPOSER_HOME` points
-to. Composer will merge this configuration with your project's `composer.json`
-when you run the `install` and `update` commands.
+你可以在 `COMPOSER_HOME` 目录中放置一个 `config.json` 文件。在你执行 `install` 和 `update` 命令时，Composer 会将它与你项目中的 `composer.json` 文件进行合并。
 
-This file allows you to set [configuration](04-schema.md#config) and
-[repositories](05-repositories.md) for the user's projects.
+该文件允许你为用户的项目设置 [配置信息](04-schema.md#config) 和 [资源地址](05-repositories.md)。
 
-In case global configuration matches _local_ configuration, the _local_
-configuration in the project's `composer.json` always wins.
+若 _全局_ 和 _项目_ 存在相同配置项，那么项目中的 `composer.json` 文件拥有更高的优先级。
 
 ### COMPOSER_CACHE_DIR
 
-The `COMPOSER_CACHE_DIR` var allows you to change the composer cache directory,
-which is also configurable via the [`cache-dir`](04-schema.md#config) option.
+`COMPOSER_CACHE_DIR` 环境变量允许你设置 Composer 的缓存目录，这也可以通过 [`cache-dir`](04-schema.md#config) 进行配置。
 
-By default it points to $COMPOSER_HOME/cache on \*nix and OSX, and
-`C:\Users\<user>\AppData\Local\Composer` (or `%LOCALAPPDATA%/Composer`) on Windows.
+它在各个系统上的默认值分别为：
+- \*nix and OSX `$COMPOSER_HOME/cache`。
+- Windows `C:\Users\<user>\AppData\Local\Composer` 或 `%LOCALAPPDATA%/Composer`。
 
 ### COMPOSER_PROCESS_TIMEOUT
 
-This env var controls the time composer waits for commands (such as git
-commands) to finish executing. The default value is 300 seconds (5 minutes).
+这个环境变量控制着 Composer 执行命令的等待时间（例如：git 命令）。默认值为300秒（5分钟）。
 
 ### COMPOSER_DISCARD_CHANGES
 
-This env var controls the discard-changes [config option](04-schema.md#config).
+这个环境变量控制着 discard-changes [config option](04-schema.md#config)。
 
 ### COMPOSER_NO_INTERACTION
 
-If set to 1, this env var will make composer behave as if you passed the
-`--no-interaction` flag to every command. This can be set on build boxes/CI.
+如果设置为1，这个环境变量将使 Composer 在执行每一个命令时都放弃交互，相当于对每一命令都使用了 `--no-interaction` 标签。This can be set on build boxes/CI.
 
-&larr; [Libraries](02-libraries.md)  |  [Schema](04-schema.md) &rarr;
+&larr; [库](02-libraries.md)  |  [架构](04-schema.md) &rarr;
