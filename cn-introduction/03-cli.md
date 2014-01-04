@@ -4,6 +4,59 @@
 
 为了从命令行获得帮助信息，请运行 `composer` 或者 `composer list` 命令，然后结合 `--help` 命令来获得更多的帮助信息。
 
+---
+
+- [命令行](#命令行)
+- [全局参数](#全局参数)
+  - [进程退出代码](#进程退出代码)
+  - [初始化 `init`](#初始化-init) - [参数](#初始化-参数)
+  - [安装 `install`](#安装-install) - [参数](#安装-参数)
+  - [更新 `update`](#更新-update) - [参数](#更新-参数)
+  - 申明依赖 `require`
+    - 申明依赖-参数
+  - 全局执行 `global`
+  - 搜索 `search`
+    - 搜索-参数
+  - 展示 `show`
+    - 展示-参数
+  - 依赖性检测 `depends`
+    - 依赖性检测-参数
+  - 有效性检测 `validate`
+  - 依赖包状态检测 `status`
+  - 自我更新 `self-update`
+    - 自我更新-参数
+  - 更改配置 `config`
+    - 更改配置-使用方法
+    - 更改配置-参数
+    - 修改包来源
+  - 创建项目 `create-project`
+    - 创建项目-参数
+  - 打印自动加载索引 `dump-autoload`
+    - 打印自动加载索引-参数
+  - 查看许可协议 `licenses`
+  - 执行脚本 `run-script`
+  - diagnose
+  - 归档 `archive`
+    - 归档-参数
+  - 获取帮助信息 `help`
+  - 环境变量
+    - COMPOSER
+    - COMPOSER_ROOT_VERSION
+    - COMPOSER_VENDOR_DIR
+    - COMPOSER_BIN_DIR
+    - http_proxy or HTTP_PROXY
+    - no_proxy
+    - HTTP_PROXY_REQUEST_FULLURI
+    - HTTPS_PROXY_REQUEST_FULLURI
+    - COMPOSER_HOME
+      - COMPOSER_HOME/config.json
+    - COMPOSER_CACHE_DIR
+    - COMPOSER_PROCESS_TIMEOUT
+    - COMPOSER_DISCARD_CHANGES
+    - COMPOSER_NO_INTERACTION
+
+---
+
 ## 全局参数
 
 下列参数可与每一个命令结合使用：
@@ -412,6 +465,6 @@
 
 ### COMPOSER_NO_INTERACTION
 
-如果设置为1，这个环境变量将使 Composer 在执行每一个命令时都放弃交互，相当于对每一命令都使用了 `--no-interaction` 标签。This can be set on build boxes/CI.
+如果设置为1，这个环境变量将使 Composer 在执行每一个命令时都放弃交互，相当于对所有命令都使用了 `--no-interaction`。可以在搭建 *虚拟机/持续集成服务器* 时这样设置。
 
 &larr; [库](02-libraries.md)  |  [架构](04-schema.md) &rarr;
