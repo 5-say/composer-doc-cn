@@ -2,18 +2,15 @@
     tagline: Modify the way certain types of packages are installed
 -->
 
-# Setting up and using custom installers
+# 设置和使用自定义安装类型
 
-## Synopsis
+## 概要
 
-At times it may be necessary for a package to require additional actions during
-installation, such as installing packages outside of the default `vendor`
-library.
+有时需要在包的安装过程中执行其它的动作，例如：将它安装在默认的 `vendor` 以外的其它目录。
 
-In these cases you could consider creating a Custom Installer to handle your
-specific logic.
+在这些情况下，你可以考虑创建一个自定义安装程序来处理特定的逻辑。
 
-## Calling a Custom Installer
+## 调用自定义安装程序
 
 Suppose that your project already has a Custom Installer for specific modules
 then invoking that installer is a matter of defining the correct [type][1] in

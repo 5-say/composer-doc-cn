@@ -17,8 +17,8 @@ Composer 中文文档
 ## Articles
 - [Aliases](/cn-introduction/articles/aliases.md)  
 Alias branch names to versions
-- [Custom Installers](/cn-introduction/articles/custom-installers.md)  
-Modify the way certain types of packages are installed
+- [自定义安装程序](/cn-introduction/articles/custom-installers.md)  
+修改某些特殊类型包的安装方式。
 - [Handling Private Packages With Satis](/cn-introduction/articles/handling-private-packages-with-satis.md)  
 Host your own composer repository
 - [Plugins](/cn-introduction/articles/plugins.md)  

@@ -1,63 +1,50 @@
 # composer.json
 
-This chapter will explain all of the fields available in `composer.json`.
+本章将解释所有在 `composer.json` 中可用的字段。
 
 ## JSON schema
 
-We have a [JSON schema](http://json-schema.org) that documents the format and
-can also be used to validate your `composer.json`. In fact, it is used by the
-`validate` command. You can find it at:
-[`res/composer-schema.json`](https://github.com/composer/composer/blob/master/res/composer-schema.json).
+我们有一个 [JSON schema](http://json-schema.org) 格式化文档，它也可以被用来验证你的 `composer.json` 文件。事实上，它已经被 `validate` 命令所使用。 你可以在这里找到它： [`res/composer-schema.json`](https://github.com/composer/composer/blob/master/res/composer-schema.json).
 
 ## Root Package
 
-The root package is the package defined by the `composer.json` at the root of
-your project. It is the main `composer.json` that defines your project
-requirements.
+root package 是指由 `composer.json` 定义的在你项目根目录的包。这是 `composer.json` 定义你项目所需的主要条件。（简单的说，你自己的项目就是一个 root package）
 
-Certain fields only apply when in the root package context. One example of
-this is the `config` field. Only the root package can define configuration.
-The config of dependencies is ignored. This makes the `config` field
-`root-only`.
+某些字段仅适用于 root package 上下文。 `config` 字段就是其中一个例子。只有 root package 可以定义 configuration。在依赖包中定义的 `config` 字段将被忽略，这使得 `config` 字段只有 root package 可用（`root-only`）。
 
-If you clone one of those dependencies to work on it, then that package is the
-root package. The `composer.json` is identical, but the context is different.
+如果你克隆了其中的一个依赖包，直接在其上开始工作，那么它就变成了 root package。与作为他人的依赖包时使用相同的 `composer.json` 文件，但上下文发生了变化。
 
-> **Note:** A package can be the root package or not, depending on the context.
-> For example, if your project depends on the `monolog` library, your project
-> is the root package. However, if you clone `monolog` from GitHub in order to
-> fix a bug in it, then `monolog` is the root package.
+> **注意：** 一个资源包是不是 root package，取决于它的上下文。
+> 例如：如果你的项目依赖 `monolog` 库，那么你的项目就是 root package。
+> 但是，如果你从 GitHub 上克隆了 `monolog` 为它修复 bug，
+> 那么此时 `monolog` 就是 root package。
 
-## Properties
+## 属性
 
-### name
+### 包名 `name`
 
-The name of the package. It consists of vendor name and project name,
-separated by `/`.
+包的名称，它包括供应商名称和项目名称，使用 `/` 分隔。
 
-Examples:
+例如：
 
 * monolog/monolog
 * igorw/event-source
 
-Required for published packages (libraries).
+对于需要发布的包（库），这是必须填写的。
 
-### description
+### 描述 `description`
 
-A short description of the package. Usually this is just one line long.
+一个包的简短描述。通常这个最长只有一行。
 
-Required for published packages (libraries).
+对于需要发布的包（库），这是必须填写的。
 
-### version
+### 版本 `version`
 
-The version of the package. In most cases this is not required and should
-be omitted (see below).
+`version` 不是必须的，并且建议忽略（见下文）。
 
-This must follow the format of `X.Y.Z` or `vX.Y.Z` with an optional suffix
-of `-dev`, `-patch`, `-alpha`, `-beta` or `-RC`. The patch, alpha, beta and
-RC suffixes can also be followed by a number.
+它应该符合 'X.Y.Z' 或者 'vX.Y.Z' 的形式， `-dev`、`-patch`、`-alpha`、`-beta` 或 `-RC` 这些后缀是可选的。在后缀之后也可以再跟上一个数字。
 
-Examples:
+例如：
 
     1.0.0
     1.0.2
@@ -68,43 +55,27 @@ Examples:
     1.0.0-beta2
     1.0.0-RC5
 
-Optional if the package repository can infer the version from somewhere, such
-as the VCS tag name in the VCS repository. In that case it is also recommended
-to omit it.
+通常，我们能够从 VCS (git, svn, hg) 的信息推断出包的版本号，在这种情况下，我们建议忽略 `version`。
 
-> **Note:** Packagist uses VCS repositories, so the statement above is very
-> much true for Packagist as well. Specifying the version yourself will
-> most likely end up creating problems at some point due to human error.
+> **注意：** Packagist 使用 VCS 仓库，
+> 因此 `version` 定义的版本号必须是真实准确的。
+> 自己手动指定的 `version`，最终有可能在某个时候因为人为错误造成问题。
 
-### type
+### 安装类型 `type`
 
-The type of the package. It defaults to `library`.
+包的安装类型，默认为 `library`。
 
-Package types are used for custom installation logic. If you have a package
-that needs some special logic, you can define a custom type. This could be a
-`symfony-bundle`, a `wordpress-plugin` or a `typo3-module`. These types will
-all be specific to certain projects, and they will need to provide an
-installer capable of installing packages of that type.
+包的安装类型，用来定义安装逻辑。如果你有一个包需要一个特殊的逻辑，你可以设定一个自定义的类型。这可以是一个 `symfony-bundle`，一个 `wordpress-plugin` 或者一个 `typo3-module`。这些类型都将是具体到某一个项目，而对应的项目将要提供一种能够安装该类型包的安装程序。
 
-Out of the box, composer supports four types:
+composer 原生支持以下4种类型：
 
-- **library:** This is the default. It will simply copy the files to `vendor`.
-- **project:** This denotes a project rather than a library. For example
-  application shells like the [Symfony standard edition](https://github.com/symfony/symfony-standard),
-  CMSs like the [SilverStripe installer](https://github.com/silverstripe/silverstripe-installer)
-  or full fledged applications distributed as packages. This can for example
-  be used by IDEs to provide listings of projects to initialize when creating
-  a new workspace.
-- **metapackage:** An empty package that contains requirements and will trigger
-  their installation, but contains no files and will not write anything to the
-  filesystem. As such, it does not require a dist or source key to be
-  installable.
+- **library:** 这是默认类型，它会简单的将文件复制到 `vendor` 目录。
+- **project:** 这表示当前包是一个项目，而不是一个库。例如：框架应用程序 [Symfony standard edition](https://github.com/symfony/symfony-standard)，内容管理系统 [SilverStripe installer](https://github.com/silverstripe/silverstripe-installer) 或者完全成熟的分布式应用程序。使用 IDE 创建一个新的工作区时，这可以为其提供项目列表的初始化。
+- **metapackage:** 当一个空的包，包含依赖并且需要触发依赖的安装，这将不会对系统写入额外的文件。因此这种安装类型并不需要一个 dist 或 source。
 - **composer-plugin:** A package of type `composer-plugin` may provide an
-  installer for other packages that have a custom type. Read more in the
-  [dedicated article](articles/custom-installers.md).
+  installer for other packages that have a custom type.详细请查看 [自定义安装类型](articles/custom-installers.md)。
 
-Only use a custom type if you need custom logic during installation. It is
-recommended to omit this field and have it just default to `library`.
+仅在你需要一个自定义的安装逻辑时才使用它。建议忽略这个属性，采用默认的 `library`。
 
 ### keywords
 
