@@ -261,9 +261,7 @@ Example:
 > 正因为如此，在某些情况下，它不会是一个实用的解决方法，
 > 如果可能，你应该总是尝试切换到拥有标签的版本。
 
-It is also possible to inline-alias a package constraint so that it matches
-a constraint that it otherwise would not. For more information [see the
-aliases article](articles/aliases.md).
+它也可以应用于行内别名，这样它将匹配一个约束，否则不会。更多信息请参考 [别名](articles/aliases.md).
 
 #### require
 
