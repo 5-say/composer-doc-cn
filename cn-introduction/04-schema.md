@@ -6,18 +6,18 @@
 
 我们有一个 [JSON schema](http://json-schema.org) 格式化文档，它也可以被用来验证你的 `composer.json` 文件。事实上，它已经被 `validate` 命令所使用。 你可以在这里找到它： [`res/composer-schema.json`](https://github.com/composer/composer/blob/master/res/composer-schema.json).
 
-## Root Package
+## Root 包
 
-root package 是指由 `composer.json` 定义的在你项目根目录的包。这是 `composer.json` 定义你项目所需的主要条件。（简单的说，你自己的项目就是一个 root package）
+“root 包”是指由 `composer.json` 定义的在你项目根目录的包。这是 `composer.json` 定义你项目所需的主要条件。（简单的说，你自己的项目就是一个 root 包）
 
-某些字段仅适用于 root package 上下文。 `config` 字段就是其中一个例子。只有 root package 可以定义 configuration。在依赖包中定义的 `config` 字段将被忽略，这使得 `config` 字段只有 root package 可用（`root-only`）。
+某些字段仅适用于“root 包”上下文。 `config` 字段就是其中一个例子。只有“root 包”可以定义。在依赖包中定义的 `config` 字段将被忽略，这使得 `config` 字段只有“root 包”可用（`root-only`）。
 
-如果你克隆了其中的一个依赖包，直接在其上开始工作，那么它就变成了 root package。与作为他人的依赖包时使用相同的 `composer.json` 文件，但上下文发生了变化。
+如果你克隆了其中的一个依赖包，直接在其上开始工作，那么它就变成了“root 包”。与作为他人的依赖包时使用相同的 `composer.json` 文件，但上下文发生了变化。
 
-> **注意：** 一个资源包是不是 root package，取决于它的上下文。
-> 例如：如果你的项目依赖 `monolog` 库，那么你的项目就是 root package。
+> **注意：** 一个资源包是不是“root 包”，取决于它的上下文。
+> 例如：如果你的项目依赖 `monolog` 库，那么你的项目就是“root 包”。
 > 但是，如果你从 GitHub 上克隆了 `monolog` 为它修复 bug，
-> 那么此时 `monolog` 就是 root package。
+> 那么此时 `monolog` 就是“root 包”。
 
 ## 属性
 
@@ -211,10 +211,9 @@ composer 原生支持以下4种类型：
 
 ### Package links
 
-All of the following take an object which maps package names to
-[version constraints](01-basic-usage.md#package-versions).
+下面提到的所有对象，都应该是 包名 到 [版本](01-basic-usage.md#包版本) 的映射对象。
 
-Example:
+例如：
 
     {
         "require": {
@@ -222,15 +221,11 @@ Example:
         }
     }
 
-All links are optional fields.
+所有的这些都是可选的。
 
-`require` and `require-dev` additionally support stability flags (root-only).
-These allow you to further restrict or expand the stability of a package beyond
-the scope of the [minimum-stability](#minimum-stability) setting. You can apply
-them to a constraint, or just apply them to an empty constraint if you want to
-allow unstable packages of a dependency for example.
+`require` 和 `require-dev` 还支持稳定性标签（@，仅针对“root 包”）。这允许你在 [minimum-stability](#minimum-stability) 设定的范围外做进一步的限制或扩展。例如：如果你想允许依赖一个不稳定的包，你可以在一个包的版本约束后使用它，或者是一个空的版本约束内使用它。
 
-Example:
+例子：
 
     {
         "require": {
@@ -239,10 +234,9 @@ Example:
         }
     }
 
-If one of your dependencies has a dependency on an unstable package you need to
-explicitly require it as well, along with its sufficient stability flag.
+如果你的依赖之一，有对另一个不稳定包的依赖，你最好在 require 中显示的定义它，并带上足够详细的稳定性标识。
 
-Example:
+例子：
 
     {
         "require": {
@@ -251,10 +245,7 @@ Example:
         }
     }
 
-`require` and `require-dev` additionally support explicit references (i.e.
-commit) for dev versions to make sure they are locked to a given state, even
-when you run update. These only work if you explicitly require a dev version
-and append the reference with `#<ref>`.
+`require` 和 `require-dev` 还支持对 dev（开发）版本的明确引用（即：版本控制系统中的提交编号 commit），以确保它们被锁定到一个给定的状态，即使你运行了更新命令。你只需要明确一个开发版本号，并带上诸如 `#<ref>` 的标识。
 
 Example:
 
