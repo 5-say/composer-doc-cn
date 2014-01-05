@@ -2,9 +2,9 @@
     tagline: Alias branch names to versions
 -->
 
-# Aliases
+# 别名
 
-## Why aliases?
+## 为什么使用别名？
 
 When you are using a VCS repository, you will only get comparable versions for
 branches that look like versions, such as `2.0`. For your `master` branch, you

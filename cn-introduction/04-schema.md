@@ -256,12 +256,10 @@ Example:
         }
     }
 
-> **Note:** While this is convenient at times, it should not be how you use
-> packages in the long term because it comes with a technical limitation. The
-> composer.json metadata will still be read from the branch name you specify
-> before the hash. Because of that in some cases it will not be a practical
-> workaround, and you should always try to switch to tagged releases as soon
-> as you can.
+> **注意：** 虽然这有时很方便，但不应该长期在你的包中使用，因为它有一个技术上的限制。
+> composer.json 将仍然在哈希值之前指定的分支名称读取元数据，
+> 正因为如此，在某些情况下，它不会是一个实用的解决方法，
+> 如果可能，你应该总是尝试切换到拥有标签的版本。
 
 It is also possible to inline-alias a package constraint so that it matches
 a constraint that it otherwise would not. For more information [see the
