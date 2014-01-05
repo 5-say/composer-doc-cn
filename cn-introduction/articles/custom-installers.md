@@ -12,11 +12,9 @@
 
 ## 调用自定义安装程序
 
-Suppose that your project already has a Custom Installer for specific modules
-then invoking that installer is a matter of defining the correct [type][1] in
-your package file.
+假设你的项目已经有了一个自定义的安装模块，那么如何根据 [type][1] 正确调用你包文件中的安装程序就成为了一个问题。
 
-> _See the next chapter for an instruction how to create Custom Installers._
+> _参见见下一章，如何通过指令创建自定义安装程序。_
 
 Every Custom Installer defines which [type][1] string it will recognize. Once
 recognized it will completely override the default installer and only apply its
@@ -176,7 +174,7 @@ different installation path.
 > _Instead of being installed in `/vendor` any package installed using this
 > Installer will be put in the `/data/templates/<stripped name>` folder._
 
-[1]: ../04-schema.md#type
+[1]: ../04-schema.md#安装类型-type
 [2]: ../04-schema.md#extra
 [3]: https://github.com/composer/composer/blob/master/src/Composer/Plugin/PluginInterface.php
 [4]: https://github.com/composer/composer/blob/master/src/Composer/Installer/InstallerInterface.php

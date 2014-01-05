@@ -72,17 +72,15 @@ composer 原生支持以下4种类型：
 - **library:** 这是默认类型，它会简单的将文件复制到 `vendor` 目录。
 - **project:** 这表示当前包是一个项目，而不是一个库。例如：框架应用程序 [Symfony standard edition](https://github.com/symfony/symfony-standard)，内容管理系统 [SilverStripe installer](https://github.com/silverstripe/silverstripe-installer) 或者完全成熟的分布式应用程序。使用 IDE 创建一个新的工作区时，这可以为其提供项目列表的初始化。
 - **metapackage:** 当一个空的包，包含依赖并且需要触发依赖的安装，这将不会对系统写入额外的文件。因此这种安装类型并不需要一个 dist 或 source。
-- **composer-plugin:** A package of type `composer-plugin` may provide an
-  installer for other packages that have a custom type.详细请查看 [自定义安装类型](articles/custom-installers.md)。
+- **composer-plugin:** 一个安装类型为 `composer-plugin` 的包，它有一个自定义安装类型，可以为其它包提供一个 installler。详细请查看 [自定义安装类型](articles/custom-installers.md)。
 
 仅在你需要一个自定义的安装逻辑时才使用它。建议忽略这个属性，采用默认的 `library`。
 
-### keywords
+### 关键字 `keywords`
 
-An array of keywords that the package is related to. These can be used for
-searching and filtering.
+该包相关的关键词的数组。这些可用于搜索和过滤。
 
-Examples:
+例如：
 
     logging
     events
@@ -90,27 +88,27 @@ Examples:
     redis
     templating
 
-Optional.
+可选。
 
-### homepage
+### 项目主页 `homepage`
 
-An URL to the website of the project.
+该项目网站的 URL 地址。
 
-Optional.
+可选。
 
-### time
+### 版本发布时间 `time`
 
-Release date of the version.
+版本发布时间。
 
-Must be in `YYYY-MM-DD` or `YYYY-MM-DD HH:MM:SS` format.
+必须符合 `YYYY-MM-DD` 或 `YYYY-MM-DD HH:MM:SS` 格式。
 
-Optional.
+可选。
 
-### license
+### 许可协议 `license`
 
-The license of the package. This can be either a string or an array of strings.
+包的许可协议，它可以是一个字符串或者字符串数组。
 
-The recommended notation for the most common licenses is (alphabetical):
+最常见的许可协议的推荐写法（按字母排序）：
 
     Apache-2.0
     BSD-2-Clause
@@ -126,22 +124,19 @@ The recommended notation for the most common licenses is (alphabetical):
     LGPL-3.0+
     MIT
 
-Optional, but it is highly recommended to supply this. More identifiers are
-listed at the [SPDX Open Source License Registry](http://www.spdx.org/licenses/).
+可选，但强烈建议提供此内容。更多许可协议的标识符请参见 [SPDX Open Source License Registry](http://www.spdx.org/licenses/)。
 
-For closed-source software, you may use `"proprietary"` as the license identifier.
+对于闭源软件，你必须使用 `"proprietary"` 协议标识符。
 
-An Example:
+一个例子：
 
     {
         "license": "MIT"
     }
 
+对于一个包，当允许在多个许可协议间进行选择时（"disjunctive license"），这些协议标识符可以被指定为数组。
 
-For a package, when there is a choice between licenses ("disjunctive license"),
-multiple can be specified as array.
-
-An Example for disjunctive licenses:
+多协议的一个例子：
 
     {
         "license": [
@@ -150,27 +145,26 @@ An Example for disjunctive licenses:
         ]
     }
 
-Alternatively they can be separated with "or" and enclosed in parenthesis;
+另外它们也可以由 "or" 分隔，并写在括号中：
 
     {
         "license": "(LGPL-2.1 or GPL-3.0+)"
     }
 
-Similarly when multiple licenses need to be applied ("conjunctive license"),
-they should be separated with "and" and enclosed in parenthesis.
+同样，当有多个许可协议需要结合使用时（"conjunctive license"），它们应该被 "and" 分隔，并写在括号中。
 
-### authors
+### 作者 `authors`
 
-The authors of the package. This is an array of objects.
+包的作者。这是一个对象数组。
 
-Each author object can have following properties:
+这个对象必须包含以下属性：
 
-* **name:** The author's name. Usually his real name.
-* **email:** The author's email address.
-* **homepage:** An URL to the author's website.
-* **role:** The authors' role in the project (e.g. developer or translator)
+* **name:** 作者的姓名，通常使用真名。
+* **email:** 作者的 email 地址。
+* **homepage:** 作者主页的 URL 地址。
+* **role:** 该作者在此项目中担任的角色（例如：开发人员 或 翻译）。
 
-An example:
+一个例子：
 
     {
         "authors": [
@@ -189,22 +183,22 @@ An example:
         ]
     }
 
-Optional, but highly recommended.
+可选，但强烈建议提供此内容。
 
-### support
+### 支持 `support`
 
-Various information to get support about the project.
+获取项目支持的向相关信息对象。
 
-Support information includes the following:
+这个对象必须包含以下属性：
 
-* **email:** Email address for support.
-* **issues:** URL to the Issue Tracker.
-* **forum:** URL to the Forum.
-* **wiki:** URL to the Wiki.
-* **irc:** IRC channel for support, as irc://server/channel.
-* **source:** URL to browse or download the sources.
+* **email:** 项目支持 email 地址。
+* **issues:** 跟踪问题的 URL 地址。
+* **forum:** 论坛地址。
+* **wiki:** Wiki 地址。
+* **irc:** IRC 聊天频道地址，类似于 irc://server/channel。
+* **source:** 网址浏览或下载源。
 
-An example:
+一个例子：
 
     {
         "support": {
@@ -213,7 +207,7 @@ An example:
         }
     }
 
-Optional.
+可选。
 
 ### Package links
 
