@@ -384,35 +384,28 @@ PSR-0 方式并不仅限于申明命名空间，也可以是精确到类级别�
 
 ### include-path
 
-> **DEPRECATED**: This is only present to support legacy projects, and all new code
-> should preferably use autoloading. As such it is a deprecated practice, but the
-> feature itself will not likely disappear from Composer.
+> **不建议**：这是目前唯一支持传统项目的做法，所有新的代码都建议使用自动加载。
+> 这是一个过时的做法，但 Composer 将仍然保留这个功能。
 
-A list of paths which should get appended to PHP's `include_path`.
+一个追加到 PHP `include_path` 中的列表。
 
-Example:
+例如：
 
     {
         "include-path": ["lib/"]
     }
 
-Optional.
+可选。
 
 ### target-dir
 
-Defines the installation target.
+定义当前包安装的目标文件夹。
 
-In case the package root is below the namespace declaration you cannot
-autoload properly. `target-dir` solves this problem.
+若某个包的根目录，在它申明的命名空间之下，将不能正确的使用自动加载。而 `target-dir` 解决了这个问题。
 
-An example is Symfony. There are individual packages for the components. The
-Yaml component is under `Symfony\Component\Yaml`. The package root is that
-`Yaml` directory. To make autoloading possible, we need to make sure that it
-is not installed into `vendor/symfony/yaml`, but instead into
-`vendor/symfony/yaml/Symfony/Component/Yaml`, so that the autoloader can load
-it from `vendor/symfony/yaml`.
+Symfony 就是一个例子。它有一些独立的包作为组件。Yaml 组件就放在 `Symfony\Component\Yaml` 目录下，然而这个包的根目录实际上是 `Yaml`。为了使自动加载成为可能，我们需要确保它不会被安装到 `vendor/symfony/yaml`，而是安装到 `vendor/symfony/yaml/Symfony/Component/Yaml`，从而使 Symfony 定义的 autoloader 可以从 `vendor/symfony/yaml` 加载它。
 
-To do that, `autoload` and `target-dir` are defined as follows:
+要做到这一点 `autoload` 和 `target-dir` 应该定义如下：
 
     {
         "autoload": {
@@ -421,7 +414,7 @@ To do that, `autoload` and `target-dir` are defined as follows:
         "target-dir": "Symfony/Component/Yaml"
     }
 
-Optional.
+可选。
 
 ### minimum-stability <span>(root-only)</span>
 
