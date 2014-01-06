@@ -440,18 +440,10 @@ Repositories 并不是递归调用的，只能在“Root包”的 `composer.json
 
 支持以下类型的包资源库：
 
-* **composer:** A composer repository is simply a `packages.json` file served
-  via the network (HTTP, FTP, SSH), that contains a list of `composer.json`
-  objects with additional `dist` and/or `source` information. The `packages.json`
-  file is loaded using a PHP stream. You can set extra options on that stream
-  using the `options` parameter.
-* **vcs:** The version control system repository can fetch packages from git,
-  svn and hg repositories.
-* **pear:** With this you can import any pear repository into your composer
-  project.
-* **package:** If you depend on a project that does not have any support for
-  composer whatsoever you can define the package inline using a `package`
-  repository. You basically just inline the `composer.json` object.
+* **composer:** 一个 composer 类型的资源库，是一个简单的网络服务器（HTTP、FTP、SSH）上的 `packages.json` 文件，它包含一个 `composer.json` 对象的列表，有额外的 `dist` 和/或 `source` 信息。这个 `packages.json` 文件是用一个 PHP 流加载的。你可以使用 `options` 参数来设定额外的流信息。
+* **vcs:** 从 git、svn 和 hg 取得资源。
+* **pear:** 从 pear 获取资源。
+* **package:** 如果你依赖于一个项目，它不提供任何对 composer 的支持，你就可以使用这种类型。你基本上就只需要内联一个 `composer.json` 对象。
 
 更多相关内容，请查看 [资源库](05-repositories.md)。
 
@@ -499,71 +491,34 @@ Repositories 并不是递归调用的，只能在“Root包”的 `composer.json
         ]
     }
 
-> **Note:** Order is significant here. When looking for a package, Composer
-will look from the first to the last repository, and pick the first match.
-By default Packagist is added last which means that custom repositories can
-override packages from it.
+> **注意：** 顺序是非常重要的，当 Composer 查找资源包时，它会按照顺序进行。默认情况下 Packagist 是最后加入的，因此自定义设置将可以覆盖 Packagist 上的包。
 
 ### config <span>(root-only)</span>
 
-A set of configuration options. It is only used for projects.
+下面的这一组选项，仅用于项目。
 
-The following options are supported:
+支持以下选项：
 
-* **process-timeout:** Defaults to `300`. The duration processes like git clones
-  can run before Composer assumes they died out. You may need to make this
-  higher if you have a slow connection or huge vendors.
-* **use-include-path:** Defaults to `false`. If true, the Composer autoloader
-  will also look for classes in the PHP include path.
-* **preferred-install:** Defaults to `auto` and can be any of `source`, `dist` or
-  `auto`. This option allows you to set the install method Composer will prefer to
-  use.
-* **github-protocols:** Defaults to `["git", "https"]`. A list of protocols to
-  use when cloning from github.com, in priority order. You can reconfigure it to
-  prioritize the https protocol if you are behind a proxy or have somehow bad
-  performances with the git protocol.
-* **github-oauth:** A list of domain names and oauth keys. For example using
-  `{"github.com": "oauthtoken"}` as the value of this option will use `oauthtoken`
-  to access private repositories on github and to circumvent the low IP-based
-  rate limiting of their API.
-* **vendor-dir:** Defaults to `vendor`. You can install dependencies into a
-  different directory if you want to.
-* **bin-dir:** Defaults to `vendor/bin`. If a project includes binaries, they
-  will be symlinked into this directory.
-* **cache-dir:** Defaults to `$home/cache` on unix systems and
-  `C:\Users\<user>\AppData\Local\Composer` on Windows. Stores all the caches
-  used by composer. See also [COMPOSER_HOME](03-cli.md#composer-home).
-* **cache-files-dir:** Defaults to `$cache-dir/files`. Stores the zip archives
-  of packages.
-* **cache-repo-dir:** Defaults to `$cache-dir/repo`. Stores repository metadata
-  for the `composer` type and the VCS repos of type `svn`, `github` and `bitbucket`.
-* **cache-vcs-dir:** Defaults to `$cache-dir/vcs`. Stores VCS clones for
-  loading VCS repository metadata for the `git`/`hg` types and to speed up installs.
-* **cache-files-ttl:** Defaults to `15552000` (6 months). Composer caches all
-  dist (zip, tar, ..) packages that it downloads. Those are purged after six
-  months of being unused by default. This option allows you to tweak this
-  duration (in seconds) or disable it completely by setting it to 0.
-* **cache-files-maxsize:** Defaults to `300MiB`. Composer caches all
-  dist (zip, tar, ..) packages that it downloads. When the garbage collection
-  is periodically ran, this is the maximum size the cache will be able to use.
-  Older (less used) files will be removed first until the cache fits.
-* **prepend-autoloader:** Defaults to `true`. If false, the composer autoloader
-  will not be prepended to existing autoloaders. This is sometimes required to fix
-  interoperability issues with other autoloaders.
-* **autoloader-suffix:** Defaults to `null`. String to be used as a suffix for
-  the generated Composer autoloader. When null a random one will be generated.
-* **github-domains:** Defaults to `["github.com"]`. A list of domains to use in
-  github mode. This is used for GitHub Enterprise setups.
-* **notify-on-install:** Defaults to `true`. Composer allows repositories to
-  define a notification URL, so that they get notified whenever a package from
-  that repository is installed. This option allows you to disable that behaviour.
-* **discard-changes:** Defaults to `false` and can be any of `true`, `false` or
-  `"stash"`. This option allows you to set the default style of handling dirty
-  updates when in non-interactive mode. `true` will always discard changes in
-  vendors, while `"stash"` will try to stash and reapply. Use this for CI
-  servers or deploy scripts if you tend to have modified vendors.
+* **process-timeout:** 默认为 `300`。处理进程结束时间，例如：git 克隆的时间。Composer 将放弃超时的任务。如果你的网络缓慢或者正在使用一个巨大的包，你可能要将这个值设置的更高一些。
+* **use-include-path:** 默认为 `false`。如果为 true，Composer autoloader 还将在 PHP include path 中继续查找类文件。
+* **preferred-install:** 默认为 `auto`。它的值可以是 `source`、`dist` 或 `auto`。这个选项允许你设置 Composer 的默认安装方法。
+* **github-protocols:** 默认为 `["git", "https"]`。从 github.com 克隆时使用的协议优先级清单，因此默认情况下将优先使用 git 协议进行克隆。
+* **github-oauth:** 一个域名和 oauth keys 的列表。例如：使用 `{"github.com": "oauthtoken"}` 作为此选项的值，将使用 `oauthtoken` 来访问 github 上的私人仓库，并绕过 low IP-based rate 的 API 限制。
+* **vendor-dir:** 默认为 `vendor`。通过设置你可以安装依赖到不同的目录。
+* **bin-dir:** 默认为 `vendor/bin`。如果一个项目包含二进制文件，它们将被连接到这个目录。
+* **cache-dir:** unix 下默认为 `$home/cache`，Windows 下默认为 `C:\Users\<user>\AppData\Local\Composer`。用于存储 composer 所有的缓存文件。相关信息请查看 [COMPOSER_HOME](03-cli.md#composer-home)。
+* **cache-files-dir:** 默认为 `$cache-dir/files`。存储包 zip 存档的目录。
+* **cache-repo-dir:** 默认为 `$cache-dir/repo`。存储 `composer` 类型的 VCS（`svn`、`github`、`bitbucket`） repos 目录。
+* **cache-vcs-dir:** 默认为 `$cache-dir/vcs`。此目录用于存储 VCS 克隆的 `git`/`hg` 类型的元数据，并加快安装速度。
+* **cache-files-ttl:** 默认为 `15552000`（6个月）。默认情况下 Composer 缓存的所有数据都将在闲置6个月后被删除，这个选项允许你来调整这个时间，你可以将其设置为0以禁用缓存。
+* **cache-files-maxsize:** 默认为 `300MiB`。Composer 缓存的最大容量，超出后将优先清除旧的缓存数据，直到缓存量低于这个数值。
+* **prepend-autoloader:** 默认为 `true`。如果设置为 false，composer autoloader 将不会附加到现有的自动加载机制中。这有时候用来解决与其它自动加载机制产生的冲突。
+* **autoloader-suffix:** 默认为 `null`。Composer autoloader 的后缀，当设置为空时将会产生一个随机的字符串。
+* **github-domains:** 默认为 `["github.com"]`。一个 github mode 下的域名列表。这是用于GitHub的企业设置。
+* **notify-on-install:** 默认为 `true`。Composer 允许资源仓库定义一个用于通知的 URL，以便有人从其上安装资源包时能够得到一个反馈通知。此选项允许你禁用该行为。
+* **discard-changes:** 默认为 `false`，它的值可以是 `true`、`false` 或 `stash`。这个选项允许你设置在非交互模式下，当处理失败的更新时采用的处理方式。`true` 表示永远放弃更改。`"stash"` 表示继续尝试。Use this for CI servers or deploy scripts if you tend to have modified vendors.
 
-Example:
+例：
 
     {
         "config": {
@@ -573,44 +528,37 @@ Example:
 
 ### scripts <span>(root-only)</span>
 
-Composer allows you to hook into various parts of the installation process
-through the use of scripts.
+Composer 允许你在安装过程中的各个阶段挂接脚本。
 
-See [Scripts](articles/scripts.md) for events details and examples.
+更多细节和案例请查看 [脚本](articles/scripts.md)。
 
 ### extra
 
-Arbitrary extra data for consumption by `scripts`.
+任意的，供 `scripts` 使用的额外数据。.
 
-This can be virtually anything. To access it from within a script event
-handler, you can do:
+这可以是几乎任何东西。若要从脚本事件访问处理程序，你可以这样做：
 
     $extra = $event->getComposer()->getPackage()->getExtra();
 
-Optional.
+可选。
 
 ### bin
 
-A set of files that should be treated as binaries and symlinked into the `bin-dir`
-(from config).
+A set of files that should be treated as binaries and symlinked into the `bin-dir` (from config).
 
 See [Vendor Binaries](articles/vendor-binaries.md) for more details.
 
-Optional.
+可选。
 
 ### archive
 
-A set of options for creating package archives.
+这些选项在创建包存档时使用。
 
-The following options are supported:
+支持以下选项：
 
-* **exclude:** Allows configuring a list of patterns for excluded paths. The
-  pattern syntax matches .gitignore files. A leading exclamation mark (!) will
-  result in any matching files to be included even if a previous pattern
-  excluded them. A leading slash will only match at the beginning of the project
-  relative path. An asterisk will not expand to a directory separator.
+* **exclude:** 允许设置一个需要被排除的路径的列表。使用与 .gitignore 文件相同的语法。一个前导的（!）将会使其变成白名单而无视之前相同目录的排除设定。前导斜杠只会在项目的相对路径的开头匹配。星号为通配符。
 
-Example:
+例：
 
     {
         "archive": {
@@ -618,9 +566,8 @@ Example:
         }
     }
 
-The example will include `/dir/foo/bar/file`, `/foo/bar/baz`, `/file.php`,
-`/foo/my.test` but it will exclude `/foo/bar/any`, `/foo/baz`, and `/my.test`.
+在这个例子中我们 include `/dir/foo/bar/file`、`/foo/bar/baz`、`/file.php`、`/foo/my.test` 但排除了 `/foo/bar/any`、`/foo/baz`、`/my.test`。
 
-Optional.
+可选。
 
-&larr; [Command-line interface](03-cli.md)  |  [Repositories](05-repositories.md) &rarr;
+&larr; [命令行](03-cli.md)  |  [资源库](05-repositories.md) &rarr;
