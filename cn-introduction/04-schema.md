@@ -247,7 +247,7 @@ composer 原生支持以下4种类型：
 
 `require` 和 `require-dev` 还支持对 dev（开发）版本的明确引用（即：版本控制系统中的提交编号 commit），以确保它们被锁定到一个给定的状态，即使你运行了更新命令。你只需要明确一个开发版本号，并带上诸如 `#<ref>` 的标识。
 
-Example:
+例子：
 
     {
         "require": {
@@ -261,47 +261,29 @@ Example:
 > 正因为如此，在某些情况下，它不会是一个实用的解决方法，
 > 如果可能，你应该总是尝试切换到拥有标签的版本。
 
-它也可以应用于行内别名，这样它将匹配一个约束，否则不会。更多信息请参考 [别名](articles/aliases.md).
+它也可以应用于行内别名，这样它将匹配一个约束，否则不会。更多信息请参考 [别名](articles/aliases.md)。
 
 #### require
 
-Lists packages required by this package. The package will not be installed
-unless those requirements can be met.
+必须的软件包列表，除非这些依赖被满足，否则不会完成安装。
 
 #### require-dev <span>(root-only)</span>
 
-Lists packages required for developing this package, or running
-tests, etc. The dev requirements of the root package are installed by default.
-Both `install` or `update` support the `--no-dev` option that prevents dev
-dependencies from being installed.
+这个列表是为开发或测试等目的，额外列出的依赖。“root 包”的 require-dev 默认是会被安装的。然而 `install` 或 `update` 支持使用 `--no-dev` 参数来跳过 `require-dev` 字段中列出的包。
 
 #### conflict
 
-Lists packages that conflict with this version of this package. They
-will not be allowed to be installed together with your package.
+此列表中的包与当前包的这个版本冲突。它们将不允许同时被安装。
 
-Note that when specifying ranges like `<1.0, >= 1.1` in a `conflict` link,
-this will state a conflict with all versions that are less than 1.0 *and* equal
-or newer than 1.1 at the same time, which is probably not what you want. You
-probably want to go for `<1.0 | >= 1.1` in this case.
+请注意，在 `conflict` 中指定类似于 `<1.0, >= 1.1` 的版本范围时，这表示它与小于1.0 *并且* 同时大等于1.1的版本冲突，这很可能不是你想要的。在这种情况下你可能想要表达的是 `<1.0 | >= 1.1` 。
 
 #### replace
 
-Lists packages that are replaced by this package. This allows you to fork a
-package, publish it under a different name with its own version numbers, while
-packages requiring the original package continue to work with your fork because
-it replaces the original package.
+这个列表中的包将被当前包取代。这使你可以 fork 一个包，以不同的名称和版本号发布，同时要求依赖于原包的其它包，在这之后依赖于你 fork 的这个包，因为它取代了原来的包。
 
-This is also useful for packages that contain sub-packages, for example the main
-symfony/symfony package contains all the Symfony Components which are also
-available as individual packages. If you require the main package it will
-automatically fulfill any requirement of one of the individual components,
-since it replaces them.
+这对于创建一个内部包含子包的主包也非常的有用。例如 symfony/symfony 这个主包，包含了所有 Symfony 的组件，而这些组件又可以作为单独的包进行发布。如果你 require 了主包，那么它就会自动完成其下各个组件的任务，因为主包取代了子包。
 
-Caution is advised when using replace for the sub-package purpose explained
-above. You should then typically only replace using `self.version` as a version
-constraint, to make sure the main package only replaces the sub-packages of
-that exact version, and not any other version, which would be incorrect.
+注意，在使用上述方法取代子包时，通常你应该只对子包使用 `self.version` 这一个版本约束，以确保主包仅替换掉子包的准确版本，而不是任何其他版本。
 
 #### provide
 
