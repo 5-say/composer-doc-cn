@@ -128,7 +128,7 @@ composer 原生支持以下4种类型：
 
 对于闭源软件，你必须使用 `"proprietary"` 协议标识符。
 
-一个例子：
+一个例如：
 
     {
         "license": "MIT"
@@ -136,7 +136,7 @@ composer 原生支持以下4种类型：
 
 对于一个包，当允许在多个许可协议间进行选择时（"disjunctive license"），这些协议标识符可以被指定为数组。
 
-多协议的一个例子：
+多协议的一个例如：
 
     {
         "license": [
@@ -164,7 +164,7 @@ composer 原生支持以下4种类型：
 * **homepage:** 作者主页的 URL 地址。
 * **role:** 该作者在此项目中担任的角色（例如：开发人员 或 翻译）。
 
-一个例子：
+一个例如：
 
     {
         "authors": [
@@ -198,7 +198,7 @@ composer 原生支持以下4种类型：
 * **irc:** IRC 聊天频道地址，类似于 irc://server/channel。
 * **source:** 网址浏览或下载源。
 
-一个例子：
+一个例如：
 
     {
         "support": {
@@ -225,7 +225,7 @@ composer 原生支持以下4种类型：
 
 `require` 和 `require-dev` 还支持稳定性标签（@，仅针对“root 包”）。这允许你在 [minimum-stability](#minimum-stability) 设定的范围外做进一步的限制或扩展。例如：如果你想允许依赖一个不稳定的包，你可以在一个包的版本约束后使用它，或者是一个空的版本约束内使用它。
 
-例子：
+例如：
 
     {
         "require": {
@@ -236,7 +236,7 @@ composer 原生支持以下4种类型：
 
 如果你的依赖之一，有对另一个不稳定包的依赖，你最好在 require 中显示的定义它，并带上足够详细的稳定性标识。
 
-例子：
+例如：
 
     {
         "require": {
@@ -247,7 +247,7 @@ composer 原生支持以下4种类型：
 
 `require` 和 `require-dev` 还支持对 dev（开发）版本的明确引用（即：版本控制系统中的提交编号 commit），以确保它们被锁定到一个给定的状态，即使你运行了更新命令。你只需要明确一个开发版本号，并带上诸如 `#<ref>` 的标识。
 
-例子：
+例如：
 
     {
         "require": {
@@ -294,15 +294,11 @@ simply list it in `provide`.
 
 ### suggest
 
-Suggested packages that can enhance or work well with this package. These are
-just informational and are displayed after the package is installed, to give
-your users a hint that they could add more packages, even though they are not
-strictly required.
+建议安装的包，它们增强或能够与当前包良好的工作。这些只是信息，并显示在依赖包安装完成之后，给你的用户一个建议，他们可以添加更多的包。
 
-The format is like package links above, except that the values are free text
-and not version constraints.
+格式如下，版本约束变成了描述信息。
 
-Example:
+例如：
 
     {
         "suggest": {
@@ -312,26 +308,19 @@ Example:
 
 ### autoload
 
-Autoload mapping for a PHP autoloader.
+PHP autoloader 的自动加载映射。
 
-Currently [`PSR-0`](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md)
-autoloading, `classmap` generation and `files` are supported. PSR-0 is the recommended way though
-since it offers greater flexibility (no need to regenerate the autoloader when you add
-classes).
+通常 [`PSR-0`](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) autoloading、`classmap` generation 和 `files` 方式都是支持的。PSR-0 是推荐的方式，因为它提供了更大的灵活性（当你添加新的类文件时，不需要重新生成 autoloader）。
 
 #### PSR-0
 
-Under the `psr-0` key you define a mapping from namespaces to paths, relative to the
-package root. Note that this also supports the PEAR-style non-namespaced convention.
+在 `psr-0` key 下你定义了一个命名空间到实际路径的映射（相对于包的根目录）。注意，这里同样支持 PEAR-style 方式的约定（与命名空间不同，PEAR 类库在类名上采用了下划线分隔）。
 
-Please note namespace declarations should end in `\\` to make sure the autoloader
-responds exactly. For example `Foo` would match in `FooBar` so the trailing
-backslashes solve the problem: `Foo\\` and `FooBar\\` are distinct.
+请注意，命名空间的申明应该以 `\\` 结束，以确保 autoloader 能够准确响应。例如： `Foo` 将会与 `FooBar` 匹配，然而以反斜杠结束就可以解决这样的问题， `Foo\\` 和 `FooBar\\` 将会被区分开来。
 
-The PSR-0 references are all combined, during install/update, into a single key => value
-array which may be found in the generated file `vendor/composer/autoload_namespaces.php`.
+在 install/update 过程中，PSR-0 引用都将被结合为一个单一的键值对数组，存储至 `vendor/composer/autoload_namespaces.php` 文件中。
 
-Example:
+例如：
 
     {
         "autoload": {
@@ -343,8 +332,7 @@ Example:
         }
     }
 
-If you need to search for a same prefix in multiple directories,
-you can specify them as an array as such:
+如果你需要搜索多个目录中一个相同的前缀，你可以将它们指定为一个数组，例如：
 
     {
         "autoload": {
@@ -352,10 +340,7 @@ you can specify them as an array as such:
         }
     }
 
-The PSR-0 style is not limited to namespace declarations only but may be
-specified right down to the class level. This can be useful for libraries with
-only one class in the global namespace. If the php source file is also located
-in the root of the package, for example, it may be declared like this:
+PSR-0 方式并不仅限于申明命名空间，也可以是精确到类级别的指定。这对于只有一个类在全局命名空间的类库是非常有用的（如果 php 源文件也位于包的根目录）。例如，可以这样申明：
 
     {
         "autoload": {
@@ -363,8 +348,7 @@ in the root of the package, for example, it may be declared like this:
         }
     }
 
-If you want to have a fallback directory where any namespace can be, you can
-use an empty prefix like:
+如果你想设置一个目录作为任何命名空间的备用目录，你可以使用空的前缀，像这样：
 
     {
         "autoload": {
@@ -374,16 +358,11 @@ use an empty prefix like:
 
 #### Classmap
 
-The `classmap` references are all combined, during install/update, into a single
-key => value array which may be found in the generated file
-`vendor/composer/autoload_classmap.php`. This map is built by scanning for
-classes in all `.php` and `.inc` files in the given directories/files.
+`classmap` 引用的所有组合，都会在 install/update 过程中生成，并存储到 `vendor/composer/autoload_classmap.php` 文件中。这个 map 是经过扫描指定目录（同样支持直接精确到文件）中所有的 `.php` 和 `.inc` 文件里内置的类而得到的。
 
-You can use the classmap generation support to define autoloading for all libraries
-that do not follow PSR-0. To configure this you specify all directories or files
-to search for classes.
+你可以用 classmap 生成支持支持自定义加载的不遵循 PSR-0 规范的类库。要配置它指向需要的目录，以便能够准确搜索到类文件。
 
-Example:
+例如：
 
     {
         "autoload": {
@@ -393,11 +372,9 @@ Example:
 
 #### Files
 
-If you want to require certain files explicitly on every request then you can use
-the 'files' autoloading mechanism. This is useful if your package includes PHP functions
-that cannot be autoloaded by PHP.
+如果你想要明确的指定，在每次请求时都要载入某些文件，那么你可以使用 'files' autoloading。通常作为函数库的载入方式（而非类库）。
 
-Example:
+例如：
 
     {
         "autoload": {
