@@ -13,7 +13,7 @@
     - [稳定性](#Stability)
   - [安装依赖关系](#Installing Dependencies)
   - [`composer.lock` - 锁文件](#composer.lock - The Lock File)
-  - [packagist](#Packagist)
+  - [Packagist](#Packagist)
   - [自动加载](#Autoloading)
 
 ---

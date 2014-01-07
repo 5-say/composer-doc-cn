@@ -1,22 +1,24 @@
+<a name="Libraries"></a>
 # 库（资源包）
 
 本章将告诉你如何通过 Composer 来安装你的库。
 
 ---
 
-- [库（资源包）](#库资源包)
-  - [每一个项目都是一个包](#每一个项目都是一个包)
-  - [平台软件包](#平台软件包)
-  - [指明版本](#指明版本)
-    - [标签](#标签)
-    - [分支](#分支)
-    - [别名](#别名)
-  - [锁文件](#锁文件)
-  - [发布到 VCS（线上版本控制系统）](#发布到-vcs线上版本控制系统)
-  - [发布到 packagist](#发布到-packagist)
+- [库（资源包）](#Libraries)
+  - [每一个项目都是一个包](#Every project is a package)
+  - [平台软件包](#Platform packages)
+  - [指明版本](#Specifying the version)
+    - [标签](#Tags)
+    - [分支](#Branches)
+    - [别名](#Aliases)
+  - [锁文件](#Lock file)
+  - [发布到 VCS（线上版本控制系统）](#Publishing to a VCS)
+  - [发布到 packagist](#Publishing to packagist)
 
 ---
 
+<a name="Every project is a package"></a>
 ## 每一个项目都是一个包
 
 只要你有一个 `composer.json` 文件在目录中，那么整个目录就是一个包。当你添加一个 `require` 到项目中，你就是在创建一个依赖于其它库的包。你的项目和库之间唯一的区别是，你的项目是一个没有名字的包。
@@ -36,6 +38,7 @@
 > 那么使用你 github 上的用户名通常是不错的选择。
 > 虽然包名不区分大小写，但惯例是使用小写字母，并用连字符作为单词的分隔。
 
+<a name="Platform packages"></a>
 ## 平台软件包
 
 Composer 将那些已经安装在系统上，但并不是由 Composer 安装的包视为一个虚拟的平台软件包。这包括PHP本身，PHP扩展和一些系统库。
@@ -48,6 +51,7 @@ Composer 将那些已经安装在系统上，但并不是由 Composer 安装的�
 
 你可以使用 `composer show --platform` 命令来获取可用的平台软件包的列表。
 
+<a name="Specifying the version"></a>
 ## 指明版本
 
 你需要一些方法来指明自己开发的包的版本，当你在 Packagist 上发布自己的包，它能够从 VCS (git, svn,
@@ -61,6 +65,7 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
 
 > **注意：** 你应该尽量避免手动设置版本号，因为标签的值必须与标签名相匹配。
 
+<a name="Tags"></a>
 ### 标签
 
 对于每一个看起来像版本号的标签，都会相应的创建一个包的版本。它应该符合 'X.Y.Z' 或者 'vX.Y.Z' 的形式，`-patch`、`-alpha`、`-beta` 或 `-RC` 这些后缀是可选的。在后缀之后也可以再跟上一个数字。
@@ -78,6 +83,7 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
 > 由于在需要 `require` 一个[版本的约束](01-basic-usage.md#包版本)时是不允许这种前缀的，
 > 因此 `v` 将被省略（例如标签 `V1.0.0` 将创建 `1.0.0` 版本）。
 
+<a name="Branches"></a>
 ### 分支
 
 对于每一个分支，都会相应的创建一个包的开发版本。如果分支名看起来像一个版本号，那么将创建一个如同 `{分支名}-dev` 的包版本号。例如一个分支 `2.0` 将产生一个 `2.0.x-dev` 包版本（加入了 `.x` 是出于技术的原因，以确保它被识别为一个分支，而 `2.0.x` 的分支名称也是允许的，它同样会被转换为 `2.0.x-dev`）。如果分支名看起来不像一个版本号，它将会创建 `dev-{分支名}` 形式的版本号。例如 `master` 将产生一个 `dev-master` 的版本号。
@@ -91,18 +97,21 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
 > **注意：** 当你安装一个新的版本时，将会自动从它 `source` 中拉取。
 > 详细请查看 [`install`](03-cli.md#install) 命令。
 
+<a name="Aliases"></a>
 ### 别名
 
 它表示一个包版本的别名。例如，你可以为 `dev-master` 设置别名 `1.0.x-dev`，这样就可以通过 require `1.0.x-dev` 来得到 `dev-master` 版本的包。
 
 详细请查看[“别名”](articles/aliases.md)。
 
+<a name="Lock file"></a>
 ## 锁文件
 
 如果你愿意，可以在你的项目中提交 `composer.lock` 文件。他将帮助你的团队始终针对同一个依赖版本进行测试。任何时候，这个锁文件都只对于你的项目产生影响。
 
 如果你不想提交锁文件，并且你正在使用 Git，那么请将它添加到 `.gitignore` 文件中。
 
+<a name="Publishing to a VCS"></a>
 ## 发布到 VCS（线上版本控制系统）
 
 一旦你有一个包含 `composer.json` 文件的库存储在线上版本控制系统（例如：Git），你的库就可以被 Composer 所安装。在这个例子中，我们将 `acme/hello-world` 库发布在 GitHub 上的 `github.com/username/hello-world` 中。
@@ -139,6 +148,7 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
 
 **小结：** 任何含有 `composer.json` 的 `GIT`、`SVN`、`HG` 存储库，都可以通过 `require` 字段指定“包来源”和“声明依赖”来添加到你的项目中。
 
+<a name="Publishing to packagist"></a>
 ## 发布到 packagist
 
 好的，你现在可以发布你的包了，但你不会希望你的用户每次都这样繁琐的指定包的来源。
