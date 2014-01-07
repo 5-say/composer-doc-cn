@@ -72,19 +72,15 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 #### notify-batch
 
-The `notify-batch` field allows you to specify an URL that will be called
-every time a user installs a package. The URL can be either an absolute path
-(that will use the same domain as the repository) or a fully qualified URL.
+`notify-batch` 字段允许你指定一个 URL，它将会在用户安装每一个包时被调用。该 URL 可以是（与其资源库相同域名的）绝对路径或者一个完整的 URL 地址。
 
-An example value:
+例如使用下面的值：
 
     {
         "notify-batch": "/downloads/"
     }
 
-For `example.org/packages.json` containing a `monolog/monolog` package, this
-would send a `POST` request to `example.org/downloads/` with following
-JSON request body:
+对于 `example.org/packages.json` 包含的 `monolog/monolog` 包，它将会发送一个 `POST` 请求到 `example.org/downloads/`，使用下面的 JSON request body：
 
     {
         "downloads": [
@@ -92,18 +88,15 @@ JSON request body:
         ]
     }
 
-The version field will contain the normalized representation of the version
-number.
+`version` 字段将包含标准化的版本号。
 
-This field is optional.
+`notify-batch` 字段是可选的。
 
 #### includes
 
-For larger repositories it is possible to split the `packages.json` into
-multiple files. The `includes` field allows you to reference these additional
-files.
+对于较大的资源库，可以拆分 `packages.json` 为多个文件。`includes` 字段允许你引用这些额外的文件。
 
-An example:
+例：
 
     {
         "includes": {
@@ -119,11 +112,9 @@ An example:
         }
     }
 
-The SHA-1 sum of the file allows it to be cached and only re-requested if the
-hash changed.
+文件的 SHA-1 码允许它被缓存，仅在 hash 值改变时重新请求。
 
-This field is optional. You probably don't need it for your own custom
-repository.
+此字段是可选的。你也许并不需要它来自定义存储库。
 
 #### provider-includes and providers-url
 
