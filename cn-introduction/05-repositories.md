@@ -118,15 +118,11 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 #### provider-includes and providers-url
 
-For very large repositories like packagist.org using the so-called provider
-files is the preferred method. The `provider-includes` field allows you to
-list a set of files that list package names provided by this repository. The
-hash should be a sha256 of the files in this case.
+的对于非常大的资源库，像 packagist.org 使用 so-called provider 文件是首选方法。`provider-includes` 字段允许你设置一个列表，来申明这个资源库提供的包名称。在这种情况下文件的哈希算法必须使用 sha256。
 
-The `providers-url` describes how provider files are found on the server. It
-is an absolute path from the repository root.
+`providers-url` 描述了如何在服务器上找到这些 provider 文件。它是以资源库的根目录为起点的绝对路径。
 
-An example:
+例：
 
     {
         "provider-includes": {
@@ -140,8 +136,7 @@ An example:
         "providers-url": "/p/%package%$%hash%.json"
     }
 
-Those files contain lists of package names and hashes to verify the file
-integrity, for example:
+这些文件包含资源包的名称以及哈希值，以验证文件的完整性，例如：
 
     {
         "providers": {
@@ -154,13 +149,9 @@ integrity, for example:
         }
     }
 
-The file above declares that acme/foo and acme/bar can be found in this
-repository, by loading the file referenced by `providers-url`, replacing
-`%name%` by the package name and `%hash%` by the sha256 field. Those files
-themselves just contain package definitions as described [above](#packages).
+上述文件申明了 `acme/foo` 和 `acme/bar` 可以在这个资源库找到，通过加载由 `providers-url` 引用的文件，替换 `%name%` 为包名并且替换 `%hash%` 为 sha256 的值。这些文件本身只包含上文提到的 [packages](#packages) 的定义。
 
-This field is optional. You probably don't need it for your own custom
-repository.
+这些字段是可选的。你也许并不需要它们来自定义存储库。
 
 #### stream options
 
