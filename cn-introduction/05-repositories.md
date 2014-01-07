@@ -155,16 +155,11 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 #### stream options
 
-The `packages.json` file is loaded using a PHP stream. You can set extra options
-on that stream using the `options` parameter. You can set any valid PHP stream
-context option. See [Context options and parameters](http://php.net/manual/en/context.php)
-for more information.
+`packages.json` 文件是用一个 PHP 流加载的。你可以使用 `options` 参数来设定额外的流信息。你可以设置任何有效的PHP 流上下文选项。更多相关信息请查看 [Context options and parameters](http://php.net/manual/en/context.php)。
 
 ### VCS
 
-VCS stands for version control system. This includes versioning systems like
-git, svn or hg. Composer has a repository type for installing packages from
-these systems.
+VCS 表示版本控制系统。这包括像 git、svn 或 hg 这样的版本管理系统。Composer 有一个资源类型可以从这些系统安装软件包。
 
 #### Loading a package from a VCS repository
 
