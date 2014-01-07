@@ -185,10 +185,9 @@ VCS 表示版本控制系统。这包括像 git、svn 或 hg 这样的版本管�
 
 如果其它包依赖你 fork 的这个分支，可能要对它做版本号的行内别名设置，才能够准确的识别版本约束。更多相关信息请查看 [别名](articles/aliases.md)。
 
-#### Using private repositories
+#### 使用私有资源库
 
-Exactly the same solution allows you to work with your private repositories at
-GitHub and BitBucket:
+完全相同的解决方案，也可以让你使用你 GitHub 和 BitBucket 上的私人代码库进行工作：
 
     {
         "require": {
@@ -202,29 +201,24 @@ GitHub and BitBucket:
         ]
     }
 
-The only requirement is the installation of SSH keys for a git client.
+唯一的要求是为一个 git 客户端安装 SSH 秘钥。
 
-#### Git alternatives
+#### Git 的备选方案
 
-Git is not the only version control system supported by the VCS repository.
-The following are supported:
+Git 并不是 VCS 资源库唯一支持的版本管理系统。
+
+以下几种都是被支持的：
 
 * **Git:** [git-scm.com](http://git-scm.com)
 * **Subversion:** [subversion.apache.org](http://subversion.apache.org)
 * **Mercurial:** [mercurial.selenic.com](http://mercurial.selenic.com)
 
-To get packages from these systems you need to have their respective clients
-installed. That can be inconvenient. And for this reason there is special
-support for GitHub and BitBucket that use the APIs provided by these sites, to
-fetch the packages without having to install the version control system. The
-VCS repository provides `dist`s for them that fetch the packages as zips.
+为了从这些系统获取资源包，你必须安装对应的客户端，这可能是不方便的。基于这个原因，这里提供了 GitHub 和 BitBucket 的 API 的特殊支持，以便在无需安装版本控制系统的情况下获取资源包。在 VCS 资源库提供的 `dist` 中获取 zip 存档。
 
 * **GitHub:** [github.com](https://github.com) (Git)
 * **BitBucket:** [bitbucket.org](https://bitbucket.org) (Git and Mercurial)
 
-The VCS driver to be used is detected automatically based on the URL. However,
-should you need to specify one for whatever reason, you can use `git`, `svn` or
-`hg` as the repository type instead of `vcs`.
+VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需要明确的指定一个 `git`、`svn` 或 `hg` 作为资源库类型，而不是 `vcs`。
 
 #### Subversion Options
 
