@@ -327,10 +327,7 @@ composer 原生支持以下4种类型：
 
 #### provide
 
-List of other packages that are provided by this package. This is mostly
-useful for common interfaces. A package could depend on some virtual
-`logger` package, any library that implements this logger interface would
-simply list it in `provide`.
+List of other packages that are provided by this package. This is mostly useful for common interfaces. A package could depend on some virtual `logger` package, any library that implements this logger interface would simply list it in `provide`.
 
 ### suggest
 

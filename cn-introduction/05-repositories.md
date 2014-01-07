@@ -51,13 +51,13 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
         }
     }
 
-`@composer.json` 标记将会从 作为最低版本： would be the contents of the `composer.json` from that package version including as a minimum:
+`@composer.json` 标记将会从此包的指定版本中读取 `composer.json` 的内容，其内至少应包含以下信息：
 
 * name
 * version
 * dist or source
 
-这是一个最小的包定义：
+这是一个最简单的包定义：
 
     {
         "name": "smarty/smarty",
@@ -68,7 +68,7 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
         }
     }
 
-它可以包含任何在 [架构](04-schema.md) 中介绍的字段。
+它还可以包含任何在 [架构](04-schema.md) 中介绍的字段。
 
 #### notify-batch
 
