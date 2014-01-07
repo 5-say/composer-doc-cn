@@ -161,19 +161,11 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 VCS 表示版本控制系统。这包括像 git、svn 或 hg 这样的版本管理系统。Composer 有一个资源类型可以从这些系统安装软件包。
 
-#### Loading a package from a VCS repository
+#### 从 VCS 资源库加载一个包
 
-There are a few use cases for this. The most common one is maintaining your
-own fork of a third party library. If you are using a certain library for your
-project and you decide to change something in the library, you will want your
-project to use the patched version. If the library is on GitHub (this is the
-case most of the time), you can simply fork it there and push your changes to
-your fork. After that you update the project's `composer.json`. All you have
-to do is add your fork as a repository and update the version constraint to
-point to your custom branch. For version constraint naming conventions see
-[Libraries](02-libraries.md) for more information.
+这里有几个用例。最常见的是维护自己 fork 的第三方库。如果你在项目中使用某些库，并且你决定改变这些库内的某些东西，你会希望你项目中使用的是你自己的修正版本。如果这个库是在 GitHub 上（这种情况经常出现），你可以简单的 fork 它并 push 你的变更到这个 fork 里。在这之后你更新项目的 `composer.json` 文件，添加你的 fork 作为一个资源库，变更版本约束来指向你的自定义分支。关于版本约束的命名约定请查看 [库（资源包）](02-libraries.md)。
 
-Example assuming you patched monolog to fix a bug in the `bugfix` branch:
+例如，假设你 fork 了 monolog，在 `bugfix` 分支修复了一个 bug：
 
     {
         "repositories": [
@@ -187,19 +179,11 @@ Example assuming you patched monolog to fix a bug in the `bugfix` branch:
         }
     }
 
-When you run `php composer.phar update`, you should get your modified version
-of `monolog/monolog` instead of the one from packagist.
+当你运行 `php composer.phar update` 时，你应该得到你修改的版本，而不是 packagist.org 上的 `monolog/monolog`。
 
-Note that you should not rename the package unless you really intend to fork
-it in the long term, and completely move away from the original package.
-Composer will correctly pick your package over the original one since the
-custom repository has priority over packagist. If you want to rename the
-package, you should do so in the default (often master) branch and not in a
-feature branch, since the package name is taken from the default branch.
+注意，你不应该对包进行重命名，除非你真的打算摆脱原来的包，并长期的使用你自己的 fork。这样 Composer 就会正确获取你的包了。如果你确定要重命名这个包，你应该在默认分支（通常是 master 分支）上操作，而不是特性分支，因为包的名字取自默认分支。
 
-If other dependencies rely on the package you forked, it is possible to
-inline-alias it so that it matches a constraint that it otherwise would not.
-For more information [see the aliases article](articles/aliases.md).
+如果其它包依赖你 fork 的这个分支，可能要对它做版本号的行内别名设置，才能够准确的识别版本约束。更多相关信息请查看 [别名](articles/aliases.md)。
 
 #### Using private repositories
 

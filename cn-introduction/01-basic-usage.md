@@ -194,4 +194,4 @@ Composer 将注册 [PSR-0](https://github.com/php-fig/fig-standards/blob/master/
 
 > **注意：** Composer 提供了自己的 autoloader。如果你不想使用它，你可以仅仅引入 `vendor/composer/autoload_namespaces.php` 文件，它返回一个关联数组映射了命名空间的目录。
 
-&larr; [简介](00-intro.md)  |  [库](02-libraries.md) &rarr;
+&larr; [简介](00-intro.md)  |  [库（资源包）](02-libraries.md) &rarr;

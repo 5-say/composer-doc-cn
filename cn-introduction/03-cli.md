@@ -456,4 +456,4 @@
 
 如果设置为1，这个环境变量将使 Composer 在执行每一个命令时都放弃交互，相当于对所有命令都使用了 `--no-interaction`。可以在搭建 *虚拟机/持续集成服务器* 时这样设置。
 
-&larr; [库](02-libraries.md)  |  [架构](04-schema.md) &rarr;
+&larr; [库（资源包）](02-libraries.md)  |  [架构](04-schema.md) &rarr;
