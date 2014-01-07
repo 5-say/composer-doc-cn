@@ -2,6 +2,46 @@
 
 本章将解释所有在 `composer.json` 中可用的字段。
 
+---
+
+- [composer.json](#composerjson)
+  - [JSON schema](#json-schema)
+  - [Root 包](#root-包)
+  - [属性](#属性)
+    - 包名 `name`
+    - 描述 `description`
+    - 版本 `version`
+    - 安装类型 `type`
+    - 关键字 `keywords`
+    - 项目主页 `homepage`
+    - 版本发布时间 `time`
+    - 许可协议 `license`
+    - 作者 `authors`
+    - 支持 `support`
+    - [Package links](#package-links)
+      - [require](#require)
+      - require-dev <span>(root-only)</span>
+      - [conflict](#conflict)
+      - [replace](#replace)
+      - [provide](#provide)
+    - suggest
+    - autoload
+      - PSR-0
+      - Classmap
+      - Files
+    - include-path
+    - target-dir
+    - minimum-stability <span>(root-only)</span>
+    - prefer-stable <span>(root-only)</span>
+    - repositories <span>(root-only)</span>
+    - config <span>(root-only)</span>
+    - scripts <span>(root-only)</span>
+    - extra
+    - bin
+    - archive
+
+---
+
 ## JSON schema
 
 我们有一个 [JSON schema](http://json-schema.org) 格式化文档，它也可以被用来验证你的 `composer.json` 文件。事实上，它已经被 `validate` 命令所使用。 你可以在这里找到它： [`res/composer-schema.json`](https://github.com/composer/composer/blob/master/res/composer-schema.json).

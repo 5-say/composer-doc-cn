@@ -1,70 +1,44 @@
-# Repositories
+# 资源库
 
-This chapter will explain the concept of packages and repositories, what kinds
-of repositories are available, and how they work.
+本章将解释包和库的概念，什么样的存储库是可用的，以及它们如何工作。
 
-## Concepts
+## 概述
 
-Before we look at the different types of repositories that exist, we need to
-understand some of the basic concepts that composer is built on.
+在此之前，我们看到存在不同类型的资源库，我们需要了解一些基本概念，以理解 Composer 是如何构建于其上的。
 
-### Package
+### 包
 
-Composer is a dependency manager. It installs packages locally. A package is
-essentially just a directory containing something. In this case it is PHP
-code, but in theory it could be anything. And it contains a package
-description which has a name and a version. The name and the version are used
-to identify the package.
+Composer 是一个依赖管理工具。它在本地安装一些资源包。一个包本质上就是一个包含东西的目录。通常情况下它存储 PHP 代码，但在理论上它可以是任何东西。并且它包含一个描述，其中有一个名称和一个版本号，这个名称和版本号用于识别该包。
 
-In fact, internally composer sees every version as a separate package. While
-this distinction does not matter when you are using composer, it's quite
-important when you want to change it.
+事实上，在 composer 内部将每一个版本都视为一个单独的包。尽管在你使用 composer 时这种区别无关紧要，但当你想改变它时，这就显得至关重要。
 
-In addition to the name and the version, there is useful metadata. The information
-most relevant for installation is the source definition, which describes where
-to get the package contents. The package data points to the contents of the
-package. And there are two options here: dist and source.
+除了名称和版本号，还存放了有用的元数据。与安装关系最密切的是 source 信息，它申明了在哪里可以获得资源包的内容。包数据指向包内容，并有两种指向方式：dist 和 source。
 
-**Dist:** The dist is a packaged version of the package data. Usually a
-released version, usually a stable release.
+**Dist:** dist 指向一个存档，该存档是对一个资源包的某个版本的数据进行的打包。通常是已经发行的稳定版本。
 
-**Source:** The source is used for development. This will usually originate
-from a source code repository, such as git. You can fetch this when you want
-to modify the downloaded package.
+**Source:** source 指向一个开发中的源。这通常是一个源代码仓库，例如 git。当你想要对下载下来的资源包进行修改时，可以这样获取。
 
-Packages can supply either of these, or even both. Depending on certain
-factors, such as user-supplied options and stability of the package, one will
-be preferred.
+你可以使用其中任意一个，或者同时使用。这取决于其它的一些因素，比如“user-supplied 选项”和“包的稳定性”，前者将会被优先考虑。
 
-### Repository
+### 资源库
 
-A repository is a package source. It's a list of packages/versions. Composer
-will look in all your repositories to find the packages your project requires.
+一个资源库是一个包的来源。它是一个 packages/versions 的列表。Composer 将查看所有你定义的 repositories 以找到你项目需要的资源包。
 
-By default only the Packagist repository is registered in Composer. You can
-add more repositories to your project by declaring them in `composer.json`.
+默认情况下已经将 Packagist.org 注册到 Composer。你可以在 `composer.json` 中申明更多的资源库，把它们加入你的项目中。
 
-Repositories are only available to the root package and the repositories
-defined in your dependencies will not be loaded. Read the
-[FAQ entry](faqs/why-can't-composer-load-repositories-recursively.md) if you
-want to learn why.
+资源库的定义仅可用于“root 包”，而在你依赖的包中定义的资源库将不会被加载。如果你想了解其中的原因，请阅读 [FAQ entry](faqs/why-can't-composer-load-repositories-recursively.md)。
 
 ## Types
 
 ### Composer
 
-The main repository type is the `composer` repository. It uses a single
-`packages.json` file that contains all of the package metadata.
+主资源库的类型为 `composer`。它使用一个单一的 `packages.json` 文件，包含了所有的资源包元数据。
 
-This is also the repository type that packagist uses. To reference a
-`composer` repository, just supply the path before the `packages.json` file.
-In case of packagist, that file is located at `/packages.json`, so the URL of
-the repository would be `packagist.org`. For `example.org/packages.json` the
-repository URL would be `example.org`.
+这也是 packagist.org 所使用的资源类型。要引用一个 `composer` 资源库，只需要提供一个存放 `packages.json` 文件的 **目录路径**。比如要引用 `packagist.org` 下的 `/packages.json`，它的 URL 就应该是 `packagist.org`。而 `example.org/packages.json` 的 URL 应该是 `example.org`。
 
 #### packages
 
-The only required field is `packages`. The JSON structure is as follows:
+唯一必须的字段是 `packages`。它的 JSON 结构如下：
 
     {
         "packages": {
@@ -77,14 +51,13 @@ The only required field is `packages`. The JSON structure is as follows:
         }
     }
 
-The `@composer.json` marker would be the contents of the `composer.json` from
-that package version including as a minimum:
+`@composer.json` 标记将会从 作为最低版本： would be the contents of the `composer.json` from that package version including as a minimum:
 
 * name
 * version
 * dist or source
 
-Here is a minimal package definition:
+这是一个最小的包定义：
 
     {
         "name": "smarty/smarty",
@@ -95,7 +68,7 @@ Here is a minimal package definition:
         }
     }
 
-It may include any of the other fields specified in the [schema](04-schema.md).
+它可以包含任何在 [架构](04-schema.md) 中介绍的字段。
 
 #### notify-batch
 

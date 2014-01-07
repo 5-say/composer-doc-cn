@@ -10,13 +10,13 @@ Composer 中文文档
 - [基本用法](/cn-introduction/01-basic-usage.md)
 - [库](/cn-introduction/02-libraries.md)
 - [命令行](/cn-introduction/03-cli.md)
-- [Schema](/cn-introduction/04-schema.md)
-- [Repositories](/cn-introduction/05-repositories.md)
-- [Community](/cn-introduction/06-community.md)
+- [架构](/cn-introduction/04-schema.md)
+- [资源库](/cn-introduction/05-repositories.md)
+- [社区](/cn-introduction/06-community.md)
 
 ## Articles
-- [Aliases](/cn-introduction/articles/aliases.md)  
-Alias branch names to versions
+- [别名](/cn-introduction/articles/aliases.md)  
+版本分支名称的别名。
 - [自定义安装程序](/cn-introduction/articles/custom-installers.md)  
 修改某些特殊类型包的安装方式。
 - [Handling Private Packages With Satis](/cn-introduction/articles/handling-private-packages-with-satis.md)  
