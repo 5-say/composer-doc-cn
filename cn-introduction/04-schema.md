@@ -8,8 +8,8 @@
   - [JSON schema](#json-schema)
   - [Root 包](#root-包)
   - [属性](#属性)
-    - 包名 `name`
-    - 描述 `description`
+    - [包名 `name`](#包名-name)
+    - [描述 `description`](#描述-description)
     - 版本 `version`
     - 安装类型 `type`
     - 关键字 `keywords`
