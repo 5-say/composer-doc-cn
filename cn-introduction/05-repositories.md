@@ -263,38 +263,30 @@ VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需�
 
 > **注意：** `pear` 类型的资源库对每个 requires 都要做完整的请求，因此可能大大降低安装速度。
 
-#### Custom vendor alias
+#### 自定义供应商别名
 
 It is possible to alias PEAR channel packages with a custom vendor name.
 
 例：
 
-Suppose you have a private PEAR repository and wish to use Composer to incorporate dependencies from a VCS. Your PEAR repository contains the following packages:
+假设你有一个私人 PEAR 库，并希望使用 Composer 从 VCS 集成依赖。你的 PEAR 库包含以下资源包：
 
  * `BasePackage`
  * `IntermediatePackage`, which depends on `BasePackage`
  * `TopLevelPackage1` and `TopLevelPackage2` which both depend on `IntermediatePackage`
 
-Without a vendor alias, Composer will use the PEAR channel name as the
-vendor portion of the package name:
+如果没有一个供应商别名，Composer 将使用 PEAR 渠道名称作为包名的一部分：
 
  * `pear-pear.foobar.repo/BasePackage`
  * `pear-pear.foobar.repo/IntermediatePackage`
  * `pear-pear.foobar.repo/TopLevelPackage1`
  * `pear-pear.foobar.repo/TopLevelPackage2`
 
-Suppose at a later time you wish to migrate your PEAR packages to a
-Composer repository and naming scheme, and adopt the vendor name of `foobar`.
-Projects using your PEAR packages would not see the updated packages, since
-they have a different vendor name (`foobar/IntermediatePackage` vs
-`pear-pear.foobar.repo/IntermediatePackage`).
+假设之后的某个时间，你希望将你的 PEAR 包迁移，使用 Composer 资源库和命名方案，并且采用 `foobar` 作为供应商名称。使用 PEAR 包的项目将不会看到更新的资源包，因为它们有不同的供应商名称（`foobar/IntermediatePackage` 与 `pear-pear.foobar.repo/IntermediatePackage`）。
 
-By specifying `vendor-alias` for the PEAR repository from the start, you can
-avoid this scenario and future-proof your package names.
+你可以通过从一开始就为 PEAR 资源库指定 `vendor-alias` 来避免这种情况的发生，以得到一个不会过时的包名。
 
-To illustrate, the following example would get the `BasePackage`,
-`TopLevelPackage1`, and `TopLevelPackage2` packages from your PEAR repository
-and `IntermediatePackage` from a Github repository:
+为了说明这一点，下面的例子会从你的 PEAR 资源库中得到 `BasePackage`、`TopLevelPackage1` 和 `TopLevelPackage2` 资源包，并从 Github 资源库中获取 `IntermediatePackage` 资源包：
 
     {
         "repositories": [
