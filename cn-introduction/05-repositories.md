@@ -372,18 +372,13 @@ Packagist 是一个 Symfony2 应用程序，并且托管在 GitHub 上 [github.c
 
 Satis 是一个静态的 `composer` 资源库生成器。它像是一个超轻量级的、基于静态文件的 packagist 版本。
 
-你给它一个包含 `composer.json` 的存储库，定义好 VCS 和 资源库。它会获取所有你列出的包，并打印 `packages.json` 文件，作为你的 `composer` 资源库。
+你给它一个包含 `composer.json` 的存储库，定义好 VCS 和 资源库。它会获取所有你列出的包，并打印 `packages.json` 文件，作为 `composer` 类型的资源库。
 
 更多详细信息请查看 [github.com/composer/satis](https://github.com/composer/satis) 和 [Satis article](articles/handling-private-packages-with-satis.md)。
 
 ### Artifact
 
-There are some cases, when there is no ability to have one of the previously
-mentioned repository types online, even the VCS one. Typical example could be
-cross-organisation library exchange through built artifacts. Of course, most
-of the times they are private. To simplify maintenance, one can simply use a
-repository of type `artifact` with a folder containing ZIP archives of those
-private packages:
+在某些情况下，或许没有能力拥有之前提到的任何一种线上资源库。Typical example could be cross-organisation library exchange through built artifacts。当然大部分的时间他们都是私有的。为了简化维护，可以简单的使用 `artifact` 资源库类型，来引用一个包含那些私有包的 ZIP 存档的文件夹：
 
     {
         "repositories": [
@@ -399,7 +394,7 @@ private packages:
         }
     }
 
-Each zip artifact is just a ZIP archive with `composer.json` in root folder:
+每个 zip artifact 都只是一个 ZIP 存档，放置在 `composer.json` 所在的根目录：
 
     $ unzip -l acme-corp-parser-10.3.5.zip
     composer.json
@@ -412,8 +407,7 @@ update to the latest version.
 
 ## Disabling Packagist
 
-You can disable the default Packagist repository by adding this to your
-`composer.json`:
+你可以在 `composer.json` 中禁用默认的 Packagist 资源库。
 
     {
         "repositories": [
