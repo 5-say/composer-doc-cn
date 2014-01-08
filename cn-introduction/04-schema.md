@@ -9,7 +9,7 @@
   - [JSON schema](#JSON schema)
   - [Root 包](#Root Package)
   - [属性](#Properties)
-    - [包名 `name`](#name)
+    - [包名 `name`](#package name)
     - [描述 `description`](#description)
     - [版本 `version`](#version)
     - [安装类型 `type`](#type)
@@ -65,7 +65,7 @@
 <a name="Properties"></a>
 ## 属性
 
-<a name="name"></a>
+<a name="package name"></a>
 ### 包名 `name`
 
 包的名称，它包括供应商名称和项目名称，使用 `/` 分隔。
