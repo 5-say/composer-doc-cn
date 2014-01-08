@@ -220,13 +220,9 @@ Git 并不是 VCS 资源库唯一支持的版本管理系统。
 
 VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需要明确的指定一个 `git`、`svn` 或 `hg` 作为资源库类型，而不是 `vcs`。
 
-#### Subversion Options
+#### Subversion 选项
 
-Since Subversion has no native concept of branches and tags, Composer assumes
-by default that code is located in `$url/trunk`, `$url/branches` and
-`$url/tags`. If your repository has a different layout you can change those
-values. For example if you used capitalized names you could configure the
-repository like this:
+由于 Subversion 没有原生的分支和标签的概念，Composer 假设在默认情况下该代码位于 `$url/trunk`、`$url/branches` 和 `$url/tags` 内。如果你的存储库使用了不同的布局，你可以更改这些值。例如，如果你使用大写的名称，你可以像这样配置资源库：
 
     {
         "repositories": [
@@ -240,21 +236,15 @@ repository like this:
         ]
     }
 
-If you have no branches or tags directory you can disable them entirely by
-setting the `branches-path` or `tags-path` to `false`.
+如果你的存储库目录中没有任何分支或标签文件夹，你可以将 `branches-path` 或 `tags-path` 设置为 `false`。
 
-If the package is in a sub-directory, e.g. `/trunk/foo/bar/composer.json` and
-`/tags/1.0/foo/bar/composer.json`, then you can make composer access it by
-setting the `"package-path"` option to the sub-directory, in this example it
-would be `"package-path": "foo/bar/"`.
+如果是一个位于子目录的包，例如， `/trunk/foo/bar/composer.json` 和 `/tags/1.0/foo/bar/composer.json`，那么你可以让 composer 通过 `"package-path"` 选项设置的子目录进行访问，在这个例子中可以将其设置为 `"package-path": "foo/bar/"`。
 
 ### PEAR
 
-It is possible to install packages from any PEAR channel by using the `pear`
-repository. Composer will prefix all package names with `pear-{channelName}/` to
-avoid conflicts. All packages are also aliased with prefix `pear-{channelAlias}/`
+`pear` 类型资源库，使得从任何 PEAR 渠道安装资源包成为可能。Composer 将为所有此类型的包增加前缀（类似于 `pear-{渠道名称}/`）以避免冲突。而在之后使用别名时也增加前缀（如 `pear-{渠道别名}/`）。
 
-Example using `pear2.php.net`:
+例如使用 `pear2.php.net`：
 
     {
         "repositories": [
@@ -269,21 +259,17 @@ Example using `pear2.php.net`:
         }
     }
 
-In this case the short name of the channel is `pear2`, so the
-`PEAR2_HTTP_Request` package name becomes `pear-pear2/PEAR2_HTTP_Request`.
+在这种情况下渠道的简称（别名）是 `pear2`，因此 `PEAR2_HTTP_Request` 包的名称应该写作 `pear-pear2/PEAR2_HTTP_Request`。
 
-> **Note:** The `pear` repository requires doing quite a few requests per
-> package, so this may considerably slow down the installation process.
+> **注意：** `pear` 类型的资源库对每个 requires 都要做完整的请求，因此可能大大降低安装速度。
 
 #### Custom vendor alias
 
 It is possible to alias PEAR channel packages with a custom vendor name.
 
-Example:
+例：
 
-Suppose you have a private PEAR repository and wish to use Composer to
-incorporate dependencies from a VCS. Your PEAR repository contains the
-following packages:
+Suppose you have a private PEAR repository and wish to use Composer to incorporate dependencies from a VCS. Your PEAR repository contains the following packages:
 
  * `BasePackage`
  * `IntermediatePackage`, which depends on `BasePackage`
