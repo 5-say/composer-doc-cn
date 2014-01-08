@@ -265,15 +265,15 @@ VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需�
 
 #### 自定义供应商别名
 
-It is possible to alias PEAR channel packages with a custom vendor name.
+通过自定义供应商名称，对 PEAR 渠道包进行别名是允许的。
 
 例：
 
 假设你有一个私人 PEAR 库，并希望使用 Composer 从 VCS 集成依赖。你的 PEAR 库包含以下资源包：
 
- * `BasePackage`
- * `IntermediatePackage`, which depends on `BasePackage`
- * `TopLevelPackage1` and `TopLevelPackage2` which both depend on `IntermediatePackage`
+ * `BasePackage`。
+ * `IntermediatePackage` 依赖于 `BasePackage`。
+ * `TopLevelPackage1` 和 `TopLevelPackage2` 都依赖于 `IntermediatePackage`。
 
 如果没有一个供应商别名，Composer 将使用 PEAR 渠道名称作为包名的一部分：
 
@@ -282,7 +282,7 @@ It is possible to alias PEAR channel packages with a custom vendor name.
  * `pear-pear.foobar.repo/TopLevelPackage1`
  * `pear-pear.foobar.repo/TopLevelPackage2`
 
-假设之后的某个时间，你希望将你的 PEAR 包迁移，使用 Composer 资源库和命名方案，并且采用 `foobar` 作为供应商名称。使用 PEAR 包的项目将不会看到更新的资源包，因为它们有不同的供应商名称（`foobar/IntermediatePackage` 与 `pear-pear.foobar.repo/IntermediatePackage`）。
+假设之后的某个时间，你希望将你的 PEAR 包迁移，使用 Composer 资源库和命名方案，并且采用 `foobar` 作为供应商名称。这样之前使用 PEAR 包的项目将不会看到更新的资源包，因为它们有不同的供应商名称（`foobar/IntermediatePackage` 与 `pear-pear.foobar.repo/IntermediatePackage`）。
 
 你可以通过从一开始就为 PEAR 资源库指定 `vendor-alias` 来避免这种情况的发生，以得到一个不会过时的包名。
 
@@ -308,16 +308,11 @@ It is possible to alias PEAR channel packages with a custom vendor name.
 
 ### Package
 
-If you want to use a project that does not support composer through any of the
-means above, you still can define the package yourself by using a `package`
-repository.
+如果你想使用一个项目，它无法通过上述任何一种方式支持 composer，你仍然可以使用 `package` 类型定义资源库。
 
-Basically, you define the same information that is included in the `composer`
-repository's `packages.json`, but only for a single package. Again, the
-minimum required fields are `name`, `version`, and either of `dist` or
-`source`.
+基本上，你可以定义与 `packages.json` 中 `composer` 类型资源库相同的信息，但需要为每个这样的资源包分别定义。同样，至少应该包含以下信息：`name`、`version`、（`dist` 或 `source`）。
 
-Here is an example for the smarty template engine:
+这是一个 smarty 模板引擎的例子：
 
     {
         "repositories": [
@@ -346,15 +341,12 @@ Here is an example for the smarty template engine:
         }
     }
 
-Typically you would leave the source part off, as you don't really need it.
+通常你不需要去定义 `source`，因为你并不是真的需要它。
 
-> **Note**: This repository type has a few limitations and should be avoided
-> whenever possible:
+> **注意：** 该资源库类型存在以下限制，因此应尽可能避免使用：
 >
-> - Composer will not update the package unless you change the `version` field.
-> - Composer will not update the commit references, so if you use `master` as
->   reference you will have to delete the package to force an update, and will
->   have to deal with an unstable lock file.
+> - Composer 将不会更新资源包，除非你修改了 `version` 字段。
+> - Composer 将不会更新 commit references，因此如果你使用 `master` reference，将不得不删除该程序包以强制更新，并且将不得不面对一个不稳定的锁定文件。
 
 ## Hosting your own
 
@@ -452,4 +444,4 @@ You can disable the default Packagist repository by adding this to your
     }
 
 
-&larr; [Schema](04-schema.md)  |  [Community](06-community.md) &rarr;
+&larr; [架构](04-schema.md)  |  [社区](06-community.md) &rarr;
