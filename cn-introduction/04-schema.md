@@ -1,51 +1,54 @@
+<a name="composer.json"></a>
 # composer.json
 
 本章将解释所有在 `composer.json` 中可用的字段。
 
 ---
 
-- [composer.json](#composerjson)
-  - [JSON schema](#json-schema)
-  - [Root 包](#root-包)
-  - [属性](#属性)
-    - [包名 `name`](#包名-name)
-    - [描述 `description`](#描述-description)
-    - 版本 `version`
-    - 安装类型 `type`
-    - 关键字 `keywords`
-    - 项目主页 `homepage`
-    - 版本发布时间 `time`
-    - 许可协议 `license`
-    - 作者 `authors`
-    - 支持 `support`
-    - [Package links](#package-links)
+- [composer.json](#composer.json)
+  - [JSON schema](#JSON schema)
+  - [Root 包](#Root Package)
+  - [属性](#Properties)
+    - [包名 `name`](#name)
+    - [描述 `description`](#description)
+    - [版本 `version`](#version)
+    - [安装类型 `type`](#type)
+    - [关键字 `keywords`](#keywords)
+    - [项目主页 `homepage`](#homepage)
+    - [版本发布时间 `time`](#time)
+    - [许可协议 `license`](#license)
+    - [作者 `authors`](#authors)
+    - [支持 `support`](#support)
+    - [Package links](#Package links)
       - [require](#require)
-      - require-dev <span>(root-only)</span>
+      - [require-dev <span>(root-only)</span>](#require-dev)
       - [conflict](#conflict)
       - [replace](#replace)
       - [provide](#provide)
-    - suggest
-    - autoload
-      - PSR-0
-      - Classmap
-      - Files
-    - include-path
-    - target-dir
-    - minimum-stability <span>(root-only)</span>
-    - prefer-stable <span>(root-only)</span>
-    - repositories <span>(root-only)</span>
-    - config <span>(root-only)</span>
-    - scripts <span>(root-only)</span>
-    - extra
-    - bin
-    - archive
+    - [suggest](#suggest)
+    - [autoload](#autoload)
+      - [PSR-0](#PSR-0)
+      - [Classmap](#Classmap)
+      - [Files](#Files)
+    - [include-path](#include-path)
+    - [target-dir](#target-dir)
+    - [minimum-stability <span>(root-only)</span>](#minimum-stability)
+    - [prefer-stable <span>(root-only)</span>](#prefer-stable)
+    - [repositories <span>(root-only)</span>](#repositories)
+    - [config <span>(root-only)</span>](#config)
+    - [scripts <span>(root-only)</span>](#scripts)
+    - [extra](#extra)
+    - [bin](#bin)
+    - [archive](#archive)
 
 ---
 
+<a name="JSON schema"></a>
 ## JSON schema
 
 我们有一个 [JSON schema](http://json-schema.org) 格式化文档，它也可以被用来验证你的 `composer.json` 文件。事实上，它已经被 `validate` 命令所使用。 你可以在这里找到它： [`res/composer-schema.json`](https://github.com/composer/composer/blob/master/res/composer-schema.json).
 
+<a name="Root Package"></a>
 ## Root 包
 
 “root 包”是指由 `composer.json` 定义的在你项目根目录的包。这是 `composer.json` 定义你项目所需的主要条件。（简单的说，你自己的项目就是一个 root 包）
@@ -59,8 +62,10 @@
 > 但是，如果你从 GitHub 上克隆了 `monolog` 为它修复 bug，
 > 那么此时 `monolog` 就是“root 包”。
 
+<a name="Properties"></a>
 ## 属性
 
+<a name="name"></a>
 ### 包名 `name`
 
 包的名称，它包括供应商名称和项目名称，使用 `/` 分隔。
@@ -72,12 +77,14 @@
 
 对于需要发布的包（库），这是必须填写的。
 
+<a name="description"></a>
 ### 描述 `description`
 
 一个包的简短描述。通常这个最长只有一行。
 
 对于需要发布的包（库），这是必须填写的。
 
+<a name="version"></a>
 ### 版本 `version`
 
 `version` 不是必须的，并且建议忽略（见下文）。
@@ -101,6 +108,7 @@
 > 因此 `version` 定义的版本号必须是真实准确的。
 > 自己手动指定的 `version`，最终有可能在某个时候因为人为错误造成问题。
 
+<a name="type"></a>
 ### 安装类型 `type`
 
 包的安装类型，默认为 `library`。
@@ -116,6 +124,7 @@ composer 原生支持以下4种类型：
 
 仅在你需要一个自定义的安装逻辑时才使用它。建议忽略这个属性，采用默认的 `library`。
 
+<a name="keywords"></a>
 ### 关键字 `keywords`
 
 该包相关的关键词的数组。这些可用于搜索和过滤。
@@ -130,12 +139,14 @@ composer 原生支持以下4种类型：
 
 可选。
 
+<a name="homepage"></a>
 ### 项目主页 `homepage`
 
 该项目网站的 URL 地址。
 
 可选。
 
+<a name="time"></a>
 ### 版本发布时间 `time`
 
 版本发布时间。
@@ -144,6 +155,7 @@ composer 原生支持以下4种类型：
 
 可选。
 
+<a name="license"></a>
 ### 许可协议 `license`
 
 包的许可协议，它可以是一个字符串或者字符串数组。
@@ -193,6 +205,7 @@ composer 原生支持以下4种类型：
 
 同样，当有多个许可协议需要结合使用时（"conjunctive license"），它们应该被 "and" 分隔，并写在括号中。
 
+<a name="authors"></a>
 ### 作者 `authors`
 
 包的作者。这是一个对象数组。
@@ -225,6 +238,7 @@ composer 原生支持以下4种类型：
 
 可选，但强烈建议提供此内容。
 
+<a name="support"></a>
 ### 支持 `support`
 
 获取项目支持的向相关信息对象。
@@ -249,6 +263,7 @@ composer 原生支持以下4种类型：
 
 可选。
 
+<a name="Package links"></a>
 ### Package links
 
 下面提到的所有对象，都应该是 包名 到 [版本](01-basic-usage.md#包版本) 的映射对象。
@@ -303,20 +318,24 @@ composer 原生支持以下4种类型：
 
 它也可以应用于行内别名，这样它将匹配一个约束，否则不会。更多信息请参考 [别名](articles/aliases.md)。
 
+<a name="require"></a>
 #### require
 
 必须的软件包列表，除非这些依赖被满足，否则不会完成安装。
 
+<a name="require-dev"></a>
 #### require-dev <span>(root-only)</span>
 
 这个列表是为开发或测试等目的，额外列出的依赖。“root 包”的 require-dev 默认是会被安装的。然而 `install` 或 `update` 支持使用 `--no-dev` 参数来跳过 `require-dev` 字段中列出的包。
 
+<a name="conflict"></a>
 #### conflict
 
 此列表中的包与当前包的这个版本冲突。它们将不允许同时被安装。
 
 请注意，在 `conflict` 中指定类似于 `<1.0, >= 1.1` 的版本范围时，这表示它与小于1.0 *并且* 同时大等于1.1的版本冲突，这很可能不是你想要的。在这种情况下你可能想要表达的是 `<1.0 | >= 1.1` 。
 
+<a name="replace"></a>
 #### replace
 
 这个列表中的包将被当前包取代。这使你可以 fork 一个包，以不同的名称和版本号发布，同时要求依赖于原包的其它包，在这之后依赖于你 fork 的这个包，因为它取代了原来的包。
@@ -325,10 +344,12 @@ composer 原生支持以下4种类型：
 
 注意，在使用上述方法取代子包时，通常你应该只对子包使用 `self.version` 这一个版本约束，以确保主包仅替换掉子包的准确版本，而不是任何其他版本。
 
+<a name="provide"></a>
 #### provide
 
 List of other packages that are provided by this package. This is mostly useful for common interfaces. A package could depend on some virtual `logger` package, any library that implements this logger interface would simply list it in `provide`.
 
+<a name="suggest"></a>
 ### suggest
 
 建议安装的包，它们增强或能够与当前包良好的工作。这些只是信息，并显示在依赖包安装完成之后，给你的用户一个建议，他们可以添加更多的包。
@@ -343,12 +364,14 @@ List of other packages that are provided by this package. This is mostly useful 
         }
     }
 
+<a name="autoload"></a>
 ### autoload
 
 PHP autoloader 的自动加载映射。
 
 通常 [`PSR-0`](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) autoloading、`classmap` generation 和 `files` 方式都是支持的。PSR-0 是推荐的方式，因为它提供了更大的灵活性（当你添加新的类文件时，不需要重新生成 autoloader）。
 
+<a name="PSR-0"></a>
 #### PSR-0
 
 在 `psr-0` key 下你定义了一个命名空间到实际路径的映射（相对于包的根目录）。注意，这里同样支持 PEAR-style 方式的约定（与命名空间不同，PEAR 类库在类名上采用了下划线分隔）。
@@ -393,6 +416,7 @@ PSR-0 方式并不仅限于申明命名空间，也可以是精确到类级别�
         }
     }
 
+<a name="Classmap"></a>
 #### Classmap
 
 `classmap` 引用的所有组合，都会在 install/update 过程中生成，并存储到 `vendor/composer/autoload_classmap.php` 文件中。这个 map 是经过扫描指定目录（同样支持直接精确到文件）中所有的 `.php` 和 `.inc` 文件里内置的类而得到的。
@@ -407,6 +431,7 @@ PSR-0 方式并不仅限于申明命名空间，也可以是精确到类级别�
         }
     }
 
+<a name="Files"></a>
 #### Files
 
 如果你想要明确的指定，在每次请求时都要载入某些文件，那么你可以使用 'files' autoloading。通常作为函数库的载入方式（而非类库）。
@@ -419,6 +444,7 @@ PSR-0 方式并不仅限于申明命名空间，也可以是精确到类级别�
         }
     }
 
+<a name="include-path"></a>
 ### include-path
 
 > **不建议**：这是目前唯一支持传统项目的做法，所有新的代码都建议使用自动加载。
@@ -434,6 +460,7 @@ PSR-0 方式并不仅限于申明命名空间，也可以是精确到类级别�
 
 可选。
 
+<a name="target-dir"></a>
 ### target-dir
 
 定义当前包安装的目标文件夹。
@@ -453,6 +480,7 @@ Symfony 就是一个例子。它有一些独立的包作为组件。Yaml 组件�
 
 可选。
 
+<a name="minimum-stability"></a>
 ### minimum-stability <span>(root-only)</span>
 
 这定义了通过稳定性过滤包的默认行为。默认为 `stable`（稳定）。因此如果你依赖于一个 `dev`（开发）包，你应该明确的进行定义。
@@ -461,12 +489,14 @@ Symfony 就是一个例子。它有一些独立的包作为组件。Yaml 组件�
 
 可用的稳定性标识（按字母排序）：`dev`、`alpha`、`beta`、`RC`、`stable`。
 
+<a name="prefer-stable"></a>
 ### prefer-stable <span>(root-only)</span>
 
 当此选项被激活时，Composer 将优先使用更稳定的包版本。
 
 使用 `"prefer-stable": true` 来激活它。
 
+<a name="repositories"></a>
 ### repositories <span>(root-only)</span>
 
 使用自定义的包资源库。
@@ -530,6 +560,7 @@ Repositories 并不是递归调用的，只能在“Root包”的 `composer.json
 
 > **注意：** 顺序是非常重要的，当 Composer 查找资源包时，它会按照顺序进行。默认情况下 Packagist 是最后加入的，因此自定义设置将可以覆盖 Packagist 上的包。
 
+<a name="config"></a>
 ### config <span>(root-only)</span>
 
 下面的这一组选项，仅用于项目。
@@ -563,12 +594,14 @@ Repositories 并不是递归调用的，只能在“Root包”的 `composer.json
         }
     }
 
+<a name="scripts"></a>
 ### scripts <span>(root-only)</span>
 
 Composer 允许你在安装过程中的各个阶段挂接脚本。
 
 更多细节和案例请查看 [脚本](articles/scripts.md)。
 
+<a name="extra"></a>
 ### extra
 
 任意的，供 `scripts` 使用的额外数据。.
@@ -579,6 +612,7 @@ Composer 允许你在安装过程中的各个阶段挂接脚本。
 
 可选。
 
+<a name="bin"></a>
 ### bin
 
 A set of files that should be treated as binaries and symlinked into the `bin-dir` (from config).
@@ -587,6 +621,7 @@ See [Vendor Binaries](articles/vendor-binaries.md) for more details.
 
 可选。
 
+<a name="archive"></a>
 ### archive
 
 这些选项在创建包存档时使用。
