@@ -346,55 +346,35 @@ VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需�
 > **注意：** 该资源库类型存在以下限制，因此应尽可能避免使用：
 >
 > - Composer 将不会更新资源包，除非你修改了 `version` 字段。
-> - Composer 将不会更新 commit references，因此如果你使用 `master` reference，将不得不删除该程序包以强制更新，并且将不得不面对一个不稳定的锁定文件。
+> - Composer 将不会更新 commit references，因此如果你使用 `master` reference，将不得不删除该程序包以强制更新，并且将不得不面对一个不稳定的 lock 文件。
 
 ## Hosting your own
 
-While you will probably want to put your packages on packagist most of the time,
-there are some use cases for hosting your own repository.
+尽管大部分的时间，你大概都会把资源包放在 packagist.org 上，但这里还将告诉你一些用例，以便你可以自行托管资源库。
 
-* **Private company packages:** If you are part of a company that uses composer
-  for their packages internally, you might want to keep those packages private.
+* **Private company packages:** 如果你是一个公司的职员，对公司内部的资源包使用 composer，你可能会想让这些包保持私有的状态。
 
-* **Separate ecosystem:** If you have a project which has its own ecosystem,
-  and the packages aren't really reusable by the greater PHP community, you
-  might want to keep them separate to packagist. An example of this would be
-  wordpress plugins.
+* **Separate ecosystem:** 如果你的项目有自己的生态系统，并且自己的资源包不需要被其它项目所复用，你可能会想将它们从 packagist.org 上分离出来。其中一个例子就是 wordpress 的插件。
 
-For hosting your own packages, a native `composer` type of repository is 
-recommended, which provides the best performance.
+对于自行托管的软件包，建议使用 `composer` 类型资源库设置，它将提供最佳的性能。
 
-There are a few tools that can help you create a `composer` repository.
+这里有一些工具，可以帮助你创建 `composer` 类型的资源库。
 
 ### Packagist
 
-The underlying application used by packagist is open source. This means that you
-can just install your own copy of packagist, re-brand, and use it. It's really
-quite straight-forward to do. However due to its size and complexity, for most
-small and medium sized companies willing to track a few packages will be better
-off using Satis.
+packagist 的底层是开源的。这意味着你可以只安装你自己拷贝的 packagist，改造并使用它。这真的是很直接简单的事情。然而，由于其规模和复杂性，对于大多数中小型企业还是建议使用 Satis。
 
-Packagist is a Symfony2 application, and it is [available on
-GitHub](https://github.com/composer/packagist). It uses composer internally and
-acts as a proxy between VCS repositories and the composer users. It holds a list
-of all VCS packages, periodically re-crawls them, and exposes them as a composer
-repository.
+Packagist 是一个 Symfony2 应用程序，并且托管在 GitHub 上 [github.com/composer/packagist](https://github.com/composer/packagist)。它内部使用了 composer 并作为 VCS 资源库与 composer 用户之间的代理。它拥有所有 VCS 资源包的列表，定期重新抓取它们，并将其作为一个 composer 资源库。
 
-To set your own copy, simply follow the instructions from the [packagist
-github repository](https://github.com/composer/packagist).
+要设置你的副本，只需要按照 [github.com/composer/packagist](https://github.com/composer/packagist) 的说明进行操作。
 
 ### Satis
 
-Satis is a static `composer` repository generator. It is a bit like an ultra-
-lightweight, static file-based version of packagist.
+Satis 是一个静态的 `composer` 资源库生成器。它像是一个超轻量级的、基于静态文件的 packagist 版本。
 
-You give it a `composer.json` containing repositories, typically VCS and
-package repository definitions. It will fetch all the packages that are
-`require`d and dump a `packages.json` that is your `composer` repository.
+你给它一个包含 `composer.json` 的存储库，定义好 VCS 和 资源库。它会获取所有你列出的包，并打印 `packages.json` 文件，作为你的 `composer` 资源库。
 
-Check [the satis GitHub repository](https://github.com/composer/satis) and
-the [Satis article](articles/handling-private-packages-with-satis.md) for more
-information.
+更多详细信息请查看 [github.com/composer/satis](https://github.com/composer/satis) 和 [Satis article](articles/handling-private-packages-with-satis.md)。
 
 ### Artifact
 
