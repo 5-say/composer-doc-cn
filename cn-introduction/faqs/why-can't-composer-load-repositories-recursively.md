@@ -1,34 +1,13 @@
-# Why can't Composer load repositories recursively?
+# 为什么 Composer 不递归加载储存库？
 
-You may run into problems when using custom repositories because Composer does
-not load the repositories of your requirements, so you have to redefine those
-repositories in all your `composer.json` files.
+当你使用自定义库时，你可能会碰到问题，因为 Composer 不会递归加载你要求的储存库，所以你必须修改这些储存库中所有的 `composer.json` 文件。
 
-Before going into details as to why this is like that, you have to understand
-that the main use of custom VCS & package repositories is to temporarily try
-some things, or use a fork of a project until your pull request is merged, etc.
-You should not use them to keep track of private packages. For that you should
-look into [setting up Satis](../articles/handling-private-packages-with-satis.md)
-for your company or even for yourself.
+在详细说明为什么是这样之前，你需要明白：使用自定义 VCS & 包储存库去尝试某些事情，或者使用你 fork 的一个分支，直到你的 pull request 被合并，等等。你不应该使用它们来跟踪你的私人资源包，关于这点你应该看看 [setting up Satis](../articles/handling-private-packages-with-satis.md) 来为你的公司甚至自己处理私人资源包。
 
-There are three ways the dependency solver could work with custom repositories:
+这里有三个途径可以使依赖解析器使用你自定义的储存库：
 
-- Fetch the repositories of root package, get all the packages from the defined
-repositories, resolve requirements. This is the current state and it works well
-except for the limitation of not loading repositories recursively.
+- 读取根包的存储库，从定义的存储库得到所有的软件包，解析依赖需求。这是目前的状态，它工作得很好，除了有“无法递归的加载储存库”这个限制。
 
-- Fetch the repositories of root package, while initializing packages from the
-defined repos, initialize recursively all repos found in those packages, and
-their package's packages, etc, then resolve requirements. It could work, but it
-slows down the initialization a lot since VCS repos can each take a few seconds,
-and it could end up in a completely broken state since many versions of a package
-could define the same packages inside a package repository, but with different
-dist/source. There are many many ways this could go wrong.
+- 读取根包的存储库，同时从定义的 repos 初始化资源包，递归的初始化，根据所有依赖包中定义的 repos，以及这些依赖包所依赖的其它包中定义的 repos，等等，然后再解析依赖需求。这可能可以工作，但会严重影响初始化的速度，因为每读取一个 VCS repos 都需要几秒钟。它可能最终执行失败，因为一个包的不同版本，可能来自一个包资源库中一个相同的包，但来至不同的 dist/source 。这样有太多的可能会出错。
 
-- Fetch the repositories of root package, then fetch the repositories of the
-first level dependencies, then fetch the repositories of their dependencies, etc,
-then resolve requirements. This sounds more efficient, but it suffers from the
-same problems than the second solution, because loading the repositories of the
-dependencies is not as easy as it sounds. You need to load all the repos of all
-the potential matches for a requirement, which again might have conflicting
-package definitions.
+- 读取根包的存储库，然后读取第一级依赖，接着读取这些依赖包所依赖的其它包，等等，然后再解析依赖需求。这样听起来更有效率，但仍然存在第二种解决方案中的问题。因为加载依赖的储存库并不像听起来那么容易。你需要加载所有可能匹配依赖关系的 repos，而这些包的定义又可能是互相冲突的。
