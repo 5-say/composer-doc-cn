@@ -1,16 +1,16 @@
 # 社区
 
-已经后很多人在使用 composer，也有很多人为它做出了贡献。
+已经有很多人在使用 composer，也有很多人为它做出了贡献。
 
 ## 贡献
 
-如果你想为 composer 做出自己的贡献，请阅读 [README](https://github.com/composer/composer).
+如果你想为 composer 做出自己的贡献，请阅读 [README](https://github.com/composer/composer)。
 
 最重要的原则介绍如下：
 
 > 所有贡献的代码 - 包括那些具有提交权限的人 - 必须通过一个 pull request 提交，并在合并前由核心开发人员的核准。
 >
-> Fork 这个项目名称，创建一个特性分支，并给我们发送 pull request。
+> Fork 这个项目，创建一个特性分支，并给我们发送 pull request。
 >
 > 为了与基础代码保持一致，你应该确保代码遵循 [编码规范](http://symfony.com/doc/2.0/contributing/code/standards.html)。
 
