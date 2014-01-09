@@ -1,31 +1,20 @@
-# Should I commit the dependencies in my vendor directory?
+# 我应该提交 vendor 目录中的依赖包吗？
 
-The general recommendation is **no**. The vendor directory (or wherever your
-dependencies are installed) should be added to `.gitignore`/`svn:ignore`/etc.
+一般情况下 **不建议**。vendor 目录（或者你安装依赖的其它目录）都应该被添加进 `.gitignore`/`svn:ignore`/等等。
 
-The best practice is to then have all the developers use Composer to install
-the dependencies. Similarly, the build server, CI, deployment tools etc should
-be adapted to run Composer as part of their project bootstrapping.
+最好这么做，然后让所有开发人员使用 Composer 来安装依赖关系。同样，build server、CI、deployment tools 等等，应进行修改，使运行 Composer 成为其项目引导的一部分。
 
-While it can be tempting to commit it in some environment, it leads to a few
-problems:
+虽然在某些环境下提交它是很让人心动的，但它将导致一些问题：
 
-- Large VCS repository size and diffs when you update code.
-- Duplication of the history of all your dependencies in your own VCS.
+- 当你更新代码时，将极大的增加 VCS 仓库的体积和差异。
+- 在你自己的 VCS 中将产生与你依赖的资源包重复的历史记录。
 - Adding dependencies installed via git to a git repo will show them as
   submodules. This is problematic because they are not real submodules, and you
   will run into issues.
 
-If you really feel like you must do this, you have a few options:
+如果你真的觉得你必须这样做，你有几个选择：
 
-1. Limit yourself to installing tagged releases (no dev versions), so that you
-   only get zipped installs, and avoid problems with the git "submodules".
-2. Use --prefer-dist or set `preferred-install` to `dist` in your
-   [config](../04-schema.md#config).
-3. Remove the `.git` directory of every dependency after the installation, then
-   you can add them to your git repo. You can do that with `rm -rf vendor/**/.git`
-   but this means you will have to delete those dependencies from disk before
-   running composer update.
-4. Add a .gitignore rule (`vendor/.git`) to ignore all the vendor `.git` folders.
-   This approach does not require that you delete dependencies from disk prior to
-   running a composer update.
+1. Limit yourself to installing tagged releases (no dev versions), so that you only get zipped installs, and avoid problems with the git "submodules".
+2. 使用 --prefer-dist 或在 [config](../04-schema.md#config) 选项中设置 `preferred-install` 为 `dist`。
+3. 在每一个依赖安装后删除其下的 `.git` 文件夹，然后你就可以添加它们到你的 git repo 中。你可以运行 `rm -rf vendor/**/.git` 命令快捷的操作，但这意味着你在运行 composer update 命令前需要先删除磁盘中的依赖文件。
+4. 新增一个 .gitignore 规则（`vendor/.git`）来忽略 vendor 下所有 `.git` 目录。这种方法不需要你在运行 composer update 命令前删除你磁盘中的依赖文件。
