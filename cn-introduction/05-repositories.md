@@ -2,6 +2,34 @@
 
 本章将解释包和库的概念，什么样的存储库是可用的，以及它们如何工作。
 
+---
+
+- 资源库
+  - 概述
+    - 包
+    - 资源库
+  - Types
+    - Composer
+      - packages
+      - notify-batch
+      - includes
+      - provider-includes and providers-url
+      - stream options
+    - VCS
+      - 从 VCS 资源库加载一个包
+      - 使用私有资源库
+      - Git 的备选方案
+      - Subversion 选项
+    - PEAR
+      - 自定义供应商别名
+    - Package
+  - Hosting your own
+    - Packagist
+    - Satis
+    - Artifact
+  - 禁用 Packagist
+
+---
 ## 概述
 
 在此之前，我们看到存在不同类型的资源库，我们需要了解一些基本概念，以理解 Composer 是如何构建于其上的。
@@ -400,12 +428,9 @@ Satis 是一个静态的 `composer` 资源库生成器。它像是一个超轻�
     composer.json
     ...
 
-If there are two archives with different versions of a package, they are both
-imported. When an archive with a newer version is added in the artifact folder
-and you run `update`, that version will be imported as well and Composer will
-update to the latest version.
+如果有两个不同版本的资源包，它们都会被导入。当有一个新版本的存档被添加到 artifact 文件夹，并且你运行了 `update` 命令，该版本就会被导入，并且 Composer 将更新到最新版本。
 
-## Disabling Packagist
+## 禁用 Packagist
 
 你可以在 `composer.json` 中禁用默认的 Packagist 资源库。
 
