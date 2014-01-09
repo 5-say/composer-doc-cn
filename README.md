@@ -37,7 +37,7 @@ Expose command-line scripts from packages
 
 ## FAQs
 
-- [How Do I Install A Package To A Custom Path For My Framework](/cn-introduction/faqs/how-do-i-install-a-package-to-a-custom-path-for-my-framework.md)
+- [如何为我的框架自定义一个资源包安装目录？](/cn-introduction/faqs/how-do-i-install-a-package-to-a-custom-path-for-my-framework.md)
 - [我应该提交 vendor 目录中的依赖包吗？](/cn-introduction/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)
 - [为什么说“比较符”和“通配符”相结合的版本约束是坏主意？](/cn-introduction/faqs/why-are-version-constraints-combining-comparisons-and-wildcards-a-bad-idea.md)
 - [Why Can't Composer Load Repositories Recursively](/cn-introduction/faqs/why-can%27t-composer-load-repositories-recursively.md)

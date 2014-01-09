@@ -1,15 +1,8 @@
-# How do I install a package to a custom path for my framework?
+# 如何为我的框架自定义一个资源包安装目录？
 
-Each framework may have one or many different required package installation
-paths. Composer can be configured to install packages to a folder other than
-the default `vendor` folder by using
-[composer/installers](https://github.com/composer/installers).
+每个框架都可能有一个或多个不同的依赖包安装目录。Composer 可以通过使用 [composer/installers](https://github.com/composer/installers) 来配置，安装依赖到其它的目录，而不是默认的 `vendor` 目录。
 
-If you are a **package author** and want your package installed to a custom
-directory, simply require `composer/installers` and set the appropriate `type`.
-This is common if your package is intended for a specific framework such as
-CakePHP, Drupal or WordPress. Here is an example composer.json file for a
-WordPress theme:
+如果你是一个 **包作者** 并且希望自己的资源包被安装到自定义的目录中，简单的 require `composer/installers` 依赖，并设置适当的 `type` 属性。这是常见的方式，如果你的资源包专门用于一个框架，如 CakePHP、Drupal 或 WordPress。这是一个 WordPress 主题的 composer.json 文件的例子：
 
     {
         "name": "you/themename",
@@ -19,16 +12,9 @@ WordPress theme:
         }
     }
 
-Now when your theme is installed with Composer it will be placed into
-`wp-content/themes/themename/` folder. Check the
-[current supported types](https://github.com/composer/installers#current-supported-types)
-for your package.
+现在当你用 Composer 安装这个主题时，它就会被放置在 `wp-content/themes/themename/` 目录。目前已被支持的 `type` 类型请查看 [current supported types](https://github.com/composer/installers#current-supported-types)。
 
-As a **package consumer** you can set or override the install path for a package
-that requires composer/installers by configuring the `installer-paths` extra. A
-useful example would be for a Drupal multisite setup where the package should be
-installed into your sites subdirectory. Here we are overriding the install path
-for a module that uses composer/installers:
+对于一个 **包使用者** 你可以为一个包设置或覆盖安装路径，requires composer/installers 并在 extra 下设置 `installer-paths` 属性。Drupal 的多站点设置就是一个很好的例子，其中的资源包应该被安装到各自网站的子目录。在这里我们使用 composer/installers 来覆盖安装路径：
 
     {
         "extra": {
@@ -38,9 +24,6 @@ for a module that uses composer/installers:
         }
     }
 
-Now the package would be installed to your folder location, rather than the default
-composer/installers determined location.
+现在该资源包将被安装到你指定的目录，并替换 `$name` 变量，而不是默认目录。
 
-> **Note:** You cannot use this to change the path of any package. This is only
-> applicable to packages that require `composer/installers` and use a custom type
-> that it handles.
+> **注意：** 你不能通过它改变所有包的安装目录。这仅适用于引入 `composer/installers` 依赖，自定义了 type 属性的资源包。
