@@ -174,7 +174,7 @@ different installation path.
 > _Instead of being installed in `/vendor` any package installed using this
 > Installer will be put in the `/data/templates/<stripped name>` folder._
 
-[1]: ../04-schema.md#安装类型-type
+[1]: ../04-schema.md#type
 [2]: ../04-schema.md#extra
 [3]: https://github.com/composer/composer/blob/master/src/Composer/Plugin/PluginInterface.php
 [4]: https://github.com/composer/composer/blob/master/src/Composer/Installer/InstallerInterface.php
