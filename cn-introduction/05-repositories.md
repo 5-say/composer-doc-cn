@@ -1,39 +1,43 @@
+<a name="Repositories"></a>
 # 资源库
 
 本章将解释包和库的概念，什么样的存储库是可用的，以及它们如何工作。
 
 ---
 
-- 资源库
-  - 概述
-    - 包
-    - 资源库
-  - Types
-    - Composer
-      - packages
-      - notify-batch
-      - includes
-      - provider-includes and providers-url
-      - stream options
-    - VCS
-      - 从 VCS 资源库加载一个包
-      - 使用私有资源库
-      - Git 的备选方案
-      - Subversion 选项
-    - PEAR
-      - 自定义供应商别名
-    - Package
-  - Hosting your own
-    - Packagist
-    - Satis
-    - Artifact
-  - 禁用 Packagist
+- [资源库](#Repositories)
+  - [概述](#Concepts)
+    - [包](#Package)
+    - [资源库](#Repository)
+  - [Types](#Types)
+    - [Composer](#Composer)
+      - [packages](#packages)
+      - [notify-batch](#notify-batch)
+      - [includes](#includes)
+      - [provider-includes and providers-url](#provider-includes)
+      - [stream options](#stream options)
+    - [VCS](#VCS)
+      - [从 VCS 资源库加载一个包](#from a VCS)
+      - [使用私有资源库](#Using private)
+      - [Git 的备选方案](#Git alternatives)
+      - [Subversion 选项](#Subversion Options)
+    - [PEAR](#PEAR)
+      - [自定义供应商别名](#Custom vendor alias)
+    - [Package](#Package)
+  - [Hosting your own](#Hosting your own)
+    - [Packagist](#Packagist)
+    - [Satis](#Satis)
+    - [Artifact](#Artifact)
+  - [禁用 Packagist](#Disabling Packagist)
 
 ---
+
+<a name="Concepts"></a>
 ## 概述
 
 在此之前，我们看到存在不同类型的资源库，我们需要了解一些基本概念，以理解 Composer 是如何构建于其上的。
 
+<a name="Package"></a>
 ### 包
 
 Composer 是一个依赖管理工具。它在本地安装一些资源包。一个包本质上就是一个包含东西的目录。通常情况下它存储 PHP 代码，但在理论上它可以是任何东西。并且它包含一个描述，其中有一个名称和一个版本号，这个名称和版本号用于识别该包。
@@ -48,6 +52,7 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 你可以使用其中任意一个，或者同时使用。这取决于其它的一些因素，比如“user-supplied 选项”和“包的稳定性”，前者将会被优先考虑。
 
+<a name="Repository"></a>
 ### 资源库
 
 一个资源库是一个包的来源。它是一个 packages/versions 的列表。Composer 将查看所有你定义的 repositories 以找到你项目需要的资源包。
@@ -56,14 +61,17 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 资源库的定义仅可用于“root 包”，而在你依赖的包中定义的资源库将不会被加载。如果你想了解其中的原因，请阅读 [FAQ entry](faqs/why-can't-composer-load-repositories-recursively.md)。
 
+<a name="Types"></a>
 ## Types
 
+<a name="Composer"></a>
 ### Composer
 
 主资源库的类型为 `composer`。它使用一个单一的 `packages.json` 文件，包含了所有的资源包元数据。
 
 这也是 packagist.org 所使用的资源类型。要引用一个 `composer` 资源库，只需要提供一个存放 `packages.json` 文件的 **目录路径**。比如要引用 `packagist.org` 下的 `/packages.json`，它的 URL 就应该是 `packagist.org`。而 `example.org/packages.json` 的 URL 应该是 `example.org`。
 
+<a name="packages"></a>
 #### packages
 
 唯一必须的字段是 `packages`。它的 JSON 结构如下：
@@ -98,6 +106,7 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 它还可以包含任何在 [架构](04-schema.md) 中介绍的字段。
 
+<a name="notify-batch"></a>
 #### notify-batch
 
 `notify-batch` 字段允许你指定一个 URL，它将会在用户安装每一个包时被调用。该 URL 可以是（与其资源库相同域名的）绝对路径或者一个完整的 URL 地址。
@@ -120,6 +129,7 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 `notify-batch` 字段是可选的。
 
+<a name="includes"></a>
 #### includes
 
 对于较大的资源库，可以拆分 `packages.json` 为多个文件。`includes` 字段允许你引用这些额外的文件。
@@ -144,6 +154,7 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 此字段是可选的。你也许并不需要它来自定义存储库。
 
+<a name="provider-includes"></a>
 #### provider-includes and providers-url
 
 的对于非常大的资源库，像 packagist.org 使用 so-called provider 文件是首选方法。`provider-includes` 字段允许你设置一个列表，来申明这个资源库提供的包名称。在这种情况下文件的哈希算法必须使用 sha256。
@@ -181,14 +192,17 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 这些字段是可选的。你也许并不需要它们来自定义存储库。
 
+<a name="stream options"></a>
 #### stream options
 
 `packages.json` 文件是用一个 PHP 流加载的。你可以使用 `options` 参数来设定额外的流信息。你可以设置任何有效的PHP 流上下文选项。更多相关信息请查看 [Context options and parameters](http://php.net/manual/en/context.php)。
 
+<a name="VCS"></a>
 ### VCS
 
 VCS 表示版本控制系统。这包括像 git、svn 或 hg 这样的版本管理系统。Composer 有一个资源类型可以从这些系统安装软件包。
 
+<a name="from a VCS"></a>
 #### 从 VCS 资源库加载一个包
 
 这里有几个用例。最常见的是维护自己 fork 的第三方库。如果你在项目中使用某些库，并且你决定改变这些库内的某些东西，你会希望你项目中使用的是你自己的修正版本。如果这个库是在 GitHub 上（这种情况经常出现），你可以简单的 fork 它并 push 你的变更到这个 fork 里。在这之后你更新项目的 `composer.json` 文件，添加你的 fork 作为一个资源库，变更版本约束来指向你的自定义分支。关于版本约束的命名约定请查看 [库（资源包）](02-libraries.md)。
@@ -213,6 +227,7 @@ VCS 表示版本控制系统。这包括像 git、svn 或 hg 这样的版本管�
 
 如果其它包依赖你 fork 的这个分支，可能要对它做版本号的行内别名设置，才能够准确的识别版本约束。更多相关信息请查看 [别名](articles/aliases.md)。
 
+<a name="Using private"></a>
 #### 使用私有资源库
 
 完全相同的解决方案，也可以让你使用你 GitHub 和 BitBucket 上的私人代码库进行工作：
@@ -231,6 +246,7 @@ VCS 表示版本控制系统。这包括像 git、svn 或 hg 这样的版本管�
 
 唯一的要求是为一个 git 客户端安装 SSH 秘钥。
 
+<a name="Git alternatives"></a>
 #### Git 的备选方案
 
 Git 并不是 VCS 资源库唯一支持的版本管理系统。
@@ -248,6 +264,7 @@ Git 并不是 VCS 资源库唯一支持的版本管理系统。
 
 VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需要明确的指定一个 `git`、`svn` 或 `hg` 作为资源库类型，而不是 `vcs`。
 
+<a name="Subversion Options"></a>
 #### Subversion 选项
 
 由于 Subversion 没有原生的分支和标签的概念，Composer 假设在默认情况下该代码位于 `$url/trunk`、`$url/branches` 和 `$url/tags` 内。如果你的存储库使用了不同的布局，你可以更改这些值。例如，如果你使用大写的名称，你可以像这样配置资源库：
@@ -268,6 +285,7 @@ VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需�
 
 如果是一个位于子目录的包，例如， `/trunk/foo/bar/composer.json` 和 `/tags/1.0/foo/bar/composer.json`，那么你可以让 composer 通过 `"package-path"` 选项设置的子目录进行访问，在这个例子中可以将其设置为 `"package-path": "foo/bar/"`。
 
+<a name="PEAR"></a>
 ### PEAR
 
 `pear` 类型资源库，使得从任何 PEAR 渠道安装资源包成为可能。Composer 将为所有此类型的包增加前缀（类似于 `pear-{渠道名称}/`）以避免冲突。而在之后使用别名时也增加前缀（如 `pear-{渠道别名}/`）。
@@ -291,6 +309,7 @@ VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需�
 
 > **注意：** `pear` 类型的资源库对每个 requires 都要做完整的请求，因此可能大大降低安装速度。
 
+<a name="Custom vendor alias"></a>
 #### 自定义供应商别名
 
 通过自定义供应商名称，对 PEAR 渠道包进行别名是允许的。
@@ -334,6 +353,7 @@ VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需�
         }
     }
 
+<a name="Package"></a>
 ### Package
 
 如果你想使用一个项目，它无法通过上述任何一种方式支持 composer，你仍然可以使用 `package` 类型定义资源库。
@@ -376,6 +396,7 @@ VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需�
 > - Composer 将不会更新资源包，除非你修改了 `version` 字段。
 > - Composer 将不会更新 commit references，因此如果你使用 `master` reference，将不得不删除该程序包以强制更新，并且将不得不面对一个不稳定的 lock 文件。
 
+<a name="Hosting your own"></a>
 ## Hosting your own
 
 尽管大部分的时间，你大概都会把资源包放在 packagist.org 上，但这里还将告诉你一些用例，以便你可以自行托管资源库。
@@ -388,6 +409,7 @@ VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需�
 
 这里有一些工具，可以帮助你创建 `composer` 类型的资源库。
 
+<a name="Packagist"></a>
 ### Packagist
 
 packagist 的底层是开源的。这意味着你可以只安装你自己拷贝的 packagist，改造并使用它。这真的是很直接简单的事情。然而，由于其规模和复杂性，对于大多数中小型企业还是建议使用 Satis。
@@ -396,6 +418,7 @@ Packagist 是一个 Symfony2 应用程序，并且托管在 GitHub 上 [github.c
 
 要设置你的副本，只需要按照 [github.com/composer/packagist](https://github.com/composer/packagist) 的说明进行操作。
 
+<a name="Satis"></a>
 ### Satis
 
 Satis 是一个静态的 `composer` 资源库生成器。它像是一个超轻量级的、基于静态文件的 packagist 版本。
@@ -404,6 +427,7 @@ Satis 是一个静态的 `composer` 资源库生成器。它像是一个超轻�
 
 更多详细信息请查看 [github.com/composer/satis](https://github.com/composer/satis) 和 [Satis article](articles/handling-private-packages-with-satis.md)。
 
+<a name="Artifact"></a>
 ### Artifact
 
 在某些情况下，或许没有能力拥有之前提到的任何一种线上资源库。Typical example could be cross-organisation library exchange through built artifacts。当然大部分的时间他们都是私有的。为了简化维护，可以简单的使用 `artifact` 资源库类型，来引用一个包含那些私有包的 ZIP 存档的文件夹：
@@ -430,6 +454,7 @@ Satis 是一个静态的 `composer` 资源库生成器。它像是一个超轻�
 
 如果有两个不同版本的资源包，它们都会被导入。当有一个新版本的存档被添加到 artifact 文件夹，并且你运行了 `update` 命令，该版本就会被导入，并且 Composer 将更新到最新版本。
 
+<a name="Disabling Packagist"></a>
 ## 禁用 Packagist
 
 你可以在 `composer.json` 中禁用默认的 Packagist 资源库。
