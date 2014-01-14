@@ -49,3 +49,7 @@ Expose command-line scripts from packages
 ## API 文档
 
 如果你需要在工作中使用 composer 作为库的管理，你或许也想看看 [API 文档](http://getcomposer.org/apidoc/master/index.html)。
+
+## 相关文章推荐
+
+- [PHP 开发者该知道的5个 Composer 小技巧](http://segmentfault.com/a/1190000000355928)
