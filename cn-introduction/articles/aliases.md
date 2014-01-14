@@ -6,27 +6,17 @@
 
 ## 为什么使用别名？
 
-When you are using a VCS repository, you will only get comparable versions for
-branches that look like versions, such as `2.0`. For your `master` branch, you
-will get a `dev-master` version. For your `bugfix` branch, you will get a
-`dev-bugfix` version.
+当你使用 VCS 资源库，你将只会得到类似于这样的版本号：从分支发布的标签获取，它看起来像 `2.0`。比较特殊的是，对于你的 `master` 分支，你会得到一个最新提交的 `dev-master` 版本。对于你的 `bugfix` 分支，你会得到一个最新提交的 `dev-bugfix` 版本。以此类推，这些特殊的版本标识可以用来获取最新的分支源码。
 
-If your `master` branch is used to tag releases of the `1.0` development line,
-i.e. `1.0.1`, `1.0.2`, `1.0.3`, etc., any package depending on it will
-probably require version `1.0.*`.
+如果你的 `master` 分支使用标签发布了 `1.0` 系列版本，即 `1.0.1`、`1.0.2`、`1.0.3` 等等，任何依赖它的资源包都可能会 require `1.0.*` 这个版本约束。
 
-If anyone wants to require the latest `dev-master`, they have a problem: Other
-packages may require `1.0.*`, so requiring that dev version will lead to
-conflicts, since `dev-master` does not match the `1.0.*` constraint.
+如果有人想要最新的 `dev-master` 版本，他们将会碰到一个问题：其它的包可能还使用了 `1.0.*` 这个版本约束，因此在 require 这个开发版本时将会产生冲突，因为 `dev-master` 不符合 `1.0.*` 的约束。
 
-Enter aliases.
+这时，就可以使用别名。
 
-## Branch alias
+## 分支别名
 
-The `dev-master` branch is one in your main VCS repo. It is rather common that
-someone will want the latest master dev version. Thus, Composer allows you to
-alias your `dev-master` branch to a `1.0.x-dev` version. It is done by
-specifying a `branch-alias` field under `extra` in `composer.json`:
+`dev-master` 分支是一个在你 VCS 项目上的主分支。有些用户会想要使用最新的开发版本，这是相当常见的情况。因此，Composer 允许你别名你的 `dev-master` 分支为一个 `1.0.x-dev` 的版本。这是通过在 `composer.json` 文件中的 `extra` 下指定 `branch-alias` 字段来完成的：
 
     {
         "extra": {
@@ -36,19 +26,13 @@ specifying a `branch-alias` field under `extra` in `composer.json`:
         }
     }
 
-The branch version must begin with `dev-` (non-comparable version), the alias
-must be a comparable dev version (i.e. start with numbers, and end with
-`.x-dev`). The `branch-alias` must be present on the branch that it references.
-For `dev-master`, you need to commit it on the `master` branch.
+此处的分支版本必须以 `dev-` 开头（不可比较的版本名称），对应的别名必须是可比较的开发版本名称（即，以数字开头，并以 `.x-dev` 结束）。`branch-alias` 所引用的分支必须是存在的。对于 `dev-master` 你需要在 `master` 分支上提交它。
 
-As a result, anyone can now require `1.0.*` and it will happily install
-`dev-master`.
+其结果是，任何人都可以 require `1.0.*` 版本，并且他们实际将会得到 `dev-master` 版本。
 
-In order to use branch aliasing, you must own the repository of the package
-being aliased. If you want to alias a third party package without maintaining
-a fork of it, use inline aliases as described below.
+为了定义分支别名，你必须是需要别名的包的所有者。如果你想别名一个第三方包，而又不想 fork 它到自己的版本库，可以使用行内别名，我们在接下来就会提到它。
 
-## Require inline alias
+## Require 中使用行内别名
 
 Branch aliases are great for aliasing main development lines. But in order to
 use them you need to have control over the source repository, and you need to
