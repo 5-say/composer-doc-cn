@@ -59,13 +59,7 @@
 
 它将会在你的 GitHub 上获取 `monolog/monolog` 的 `dev-bugfix` 版本并将其版本别名为 `1.0.x-dev`。
 
-> **Note:** If a package with inline aliases is required, the alias (right of
-> the `as`) is used as the version constraint. The part left of the `as` is
-> discarded. As a consequence, if A requires B and B requires `monolog/monolog`
-> version `dev-bugfix as 1.0.x-dev`, installing A will make B require
-> `1.0.x-dev`, which may exist as a branch alias or an actual `1.0` branch. If
-> it does not, it must be re-inline-aliased in A's `composer.json`.
+> **注意：** 如果要对一个资源包使用行内别名，这个别名（`as` 的右边）必须能够使用版本约束。`as` 左边的部分在这之后将被丢弃。因此，如果 A 依赖 B 而 B 又依赖 `monolog/monolog` 且版本约束为 `dev-bugfix as 1.0.x-dev`，那么安装 A 时将使用 B 的版本约束，并识别为 `1.0.x-dev`，此时必须真实存在一个“分支别名”或“1.0 系列分支”。否则就必须在 A 的 `composer.json` 文件中再次定义行内别名。
 
-> **Note:** Inline aliasing should be avoided, especially for published
-> packages. If you found a bug, try and get your fix merged upstream. This
-> helps to avoid issues for users of your package.
+> **注意：** 应该尽量避免行内别名，特别是对已经发布的包。如果你发现了一个 bug，请尝试将你的修复合并到上游分支。这将避免使用你资源包的用户出现问题。
+
