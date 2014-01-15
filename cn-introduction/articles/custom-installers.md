@@ -146,13 +146,9 @@ InstallerInterface 类定义了以下方法（请查阅源码以获得更详细�
         }
     }
 
-The example demonstrates that it is quite simple to extend the
-[`Composer\Installer\LibraryInstaller`][5] class to strip a prefix
-(`phpdocumentor/template-`) and use the remaining part to assemble a completely
-different installation path.
+这个例子演示了，简单的继承 [`Composer\Installer\LibraryInstaller`][5] 类来剥离 `phpdocumentor/template-` 前缀，并用剩余的部分重新组装了一个完全不同的安装路径。
 
-> _Instead of being installed in `/vendor` any package installed using this
-> Installer will be put in the `/data/templates/<stripped name>` folder._
+> _并非安装在 `/vendor` 目录，任何使用这个安装程序的资源包，将被放置在 `/data/templates/<stripped name>` 目录中。_
 
 [1]: ../04-schema.md#type
 [2]: ../04-schema.md#extra
