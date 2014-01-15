@@ -93,23 +93,19 @@
 
 ### 自定义安装程序类
 
-这个类用于执行自定义的安装过程，它必须实现 [`Composer\Installer\InstallerInterface`][4] 这个接口（或者继承了另一个实现此接口的安装程序类）。It defines the [type][1] string as it will be recognized by packages that will use this installer in the `supports()` method.
+这个类用于执行自定义的安装过程，它必须实现 [`Composer\Installer\InstallerInterface`][4] 这个接口（或者继承了另一个实现此接口的安装程序类）。它将会对 [安装类型][1] 中定义的字符串执行 `supports()` 方法验证，一旦通过就采用对应的安装程序。
 
 > **注意：** _请慎重选择你的 [安装类型][1] 名称，建议遵循这样的格式：`vendor-type`_。例如：`phpdocumentor-template`。
 
 InstallerInterface 类定义了以下方法（请查阅源码以获得更详细的信息）：
 
-* **supports()**, here you test whether the passed [type][1] matches the name
-  that you declared for this installer (see the example).
-* **isInstalled()**, determines whether a supported package is installed or not.
-* **install()**, here you can determine the actions that need to be executed
-  upon installation.
+* **supports()** 在这里测试你发布的这个安装程序名称是否通过 [安装类型][1] 匹配（参见示例）。只有正确匹配的资源包才会使用此安装程序进行安装。
+* **isInstalled()** 确定支持的资源包是否已安装。
+* **install()** 这里你可以定义在安装时需要执行的动作。
 * **update()**, here you define the behavior that is required when Composer is
   invoked with the update argument.
-* **uninstall()**, here you can determine the actions that need to be executed
-  when the package needs to be removed.
-* **getInstallPath()**, this method should return the location where the
-  package is to be installed, _relative from the location of composer.json._
+* **uninstall()** 这里你可以定义在移除一个包时需要执行的动作。
+* **getInstallPath()** 这个方法需要返回一个资源包将要安装的位置。_相对于 composer.json 文件的位置。_
 
 例：
 
