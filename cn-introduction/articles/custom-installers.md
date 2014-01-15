@@ -12,22 +12,17 @@
 
 ## 调用自定义安装程序
 
-假设你的项目已经有了一个自定义的安装模块，那么如何根据 [type][1] 正确调用你包文件中的安装程序就成为了一个问题。
+假设你的项目已经有了一个自定义的安装模块，那么如何根据 [安装类型][1] 正确调用你包文件中的安装程序就成为了一个问题。
 
 > _参见见下一章，如何通过指令创建自定义安装程序。_
 
-Every Custom Installer defines which [type][1] string it will recognize. Once
-recognized it will completely override the default installer and only apply its
-own logic.
+任何自定义安装程序都要通过 [type][1] 属性来识别。一旦被确认，它将完全覆盖默认的安装程序，并执行自己的安装逻辑。
 
-An example use-case would be:
+一个实际用例：
 
-> phpDocumentor features Templates that need to be installed outside of the
-> default /vendor folder structure. As such they have chosen to adopt the
-> `phpdocumentor-template` [type][1] and create a plugin providing the Custom
-> Installer to send these templates to the correct folder.
+> phpDocumentor 的特殊模板需要安装在 /vendor 以外的其它目录中。因此他们选择 `phpdocumentor-template` [安装类型][1] 并为此类型创建了一个插件，以便将他们的模板发送到正确的目录中。
 
-An example composer.json of such a template package would be:
+在这样一个模板包的例子中 composer.json 将使用以下设置：
 
     {
         "name": "phpdocumentor/template-responsive",
@@ -37,9 +32,7 @@ An example composer.json of such a template package would be:
         }
     }
 
-> **IMPORTANT**: to make sure that the template installer is present at the
-> time the template package is installed, template packages should require
-> the plugin package.
+> **重要提示：** 为了确保这个模板安装程序在安装模板包之前就已存在，模板包必须写入对此安装程序包的依赖。
 
 ## Creating an Installer
 
