@@ -46,15 +46,12 @@
 
 ### composer.json
 
-The package file is the same as any other package file but with the following
-requirements:
+此处的包文件和普通资源包是相同的，但需要满足以下条件：
 
-1. the [type][1] attribute must be `composer-plugin`.
-2. the [extra][2] attribute must contain an element `class` defining the
-   class name of the plugin (including namespace). If a package contains
-   multiple plugins this can be array of class names.
+1. [type][1] 属性必须是 `composer-plugin`。
+2. [extra][2] 属性必须包含 `class` 元素，它定义了插件类的名称（包含命名空间）。如果这个包有多个插件类，可以使用数组的形式进行定义。
 
-Example:
+例：
 
     {
         "name": "phpdocumentor/template-installer-plugin",
@@ -71,16 +68,13 @@ Example:
         }
     }
 
-### The Plugin class
+### 插件类
 
-The class defining the Composer plugin must implement the
-[`Composer\Plugin\PluginInterface`][3]. It can then register the Custom
-Installer in its `activate()` method.
+这个类定义了 Composer 的插件，它必须实现 [`Composer\Plugin\PluginInterface`][3] 这个接口。它可以在 `activate()` 方法中注册自定义安装程序。
 
-The class may be placed in any location and have any name, as long as it is
-autoloadable and matches the `extra.class` element in the package definition.
+这个类可以被放在任何位置、使用任何名字，只要能够根据 `extra.class` 中的定义被自动加载即可。
 
-Example:
+例：
 
     namespace phpDocumentor\Composer;
 
@@ -97,18 +91,13 @@ Example:
         }
     }
 
-### The Custom Installer class
+### 自定义安装程序类
 
-The class that executes the custom installation should implement the
-[`Composer\Installer\InstallerInterface`][4] (or extend another installer that
-implements that interface). It defines the [type][1] string as it will be
-recognized by packages that will use this installer in the `supports()` method.
+这个类用于执行自定义的安装过程，它必须实现 [`Composer\Installer\InstallerInterface`][4] 这个接口（或者继承了另一个实现此接口的安装程序类）。It defines the [type][1] string as it will be recognized by packages that will use this installer in the `supports()` method.
 
-> **NOTE**: _choose your [type][1] name carefully, it is recommended to follow
-> the format: `vendor-type`_. For example: `phpdocumentor-template`.
+> **注意：** _请慎重选择你的 [安装类型][1] 名称，建议遵循这样的格式：`vendor-type`_。例如：`phpdocumentor-template`。
 
-The InstallerInterface class defines the following methods (please see the
-source for the exact signature):
+InstallerInterface 类定义了以下方法（请查阅源码以获得更详细的信息）：
 
 * **supports()**, here you test whether the passed [type][1] matches the name
   that you declared for this installer (see the example).
@@ -122,7 +111,7 @@ source for the exact signature):
 * **getInstallPath()**, this method should return the location where the
   package is to be installed, _relative from the location of composer.json._
 
-Example:
+例：
 
     namespace phpDocumentor\Composer;
 
