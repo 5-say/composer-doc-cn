@@ -102,8 +102,7 @@ InstallerInterface 类定义了以下方法（请查阅源码以获得更详细�
 * **supports()** 在这里测试你发布的这个安装程序名称是否通过 [安装类型][1] 匹配（参见示例）。只有正确匹配的资源包才会使用此安装程序进行安装。
 * **isInstalled()** 确定支持的资源包是否已安装。
 * **install()** 这里你可以定义在安装时需要执行的动作。
-* **update()**, here you define the behavior that is required when Composer is
-  invoked with the update argument.
+* **update()** 这里你可以定义在更新时需要执行的动作。当 Composer 调用更新参数时这是必须的。
 * **uninstall()** 这里你可以定义在移除一个包时需要执行的动作。
 * **getInstallPath()** 这个方法需要返回一个资源包将要安装的位置。_相对于 composer.json 文件的位置。_
 
