@@ -34,17 +34,15 @@
 
 > **重要提示：** 为了确保这个模板安装程序在安装模板包之前就已存在，模板包必须写入对此安装程序包的依赖。
 
-## Creating an Installer
+## 创建一个安装程序
 
-A Custom Installer is defined as a class that implements the
-[`Composer\Installer\InstallerInterface`][3] and is usually distributed in a
-Composer Plugin.
+一个自定义安装程序通常是以 Composer 插件的形式存在，并包含有一个类，它实现了 [`Composer\Installer\InstallerInterface`][3] 这个接口。
 
-A basic Installer Plugin would thus compose of three files:
+一个基本的安装程序插件必须由3个文件组成：
 
-1. the package file: composer.json
-2. The Plugin class, e.g.: `My\Project\Composer\Plugin.php`, containing a class that implements `Composer\Plugin\PluginInterface`.
-3. The Installer class, e.g.: `My\Project\Composer\Installer.php`, containing a class that implements `Composer\Installer\InstallerInterface`.
+1. 包文件：composer.json
+2. 插件类，例如：`My\Project\Composer\Plugin.php`，其中的类必须实现 `Composer\Plugin\PluginInterface` 接口。
+3. 安装程序类，例如：`My\Project\Composer\Installer.php`，其中的类必须实现 `Composer\Installer\InstallerInterface` 接口。
 
 ### composer.json
 
