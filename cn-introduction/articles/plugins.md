@@ -2,17 +2,13 @@
     tagline: Modify and extend Composer's functionality
 -->
 
-# Setting up and using plugins
+# 设置和使用插件
 
-## Synopsis
+## 概述
 
-You may wish to alter or expand Composer's functionality with your own. For
-example if your environment poses special requirements on the behaviour of
-Composer which do not apply to the majority of its users or if you wish to
-accomplish something with composer in a way that is not desired by most users.
+你可能需要改变和扩展 Composer 加入自定义的功能。例如：如果你的环境对 Composer 的行为有特殊要求，而这并不适用于普通用户。又或者，你想使用 Composer 完成某些事情，而又不希望对普通用户造成影响。
 
-In these cases you could consider creating a plugin to handle your
-specific logic.
+在这些情况下，你可以考虑创建一个插件来处理特定的逻辑。
 
 ## Creating a Plugin
 
