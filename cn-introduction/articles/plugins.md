@@ -35,14 +35,9 @@
 
 ### 插件类
 
-Every plugin has to supply a class which implements the
-[`Composer\Plugin\PluginInterface`][3]. The `activate()` method of the plugin
-is called after the plugin is loaded and receives an instance of
-[`Composer\Composer`][4] as well as an instance of
-[`Composer\IO\IOInterface`][5]. Using these two objects all configuration can
-be read and all internal objects and state can be manipulated as desired.
+每一个插件都必须提供一个实现了 [`Composer\Plugin\PluginInterface`][3] 接口的类。类中的 `activate()` 方法在插件载入后被调用，并接收两个类的实例：[`Composer\Composer`][4] 和 [`Composer\IO\IOInterface`][5]。使用这两个对象可以读取所有的配置，操作所有的内部对象和状态。
 
-Example:
+例如：
 
     namespace phpDocumentor\Composer;
 
