@@ -54,22 +54,16 @@
         }
     }
 
-## Event Handler
+## 事件处理程序
 
-Furthermore plugins may implement the
-[`Composer\EventDispatcher\EventSubscriberInterface`][6] in order to have its
-event handlers automatically registered with the `EventDispatcher` when the
-plugin is loaded.
+此外，插件还可以实现 [`Composer\EventDispatcher\EventSubscriberInterface`][6] 接口，为了在插件载入后自动注册事件处理程序到 `EventDispatcher`。
 
-The events available for plugins are:
+插件可用事件如下：
 
-* **COMMAND**, is called at the beginning of all commands that load plugins.
-  It provides you with access to the input and output objects of the program.
-* **PRE_FILE_DOWNLOAD**, is triggered before files are downloaded and allows
-  you to manipulate the `RemoteFilesystem` object prior to downloading files
-  based on the URL to be downloaded.
+* **COMMAND** 在载入插件的所有命令前被调用。它为你提供了访问程序输入输出的对象。
+* **PRE_FILE_DOWNLOAD** 在文件下载前被触发，它允许你在下载前根据目标 URL 操作 `RemoteFilesystem` 对象。
 
-> A plugin can also subscribe to [script events][7].
+> 一个插件也可以订阅 [脚本事件][7]。
 
 Example:
 
@@ -114,7 +108,7 @@ Example:
         }
     }
 
-## Using Plugins
+## 使用插件
 
 Plugin packages are automatically loaded as soon as they are installed and will
 be loaded when composer starts up if they are found in the current project's
