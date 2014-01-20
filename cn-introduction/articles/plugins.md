@@ -21,11 +21,9 @@
 1. [type][1] 属性必须是 `composer-plugin`。
 2. [extra][2] 属性必须包含一个元素 `class`，它定义了插件类的名称（包含命名空间）。如果一个包中含有多个插件，则可以使用数组来定义类名。
 
-Additionally you must require the special package called `composer-plugin-api`
-to define which composer API versions your plugin is compatible with. The
-current composer plugin API version is 1.0.0.
+此外，你必须 require 一个特殊的资源包 `composer-plugin-api`，定义与你的插件相兼容的 composer plugin API 版本。目前 composer plugin API 的版本为1.0.0。
 
-For example
+例如：
 
     {
         "name": "my/plugin-package",
@@ -35,7 +33,7 @@ For example
         }
     }
 
-### Plugin Class
+### 插件类
 
 Every plugin has to supply a class which implements the
 [`Composer\Plugin\PluginInterface`][3]. The `activate()` method of the plugin
