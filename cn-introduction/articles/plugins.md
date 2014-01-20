@@ -23,7 +23,7 @@
 
 此外，你必须 require 一个特殊的资源包 `composer-plugin-api`，定义与你的插件相兼容的 composer plugin API 版本。目前 composer plugin API 的版本为1.0.0。
 
-例如：
+例：
 
     {
         "name": "my/plugin-package",
@@ -37,7 +37,7 @@
 
 每一个插件都必须提供一个实现了 [`Composer\Plugin\PluginInterface`][3] 接口的类。类中的 `activate()` 方法在插件载入后被调用，并接收两个类的实例：[`Composer\Composer`][4] 和 [`Composer\IO\IOInterface`][5]。使用这两个对象可以读取所有的配置，操作所有的内部对象和状态。
 
-例如：
+例：
 
     namespace phpDocumentor\Composer;
 
@@ -65,7 +65,7 @@
 
 > 一个插件也可以订阅 [脚本事件][7]。
 
-Example:
+例：
 
     namespace Naderman\Composer\AWS;
 
@@ -110,15 +110,9 @@ Example:
 
 ## 使用插件
 
-Plugin packages are automatically loaded as soon as they are installed and will
-be loaded when composer starts up if they are found in the current project's
-list of installed packages. Additionally all plugin packages installed in the
-`COMPOSER_HOME` directory using the composer global command are loaded before
-local project plugins are loaded.
+插件包是优先被安装和加载的，在 Composer 启动时，如果在已安装资源包的当前项目列表中被找到，它们将被自动加载。此外，所有的插件包将被安装在 `COMPOSER_HOME` 目录，以便在 Composer 全局命令前载入，在操作本地项目前插件就已经被载入。
 
-> You may pass the `--no-plugins` option to composer commands to disable all
-> installed commands. This may be particularly helpful if any of the plugins
-> causes errors and you wish to update or uninstall it.
+> 你可以通过 `--no-plugins` 选项让 composer 的命令禁用所有已经安装的插件。这或许是特别有用的，如果任何插件会导致错误，而你想要升级或卸载它。
 
 [1]: ../04-schema.md#type
 [2]: ../04-schema.md#extra

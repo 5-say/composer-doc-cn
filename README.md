@@ -26,8 +26,8 @@ Composer 中文文档
 修改某些特殊类型包的安装方式。
 - [Handling Private Packages With Satis](/cn-introduction/articles/handling-private-packages-with-satis.md)  
 Host your own composer repository
-- [Plugins](/cn-introduction/articles/plugins.md)  
-Modify and extend Composer's functionality
+- [插件](/cn-introduction/articles/plugins.md)  
+修改和扩展 Composer 的功能。
 - [Scripts](/cn-introduction/articles/scripts.md)  
 Script are callbacks that are called before/after installing packages
 - [Troubleshooting](/cn-introduction/articles/troubleshooting.md)  
