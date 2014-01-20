@@ -10,20 +10,16 @@
 
 在这些情况下，你可以考虑创建一个插件来处理特定的逻辑。
 
-## Creating a Plugin
+## 创建一个插件
 
-A plugin is a regular composer package which ships its code as part of the
-package and may also depend on further packages.
+一个插件就是一个普通的 Composer 资源包，插件的主要代码都位于这个包中，并且还可以依赖更多其它的资源包。
 
-### Plugin Package
+### 插件包
 
-The package file is the same as any other package file but with the following
-requirements:
+插件包内的文件和普通资源包相同，但必须满足下列要求：
 
-1. the [type][1] attribute must be `composer-plugin`.
-2. the [extra][2] attribute must contain an element `class` defining the
-   class name of the plugin (including namespace). If a package contains
-   multiple plugins this can be array of class names.
+1. [type][1] 属性必须是 `composer-plugin`。
+2. [extra][2] 属性必须包含一个元素 `class`，它定义了插件类的名称（包含命名空间）。如果一个包中含有多个插件，则可以使用数组来定义类名。
 
 Additionally you must require the special package called `composer-plugin-api`
 to define which composer API versions your plugin is compatible with. The
