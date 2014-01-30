@@ -173,7 +173,7 @@
 <a name="global"></a>
 ## 全局执行 `global`
 
-`global` 命令允许你在 [COMPOSER_HOME](#composer-home) 目录下执行其它命令，像 `install`、`require` 或 `update`。
+`global` 命令允许你在 [COMPOSER_HOME](#COMPOSER_HOME) 目录下执行其它命令，像 `install`、`require` 或 `update`。
 
 并且如果你将 `$COMPOSER_HOME/vendor/bin` 加入到了 `$PATH` 环境变量中，你就可以用它在命令行中安装全局应用，下面是一个例子：
 
@@ -478,7 +478,7 @@
 
 你可以在 `COMPOSER_HOME` 目录中放置一个 `config.json` 文件。在你执行 `install` 和 `update` 命令时，Composer 会将它与你项目中的 `composer.json` 文件进行合并。
 
-该文件允许你为用户的项目设置 [配置信息](04-schema.md#config) 和 [资源地址](05-repositories.md)。
+该文件允许你为用户的项目设置 [配置信息](04-schema.md#config) 和 [资源库](05-repositories.md)。
 
 若 _全局_ 和 _项目_ 存在相同配置项，那么项目中的 `composer.json` 文件拥有更高的优先级。
 

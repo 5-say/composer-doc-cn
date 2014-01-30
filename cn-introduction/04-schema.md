@@ -6,10 +6,10 @@
 ---
 
 - [composer.json](#composer.json)
-  - [JSON schema](#JSON schema)
-  - [Root 包](#Root Package)
+  - [JSON schema](#JSON-schema)
+  - [Root 包](#Root-Package)
   - [属性](#Properties)
-    - [包名 `name`](#package name)
+    - [包名 `name`](#package-name)
     - [描述 `description`](#description)
     - [版本 `version`](#version)
     - [安装类型 `type`](#type)
@@ -43,12 +43,12 @@
 
 ---
 
-<a name="JSON schema"></a>
+<a name="JSON-schema"></a>
 ## JSON schema
 
 我们有一个 [JSON schema](http://json-schema.org) 格式化文档，它也可以被用来验证你的 `composer.json` 文件。事实上，它已经被 `validate` 命令所使用。 你可以在这里找到它： [`res/composer-schema.json`](https://github.com/composer/composer/blob/master/res/composer-schema.json).
 
-<a name="Root Package"></a>
+<a name="Root-Package"></a>
 ## Root 包
 
 “root 包”是指由 `composer.json` 定义的在你项目根目录的包。这是 `composer.json` 定义你项目所需的主要条件。（简单的说，你自己的项目就是一个 root 包）
@@ -65,7 +65,7 @@
 <a name="Properties"></a>
 ## 属性
 
-<a name="package name"></a>
+<a name="package-name"></a>
 ### 包名 `name`
 
 包的名称，它包括供应商名称和项目名称，使用 `/` 分隔。
@@ -266,7 +266,7 @@ composer 原生支持以下4种类型：
 <a name="Package-links"></a>
 ### Package links
 
-下面提到的所有对象，都应该是 包名 到 [版本](01-basic-usage.md#包版本) 的映射对象。
+下面提到的所有对象，都应该是 包名 到 [版本](01-basic-usage.md#Package-Versions) 的映射对象。
 
 例：
 
@@ -485,7 +485,7 @@ Symfony 就是一个例子。它有一些独立的包作为组件。Yaml 组件�
 
 这定义了通过稳定性过滤包的默认行为。默认为 `stable`（稳定）。因此如果你依赖于一个 `dev`（开发）包，你应该明确的进行定义。
 
-对每个包的所有版本都会进行稳定性检查，而低于 `minimum-stability` 所设定的最低稳定性的版本，将在解决依赖关系时被忽略。对于个别包的特殊稳定性要求，可以在 `require` 或 `require-dev` 中设定（请参考 [package links](#package-links)）。
+对每个包的所有版本都会进行稳定性检查，而低于 `minimum-stability` 所设定的最低稳定性的版本，将在解决依赖关系时被忽略。对于个别包的特殊稳定性要求，可以在 `require` 或 `require-dev` 中设定（请参考 [Package links](#Package-links)）。
 
 可用的稳定性标识（按字母排序）：`dev`、`alpha`、`beta`、`RC`、`stable`。
 
