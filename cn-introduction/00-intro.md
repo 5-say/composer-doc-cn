@@ -6,7 +6,7 @@ Composer 是 PHP 的一个依赖管理工具。它允许你申明项目所依赖
 ---
 
 - [简介](#Introduction)
-  - [依赖管理](#Dependency management)
+  - [依赖管理](#Dependency-management)
   - [声明依赖关系](#Declaring dependencies)
   - [系统要求](#System Requirements)
   - [安装 - *nix](#Installation - *nix)
@@ -22,7 +22,7 @@ Composer 是 PHP 的一个依赖管理工具。它允许你申明项目所依赖
 
 ---
 
-<a name="Dependency management"></a>
+<a name="Dependency-management"></a>
 ## 依赖管理
 
 Composer 不是一个包管理器。是的，它涉及 "packages" 和 "libraries"，但它在每个项目的基础上进行管理，在你项目的某个目录中（例如 `vendor`）进行安装。默认情况下它不会在全局安装任何东西。因此，这仅仅是一个依赖管理。
