@@ -7,17 +7,17 @@ Composer 是 PHP 的一个依赖管理工具。它允许你申明项目所依赖
 
 - [简介](#Introduction)
   - [依赖管理](#Dependency-management)
-  - [声明依赖关系](#Declaring dependencies)
-  - [系统要求](#System Requirements)
-  - [安装 - *nix](#Installation - *nix)
-    - [下载 Composer 的可执行文件](#Downloading the Composer Executable)
+  - [声明依赖关系](#Declaring-dependencies)
+  - [系统要求](#System-Requirements)
+  - [安装 - *nix](#Installation-*nix)
+    - [下载 Composer 的可执行文件](#Downloading-the-Composer-Executable)
       - [局部安装](#Locally)
       - [全局安装](#Globally)
-      - [全局安装 (on OSX via homebrew)](#Globally on OSX via homebrew)
-  - [安装 - Windows](#Installation - Windows)
-    - [使用安装程序](#Using the Installer)
-    - [手动安装](#Manual Installation)
-  - [使用 Composer](#Using Composer)
+      - [全局安装 (on OSX via homebrew)](#Globally-on-OSX-via-homebrew)
+  - [安装 - Windows](#Installation-Windows)
+    - [使用安装程序](#Using-the-Installer)
+    - [手动安装](#Manual-Installation)
+  - [使用 Composer](#Using-Composer)
   - [自动加载](#Autoloading)
 
 ---
@@ -40,7 +40,7 @@ c) 你声明你所依赖的东西。
 
 d) Composer 会找出哪个版本的包需要安装，并安装它们（将它们下载到你的项目中）。
 
-<a name="Declaring dependencies"></a>
+<a name="Declaring-dependencies"></a>
 ## 声明依赖关系
 
 比方说，你正在创建一个项目，你需要一个库来做日志记录。你决定使用 [monolog](https://github.com/Seldaek/monolog)。为了将它添加到你的项目中，你所需要做的就是创建一个 `composer.json` 文件，其中描述了项目的依赖关系。
@@ -53,7 +53,7 @@ d) Composer 会找出哪个版本的包需要安装，并安装它们（将它�
 
 我们只要指出我们的项目需要一些 `monolog/monolog` 的包，从 `1.2` 开始的任何版本。
 
-<a name="System Requirements"></a>
+<a name="System-Requirements"></a>
 ## 系统要求
 
 运行 Composer 需要 PHP 5.3.2+ 以上版本。一些敏感的 PHP 设置和编译标志也是必须的，但对于任何不兼容项安装程序都会抛出警告。
@@ -62,10 +62,10 @@ d) Composer 会找出哪个版本的包需要安装，并安装它们（将它�
 
 Composer 是多平台的，我们努力使它在 Windows 、 Linux 以及 OSX 平台上运行的同样出色。
 
-<a name="Installation - *nix"></a>
+<a name="Installation-*nix"></a>
 ## 安装 - *nix
 
-<a name="Downloading the Composer Executable"></a>
+<a name="Downloading-the-Composer-Executable"></a>
 ### 下载 Composer 的可执行文件
 
 <a name="Locally"></a>
@@ -96,7 +96,7 @@ Composer 是多平台的，我们努力使它在 Windows 、 Linux 以及 OSX �
 
 现在只需要运行 `composer` 命令就可以使用 Composer 而不需要输入 `php composer.phar`。
 
-<a name="Globally on OSX via homebrew"></a>
+<a name="Globally-on-OSX-via-homebrew"></a>
 #### 全局安装 (on OSX via homebrew)
 
 Composer 是 homebrew-php 项目的一部分。
@@ -108,17 +108,17 @@ Composer 是 homebrew-php 项目的一部分。
 > **注意：** 如果你收到一个错误 PHP53 or higher is missing 请执行下面的命令来安装 php 
 > `brew install php53-intl`
 
-<a name="Installation - Windows"></a>
+<a name="Installation-Windows"></a>
 ## 安装 - Windows
 
-<a name="Using the Installer"></a>
+<a name="Using-the-Installer"></a>
 ### 使用安装程序
 
 这是将 Composer 安装在你机器上的最简单的方法。
 
 下载并且运行 [Composer-Setup.exe](https://getcomposer.org/Composer-Setup.exe)，它将安装最新版本的 Composer ，并设置好系统的环境变量，因此你可以在任何目录下直接使用 `composer` 命令。
 
-<a name="Manual Installation"></a>
+<a name="Manual-Installation"></a>
 ### 手动安装
 
 设置系统的环境变量 `PATH` 并运行安装命令下载 composer.phar 文件：
@@ -139,7 +139,7 @@ Composer 是 homebrew-php 项目的一部分。
 
     C:\Users\username>
 
-<a name="Using Composer"></a>
+<a name="Using-Composer"></a>
 ## 使用 Composer
 
 现在我们将使用 Composer 来安装项目的依赖。如果在当前目录下没有一个 `composer.json` 文件，请查看[基本用法](01-basic-usage.md)章节。
@@ -152,7 +152,7 @@ Composer 是 homebrew-php 项目的一部分。
 
     $ composer install
 
-继续 [上面的例子](#声明依赖关系)，这里将下载 monolog 到 `vendor/monolog/monolog` 目录。
+继续 [上面的例子](#Declaring-dependencies)，这里将下载 monolog 到 `vendor/monolog/monolog` 目录。
 
 <a name="Autoloading"></a>
 ## 自动加载

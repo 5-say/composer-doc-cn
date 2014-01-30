@@ -1,18 +1,18 @@
-<a name="Basic usage"></a>
+<a name="Basic-usage"></a>
 # 基本用法
 
 ---
 
-- [基本用法](#Basic usage)
+- [基本用法](#Basic-usage)
   - [安装](#Installation)
-  - [`composer.json`：项目安装](#composer.json Project Setup)
-    - [关于 `require` Key](#The require Key)
-    - [包名称](#Package Names)
-    - [包版本](#Package Versions)
-    - [下一个重要版本（波浪号运算符）](#Next Significant Release)
+  - [`composer.json`：项目安装](#composer.json-Project-Setup)
+    - [关于 `require` Key](#The-require-Key)
+    - [包名称](#Package-Names)
+    - [包版本](#Package-Versions)
+    - [下一个重要版本（波浪号运算符）](#Next-Significant-Release)
     - [稳定性](#Stability)
-  - [安装依赖关系](#Installing Dependencies)
-  - [`composer.lock` - 锁文件](#composer.lock - The Lock File)
+  - [安装依赖关系](#Installing-Dependencies)
+  - [`composer.lock` - 锁文件](#composer.lock-The-Lock-File)
   - [Packagist](#Packagist)
   - [自动加载](#Autoloading)
 
@@ -39,14 +39,14 @@
 >     $ curl -sS https://getcomposer.org/installer | php -- --check
 >     $ curl -sS https://getcomposer.org/installer | php -- --help
 
-<a name="composer.json Project Setup"></a>
+<a name="composer.json-Project-Setup"></a>
 ## `composer.json`：项目安装
 
 要开始在你的项目中使用 Composer，你只需要一个 `composer.json` 文件。该文件包含了项目的依赖和其它的一些元数据。
 
 这个 [JSON format](http://json.org/) 是很容易编写的。它允许你定义嵌套结构。
 
-<a name="The require Key"></a>
+<a name="The-require-Key"></a>
 ### 关于 `require` Key
 
 第一件事情（并且往往只需要做这一件事），你需要在 `composer.json` 文件中指定 `require` key 的值。你只需要简单的告诉 Composer 你的项目需要依赖哪些包。
@@ -59,14 +59,14 @@
 
 你可以看到， `require` 需要一个 **包名称** （例如 `monolog/monolog`） 映射到 **包版本** （例如 `1.0.*`） 的对象。
 
-<a name="Package Names"></a>
+<a name="Package-Names"></a>
 ### 包名称
 
 包名称由供应商名称和其项目名称构成。通常容易产生相同的项目名称，而供应商名称的存在则很好的解决了命名冲突的问题。它允许两个不同的人创建同样名为 `json` 的库，而之后它们将被命名为 `igorw/json` 和 `seldaek/json`。
 
 这里我们需要引入 `monolog/monolog`，供应商名称与项目的名称相同，对于一个具有唯一名称的项目，我们推荐这么做。它还允许以后在同一个命名空间添加更多的相关项目。如果你维护着一个库，这将使你可以很容易的把它分离成更小的部分。
 
-<a name="Package Versions"></a>
+<a name="Package-Versions"></a>
 ### 包版本
 
 在前面的例子中，我们引入的 monolog 版本指定为 `1.0.*`。这表示任何从 `1.0` 开始的开发分支，它将会匹配 `1.0.0`、`1.0.2` 或者 `1.0.20`。
@@ -110,7 +110,7 @@
     </tbody>
 </table>
 
-<a name="Next Significant Release"></a>
+<a name="Next-Significant-Release"></a>
 ### 下一个重要版本（波浪号运算符）
 
 `~` 最好用例子来解释： `~1.2` 相当于 `>=1.2,<2.0`，而 `~1.2.3` 相当于 `>=1.2.3,<1.3`。正如你所看到的这对于遵循 [语义化版本号](http://semver.org/) 的项目最有用。一个常见的用法是标记你所依赖的最低版本，像 `~1.2` （允许1.2以上的任何版本，但不包括2.0）。由于理论上直到2.0应该都没有向后兼容性问题，所以效果很好。你还会看到它的另一种用法，使用 `~` 指定最低版本，但允许版本号的最后一位数字上升。
@@ -120,7 +120,7 @@
 
 默认情况下只有稳定的发行版才会被考虑在内。如果你也想获得 RC、beta、alpha 或 dev 版本，你可以使用 [稳定标志](04-schema.md#package-links)。你可以对所有的包做 [最小稳定性](04-schema.md#minimum-stability) 设置，而不是每个依赖逐一设置。
 
-<a name="Installing Dependencies"></a>
+<a name="Installing-Dependencies"></a>
 ## 安装依赖关系
 
 获取定义的依赖到你的本地项目，只需要调用 `composer.phar` 运行 `install` 命令。
@@ -136,7 +136,7 @@
 
 另一件事是 `install` 命令将创建一个 `composer.lock` 文件到你项目的根目录中。
 
-<a name="composer.lock - The Lock File"></a>
+<a name="composer.lock-The-Lock-File"></a>
 ## `composer.lock` - 锁文件
 
 在安装依赖后，Composer 将把安装时确切的版本号列表写入 `composer.lock` 文件。这将锁定改项目的特定版本。
