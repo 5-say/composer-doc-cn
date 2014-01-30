@@ -1,5 +1,5 @@
 <a name="composer.json"></a>
-# composer.json
+# composer.json 架构
 
 本章将解释所有在 `composer.json` 中可用的字段。
 

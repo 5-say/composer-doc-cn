@@ -15,20 +15,20 @@
       - [notify-batch](#notify-batch)
       - [includes](#includes)
       - [provider-includes and providers-url](#provider-includes)
-      - [stream options](#stream options)
+      - [stream options](#stream-options)
     - [VCS](#VCS)
-      - [从 VCS 资源库加载一个包](#from a VCS)
-      - [使用私有资源库](#Using private)
-      - [Git 的备选方案](#Git alternatives)
-      - [Subversion 选项](#Subversion Options)
+      - [从 VCS 资源库加载一个包](#from-a-VCS)
+      - [使用私有资源库](#Using-private)
+      - [Git 的备选方案](#Git-alternatives)
+      - [Subversion 选项](#Subversion-Options)
     - [PEAR](#PEAR)
-      - [自定义供应商别名](#Custom vendor alias)
+      - [自定义供应商别名](#Custom-vendor-alias)
     - [Package](#Package)
-  - [Hosting your own](#Hosting your own)
+  - [Hosting your own](#Hosting-your-own)
     - [Packagist](#Packagist)
     - [Satis](#Satis)
     - [Artifact](#Artifact)
-  - [禁用 Packagist](#Disabling Packagist)
+  - [禁用 Packagist](#Disabling-Packagist)
 
 ---
 
@@ -104,7 +104,7 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
         }
     }
 
-它还可以包含任何在 [架构](04-schema.md) 中介绍的字段。
+它还可以包含任何在 [composer.json 架构](04-schema.md) 中介绍的字段。
 
 <a name="notify-batch"></a>
 #### notify-batch
@@ -192,7 +192,7 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 这些字段是可选的。你也许并不需要它们来自定义存储库。
 
-<a name="stream options"></a>
+<a name="stream-options"></a>
 #### stream options
 
 `packages.json` 文件是用一个 PHP 流加载的。你可以使用 `options` 参数来设定额外的流信息。你可以设置任何有效的PHP 流上下文选项。更多相关信息请查看 [Context options and parameters](http://php.net/manual/en/context.php)。
@@ -202,7 +202,7 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 VCS 表示版本控制系统。这包括像 git、svn 或 hg 这样的版本管理系统。Composer 有一个资源类型可以从这些系统安装软件包。
 
-<a name="from a VCS"></a>
+<a name="from-a-VCS"></a>
 #### 从 VCS 资源库加载一个包
 
 这里有几个用例。最常见的是维护自己 fork 的第三方库。如果你在项目中使用某些库，并且你决定改变这些库内的某些东西，你会希望你项目中使用的是你自己的修正版本。如果这个库是在 GitHub 上（这种情况经常出现），你可以简单的 fork 它并 push 你的变更到这个 fork 里。在这之后你更新项目的 `composer.json` 文件，添加你的 fork 作为一个资源库，变更版本约束来指向你的自定义分支。关于版本约束的命名约定请查看 [库（资源包）](02-libraries.md)。
@@ -227,7 +227,7 @@ VCS 表示版本控制系统。这包括像 git、svn 或 hg 这样的版本管�
 
 如果其它包依赖你 fork 的这个分支，可能要对它做版本号的行内别名设置，才能够准确的识别版本约束。更多相关信息请查看 [别名](articles/aliases.md)。
 
-<a name="Using private"></a>
+<a name="Using-private"></a>
 #### 使用私有资源库
 
 完全相同的解决方案，也可以让你使用你 GitHub 和 BitBucket 上的私人代码库进行工作：
@@ -246,7 +246,7 @@ VCS 表示版本控制系统。这包括像 git、svn 或 hg 这样的版本管�
 
 唯一的要求是为一个 git 客户端安装 SSH 秘钥。
 
-<a name="Git alternatives"></a>
+<a name="Git-alternatives"></a>
 #### Git 的备选方案
 
 Git 并不是 VCS 资源库唯一支持的版本管理系统。
@@ -264,7 +264,7 @@ Git 并不是 VCS 资源库唯一支持的版本管理系统。
 
 VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需要明确的指定一个 `git`、`svn` 或 `hg` 作为资源库类型，而不是 `vcs`。
 
-<a name="Subversion Options"></a>
+<a name="Subversion-Options"></a>
 #### Subversion 选项
 
 由于 Subversion 没有原生的分支和标签的概念，Composer 假设在默认情况下该代码位于 `$url/trunk`、`$url/branches` 和 `$url/tags` 内。如果你的存储库使用了不同的布局，你可以更改这些值。例如，如果你使用大写的名称，你可以像这样配置资源库：
@@ -309,7 +309,7 @@ VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需�
 
 > **注意：** `pear` 类型的资源库对每个 requires 都要做完整的请求，因此可能大大降低安装速度。
 
-<a name="Custom vendor alias"></a>
+<a name="Custom-vendor-alias"></a>
 #### 自定义供应商别名
 
 通过自定义供应商名称，对 PEAR 渠道包进行别名是允许的。
@@ -396,7 +396,7 @@ VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需�
 > - Composer 将不会更新资源包，除非你修改了 `version` 字段。
 > - Composer 将不会更新 commit references，因此如果你使用 `master` reference，将不得不删除该程序包以强制更新，并且将不得不面对一个不稳定的 lock 文件。
 
-<a name="Hosting your own"></a>
+<a name="Hosting-your-own"></a>
 ## Hosting your own
 
 尽管大部分的时间，你大概都会把资源包放在 packagist.org 上，但这里还将告诉你一些用例，以便你可以自行托管资源库。
@@ -454,7 +454,7 @@ Satis 是一个静态的 `composer` 资源库生成器。它像是一个超轻�
 
 如果有两个不同版本的资源包，它们都会被导入。当有一个新版本的存档被添加到 artifact 文件夹，并且你运行了 `update` 命令，该版本就会被导入，并且 Composer 将更新到最新版本。
 
-<a name="Disabling Packagist"></a>
+<a name="Disabling-Packagist"></a>
 ## 禁用 Packagist
 
 你可以在 `composer.json` 中禁用默认的 Packagist 资源库。
