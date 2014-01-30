@@ -20,7 +20,8 @@
 
 一个实际用例：
 
-> phpDocumentor 的特殊模板需要安装在 /vendor 以外的其它目录中。因此他们选择 `phpdocumentor-template` [安装类型][1] 并为此类型创建了一个插件，以便将他们的模板发送到正确的目录中。
+> phpDocumentor 的特殊模板需要安装在 /vendor 以外的其它目录中。
+> 因此他们选择 `phpdocumentor-template` [安装类型][1] 并为此类型创建了一个插件，以便将他们的模板发送到正确的目录中。
 
 在这样一个模板包的例子中 composer.json 将使用以下设置：
 
