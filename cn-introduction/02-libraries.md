@@ -6,19 +6,19 @@
 ---
 
 - [库（资源包）](#Libraries)
-  - [每一个项目都是一个包](#Every project is a package)
-  - [平台软件包](#Platform packages)
-  - [指明版本](#Specifying the version)
+  - [每一个项目都是一个包](#Every-project-is-a-package)
+  - [平台软件包](#Platform-packages)
+  - [指明版本](#Specifying-the-version)
     - [标签](#Tags)
     - [分支](#Branches)
     - [别名](#Aliases)
-  - [锁文件](#Lock file)
-  - [发布到 VCS（线上版本控制系统）](#Publishing to a VCS)
-  - [发布到 packagist](#Publishing to packagist)
+  - [锁文件](#Lock-file)
+  - [发布到 VCS（线上版本控制系统）](#Publishing-to-a-VCS)
+  - [发布到 packagist](#Publishing-to-packagist)
 
 ---
 
-<a name="Every project is a package"></a>
+<a name="Every-project-is-a-package"></a>
 ## 每一个项目都是一个包
 
 只要你有一个 `composer.json` 文件在目录中，那么整个目录就是一个包。当你添加一个 `require` 到项目中，你就是在创建一个依赖于其它库的包。你的项目和库之间唯一的区别是，你的项目是一个没有名字的包。
@@ -38,7 +38,7 @@
 > 那么使用你 github 上的用户名通常是不错的选择。
 > 虽然包名不区分大小写，但惯例是使用小写字母，并用连字符作为单词的分隔。
 
-<a name="Platform packages"></a>
+<a name="Platform-packages"></a>
 ## 平台软件包
 
 Composer 将那些已经安装在系统上，但并不是由 Composer 安装的包视为一个虚拟的平台软件包。这包括PHP本身，PHP扩展和一些系统库。
@@ -47,15 +47,16 @@ Composer 将那些已经安装在系统上，但并不是由 Composer 安装的�
 
 * `ext-<name>` 可以帮你指定需要的 PHP 扩展（包括核心扩展）。通常 PHP 拓展的版本可以是不一致的，将它们的版本约束为 `*` 是一个不错的主意。一个 PHP 扩展包的例子：包名可以写成 `ext-gd`。
 
-* `lib-<name>` 允许对 PHP 库的版本进行限制。以下是可供使用的名称：`curl`、`iconv`、`libxml`、`openssl`、`pcre`、`uuid`、`xsl`。
+* `lib-<name>` 允许对 PHP 库的版本进行限制。  
+以下是可供使用的名称：`curl`、`iconv`、`libxml`、`openssl`、`pcre`、`uuid`、`xsl`。
 
 你可以使用 `composer show --platform` 命令来获取可用的平台软件包的列表。
 
-<a name="Specifying the version"></a>
+<a name="Specifying-the-version"></a>
 ## 指明版本
 
 你需要一些方法来指明自己开发的包的版本，当你在 Packagist 上发布自己的包，它能够从 VCS (git, svn,
-hg) 的信息推断出包的版本，因此你不必手动指明版本号，并且也不建议这样做。请查看 [标签](#标签) 和 [分支](#分支) 来了解版本号是如何被提取的。
+hg) 的信息推断出包的版本，因此你不必手动指明版本号，并且也不建议这样做。请查看 [标签](#Tags) 和 [分支](#Branches) 来了解版本号是如何被提取的。
 
 如果你想要手动创建并且真的要明确指定它，你只需要添加一个 `version` 字段：
 
@@ -80,7 +81,7 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
     v2.0.4-p1
 
 > **注意：** 即使你的标签带有前缀 `v`，
-> 由于在需要 `require` 一个[版本的约束](01-basic-usage.md#包版本)时是不允许这种前缀的，
+> 由于在需要 `require` 一个[版本的约束](01-basic-usage.md#Package-Versions)时是不允许这种前缀的，
 > 因此 `v` 将被省略（例如标签 `V1.0.0` 将创建 `1.0.0` 版本）。
 
 <a name="Branches"></a>
@@ -104,14 +105,14 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
 
 详细请查看[“别名”](articles/aliases.md)。
 
-<a name="Lock file"></a>
+<a name="Lock-file"></a>
 ## 锁文件
 
 如果你愿意，可以在你的项目中提交 `composer.lock` 文件。他将帮助你的团队始终针对同一个依赖版本进行测试。任何时候，这个锁文件都只对于你的项目产生影响。
 
 如果你不想提交锁文件，并且你正在使用 Git，那么请将它添加到 `.gitignore` 文件中。
 
-<a name="Publishing to a VCS"></a>
+<a name="Publishing-to-a-VCS"></a>
 ## 发布到 VCS（线上版本控制系统）
 
 一旦你有一个包含 `composer.json` 文件的库存储在线上版本控制系统（例如：Git），你的库就可以被 Composer 所安装。在这个例子中，我们将 `acme/hello-world` 库发布在 GitHub 上的 `github.com/username/hello-world` 中。
@@ -142,13 +143,13 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
         }
     }
 
-更多关于包的来源是如何工作的，以及还有什么其他的类型可供选择，请查看[来源](05-repositories.md)。
+更多关于包的来源是如何工作的，以及还有什么其他的类型可供选择，请查看[资源库](05-repositories.md)。
 
 这就是全部了。你现在可以使用 Composer 的 `install` 命令来安装你的依赖关系了！
 
 **小结：** 任何含有 `composer.json` 的 `GIT`、`SVN`、`HG` 存储库，都可以通过 `require` 字段指定“包来源”和“声明依赖”来添加到你的项目中。
 
-<a name="Publishing to packagist"></a>
+<a name="Publishing-to-packagist"></a>
 ## 发布到 packagist
 
 好的，你现在可以发布你的包了，但你不会希望你的用户每次都这样繁琐的指定包的来源。

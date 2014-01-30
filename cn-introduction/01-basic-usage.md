@@ -118,7 +118,7 @@
 <a name="Stability"></a>
 ### 稳定性
 
-默认情况下只有稳定的发行版才会被考虑在内。如果你也想获得 RC、beta、alpha 或 dev 版本，你可以使用 [稳定标志](04-schema.md#package-links)。你可以对所有的包做 [最小稳定性](04-schema.md#minimum-stability) 设置，而不是每个依赖逐一设置。
+默认情况下只有稳定的发行版才会被考虑在内。如果你也想获得 RC、beta、alpha 或 dev 版本，你可以使用 [稳定标志](04-schema.md#Package-links)。你可以对所有的包做 [最小稳定性](04-schema.md#minimum-stability) 设置，而不是每个依赖逐一设置。
 
 <a name="Installing-Dependencies"></a>
 ## 安装依赖关系
@@ -158,7 +158,7 @@
     $ php composer.phar update monolog/monolog [...]
 
 > **注意：** 对于库，并不一定建议提交锁文件
-> 请参考：[库的锁文件](02-libraries.md#lock-file).
+> 请参考：[库的锁文件](02-libraries.md#Lock-file).
 
 <a name="Packagist"></a>
 ## Packagist

@@ -19,7 +19,7 @@
     - [许可协议 `license`](#license)
     - [作者 `authors`](#authors)
     - [支持 `support`](#support)
-    - [Package links](#Package links)
+    - [Package links](#Package-links)
       - [require](#require)
       - [require-dev <span>(root-only)</span>](#require-dev)
       - [conflict](#conflict)
@@ -263,7 +263,7 @@ composer 原生支持以下4种类型：
 
 可选。
 
-<a name="Package links"></a>
+<a name="Package-links"></a>
 ### Package links
 
 下面提到的所有对象，都应该是 包名 到 [版本](01-basic-usage.md#包版本) 的映射对象。

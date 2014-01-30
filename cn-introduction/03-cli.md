@@ -1,4 +1,4 @@
-<a name="Command-line interface"></a>
+<a name="Command-line-interface"></a>
 # 命令行
 
 你已经学会了如何使用命令行界面做一些事情。本章将向你介绍所有可用的命令。
@@ -7,9 +7,9 @@
 
 ---
 
-- [命令行](#Command-line interface)
-- [全局参数](#Global Options)
-  - [进程退出代码](#Process Exit Codes)
+- [命令行](#Command-line-interface)
+- [全局参数](#Global-Options)
+  - [进程退出代码](#Process-Exit-Codes)
   - [初始化 `init`](#init) - - [参数](#init-Options)
   - [安装 `install`](#install) - - [参数](#install-Options)
   - [更新 `update`](#update) - - [参数](#update-Options)
@@ -21,7 +21,7 @@
   - [有效性检测 `validate`](#validate)
   - [依赖包状态检测 `status`](#status)
   - [自我更新 `self-update`](#self-update) - - [参数](#self-update-Options)
-  - [更改配置 `config`](#config) - - [使用方法](#config-Usage) - - [参数](#config-Options) - - [修改包来源](#Modifying Repositories)
+  - [更改配置 `config`](#config) - - [使用方法](#config-Usage) - - [参数](#config-Options) - - [修改包来源](#Modifying-Repositories)
   - [创建项目 `create-project`](#create-project) - - [参数](#create-project-Options)
   - [打印自动加载索引 `dump-autoload`](#dump-autoload) - - [参数](#dump-autoload-Options)
   - [查看许可协议 `licenses`](#licenses)
@@ -29,24 +29,24 @@
   - [诊断 `diagnose`](#diagnose)
   - [归档 `archive`](#archive) - - [参数](#archive-Options)
   - [获取帮助信息 `help`](#help)
-  - [环境变量](#Environment variables)
-    - [COMPOSER](#COMPOSER)
-    - [COMPOSER_ROOT_VERSION](#COMPOSER_ROOT_VERSION)
-    - [COMPOSER_VENDOR_DIR](#COMPOSER_VENDOR_DIR)
-    - [COMPOSER_BIN_DIR](#COMPOSER_BIN_DIR)
-    - [http_proxy or HTTP_PROXY](#http_proxy or HTTP_PROXY)
-    - [no_proxy](#no_proxy)
-    - [HTTP_PROXY_REQUEST_FULLURI](#HTTP_PROXY_REQUEST_FULLURI)
-    - [HTTPS_PROXY_REQUEST_FULLURI](#HTTPS_PROXY_REQUEST_FULLURI)
-    - [COMPOSER_HOME](#COMPOSER_HOME)
-      - [COMPOSER_HOME/config.json](#COMPOSER_HOME-config.json)
-    - [COMPOSER_CACHE_DIR](#COMPOSER_CACHE_DIR)
-    - [COMPOSER_PROCESS_TIMEOUT](#COMPOSER_PROCESS_TIMEOUT)
-    - [COMPOSER_DISCARD_CHANGES](#COMPOSER_DISCARD_CHANGES)
-    - [COMPOSER_NO_INTERACTION](#COMPOSER_NO_INTERACTION)
+  - [环境变量](#Environment-variables)
+     - [COMPOSER](#COMPOSER)
+     - [COMPOSER_ROOT_VERSION](#COMPOSER_ROOT_VERSION)
+     - [COMPOSER_VENDOR_DIR](#COMPOSER_VENDOR_DIR)
+     - [COMPOSER_BIN_DIR](#COMPOSER_BIN_DIR)
+     - [http_proxy or HTTP_PROXY](#http_proxy-or-HTTP_PROXY)
+     - [no_proxy](#no_proxy)
+     - [HTTP_PROXY_REQUEST_FULLURI](#HTTP_PROXY_REQUEST_FULLURI)
+     - [HTTPS_PROXY_REQUEST_FULLURI](#HTTPS_PROXY_REQUEST_FULLURI)
+     - [COMPOSER_HOME](#COMPOSER_HOME)
+         - [COMPOSER_HOME/config.json](#COMPOSER_HOME-config.json)
+     - [COMPOSER_CACHE_DIR](#COMPOSER_CACHE_DIR)
+     - [COMPOSER_PROCESS_TIMEOUT](#COMPOSER_PROCESS_TIMEOUT)
+     - [COMPOSER_DISCARD_CHANGES](#COMPOSER_DISCARD_CHANGES)
+     - [COMPOSER_NO_INTERACTION](#COMPOSER_NO_INTERACTION)
 
 ---
-<a name="Global Options"></a>
+<a name="Global-Options"></a>
 ## 全局参数
 
 下列参数可与每一个命令结合使用：
@@ -64,7 +64,7 @@
 * **--no-ansi:** 关闭 ANSI 输出。
 * **--version (-V):** 显示当前应用程序的版本信息。
 
-<a name="Process Exit Codes"></a>
+<a name="Process-Exit-Codes"></a>
 ## 进程退出代码
 
 * **0:** 正常
@@ -319,7 +319,7 @@
 * **--list (-l):** 显示当前配置选项的列表。当存在 `--global` 参数时，将会显示全局配置选项的列表。
 * **--file="..." (-f):** 在一个指定的文件上操作，而不是 composer.json。注意：不能与 `--global` 参数一起使用。
 
-<a name="Modifying Repositories"></a>
+<a name="Modifying-Repositories"></a>
 ### 修改包来源
 
 除了修改配置选项， `config` 命令还支持通过以下方法修改来源信息：
@@ -410,7 +410,7 @@
 
     $ php composer.phar help install
 
-<a name="Environment variables"></a>
+<a name="Environment-variables"></a>
 ## 环境变量
 
 你可以设置一些环境变量来覆盖默认的配置。建议尽可能的在 `composer.json` 的 `config` 字段中设置这些值，而不是通过命令行设置环境变量。值得注意的是环境变量中的值，将始终优先于 `composer.json` 中所指定的值。
@@ -439,7 +439,7 @@
 
 通过设置这个环境变量，你可以指定 `bin`（[Vendor Binaries](articles/vendor-binaries.md)）目录到 `vendor/bin` 以外的其它目录。
 
-<a name="http_proxy or HTTP_PROXY"></a>
+<a name="http_proxy-or-HTTP_PROXY"></a>
 ### http_proxy or HTTP_PROXY
 
 如果你是通过 HTTP 代理来使用 Composer，你可以使用 `http_proxy` 或 `HTTP_PROXY` 环境变量。只要简单的将它设置为代理服务器的 URL。许多操作系统已经为你的服务设置了此变量。
