@@ -28,8 +28,8 @@ Composer 中文文档
 Host your own composer repository
 - [插件](/cn-introduction/articles/plugins.md)  
 修改和扩展 Composer 的功能。
-- [Scripts](/cn-introduction/articles/scripts.md)  
-Script are callbacks that are called before/after installing packages
+- [脚本](/cn-introduction/articles/scripts.md)  
+脚本是指一些 Composer 事件的回调，它们在安装资源包的过程中被触发执行。
 - [Troubleshooting](/cn-introduction/articles/troubleshooting.md)  
 Solving problems
 - [Vendor Binaries](/cn-introduction/articles/vendor-binaries.md)  
