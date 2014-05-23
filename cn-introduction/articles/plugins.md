@@ -23,36 +23,42 @@
 
 此外，你必须 require 一个特殊的资源包 `composer-plugin-api`，定义与你的插件相兼容的 composer plugin API 版本。目前 composer plugin API 的版本为1.0.0。
 
-例：
+实例：
 
-    {
-        "name": "my/plugin-package",
-        "type": "composer-plugin",
-        "require": {
-            "composer-plugin-api": "1.0.0"
-        }
+```json
+{
+    "name": "my/plugin-package",
+    "type": "composer-plugin",
+    "require": {
+        "composer-plugin-api": "1.0.0"
     }
+}
+```
 
 ### 插件类
 
 每一个插件都必须提供一个实现了 [`Composer\Plugin\PluginInterface`][3] 接口的类。类中的 `activate()` 方法在插件载入后被调用，并接收两个类的实例：[`Composer\Composer`][4] 和 [`Composer\IO\IOInterface`][5]。使用这两个对象可以读取所有的配置，操作所有的内部对象和状态。
 
-例：
+实例：
 
-    namespace phpDocumentor\Composer;
+```php
+<?php
 
-    use Composer\Composer;
-    use Composer\IO\IOInterface;
-    use Composer\Plugin\PluginInterface;
+namespace phpDocumentor\Composer;
 
-    class TemplateInstallerPlugin implements PluginInterface
+use Composer\Composer;
+use Composer\IO\IOInterface;
+use Composer\Plugin\PluginInterface;
+
+class TemplateInstallerPlugin implements PluginInterface
+{
+    public function activate(Composer $composer, IOInterface $io)
     {
-        public function activate(Composer $composer, IOInterface $io)
-        {
-            $installer = new TemplateInstaller($io, $composer);
-            $composer->getInstallationManager()->addInstaller($installer);
-        }
+        $installer = new TemplateInstaller($io, $composer);
+        $composer->getInstallationManager()->addInstaller($installer);
     }
+}
+```
 
 ## 事件处理程序
 
@@ -65,48 +71,52 @@
 
 > 一个插件也可以订阅 [脚本事件][7]。
 
-例：
+实例：
 
-    namespace Naderman\Composer\AWS;
+```php
+<?php
 
-    use Composer\Composer;
-    use Composer\EventDispatcher\EventSubscriberInterface;
-    use Composer\IO\IOInterface;
-    use Composer\Plugin\PluginInterface;
-    use Composer\Plugin\PluginEvents;
-    use Composer\Plugin\PreFileDownloadEvent;
+namespace Naderman\Composer\AWS;
 
-    class AwsPlugin implements PluginInterface, EventSubscriberInterface
+use Composer\Composer;
+use Composer\EventDispatcher\EventSubscriberInterface;
+use Composer\IO\IOInterface;
+use Composer\Plugin\PluginInterface;
+use Composer\Plugin\PluginEvents;
+use Composer\Plugin\PreFileDownloadEvent;
+
+class AwsPlugin implements PluginInterface, EventSubscriberInterface
+{
+    protected $composer;
+    protected $io;
+
+    public function activate(Composer $composer, IOInterface $io)
     {
-        protected $composer;
-        protected $io;
+        $this->composer = $composer;
+        $this->io = $io;
+    }
 
-        public function activate(Composer $composer, IOInterface $io)
-        {
-            $this->composer = $composer;
-            $this->io = $io;
-        }
+    public static function getSubscribedEvents()
+    {
+        return array(
+            PluginEvents::PRE_FILE_DOWNLOAD => array(
+                array('onPreFileDownload', 0)
+            ),
+        );
+    }
 
-        public static function getSubscribedEvents()
-        {
-            return array(
-                PluginEvents::PRE_FILE_DOWNLOAD => array(
-                    array('onPreFileDownload', 0)
-                ),
-            );
-        }
+    public function onPreFileDownload(PreFileDownloadEvent $event)
+    {
+        $protocol = parse_url($event->getProcessedUrl(), PHP_URL_SCHEME);
 
-        public function onPreFileDownload(PreFileDownloadEvent $event)
-        {
-            $protocol = parse_url($event->getProcessedUrl(), PHP_URL_SCHEME);
-
-            if ($protocol === 's3') {
-                $awsClient = new AwsClient($this->io, $this->composer->getConfig());
-                $s3RemoteFilesystem = new S3RemoteFilesystem($this->io, $event->getRemoteFilesystem()->getOptions(), $awsClient);
-                $event->setRemoteFilesystem($s3RemoteFilesystem);
-            }
+        if ($protocol === 's3') {
+            $awsClient = new AwsClient($this->io, $this->composer->getConfig());
+            $s3RemoteFilesystem = new S3RemoteFilesystem($this->io, $event->getRemoteFilesystem()->getOptions(), $awsClient);
+            $event->setRemoteFilesystem($s3RemoteFilesystem);
         }
     }
+}
+```
 
 ## 使用插件
 

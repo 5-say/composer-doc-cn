@@ -33,6 +33,8 @@ Composer 在运行过程中将会触发以下事件：
 | **post-autoload-dump** | 在自动加载器被转储后触发，无论是 `install`/`update` 还是 `dump-autoload` 命令都会触发。
 | **post-root-package-install** | 在 `create-project` 命令期间，根包安装完成后触发。
 | **post-create-project-cmd** | 在 `create-project` 命令执行后触发。 
+- **pre-archive-cmd**: occurs before the `archive` command is executed.
+- **post-archive-cmd**: occurs after the `archive` command is executed.
 
 > **注意：**Composer 不会去执行任何依赖包中定义的 `install` 或 `update` 相关脚本。因此你不应该在依赖包中申明 `pre-update-cmd` 或 `pre-install-cmd`。如果你需要在执行 `install` 或 `update` 命令前使用脚本，请确保它们已被定义在根包中。
 
@@ -48,46 +50,50 @@ Composer 在运行过程中将会触发以下事件：
 
 脚本定义实例：
 
-    {
-        "scripts": {
-            "post-update-cmd": "MyVendor\\MyClass::postUpdate",
-            "post-package-install": [
-                "MyVendor\\MyClass::postPackageInstall"
-            ],
-            "post-install-cmd": [
-                "MyVendor\\MyClass::warmCache",
-                "phpunit -c app/"
-            ]
-        }
+```json
+{
+    "scripts": {
+        "post-update-cmd": "MyVendor\\MyClass::postUpdate",
+        "post-package-install": [
+            "MyVendor\\MyClass::postPackageInstall"
+        ],
+        "post-install-cmd": [
+            "MyVendor\\MyClass::warmCache",
+            "phpunit -c app/"
+        ]
     }
+}
+```
 
 使用前面定义的例子，这里的 `MyVendor\MyClass` 类，就可以被使用来执行 PHP 的回调：
 
-    <?php
-    
-    namespace MyVendor;
-    
-    use Composer\Script\Event;
-    
-    class MyClass
+```php
+<?php
+
+namespace MyVendor;
+
+use Composer\Script\Event;
+
+class MyClass
+{
+    public static function postUpdate(Event $event)
     {
-        public static function postUpdate(Event $event)
-        {
-            $composer = $event->getComposer();
-            // do stuff
-        }
-    
-        public static function postPackageInstall(Event $event)
-        {
-            $installedPackage = $event->getOperation()->getPackage();
-            // do stuff
-        }
-    
-        public static function warmCache(Event $event)
-        {
-            // make cache toasty
-        }
+        $composer = $event->getComposer();
+        // do stuff
     }
+
+    public static function postPackageInstall(Event $event)
+    {
+        $installedPackage = $event->getOperation()->getPackage();
+        // do stuff
+    }
+
+    public static function warmCache(Event $event)
+    {
+        // make cache toasty
+    }
+}
+```
 
 当一个事件被触发，Composer 的内部事件处理程序将接收一个 `Composer\Script\Event` 对象，这是传递给您的 PHP 回调的第一个参数。这个 `Event` 对象拥有一些 getter 方法来帮助你取得当前事件的上下文：
 
@@ -99,6 +105,8 @@ Composer 在运行过程中将会触发以下事件：
 
 如果你想手动运行事件脚本，可以使用下面的语法结构：
 
-    $ composer run-script [--dev] [--no-dev] script
+```sh
+composer run-script [--dev] [--no-dev] script
+```
 
 例如 `composer run-script post-install-cmd` 将会运行所有 **post-install-cmd** 事件下定义的脚本。

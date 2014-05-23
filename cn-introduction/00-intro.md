@@ -45,11 +45,13 @@ d) Composer 会找出哪个版本的包需要安装，并安装它们（将它�
 
 比方说，你正在创建一个项目，你需要一个库来做日志记录。你决定使用 [monolog](https://github.com/Seldaek/monolog)。为了将它添加到你的项目中，你所需要做的就是创建一个 `composer.json` 文件，其中描述了项目的依赖关系。
 
-    {
-        "require": {
-            "monolog/monolog": "1.2.*"
-        }
+```json
+{
+    "require": {
+        "monolog/monolog": "1.2.*"
     }
+}
+```
 
 我们只要指出我们的项目需要一些 `monolog/monolog` 的包，从 `1.2` 开始的任何版本。
 
@@ -73,13 +75,23 @@ Composer 是多平台的，我们努力使它在 Windows 、 Linux 以及 OSX �
 
 要真正获取 Composer，我们需要做两件事。首先安装 Composer （同样的，这意味着它将下载到你的项目中）：
 
-    $ curl -sS https://getcomposer.org/installer | php
+```sh
+curl -sS https://getcomposer.org/installer | php
+```
+
+> **注意：** 如果上述方法由于某些原因失败了，你还可以通过 `php` >下载安装器：
+
+```sh
+php -r "readfile('https://getcomposer.org/installer');" | php
+```
 
 这将检查一些 PHP 的设置，然后下载 `composer.phar` 到你的工作目录中。这是 Composer 的二进制文件。这是一个 PHAR 包（PHP 的归档），这是 PHP 的归档格式可以帮助用户在命令行中执行一些操作。
 
 你可以通过 `--install-dir` 选项指定 Composer 的安装目录（它可以是一个绝对或相对路径）：
 
-    $ curl -sS https://getcomposer.org/installer | php -- --install-dir=bin
+```sh
+curl -sS https://getcomposer.org/installer | php -- --install-dir=bin
+```
 
 <a name="Globally"></a>
 #### 全局安装
@@ -88,8 +100,10 @@ Composer 是多平台的，我们努力使它在 Windows 、 Linux 以及 OSX �
 
 你可以执行这些命令让 `composer` 在你的系统中进行全局调用：
 
-    $ curl -sS https://getcomposer.org/installer | php
-    $ mv composer.phar /usr/local/bin/composer
+```sh
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+```
 
 > **注意：** 如果上诉命令因为权限执行失败，
 > 请使用 sudo 再次尝试运行 `mv` 那行命令。
@@ -101,12 +115,13 @@ Composer 是多平台的，我们努力使它在 Windows 、 Linux 以及 OSX �
 
 Composer 是 homebrew-php 项目的一部分。
 
-1. 在你的 brew installation 中 Tap homebrew-php 版本库，如果你还没有这样做：`brew tap josegonzalez/homebrew-php` 。
-2. 运行 `brew install josegonzalez/php/composer`。
-3. 使用 `composer` 命令运行 Composer。
-
-> **注意：** 如果你收到一个错误 PHP53 or higher is missing 请执行下面的命令来安装 php 
-> `brew install php53-intl`
+```sh
+brew update
+brew tap josegonzalez/homebrew-php
+brew tap homebrew/versions
+brew install php55-intl
+brew install josegonzalez/php/composer
+```
 
 <a name="Installation-Windows"></a>
 ## 安装 - Windows
@@ -123,21 +138,25 @@ Composer 是 homebrew-php 项目的一部分。
 
 设置系统的环境变量 `PATH` 并运行安装命令下载 composer.phar 文件：
 
-    C:\Users\username>cd C:\bin
-    C:\bin>php -r "eval('?>'.file_get_contents('https://getcomposer.org/installer'));"
+```sh
+C:\Users\username>cd C:\bin
+C:\bin>php -r "readfile('https://getcomposer.org/installer');" | php
+```
 
-> **注意：** 如果收到 file_get_contents 错误提示，请使用 `http` 链接或者在 php.ini 中开启 php_openssl.dll 。
+> **注意：** 如果收到 readfile 错误提示，请使用 `http` 链接或者在 php.ini 中开启 php_openssl.dll 。
 
 在 `composer.phar` 同级目录下新建文件 `composer.bat` ：
 
-    C:\bin>echo @php "%~dp0composer.phar" %*>composer.bat
+```sh
+C:\bin>echo @php "%~dp0composer.phar" %*>composer.bat
+```
 
 关闭当前的命令行窗口，打开新的命令行窗口进行测试：
 
-    C:\Users\username>composer -V
-    Composer version 27d8904
-
-    C:\Users\username>
+```sh
+C:\Users\username>composer -V
+Composer version 27d8904
+```
 
 <a name="Using-Composer"></a>
 ## 使用 Composer
@@ -146,11 +165,15 @@ Composer 是 homebrew-php 项目的一部分。
 
 要解决和下载依赖，请执行 `install` 命令：
 
-    $ php composer.phar install
+```sh
+php composer.phar install
+```
 
 如果你进行了全局安装，并且没有 phar 文件在当前目录，请使用下面的命令代替：
 
-    $ composer install
+```sh
+composer install
+```
 
 继续 [上面的例子](#Declaring-dependencies)，这里将下载 monolog 到 `vendor/monolog/monolog` 目录。
 
@@ -159,7 +182,9 @@ Composer 是 homebrew-php 项目的一部分。
 
 除了库的下载，Composer 还准备了一个自动加载文件，它可以加载 Composer 下载的库中所有的类文件。使用它，你只需要将下面这行代码添加到你项目的引导文件中：
 
-    require 'vendor/autoload.php';
+```php
+require 'vendor/autoload.php';
+```
 
 现在我们就可以使用 monolog 了！想要学习更多关于 Composer 的知识，请查看“基本用法”章节。
 

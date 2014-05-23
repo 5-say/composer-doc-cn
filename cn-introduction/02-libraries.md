@@ -25,12 +25,14 @@
 
 为了使它成为一个可安装的包，你需要给它一个名称。你可以通过 `composer.json` 中的 `name` 来定义：
 
-    {
-        "name": "acme/hello-world",
-        "require": {
-            "monolog/monolog": "1.0.*"
-        }
+```json
+{
+    "name": "acme/hello-world",
+    "require": {
+        "monolog/monolog": "1.0.*"
     }
+}
+```
 
 在这种情况下项目的名称为 `acme/hello-world`，其中 `acme` 是供应商的名称。供应商的名称是必须填写的。
 
@@ -45,10 +47,13 @@ Composer 将那些已经安装在系统上，但并不是由 Composer 安装的�
 
 * `php` 表示用户的 PHP 版本要求，你可以对其做出限制。例如 `>=5.4.0`。如果需要64位版本的 PHP，你可以使用 `php-64bit` 进行限制。
 
+* `hhvm` 代表的是 HHVM（也就是 HipHop Virtual
+  Machine） 运行环境的版本，并且允许你设置一个版本限制，例如，'>=2.3.3'。
+
 * `ext-<name>` 可以帮你指定需要的 PHP 扩展（包括核心扩展）。通常 PHP 拓展的版本可以是不一致的，将它们的版本约束为 `*` 是一个不错的主意。一个 PHP 扩展包的例子：包名可以写成 `ext-gd`。
 
 * `lib-<name>` 允许对 PHP 库的版本进行限制。  
-以下是可供使用的名称：`curl`、`iconv`、`libxml`、`openssl`、`pcre`、`uuid`、`xsl`。
+以下是可供使用的名称：`curl`、`iconv`、`icu`、`libxml`、`openssl`、`pcre`、`uuid`、`xsl`。
 
 你可以使用 `composer show --platform` 命令来获取可用的平台软件包的列表。
 
@@ -60,9 +65,11 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
 
 如果你想要手动创建并且真的要明确指定它，你只需要添加一个 `version` 字段：
 
-    {
-        "version": "1.0.0"
-    }
+```json
+{
+    "version": "1.0.0"
+}
+```
 
 > **注意：** 你应该尽量避免手动设置版本号，因为标签的值必须与标签名相匹配。
 
@@ -73,12 +80,12 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
 
 下面是有效的标签名称的几个例子：
 
-    1.0.0
-    v1.0.0
-    1.10.5-RC1
-    v4.4.4beta2
-    v2.0.0-alpha
-    v2.0.4-p1
+- 1.0.0
+- v1.0.0
+- 1.10.5-RC1
+- v4.4.4beta2
+- v2.0.0-alpha
+- v2.0.4-p1
 
 > **注意：** 即使你的标签带有前缀 `v`，
 > 由于在需要 `require` 一个[版本的约束](01-basic-usage.md#Package-Versions)时是不允许这种前缀的，
@@ -91,9 +98,9 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
 
 下面是版本分支名称的一些示例：
 
-    1.x
-    1.0 (等同于 1.0.x)
-    1.1.x
+- 1.x
+- 1.0 (equals 1.0.x)
+- 1.1.x
 
 > **注意：** 当你安装一个新的版本时，将会自动从它 `source` 中拉取。
 > 详细请查看 [`install`](03-cli.md#install) 命令。
@@ -119,29 +126,33 @@ hg) 的信息推断出包的版本，因此你不必手动指明版本号，并�
 
 现在测试这个 `acme/hello-world` 包，我们在本地创建一个新的项目。我们将它命名为 `acme/blog`。此博客将依赖 `acme/hello-world`，而后者又依赖 `monolog/monolog`。我们可以在某处创建一个新的 `blog` 文件夹来完成它，并且需要包含 `composer.json` 文件：
 
-    {
-        "name": "acme/blog",
-        "require": {
-            "acme/hello-world": "dev-master"
-        }
+```json
+{
+    "name": "acme/blog",
+    "require": {
+        "acme/hello-world": "dev-master"
     }
+}
+```
 
 在这个例子中 `name` 不是必须的，因为我们并不想将它发布为一个库。在这里为 `composer.json` 文件添加描述。
 
 现在我们需要告诉我们的应用，在哪里可以找到 `hello-world` 的依赖。为此我们需要在 `composer.json` 中添加 `repositories` 来源申明：
 
-    {
-        "name": "acme/blog",
-        "repositories": [
-            {
-                "type": "vcs",
-                "url": "https://github.com/username/hello-world"
-            }
-        ],
-        "require": {
-            "acme/hello-world": "dev-master"
+```json
+{
+    "name": "acme/blog",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/username/hello-world"
         }
+    ],
+    "require": {
+        "acme/hello-world": "dev-master"
     }
+}
+```
 
 更多关于包的来源是如何工作的，以及还有什么其他的类型可供选择，请查看[资源库](05-repositories.md)。
 

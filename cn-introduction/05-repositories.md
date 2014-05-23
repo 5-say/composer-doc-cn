@@ -76,16 +76,18 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 唯一必须的字段是 `packages`。它的 JSON 结构如下：
 
-    {
-        "packages": {
-            "vendor/package-name": {
-                "dev-master": { @composer.json },
-                "1.0.x-dev": { @composer.json },
-                "0.0.1": { @composer.json },
-                "1.0.0": { @composer.json }
-            }
+```json
+{
+    "packages": {
+        "vendor/package-name": {
+            "dev-master": { @composer.json },
+            "1.0.x-dev": { @composer.json },
+            "0.0.1": { @composer.json },
+            "1.0.0": { @composer.json }
         }
     }
+}
+```
 
 `@composer.json` 标记将会从此包的指定版本中读取 `composer.json` 的内容，其内至少应包含以下信息：
 
@@ -95,14 +97,16 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 这是一个最简单的包定义：
 
-    {
-        "name": "smarty/smarty",
-        "version": "3.1.7",
-        "dist": {
-            "url": "http://www.smarty.net/files/Smarty-3.1.7.zip",
-            "type": "zip"
-        }
+```json
+{
+    "name": "smarty/smarty",
+    "version": "3.1.7",
+    "dist": {
+        "url": "http://www.smarty.net/files/Smarty-3.1.7.zip",
+        "type": "zip"
     }
+}
+```
 
 它还可以包含任何在 [composer.json 架构](04-schema.md) 中介绍的字段。
 
@@ -113,17 +117,21 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 例如使用下面的值：
 
-    {
-        "notify-batch": "/downloads/"
-    }
+```json
+{
+    "notify-batch": "/downloads/"
+}
+```
 
 对于 `example.org/packages.json` 包含的 `monolog/monolog` 包，它将会发送一个 `POST` 请求到 `example.org/downloads/`，使用下面的 JSON request body：
 
-    {
-        "downloads": [
-            {"name": "monolog/monolog", "version": "1.2.1.0"},
-        ]
-    }
+```json
+{
+    "downloads": [
+        {"name": "monolog/monolog", "version": "1.2.1.0"},
+    ]
+}
+```
 
 `version` 字段将包含标准化的版本号。
 
@@ -134,21 +142,23 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 对于较大的资源库，可以拆分 `packages.json` 为多个文件。`includes` 字段允许你引用这些额外的文件。
 
-例：
+实例：
 
-    {
-        "includes": {
-            "packages-2011.json": {
-                "sha1": "525a85fb37edd1ad71040d429928c2c0edec9d17"
-            },
-            "packages-2012-01.json": {
-                "sha1": "897cde726f8a3918faf27c803b336da223d400dd"
-            },
-            "packages-2012-02.json": {
-                "sha1": "26f911ad717da26bbcac3f8f435280d13917efa5"
-            }
+```json
+{
+    "includes": {
+        "packages-2011.json": {
+            "sha1": "525a85fb37edd1ad71040d429928c2c0edec9d17"
+        },
+        "packages-2012-01.json": {
+            "sha1": "897cde726f8a3918faf27c803b336da223d400dd"
+        },
+        "packages-2012-02.json": {
+            "sha1": "26f911ad717da26bbcac3f8f435280d13917efa5"
         }
     }
+}
+```
 
 文件的 SHA-1 码允许它被缓存，仅在 hash 值改变时重新请求。
 
@@ -161,34 +171,38 @@ Composer 是一个依赖管理工具。它在本地安装一些资源包。一�
 
 `providers-url` 描述了如何在服务器上找到这些 provider 文件。它是以资源库的根目录为起点的绝对路径。
 
-例：
+实例：
 
-    {
-        "provider-includes": {
-            "providers-a.json": {
-                "sha256": "f5b4bc0b354108ef08614e569c1ed01a2782e67641744864a74e788982886f4c"
-            },
-            "providers-b.json": {
-                "sha256": "b38372163fac0573053536f5b8ef11b86f804ea8b016d239e706191203f6efac"
-            }
+```json
+{
+    "provider-includes": {
+        "providers-a.json": {
+            "sha256": "f5b4bc0b354108ef08614e569c1ed01a2782e67641744864a74e788982886f4c"
         },
-        "providers-url": "/p/%package%$%hash%.json"
-    }
+        "providers-b.json": {
+            "sha256": "b38372163fac0573053536f5b8ef11b86f804ea8b016d239e706191203f6efac"
+        }
+    },
+    "providers-url": "/p/%package%$%hash%.json"
+}
+```
 
 这些文件包含资源包的名称以及哈希值，以验证文件的完整性，例如：
 
-    {
-        "providers": {
-            "acme/foo": {
-                "sha256": "38968de1305c2e17f4de33aea164515bc787c42c7e2d6e25948539a14268bb82"
-            },
-            "acme/bar": {
-                "sha256": "4dd24c930bd6e1103251306d6336ac813b563a220d9ca14f4743c032fb047233"
-            }
+```json
+{
+    "providers": {
+        "acme/foo": {
+            "sha256": "38968de1305c2e17f4de33aea164515bc787c42c7e2d6e25948539a14268bb82"
+        },
+        "acme/bar": {
+            "sha256": "4dd24c930bd6e1103251306d6336ac813b563a220d9ca14f4743c032fb047233"
         }
     }
+}
+```
 
-上述文件申明了 `acme/foo` 和 `acme/bar` 可以在这个资源库找到，通过加载由 `providers-url` 引用的文件，替换 `%name%` 为包名并且替换 `%hash%` 为 sha256 的值。这些文件本身只包含上文提到的 [packages](#packages) 的定义。
+上述文件申明了 `acme/foo` 和 `acme/bar` 可以在这个资源库找到，通过加载由 `providers-url` 引用的文件，替换 `%package%` 为包名并且替换 `%hash%` 为 sha256 的值。这些文件本身只包含上文提到的 [packages](#packages) 的定义。
 
 这些字段是可选的。你也许并不需要它们来自定义存储库。
 
@@ -209,17 +223,19 @@ VCS 表示版本控制系统。这包括像 git、svn 或 hg 这样的版本管�
 
 例如，假设你 fork 了 monolog，在 `bugfix` 分支修复了一个 bug：
 
-    {
-        "repositories": [
-            {
-                "type": "vcs",
-                "url": "https://github.com/igorw/monolog"
-            }
-        ],
-        "require": {
-            "monolog/monolog": "dev-bugfix"
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/igorw/monolog"
         }
+    ],
+    "require": {
+        "monolog/monolog": "dev-bugfix"
     }
+}
+```
 
 当你运行 `php composer.phar update` 时，你应该得到你修改的版本，而不是 packagist.org 上的 `monolog/monolog`。
 
@@ -232,17 +248,19 @@ VCS 表示版本控制系统。这包括像 git、svn 或 hg 这样的版本管�
 
 完全相同的解决方案，也可以让你使用你 GitHub 和 BitBucket 上的私人代码库进行工作：
 
-    {
-        "require": {
-            "vendor/my-private-repo": "dev-master"
-        },
-        "repositories": [
-            {
-                "type": "vcs",
-                "url":  "git@bitbucket.org:vendor/my-private-repo.git"
-            }
-        ]
-    }
+```json
+{
+    "require": {
+        "vendor/my-private-repo": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@bitbucket.org:vendor/my-private-repo.git"
+        }
+    ]
+}
+```
 
 唯一的要求是为一个 git 客户端安装 SSH 秘钥。
 
@@ -264,22 +282,29 @@ Git 并不是 VCS 资源库唯一支持的版本管理系统。
 
 VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需要明确的指定一个 `git`、`svn` 或 `hg` 作为资源库类型，而不是 `vcs`。
 
+If you set the `no-api` key to `true` on a github repository it will clone the
+repository as it would with any other git repository instead of using the
+GitHub API. But unlike using the `git` driver directly, composer will still
+attempt to use github's zip files.
+
 <a name="Subversion-Options"></a>
 #### Subversion 选项
 
 由于 Subversion 没有原生的分支和标签的概念，Composer 假设在默认情况下该代码位于 `$url/trunk`、`$url/branches` 和 `$url/tags` 内。如果你的存储库使用了不同的布局，你可以更改这些值。例如，如果你使用大写的名称，你可以像这样配置资源库：
 
-    {
-        "repositories": [
-            {
-                "type": "vcs",
-                "url": "http://svn.example.org/projectA/",
-                "trunk-path": "Trunk",
-                "branches-path": "Branches",
-                "tags-path": "Tags"
-            }
-        ]
-    }
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "http://svn.example.org/projectA/",
+            "trunk-path": "Trunk",
+            "branches-path": "Branches",
+            "tags-path": "Tags"
+        }
+    ]
+}
+```
 
 如果你的存储库目录中没有任何分支或标签文件夹，你可以将 `branches-path` 或 `tags-path` 设置为 `false`。
 
@@ -292,18 +317,20 @@ VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需�
 
 例如使用 `pear2.php.net`：
 
-    {
-        "repositories": [
-            {
-                "type": "pear",
-                "url": "http://pear2.php.net"
-            }
-        ],
-        "require": {
-            "pear-pear2.php.net/PEAR2_Text_Markdown": "*",
-            "pear-pear2/PEAR2_HTTP_Request": "*"
+```json
+{
+    "repositories": [
+        {
+            "type": "pear",
+            "url": "http://pear2.php.net"
         }
+    ],
+    "require": {
+        "pear-pear2.php.net/PEAR2_Text_Markdown": "*",
+        "pear-pear2/PEAR2_HTTP_Request": "*"
     }
+}
+```
 
 在这种情况下渠道的简称（别名）是 `pear2`，因此 `PEAR2_HTTP_Request` 包的名称应该写作 `pear-pear2/PEAR2_HTTP_Request`。
 
@@ -335,23 +362,25 @@ VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需�
 
 为了说明这一点，下面的例子会从你的 PEAR 资源库中得到 `BasePackage`、`TopLevelPackage1` 和 `TopLevelPackage2` 资源包，并从 Github 资源库中获取 `IntermediatePackage` 资源包：
 
-    {
-        "repositories": [
-            {
-                "type": "git",
-                "url": "https://github.com/foobar/intermediate.git"
-            },
-            {
-                "type": "pear",
-                "url": "http://pear.foobar.repo",
-                "vendor-alias": "foobar"
-            }
-        ],
-        "require": {
-            "foobar/TopLevelPackage1": "*",
-            "foobar/TopLevelPackage2": "*"
+```json
+{
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/foobar/intermediate.git"
+        },
+        {
+            "type": "pear",
+            "url": "http://pear.foobar.repo",
+            "vendor-alias": "foobar"
         }
+    ],
+    "require": {
+        "foobar/TopLevelPackage1": "*",
+        "foobar/TopLevelPackage2": "*"
     }
+}
+```
 
 <a name="Package"></a>
 ### Package
@@ -362,32 +391,34 @@ VCS 驱动将基于 URL 自动检测版本库类型。但如果可能，你需�
 
 这是一个 smarty 模板引擎的例子：
 
-    {
-        "repositories": [
-            {
-                "type": "package",
-                "package": {
-                    "name": "smarty/smarty",
-                    "version": "3.1.7",
-                    "dist": {
-                        "url": "http://www.smarty.net/files/Smarty-3.1.7.zip",
-                        "type": "zip"
-                    },
-                    "source": {
-                        "url": "http://smarty-php.googlecode.com/svn/",
-                        "type": "svn",
-                        "reference": "tags/Smarty_3_1_7/distribution/"
-                    },
-                    "autoload": {
-                        "classmap": ["libs/"]
-                    }
+```json
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "smarty/smarty",
+                "version": "3.1.7",
+                "dist": {
+                    "url": "http://www.smarty.net/files/Smarty-3.1.7.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "http://smarty-php.googlecode.com/svn/",
+                    "type": "svn",
+                    "reference": "tags/Smarty_3_1_7/distribution/"
+                },
+                "autoload": {
+                    "classmap": ["libs/"]
                 }
             }
-        ],
-        "require": {
-            "smarty/smarty": "3.1.*"
         }
+    ],
+    "require": {
+        "smarty/smarty": "3.1.*"
     }
+}
+```
 
 通常你不需要去定义 `source`，因为你并不是真的需要它。
 
@@ -432,25 +463,30 @@ Satis 是一个静态的 `composer` 资源库生成器。它像是一个超轻�
 
 在某些情况下，或许没有能力拥有之前提到的任何一种线上资源库。Typical example could be cross-organisation library exchange through built artifacts。当然大部分的时间他们都是私有的。为了简化维护，可以简单的使用 `artifact` 资源库类型，来引用一个包含那些私有包的 ZIP 存档的文件夹：
 
-    {
-        "repositories": [
-            {
-                "type": "artifact",
-                "url": "path/to/directory/with/zips/"
-            }
-        ],
-        "require": {
-            "private-vendor-one/core": "15.6.2",
-            "private-vendor-two/connectivity": "*",
-            "acme-corp/parser": "10.3.5"
+```json
+{
+    "repositories": [
+        {
+            "type": "artifact",
+            "url": "path/to/directory/with/zips/"
         }
+    ],
+    "require": {
+        "private-vendor-one/core": "15.6.2",
+        "private-vendor-two/connectivity": "*",
+        "acme-corp/parser": "10.3.5"
     }
+}
+```
 
 每个 zip artifact 都只是一个 ZIP 存档，放置在 `composer.json` 所在的根目录：
 
-    $ unzip -l acme-corp-parser-10.3.5.zip
-    composer.json
-    ...
+```sh
+unzip -l acme-corp-parser-10.3.5.zip
+
+composer.json
+...
+```
 
 如果有两个不同版本的资源包，它们都会被导入。当有一个新版本的存档被添加到 artifact 文件夹，并且你运行了 `update` 命令，该版本就会被导入，并且 Composer 将更新到最新版本。
 
@@ -459,13 +495,15 @@ Satis 是一个静态的 `composer` 资源库生成器。它像是一个超轻�
 
 你可以在 `composer.json` 中禁用默认的 Packagist 资源库。
 
-    {
-        "repositories": [
-            {
-                "packagist": false
-            }
-        ]
-    }
+```json
+{
+    "repositories": [
+        {
+            "packagist": false
+        }
+    ]
+}
+```
 
 
 &larr; [架构](04-schema.md)  |  [社区](06-community.md) &rarr;

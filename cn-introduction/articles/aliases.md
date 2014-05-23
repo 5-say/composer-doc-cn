@@ -6,7 +6,7 @@
 
 ## 为什么使用别名？
 
-当你使用 VCS 资源库，你将只会得到类似于这样的版本号：从分支发布的标签获取，它看起来像 `2.0`。比较特殊的是，对于你的 `master` 分支，你会得到一个最新提交的 `dev-master` 版本。对于你的 `bugfix` 分支，你会得到一个最新提交的 `dev-bugfix` 版本。以此类推，这些特殊的版本标识可以用来获取最新的分支源码。
+当你使用 VCS 资源库，你将只会得到类似于这样的版本号：从分支发布的标签获取，它看起来像 `2.0` 或 `2.0.x`。比较特殊的是，对于你的 `master` 分支，你会得到一个最新提交的 `dev-master` 版本。对于你的 `bugfix` 分支，你会得到一个最新提交的 `dev-bugfix` 版本。以此类推，这些特殊的版本标识可以用来获取最新的分支源码。
 
 如果你的 `master` 分支使用标签发布了 `1.0` 系列版本，即 `1.0.1`、`1.0.2`、`1.0.3` 等等，任何依赖它的资源包都可能会使用 `1.0.*` 这个版本约束。
 
@@ -18,13 +18,15 @@
 
 `dev-master` 指向一个在你 VCS 项目上的主分支。有些用户会想要使用最新的开发版本，这是相当常见的情况。因此，Composer 允许你别名你的 `dev-master` 版本为一个 `1.0.x-dev` 的版本号。这是通过在 `composer.json` 文件中的 `extra` 下指定 `branch-alias` 字段来完成的：
 
-    {
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
+```json
+{
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
         }
     }
+}
+```
 
 此处的分支版本必须以 `dev-` 开头（不可比较的版本名称），对应的别名必须是可比较的开发版本名称（即，以数字开头，并以 `.x-dev` 结束）。`branch-alias` 所引用的分支必须是存在的。对于 `dev-master` 你需要在 `master` 分支上提交它。
 
@@ -44,18 +46,20 @@
 
 只要在你项目根目录的 `composer.json` 文件中加入以下内容：
 
-    {
-        "repositories": [
-            {
-                "type": "vcs",
-                "url": "https://github.com/you/monolog"
-            }
-        ],
-        "require": {
-            "symfony/monolog-bundle": "2.0",
-            "monolog/monolog": "dev-bugfix as 1.0.x-dev"
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/you/monolog"
         }
+    ],
+    "require": {
+        "symfony/monolog-bundle": "2.0",
+        "monolog/monolog": "dev-bugfix as 1.0.x-dev"
     }
+}
+```
 
 它将会在你的 GitHub 上获取 `monolog/monolog` 的 `dev-bugfix` 版本并将其版本别名为 `1.0.x-dev`。
 
