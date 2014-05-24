@@ -93,14 +93,14 @@
 
 例：
 
-    1.0.0
-    1.0.2
-    1.1.0
-    0.2.5
-    1.0.0-dev
-    1.0.0-alpha3
-    1.0.0-beta2
-    1.0.0-RC5
+- 1.0.0
+- 1.0.2
+- 1.1.0
+- 0.2.5
+- 1.0.0-dev
+- 1.0.0-alpha3
+- 1.0.0-beta2
+- 1.0.0-RC5
 
 通常，我们能够从 VCS (git, svn, hg) 的信息推断出包的版本号，在这种情况下，我们建议忽略 `version`。
 
@@ -129,13 +129,13 @@ composer 原生支持以下4种类型：
 
 该包相关的关键词的数组。这些可用于搜索和过滤。
 
-例：
+实例：
 
-    logging
-    events
-    database
-    redis
-    templating
+- logging
+- events
+- database
+- redis
+- templating
 
 可选。
 
@@ -162,19 +162,19 @@ composer 原生支持以下4种类型：
 
 最常见的许可协议的推荐写法（按字母排序）：
 
-    Apache-2.0
-    BSD-2-Clause
-    BSD-3-Clause
-    BSD-4-Clause
-    GPL-2.0
-    GPL-2.0+
-    GPL-3.0
-    GPL-3.0+
-    LGPL-2.1
-    LGPL-2.1+
-    LGPL-3.0
-    LGPL-3.0+
-    MIT
+- Apache-2.0
+- BSD-2-Clause
+- BSD-3-Clause
+- BSD-4-Clause
+- GPL-2.0
+- GPL-2.0+
+- GPL-3.0
+- GPL-3.0+
+- LGPL-2.1
+- LGPL-2.1+
+- LGPL-3.0
+- LGPL-3.0+
+- MIT
 
 可选，但强烈建议提供此内容。更多许可协议的标识符请参见 [SPDX Open Source License Registry](http://www.spdx.org/licenses/)。
 
@@ -182,26 +182,32 @@ composer 原生支持以下4种类型：
 
 一个例：
 
-    {
-        "license": "MIT"
-    }
+```json
+{
+    "license": "MIT"
+}
+```
 
 对于一个包，当允许在多个许可协议间进行选择时（"disjunctive license"），这些协议标识符可以被指定为数组。
 
 多协议的一个例：
 
-    {
-        "license": [
-           "LGPL-2.1",
-           "GPL-3.0+"
-        ]
-    }
+```json
+{
+    "license": [
+       "LGPL-2.1",
+       "GPL-3.0+"
+    ]
+}
+```
 
 另外它们也可以由 "or" 分隔，并写在括号中：
 
-    {
-        "license": "(LGPL-2.1 or GPL-3.0+)"
-    }
+```json
+{
+    "license": "(LGPL-2.1 or GPL-3.0+)"
+}
+```
 
 同样，当有多个许可协议需要结合使用时（"conjunctive license"），它们应该被 "and" 分隔，并写在括号中。
 
@@ -217,24 +223,26 @@ composer 原生支持以下4种类型：
 * **homepage:** 作者主页的 URL 地址。
 * **role:** 该作者在此项目中担任的角色（例：开发人员 或 翻译）。
 
-一个例：
+一个实例：
 
-    {
-        "authors": [
-            {
-                "name": "Nils Adermann",
-                "email": "naderman@naderman.de",
-                "homepage": "http://www.naderman.de",
-                "role": "Developer"
-            },
-            {
-                "name": "Jordi Boggiano",
-                "email": "j.boggiano@seld.be",
-                "homepage": "http://seld.be",
-                "role": "Developer"
-            }
-        ]
-    }
+```json
+{
+    "authors": [
+        {
+            "name": "Nils Adermann",
+            "email": "naderman@naderman.de",
+            "homepage": "http://www.naderman.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Jordi Boggiano",
+            "email": "j.boggiano@seld.be",
+            "homepage": "http://seld.be",
+            "role": "Developer"
+        }
+    ]
+}
+```
 
 可选，但强烈建议提供此内容。
 
@@ -252,14 +260,16 @@ composer 原生支持以下4种类型：
 * **irc:** IRC 聊天频道地址，类似于 irc://server/channel。
 * **source:** 网址浏览或下载源。
 
-一个例：
+一个实例：
 
-    {
-        "support": {
-            "email": "support@example.org",
-            "irc": "irc://irc.freenode.org/composer"
-        }
+```json
+{
+    "support": {
+        "email": "support@example.org",
+        "irc": "irc://irc.freenode.org/composer"
     }
+}
+```
 
 可选。
 
@@ -268,48 +278,56 @@ composer 原生支持以下4种类型：
 
 下面提到的所有对象，都应该是 包名 到 [版本](01-basic-usage.md#Package-Versions) 的映射对象。
 
-例：
+实例：
 
-    {
-        "require": {
-            "monolog/monolog": "1.0.*"
-        }
+```json
+{
+    "require": {
+        "monolog/monolog": "1.0.*"
     }
+}
+```
 
 所有的这些都是可选的。
 
 `require` 和 `require-dev` 还支持稳定性标签（@，仅针对“root 包”）。这允许你在 [minimum-stability](#minimum-stability) 设定的范围外做进一步的限制或扩展。例：如果你想允许依赖一个不稳定的包，你可以在一个包的版本约束后使用它，或者是一个空的版本约束内使用它。
 
-例：
+实例：
 
-    {
-        "require": {
-            "monolog/monolog": "1.0.*@beta",
-            "acme/foo": "@dev"
-        }
+```json
+{
+    "require": {
+        "monolog/monolog": "1.0.*@beta",
+        "acme/foo": "@dev"
     }
+}
+```
 
 如果你的依赖之一，有对另一个不稳定包的依赖，你最好在 require 中显示的定义它，并带上足够详细的稳定性标识。
 
-例：
+实例：
 
-    {
-        "require": {
-            "doctrine/doctrine-fixtures-bundle": "dev-master",
-            "doctrine/data-fixtures": "@dev"
-        }
+```json
+{
+    "require": {
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/data-fixtures": "@dev"
     }
+}
+```
 
 `require` 和 `require-dev` 还支持对 dev（开发）版本的明确引用（即：版本控制系统中的提交编号 commit），以确保它们被锁定到一个给定的状态，即使你运行了更新命令。你只需要明确一个开发版本号，并带上诸如 `#<ref>` 的标识。
 
-例：
+实例：
 
-    {
-        "require": {
-            "monolog/monolog": "dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7",
-            "acme/foo": "1.0.x-dev#abc123"
-        }
+```json
+{
+    "require": {
+        "monolog/monolog": "dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7",
+        "acme/foo": "1.0.x-dev#abc123"
     }
+}
+```
 
 > **注意：** 虽然这有时很方便，但不应该长期在你的包中使用，因为它有一个技术上的限制。
 > composer.json 将仍然在哈希值之前指定的分支名称读取元数据，
@@ -356,20 +374,76 @@ List of other packages that are provided by this package. This is mostly useful 
 
 格式如下，版本约束变成了描述信息。
 
-例：
+实例：
 
-    {
-        "suggest": {
-            "monolog/monolog": "Allows more advanced logging of the application flow"
-        }
+```json
+{
+    "suggest": {
+        "monolog/monolog": "Allows more advanced logging of the application flow"
     }
+}
+```
 
 <a name="autoload"></a>
 ### autoload
 
 PHP autoloader 的自动加载映射。
 
-通常 [`PSR-0`](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) autoloading、`classmap` generation 和 `files` 方式都是支持的。PSR-0 是推荐的方式，因为它提供了更大的灵活性（当你添加新的类文件时，不需要重新生成 autoloader）。
+Currently [`PSR-0`](http://www.php-fig.org/psr/psr-0/) autoloading,
+[`PSR-4`](http://www.php-fig.org/psr/psr-4/) autoloading, `classmap` generation and
+`files` includes are supported. PSR-4 is the recommended way though since it offers
+greater ease of use (no need to regenerate the autoloader when you add classes).
+
+#### PSR-4
+
+Under the `psr-4` key you define a mapping from namespaces to paths, relative to the
+package root. When autoloading a class like `Foo\\Bar\\Baz` a namespace prefix
+`Foo\\` pointing to a directory `src/` means that the autoloader will look for a
+file named `src/Bar/Baz.php` and include it if present. Note that as opposed to
+the older PSR-0 style, the prefix (`Foo\\`) is **not** present in the file path.
+
+Namespace prefixes must end in `\\` to avoid conflicts between similar prefixes.
+For example `Foo` would match classes in the `FooBar` namespace so the trailing
+backslashes solve the problem: `Foo\\` and `FooBar\\` are distinct.
+
+The PSR-4 references are all combined, during install/update, into a single
+key => value array which may be found in the generated file
+`vendor/composer/autoload_psr4.php`.
+
+Example:
+
+```json
+{
+    "autoload": {
+        "psr-4": {
+            "Monolog\\": "src/",
+            "Vendor\\Namespace\\": ""
+        }
+    }
+}
+```
+
+If you need to search for a same prefix in multiple directories,
+you can specify them as an array as such:
+
+```json
+{
+    "autoload": {
+        "psr-4": { "Monolog\\": ["src/", "lib/"] }
+    }
+}
+```
+
+If you want to have a fallback directory where any namespace will be looked for,
+you can use an empty prefix like:
+
+```json
+{
+    "autoload": {
+        "psr-4": { "": "src/" }
+    }
+}
+```
 
 <a name="PSR-0"></a>
 #### PSR-0
@@ -380,69 +454,105 @@ PHP autoloader 的自动加载映射。
 
 在 install/update 过程中，PSR-0 引用都将被结合为一个单一的键值对数组，存储至 `vendor/composer/autoload_namespaces.php` 文件中。
 
-例：
+实例：
 
-    {
-        "autoload": {
-            "psr-0": {
-                "Monolog\\": "src/",
-                "Vendor\\Namespace\\": "src/",
-                "Vendor_Namespace_": "src/"
-            }
+```json
+{
+    "autoload": {
+        "psr-0": {
+            "Monolog\\": "src/",
+            "Vendor\\Namespace\\": "src/",
+            "Vendor_Namespace_": "src/"
         }
     }
+}
+```
 
 如果你需要搜索多个目录中一个相同的前缀，你可以将它们指定为一个数组，例：
 
-    {
-        "autoload": {
-            "psr-0": { "Monolog\\": ["src/", "lib/"] }
-        }
+```json
+{
+    "autoload": {
+        "psr-0": { "Monolog\\": ["src/", "lib/"] }
     }
+}
+```
 
 PSR-0 方式并不仅限于申明命名空间，也可以是精确到类级别的指定。这对于只有一个类在全局命名空间的类库是非常有用的（如果 php 源文件也位于包的根目录）。例如，可以这样申明：
 
-    {
-        "autoload": {
-            "psr-0": { "UniqueGlobalClass": "" }
-        }
+```json
+{
+    "autoload": {
+        "psr-0": { "UniqueGlobalClass": "" }
     }
+}
+```
 
 如果你想设置一个目录作为任何命名空间的备用目录，你可以使用空的前缀，像这样：
 
-    {
-        "autoload": {
-            "psr-0": { "": "src/" }
-        }
+```json
+{
+    "autoload": {
+        "psr-0": { "": "src/" }
     }
+}
+```
 
 <a name="Classmap"></a>
 #### Classmap
 
 `classmap` 引用的所有组合，都会在 install/update 过程中生成，并存储到 `vendor/composer/autoload_classmap.php` 文件中。这个 map 是经过扫描指定目录（同样支持直接精确到文件）中所有的 `.php` 和 `.inc` 文件里内置的类而得到的。
 
-你可以用 classmap 生成支持支持自定义加载的不遵循 PSR-0 规范的类库。要配置它指向需要的目录，以便能够准确搜索到类文件。
+你可以用 classmap 生成支持支持自定义加载的不遵循 PSR-0/4 规范的类库。要配置它指向需要的目录，以便能够准确搜索到类文件。
 
-例：
+实例：
 
-    {
-        "autoload": {
-            "classmap": ["src/", "lib/", "Something.php"]
-        }
+```json
+{
+    "autoload": {
+        "classmap": ["src/", "lib/", "Something.php"]
     }
+}
+```
 
 <a name="Files"></a>
 #### Files
 
 如果你想要明确的指定，在每次请求时都要载入某些文件，那么你可以使用 'files' autoloading。通常作为函数库的载入方式（而非类库）。
 
-例：
+实例：
 
-    {
-        "autoload": {
-            "files": ["src/MyLibrary/functions.php"]
-        }
+```json
+{
+    "autoload": {
+        "files": ["src/MyLibrary/functions.php"]
     }
+}
+```
+
+### autoload-dev <span>(root-only)</span>
+
+This section allows to define autoload rules for development purposes.
+
+Classes needed to run the test suite should not be included in the main autoload
+rules to avoid polluting the autoloader in production and when other people use
+your package as a dependency.
+
+Therefore, it is a good idea to rely on a dedicated path for your unit tests
+and to add it within the autoload-dev section.
+
+Example:
+
+```json
+{
+    "autoload": {
+        "psr-4": { "MyLibrary\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "MyLibrary\\Tests\\": "tests/" }
+    }
+}
+```
 
 <a name="include-path"></a>
 ### include-path
@@ -452,16 +562,22 @@ PSR-0 方式并不仅限于申明命名空间，也可以是精确到类级别�
 
 一个追加到 PHP `include_path` 中的列表。
 
-例：
+实例：
 
-    {
-        "include-path": ["lib/"]
-    }
+```json
+{
+    "include-path": ["lib/"]
+}
+```
 
 可选。
 
 <a name="target-dir"></a>
 ### target-dir
+
+> **DEPRECATED**: This is only present to support legacy PSR-0 style autoloading,
+> and all new code should preferably use PSR-4 without target-dir and projects
+> using PSR-0 with PHP namespaces are encouraged to migrate to PSR-4 instead.
 
 定义当前包安装的目标文件夹。
 
@@ -471,12 +587,14 @@ Symfony 就是一个例子。它有一些独立的包作为组件。Yaml 组件�
 
 要做到这一点 `autoload` 和 `target-dir` 应该定义如下：
 
-    {
-        "autoload": {
-            "psr-0": { "Symfony\\Component\\Yaml\\": "" }
-        },
-        "target-dir": "Symfony/Component/Yaml"
-    }
+```json
+{
+    "autoload": {
+        "psr-0": { "Symfony\\Component\\Yaml\\": "" }
+    },
+    "target-dir": "Symfony/Component/Yaml"
+}
+```
 
 可选。
 
@@ -514,49 +632,51 @@ Repositories 并不是递归调用的，只能在“Root包”的 `composer.json
 
 更多相关内容，请查看 [资源库](05-repositories.md)。
 
-例：
+实例：
 
-    {
-        "repositories": [
-            {
-                "type": "composer",
-                "url": "http://packages.example.com"
-            },
-            {
-                "type": "composer",
-                "url": "https://packages.example.com",
-                "options": {
-                    "ssl": {
-                        "verify_peer": "true"
-                    }
-                }
-            },
-            {
-                "type": "vcs",
-                "url": "https://github.com/Seldaek/monolog"
-            },
-            {
-                "type": "pear",
-                "url": "http://pear2.php.net"
-            },
-            {
-                "type": "package",
-                "package": {
-                    "name": "smarty/smarty",
-                    "version": "3.1.7",
-                    "dist": {
-                        "url": "http://www.smarty.net/files/Smarty-3.1.7.zip",
-                        "type": "zip"
-                    },
-                    "source": {
-                        "url": "http://smarty-php.googlecode.com/svn/",
-                        "type": "svn",
-                        "reference": "tags/Smarty_3_1_7/distribution/"
-                    }
+```json
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.example.com"
+        },
+        {
+            "type": "composer",
+            "url": "https://packages.example.com",
+            "options": {
+                "ssl": {
+                    "verify_peer": "true"
                 }
             }
-        ]
-    }
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Seldaek/monolog"
+        },
+        {
+            "type": "pear",
+            "url": "http://pear2.php.net"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "smarty/smarty",
+                "version": "3.1.7",
+                "dist": {
+                    "url": "http://www.smarty.net/files/Smarty-3.1.7.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "http://smarty-php.googlecode.com/svn/",
+                    "type": "svn",
+                    "reference": "tags/Smarty_3_1_7/distribution/"
+                }
+            }
+        }
+    ]
+}
+```
 
 > **注意：** 顺序是非常重要的，当 Composer 查找资源包时，它会按照顺序进行。默认情况下 Packagist 是最后加入的，因此自定义设置将可以覆盖 Packagist 上的包。
 
@@ -570,8 +690,12 @@ Repositories 并不是递归调用的，只能在“Root包”的 `composer.json
 * **process-timeout:** 默认为 `300`。处理进程结束时间，例如：git 克隆的时间。Composer 将放弃超时的任务。如果你的网络缓慢或者正在使用一个巨大的包，你可能要将这个值设置的更高一些。
 * **use-include-path:** 默认为 `false`。如果为 true，Composer autoloader 还将在 PHP include path 中继续查找类文件。
 * **preferred-install:** 默认为 `auto`。它的值可以是 `source`、`dist` 或 `auto`。这个选项允许你设置 Composer 的默认安装方法。
-* **github-protocols:** 默认为 `["git", "https"]`。从 github.com 克隆时使用的协议优先级清单，因此默认情况下将优先使用 git 协议进行克隆。
-* **github-oauth:** 一个域名和 oauth keys 的列表。例如：使用 `{"github.com": "oauthtoken"}` 作为此选项的值，将使用 `oauthtoken` 来访问 github 上的私人仓库，并绕过 low IP-based rate 的 API 限制。
+* **github-protocols:** 默认为 `["git", "https", "ssh"]`。从 github.com 克隆时使用的协议优先级清单，因此默认情况下将优先使用 git 协议进行克隆。你可以重新排列它们的次序，例如，如果你的网络有代理服务器或 git 协议的效率很低，你就可以提升 https 协议的优先级。
+* **github-oauth:** 一个域名和 oauth keys 的列表。
+  例如：使用 `{"github.com": "oauthtoken"}` 作为此选项的值，
+  将使用 `oauthtoken` 来访问 github 上的私人仓库，并绕过 low IP-based rate 的 API 限制。
+  [关联知识](articles/troubleshooting.md#api-rate-limit-and-oauth-tokens)
+  关于如何获取 GitHub 的 OAuth token。
 * **vendor-dir:** 默认为 `vendor`。通过设置你可以安装依赖到不同的目录。
 * **bin-dir:** 默认为 `vendor/bin`。如果一个项目包含二进制文件，它们将被连接到这个目录。
 * **cache-dir:** unix 下默认为 `$home/cache`，Windows 下默认为 `C:\Users\<user>\AppData\Local\Composer`。用于存储 composer 所有的缓存文件。相关信息请查看 [COMPOSER_HOME](03-cli.md#composer-home)。
@@ -582,17 +706,21 @@ Repositories 并不是递归调用的，只能在“Root包”的 `composer.json
 * **cache-files-maxsize:** 默认为 `300MiB`。Composer 缓存的最大容量，超出后将优先清除旧的缓存数据，直到缓存量低于这个数值。
 * **prepend-autoloader:** 默认为 `true`。如果设置为 false，composer autoloader 将不会附加到现有的自动加载机制中。这有时候用来解决与其它自动加载机制产生的冲突。
 * **autoloader-suffix:** 默认为 `null`。Composer autoloader 的后缀，当设置为空时将会产生一个随机的字符串。
+* **optimize-autoloader** Defaults to `false`. Always optimize when dumping
+  the autoloader.
 * **github-domains:** 默认为 `["github.com"]`。一个 github mode 下的域名列表。这是用于GitHub的企业设置。
 * **notify-on-install:** 默认为 `true`。Composer 允许资源仓库定义一个用于通知的 URL，以便有人从其上安装资源包时能够得到一个反馈通知。此选项允许你禁用该行为。
 * **discard-changes:** 默认为 `false`，它的值可以是 `true`、`false` 或 `stash`。这个选项允许你设置在非交互模式下，当处理失败的更新时采用的处理方式。`true` 表示永远放弃更改。`"stash"` 表示继续尝试。Use this for CI servers or deploy scripts if you tend to have modified vendors.
 
-例：
+实例：
 
-    {
-        "config": {
-            "bin-dir": "bin"
-        }
+```json
+{
+    "config": {
+        "bin-dir": "bin"
     }
+}
+```
 
 <a name="scripts"></a>
 ### scripts <span>(root-only)</span>
@@ -608,7 +736,9 @@ Composer 允许你在安装过程中的各个阶段挂接脚本。
 
 这可以是几乎任何东西。若要从脚本事件访问处理程序，你可以这样做：
 
-    $extra = $event->getComposer()->getPackage()->getExtra();
+```php
+$extra = $event->getComposer()->getPackage()->getExtra();
+```
 
 可选。
 
@@ -630,13 +760,15 @@ See [Vendor Binaries](articles/vendor-binaries.md) for more details.
 
 * **exclude:** 允许设置一个需要被排除的路径的列表。使用与 .gitignore 文件相同的语法。一个前导的（!）将会使其变成白名单而无视之前相同目录的排除设定。前导斜杠只会在项目的相对路径的开头匹配。星号为通配符。
 
-例：
+实例：
 
-    {
-        "archive": {
-            "exclude": ["/foo/bar", "baz", "/*.test", "!/foo/bar/baz"]
-        }
+```json
+{
+    "archive": {
+        "exclude": ["/foo/bar", "baz", "/*.test", "!/foo/bar/baz"]
     }
+}
+```
 
 在这个例子中我们 include `/dir/foo/bar/file`、`/foo/bar/baz`、`/file.php`、`/foo/my.test` 但排除了 `/foo/bar/any`、`/foo/baz`、`/my.test`。
 

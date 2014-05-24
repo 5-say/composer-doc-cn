@@ -59,14 +59,14 @@ RC suffixes can also be followed by a number.
 
 Examples:
 
-    1.0.0
-    1.0.2
-    1.1.0
-    0.2.5
-    1.0.0-dev
-    1.0.0-alpha3
-    1.0.0-beta2
-    1.0.0-RC5
+- 1.0.0
+- 1.0.2
+- 1.1.0
+- 0.2.5
+- 1.0.0-dev
+- 1.0.0-alpha3
+- 1.0.0-beta2
+- 1.0.0-RC5
 
 Optional if the package repository can infer the version from somewhere, such
 as the VCS tag name in the VCS repository. In that case it is also recommended
@@ -113,11 +113,11 @@ searching and filtering.
 
 Examples:
 
-    logging
-    events
-    database
-    redis
-    templating
+- logging
+- events
+- database
+- redis
+- templating
 
 Optional.
 
@@ -141,19 +141,19 @@ The license of the package. This can be either a string or an array of strings.
 
 The recommended notation for the most common licenses is (alphabetical):
 
-    Apache-2.0
-    BSD-2-Clause
-    BSD-3-Clause
-    BSD-4-Clause
-    GPL-2.0
-    GPL-2.0+
-    GPL-3.0
-    GPL-3.0+
-    LGPL-2.1
-    LGPL-2.1+
-    LGPL-3.0
-    LGPL-3.0+
-    MIT
+- Apache-2.0
+- BSD-2-Clause
+- BSD-3-Clause
+- BSD-4-Clause
+- GPL-2.0
+- GPL-2.0+
+- GPL-3.0
+- GPL-3.0+
+- LGPL-2.1
+- LGPL-2.1+
+- LGPL-3.0
+- LGPL-3.0+
+- MIT
 
 Optional, but it is highly recommended to supply this. More identifiers are
 listed at the [SPDX Open Source License Registry](http://www.spdx.org/licenses/).
@@ -162,28 +162,33 @@ For closed-source software, you may use `"proprietary"` as the license identifie
 
 An Example:
 
-    {
-        "license": "MIT"
-    }
-
+```json
+{
+    "license": "MIT"
+}
+```
 
 For a package, when there is a choice between licenses ("disjunctive license"),
 multiple can be specified as array.
 
 An Example for disjunctive licenses:
 
-    {
-        "license": [
-           "LGPL-2.1",
-           "GPL-3.0+"
-        ]
-    }
+```json
+{
+    "license": [
+       "LGPL-2.1",
+       "GPL-3.0+"
+    ]
+}
+```
 
 Alternatively they can be separated with "or" and enclosed in parenthesis;
 
-    {
-        "license": "(LGPL-2.1 or GPL-3.0+)"
-    }
+```json
+{
+    "license": "(LGPL-2.1 or GPL-3.0+)"
+}
+```
 
 Similarly when multiple licenses need to be applied ("conjunctive license"),
 they should be separated with "and" and enclosed in parenthesis.
@@ -201,22 +206,24 @@ Each author object can have following properties:
 
 An example:
 
-    {
-        "authors": [
-            {
-                "name": "Nils Adermann",
-                "email": "naderman@naderman.de",
-                "homepage": "http://www.naderman.de",
-                "role": "Developer"
-            },
-            {
-                "name": "Jordi Boggiano",
-                "email": "j.boggiano@seld.be",
-                "homepage": "http://seld.be",
-                "role": "Developer"
-            }
-        ]
-    }
+```json
+{
+    "authors": [
+        {
+            "name": "Nils Adermann",
+            "email": "naderman@naderman.de",
+            "homepage": "http://www.naderman.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Jordi Boggiano",
+            "email": "j.boggiano@seld.be",
+            "homepage": "http://seld.be",
+            "role": "Developer"
+        }
+    ]
+}
+```
 
 Optional, but highly recommended.
 
@@ -235,12 +242,14 @@ Support information includes the following:
 
 An example:
 
-    {
-        "support": {
-            "email": "support@example.org",
-            "irc": "irc://irc.freenode.org/composer"
-        }
+```json
+{
+    "support": {
+        "email": "support@example.org",
+        "irc": "irc://irc.freenode.org/composer"
     }
+}
+```
 
 Optional.
 
@@ -251,11 +260,13 @@ All of the following take an object which maps package names to
 
 Example:
 
-    {
-        "require": {
-            "monolog/monolog": "1.0.*"
-        }
+```json
+{
+    "require": {
+        "monolog/monolog": "1.0.*"
     }
+}
+```
 
 All links are optional fields.
 
@@ -267,24 +278,28 @@ allow unstable packages of a dependency for example.
 
 Example:
 
-    {
-        "require": {
-            "monolog/monolog": "1.0.*@beta",
-            "acme/foo": "@dev"
-        }
+```json
+{
+    "require": {
+        "monolog/monolog": "1.0.*@beta",
+        "acme/foo": "@dev"
     }
+}
+```
 
 If one of your dependencies has a dependency on an unstable package you need to
 explicitly require it as well, along with its sufficient stability flag.
 
 Example:
 
-    {
-        "require": {
-            "doctrine/doctrine-fixtures-bundle": "dev-master",
-            "doctrine/data-fixtures": "@dev"
-        }
+```json
+{
+    "require": {
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/data-fixtures": "@dev"
     }
+}
+```
 
 `require` and `require-dev` additionally support explicit references (i.e.
 commit) for dev versions to make sure they are locked to a given state, even
@@ -293,12 +308,14 @@ and append the reference with `#<ref>`.
 
 Example:
 
-    {
-        "require": {
-            "monolog/monolog": "dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7",
-            "acme/foo": "1.0.x-dev#abc123"
-        }
+```json
+{
+    "require": {
+        "monolog/monolog": "dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7",
+        "acme/foo": "1.0.x-dev#abc123"
     }
+}
+```
 
 > **Note:** While this is convenient at times, it should not be how you use
 > packages in the long term because it comes with a technical limitation. The
@@ -370,20 +387,73 @@ and not version constraints.
 
 Example:
 
-    {
-        "suggest": {
-            "monolog/monolog": "Allows more advanced logging of the application flow"
-        }
+```json
+{
+    "suggest": {
+        "monolog/monolog": "Allows more advanced logging of the application flow"
     }
+}
+```
 
 ### autoload
 
 Autoload mapping for a PHP autoloader.
 
-Currently [`PSR-0`](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md)
-autoloading, `classmap` generation and `files` are supported. PSR-0 is the recommended way though
-since it offers greater flexibility (no need to regenerate the autoloader when you add
-classes).
+Currently [`PSR-0`](http://www.php-fig.org/psr/psr-0/) autoloading,
+[`PSR-4`](http://www.php-fig.org/psr/psr-4/) autoloading, `classmap` generation and
+`files` includes are supported. PSR-4 is the recommended way though since it offers
+greater ease of use (no need to regenerate the autoloader when you add classes).
+
+#### PSR-4
+
+Under the `psr-4` key you define a mapping from namespaces to paths, relative to the
+package root. When autoloading a class like `Foo\\Bar\\Baz` a namespace prefix
+`Foo\\` pointing to a directory `src/` means that the autoloader will look for a
+file named `src/Bar/Baz.php` and include it if present. Note that as opposed to
+the older PSR-0 style, the prefix (`Foo\\`) is **not** present in the file path.
+
+Namespace prefixes must end in `\\` to avoid conflicts between similar prefixes.
+For example `Foo` would match classes in the `FooBar` namespace so the trailing
+backslashes solve the problem: `Foo\\` and `FooBar\\` are distinct.
+
+The PSR-4 references are all combined, during install/update, into a single
+key => value array which may be found in the generated file
+`vendor/composer/autoload_psr4.php`.
+
+Example:
+
+```json
+{
+    "autoload": {
+        "psr-4": {
+            "Monolog\\": "src/",
+            "Vendor\\Namespace\\": ""
+        }
+    }
+}
+```
+
+If you need to search for a same prefix in multiple directories,
+you can specify them as an array as such:
+
+```json
+{
+    "autoload": {
+        "psr-4": { "Monolog\\": ["src/", "lib/"] }
+    }
+}
+```
+
+If you want to have a fallback directory where any namespace will be looked for,
+you can use an empty prefix like:
+
+```json
+{
+    "autoload": {
+        "psr-4": { "": "src/" }
+    }
+}
+```
 
 #### PSR-0
 
@@ -399,44 +469,52 @@ array which may be found in the generated file `vendor/composer/autoload_namespa
 
 Example:
 
-    {
-        "autoload": {
-            "psr-0": {
-                "Monolog\\": "src/",
-                "Vendor\\Namespace\\": "src/",
-                "Vendor_Namespace_": "src/"
-            }
+```json
+{
+    "autoload": {
+        "psr-0": {
+            "Monolog\\": "src/",
+            "Vendor\\Namespace\\": "src/",
+            "Vendor_Namespace_": "src/"
         }
     }
+}
+```
 
 If you need to search for a same prefix in multiple directories,
 you can specify them as an array as such:
 
-    {
-        "autoload": {
-            "psr-0": { "Monolog\\": ["src/", "lib/"] }
-        }
+```json
+{
+    "autoload": {
+        "psr-0": { "Monolog\\": ["src/", "lib/"] }
     }
+}
+```
 
 The PSR-0 style is not limited to namespace declarations only but may be
 specified right down to the class level. This can be useful for libraries with
 only one class in the global namespace. If the php source file is also located
 in the root of the package, for example, it may be declared like this:
 
-    {
-        "autoload": {
-            "psr-0": { "UniqueGlobalClass": "" }
-        }
+```json
+{
+    "autoload": {
+        "psr-0": { "UniqueGlobalClass": "" }
     }
+}
+```
 
 If you want to have a fallback directory where any namespace can be, you can
 use an empty prefix like:
 
-    {
-        "autoload": {
-            "psr-0": { "": "src/" }
-        }
+```json
+{
+    "autoload": {
+        "psr-0": { "": "src/" }
     }
+}
+```
 
 #### Classmap
 
@@ -446,16 +524,18 @@ key => value array which may be found in the generated file
 classes in all `.php` and `.inc` files in the given directories/files.
 
 You can use the classmap generation support to define autoloading for all libraries
-that do not follow PSR-0. To configure this you specify all directories or files
+that do not follow PSR-0/4. To configure this you specify all directories or files
 to search for classes.
 
 Example:
 
-    {
-        "autoload": {
-            "classmap": ["src/", "lib/", "Something.php"]
-        }
+```json
+{
+    "autoload": {
+        "classmap": ["src/", "lib/", "Something.php"]
     }
+}
+```
 
 #### Files
 
@@ -465,11 +545,37 @@ that cannot be autoloaded by PHP.
 
 Example:
 
-    {
-        "autoload": {
-            "files": ["src/MyLibrary/functions.php"]
-        }
+```json
+{
+    "autoload": {
+        "files": ["src/MyLibrary/functions.php"]
     }
+}
+```
+
+### autoload-dev <span>(root-only)</span>
+
+This section allows to define autoload rules for development purposes.
+
+Classes needed to run the test suite should not be included in the main autoload
+rules to avoid polluting the autoloader in production and when other people use
+your package as a dependency.
+
+Therefore, it is a good idea to rely on a dedicated path for your unit tests
+and to add it within the autoload-dev section.
+
+Example:
+
+```json
+{
+    "autoload": {
+        "psr-4": { "MyLibrary\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "MyLibrary\\Tests\\": "tests/" }
+    }
+}
+```
 
 ### include-path
 
@@ -481,13 +587,19 @@ A list of paths which should get appended to PHP's `include_path`.
 
 Example:
 
-    {
-        "include-path": ["lib/"]
-    }
+```json
+{
+    "include-path": ["lib/"]
+}
+```
 
 Optional.
 
 ### target-dir
+
+> **DEPRECATED**: This is only present to support legacy PSR-0 style autoloading,
+> and all new code should preferably use PSR-4 without target-dir and projects
+> using PSR-0 with PHP namespaces are encouraged to migrate to PSR-4 instead.
 
 Defines the installation target.
 
@@ -503,12 +615,14 @@ it from `vendor/symfony/yaml`.
 
 To do that, `autoload` and `target-dir` are defined as follows:
 
-    {
-        "autoload": {
-            "psr-0": { "Symfony\\Component\\Yaml\\": "" }
-        },
-        "target-dir": "Symfony/Component/Yaml"
-    }
+```json
+{
+    "autoload": {
+        "psr-0": { "Symfony\\Component\\Yaml\\": "" }
+    },
+    "target-dir": "Symfony/Component/Yaml"
+}
+```
 
 Optional.
 
@@ -566,47 +680,49 @@ For more information on any of these, see [Repositories](05-repositories.md).
 
 Example:
 
-    {
-        "repositories": [
-            {
-                "type": "composer",
-                "url": "http://packages.example.com"
-            },
-            {
-                "type": "composer",
-                "url": "https://packages.example.com",
-                "options": {
-                    "ssl": {
-                        "verify_peer": "true"
-                    }
-                }
-            },
-            {
-                "type": "vcs",
-                "url": "https://github.com/Seldaek/monolog"
-            },
-            {
-                "type": "pear",
-                "url": "http://pear2.php.net"
-            },
-            {
-                "type": "package",
-                "package": {
-                    "name": "smarty/smarty",
-                    "version": "3.1.7",
-                    "dist": {
-                        "url": "http://www.smarty.net/files/Smarty-3.1.7.zip",
-                        "type": "zip"
-                    },
-                    "source": {
-                        "url": "http://smarty-php.googlecode.com/svn/",
-                        "type": "svn",
-                        "reference": "tags/Smarty_3_1_7/distribution/"
-                    }
+```json
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.example.com"
+        },
+        {
+            "type": "composer",
+            "url": "https://packages.example.com",
+            "options": {
+                "ssl": {
+                    "verify_peer": "true"
                 }
             }
-        ]
-    }
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Seldaek/monolog"
+        },
+        {
+            "type": "pear",
+            "url": "http://pear2.php.net"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "smarty/smarty",
+                "version": "3.1.7",
+                "dist": {
+                    "url": "http://www.smarty.net/files/Smarty-3.1.7.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "http://smarty-php.googlecode.com/svn/",
+                    "type": "svn",
+                    "reference": "tags/Smarty_3_1_7/distribution/"
+                }
+            }
+        }
+    ]
+}
+```
 
 > **Note:** Order is significant here. When looking for a package, Composer
 will look from the first to the last repository, and pick the first match.
@@ -627,14 +743,16 @@ The following options are supported:
 * **preferred-install:** Defaults to `auto` and can be any of `source`, `dist` or
   `auto`. This option allows you to set the install method Composer will prefer to
   use.
-* **github-protocols:** Defaults to `["git", "https"]`. A list of protocols to
+* **github-protocols:** Defaults to `["git", "https", "ssh"]`. A list of protocols to
   use when cloning from github.com, in priority order. You can reconfigure it to
-  prioritize the https protocol if you are behind a proxy or have somehow bad
-  performances with the git protocol.
+  for example prioritize the https protocol if you are behind a proxy or have somehow
+  bad performances with the git protocol.
 * **github-oauth:** A list of domain names and oauth keys. For example using
   `{"github.com": "oauthtoken"}` as the value of this option will use `oauthtoken`
   to access private repositories on github and to circumvent the low IP-based
   rate limiting of their API.
+  [Read more](articles/troubleshooting.md#api-rate-limit-and-oauth-tokens)
+  on how to get an OAuth token for GitHub.
 * **vendor-dir:** Defaults to `vendor`. You can install dependencies into a
   different directory if you want to.
 * **bin-dir:** Defaults to `vendor/bin`. If a project includes binaries, they
@@ -661,6 +779,8 @@ The following options are supported:
   interoperability issues with other autoloaders.
 * **autoloader-suffix:** Defaults to `null`. String to be used as a suffix for
   the generated Composer autoloader. When null a random one will be generated.
+* **optimize-autoloader** Defaults to `false`. Always optimize when dumping
+  the autoloader.
 * **github-domains:** Defaults to `["github.com"]`. A list of domains to use in
   github mode. This is used for GitHub Enterprise setups.
 * **notify-on-install:** Defaults to `true`. Composer allows repositories to
@@ -674,11 +794,13 @@ The following options are supported:
 
 Example:
 
-    {
-        "config": {
-            "bin-dir": "bin"
-        }
+```json
+{
+    "config": {
+        "bin-dir": "bin"
     }
+}
+```
 
 ### scripts <span>(root-only)</span>
 
@@ -694,7 +816,9 @@ Arbitrary extra data for consumption by `scripts`.
 This can be virtually anything. To access it from within a script event
 handler, you can do:
 
-    $extra = $event->getComposer()->getPackage()->getExtra();
+```php
+$extra = $event->getComposer()->getPackage()->getExtra();
+```
 
 Optional.
 
@@ -721,11 +845,13 @@ The following options are supported:
 
 Example:
 
-    {
-        "archive": {
-            "exclude": ["/foo/bar", "baz", "/*.test", "!/foo/bar/baz"]
-        }
+```json
+{
+    "archive": {
+        "exclude": ["/foo/bar", "baz", "/*.test", "!/foo/bar/baz"]
     }
+}
+```
 
 The example will include `/dir/foo/bar/file`, `/foo/bar/baz`, `/file.php`,
 `/foo/my.test` but it will exclude `/foo/bar/any`, `/foo/baz`, and `/my.test`.

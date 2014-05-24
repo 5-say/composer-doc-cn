@@ -78,7 +78,9 @@
 
 当您运行该命令，它会以交互方式要求您填写一些信息，同时聪明的使用一些默认值。
 
-    $ php composer.phar init
+```sh
+php composer.phar init
+```
 
 <a name="init-Options"></a>
 ### 初始化-参数
@@ -96,7 +98,9 @@
 
 `install` 命令从当前目录读取 `composer.json` 文件，处理了依赖关系，并把其安装到 `vendor` 目录下。
 
-    $ php composer.phar install
+```sh
+php composer.phar install
+```
 
 如果当前目录下存在 `composer.lock` 文件，它会从此文件读取依赖版本，而不是根据 `composer.json` 文件去获取依赖。这确保了该库的每个使用者都能得到相同的依赖版本。
 
@@ -114,24 +118,30 @@
 * **--no-scripts:** 跳过 `composer.json` 文件中定义的脚本。
 * **--no-plugins:** 关闭 plugins。
 * **--no-progress:** 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。
-* **--optimize-autoloader (-o):** 转换 PSR-0 autoloading 到 classmap 可以获得更快的加载支持。特别是在生产环境下建议这么做，但由于运行需要一些时间，因此并没有作为默认值。
+* **--optimize-autoloader (-o):** 转换 PSR-0/4 autoloading 到 classmap 可以获得更快的加载支持。特别是在生产环境下建议这么做，但由于运行需要一些时间，因此并没有作为默认值。
 
 <a name="update"></a>
 ## 更新 `update`
 
 为了获取依赖的最新版本，并且升级 `composer.lock` 文件，你应该使用 `update` 命令。
 
-    $ php composer.phar update
+```sh
+php composer.phar update
+```
 
 这将解决项目的所有依赖，并将确切的版本号写入 `composer.lock`。
 
 如果你只是想更新几个包，你可以像这样分别列出它们：
 
-    $ php composer.phar update vendor/package vendor/package2
+```sh
+php composer.phar update vendor/package vendor/package2
+```
 
 你还可以使用通配符进行批量更新：
 
-    $ php composer.phar update vendor/*
+```sh
+php composer.phar update vendor/*
+```
 
 <a name="update-Options"></a>
 ### 更新-参数
@@ -144,7 +154,7 @@
 * **--no-scripts:** 跳过 `composer.json` 文件中定义的脚本。
 * **--no-plugins:** 关闭 plugins。
 * **--no-progress:** 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。
-* **--optimize-autoloader (-o):** 转换 PSR-0 autoloading 到 classmap 可以获得更快的加载支持。特别是在生产环境下建议这么做，但由于运行需要一些时间，因此并没有作为默认值。
+* **--optimize-autoloader (-o):** 转换 PSR-0/4 autoloading 到 classmap 可以获得更快的加载支持。特别是在生产环境下建议这么做，但由于运行需要一些时间，因此并没有作为默认值。
 * **--lock:** 仅更新 lock 文件的 hash，取消有关 lock 文件过时的警告。
 * **--with-dependencies** 同时更新白名单内包的依赖关系，这将进行递归更新。
 
@@ -153,13 +163,17 @@
 
 `require` 命令增加新的依赖包到当前目录的 `composer.json` 文件中。
 
-    $ php composer.phar require
+```sh
+php composer.phar require
+```
 
 在添加或改变依赖时， 修改后的依赖关系将被安装或者更新。
 
 如果你不希望通过交互来指定依赖包，你可以在这条令中直接指明依赖包。
 
-    $ php composer.phar require vendor/package:2.* vendor/package2:dev-master
+```sh
+php composer.phar require vendor/package:2.* vendor/package2:dev-master
+```
 
 <a name="require-Options"></a>
 ### 申明依赖-参数
@@ -169,6 +183,7 @@
 * **--dev:** 安装 `require-dev` 字段中列出的包。
 * **--no-update:** 禁用依赖关系的自动更新。
 * **--no-progress:** 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。
+* **--update-with-dependencies** 一并更新新装包的依赖。
 
 <a name="global"></a>
 ## 全局执行 `global`
@@ -177,18 +192,24 @@
 
 并且如果你将 `$COMPOSER_HOME/vendor/bin` 加入到了 `$PATH` 环境变量中，你就可以用它在命令行中安装全局应用，下面是一个例子：
 
-    $ php composer.phar global require fabpot/php-cs-fixer:dev-master
+```sh
+php composer.phar global require fabpot/php-cs-fixer:dev-master
+```
 
 现在 `php-cs-fixer` 就可以在全局范围使用了（假设你已经设置了你的 PATH）。如果稍后你想更新它，你只需要运行 `global update`：
 
-    $ php composer.phar global update
+```sh
+php composer.phar global update
+```
 
 <a name="search"></a>
 ## 搜索 `search`
 
 `search` 命令允许你为当前项目搜索依赖包，通常它只搜索 packagist.org 上的包，你可以简单的输入你的搜索条件。
 
-    $ php composer.phar search monolog
+```sh
+php composer.phar search monolog
+```
 
 您也可以通过传递多个参数来进行多条件搜索。
 
@@ -202,30 +223,36 @@
 
 列出所有可用的软件包，你可以使用 `show` 命令。
 
-    $ php composer.phar show
+```sh
+php composer.phar show
+```
 
 如果你想看到一个包的详细信息，你可以输入一个包名称。
 
-    $ php composer.phar show monolog/monolog
+```sh
+php composer.phar show monolog/monolog
 
-    name     : monolog/monolog
-    versions : master-dev, 1.0.2, 1.0.1, 1.0.0, 1.0.0-RC1
-    type     : library
-    names    : monolog/monolog
-    source   : [git] http://github.com/Seldaek/monolog.git 3d4e60d0cbc4b888fe5ad223d77964428b1978da
-    dist     : [zip] http://github.com/Seldaek/monolog/zipball/3d4e60d0cbc4b888fe5ad223d77964428b1978da 3d4e60d0cbc4b888fe5ad223d77964428b1978da
-    license  : MIT
+name     : monolog/monolog
+versions : master-dev, 1.0.2, 1.0.1, 1.0.0, 1.0.0-RC1
+type     : library
+names    : monolog/monolog
+source   : [git] http://github.com/Seldaek/monolog.git 3d4e60d0cbc4b888fe5ad223d77964428b1978da
+dist     : [zip] http://github.com/Seldaek/monolog/zipball/3d4e60d0cbc4b888fe5ad223d77964428b1978da 3d4e60d0cbc4b888fe5ad223d77964428b1978da
+license  : MIT
 
-    autoload
-    psr-0
-    Monolog : src/
+autoload
+psr-0
+Monolog : src/
 
-    requires
-    php >=5.3.0
+requires
+php >=5.3.0
+```
 
 你甚至可以输入一个软件包的版本号，来显示该版本的详细信息。
 
-    $ php composer.phar show monolog/monolog 1.0.2
+```sh
+php composer.phar show monolog/monolog 1.0.2
+```
 
 <a name="show-Options"></a>
 ### 展示-参数
@@ -239,13 +266,15 @@
 
 `depends` 命令可以查出已安装在你项目中的某个包，是否正在被其它的包所依赖，并列出他们。
 
-    $ php composer.phar depends --link-type=require monolog/monolog
+```sh
+php composer.phar depends --link-type=require monolog/monolog
 
-    nrk/monolog-fluent
-    poc/poc
-    propel/propel
-    symfony/monolog-bridge
-    symfony/symfony
+nrk/monolog-fluent
+poc/poc
+propel/propel
+symfony/monolog-bridge
+symfony/symfony
+```
 
 <a name="depends-Options"></a>
 ### 依赖性检测-参数
@@ -257,36 +286,53 @@
 
 在提交 `composer.json` 文件，和创建 tag 前，你应该始终运行 `validate` 命令。它将检测你的 `composer.json` 文件是否是有效的
 
-    $ php composer.phar validate
+```sh
+php composer.phar validate
+```
+
+### 有效性检测参数
+
+* **--no-check-all:** Composer 是否进行完整的校验。
 
 <a name="status"></a>
 ## 依赖包状态检测 `status`
 
 如果你经常修改依赖包里的代码，并且它们是从 source（自定义源）进行安装的，那么 `status` 命令允许你进行检查，如果你有任何本地的更改它将会给予提示。
 
-    $ php composer.phar status
+```sh
+php composer.phar status
+```
 
 你可以使用 `--verbose` 系列参数（-v|vv|vvv）来获取更详细的详细：
 
-    $ php composer.phar status -v
-    You have changes in the following dependencies:
-    vendor/seld/jsonlint:
-        M README.mdown
+```sh
+php composer.phar status -v
+
+You have changes in the following dependencies:
+vendor/seld/jsonlint:
+    M README.mdown
+```
 
 <a name="self-update"></a>
 ## 自我更新 `self-update`
 
 将 Composer 自身升级到最新版本，只需要运行 `self-update` 命令。它将替换你的 `composer.phar` 文件到最新版本。
 
-    $ php composer.phar self-update
+```sh
+php composer.phar self-update
+```
 
 如果你想要升级到一个特定的版本，可以这样简单的指定它：
 
-    $ composer self-update 1.0.0-alpha7
+```sh
+php composer.phar self-update 1.0.0-alpha7
+```
 
 如果你已经为整个系统安装 Composer（参见 [全局安装](00-intro.md#全局安装)），你可能需要在 `root` 权限下运行它：
 
-    $ sudo composer self-update
+```sh
+sudo composer self-update
+```
 
 <a name="self-update-Options"></a>
 ### 自我更新-参数
@@ -299,7 +345,9 @@
 
 `config` 命令允许你编辑 Composer 的一些基本设置，无论是本地的 `composer.json` 或者全局的 `config.json` 文件。
 
-    $ php composer.phar config --list
+```sh
+php composer.phar config --list
+```
 
 <a name="config-Usage"></a>
 ### 更改配置-使用方法
@@ -324,7 +372,9 @@
 
 除了修改配置选项， `config` 命令还支持通过以下方法修改来源信息：
 
-    $ php composer.phar config repositories.foo vcs http://github.com/foo/bar
+```sh
+php composer.phar config repositories.foo vcs http://github.com/foo/bar
+```
 
 <a name="create-project"></a>
 ## 创建项目 `create-project`
@@ -341,7 +391,9 @@
 
 如果该目录目前不存在，则会在安装过程中自动创建。
 
-    php composer.phar create-project doctrine/orm path 2.2.*
+```sh
+php composer.phar create-project doctrine/orm path 2.2.*
+```
 
 此外，你也可以无需使用这个命令，而是通过现有的 `composer.json` 文件来启动这个项目。
 
@@ -366,12 +418,13 @@
 
 某些情况下你需要更新 autoloader，例如在你的包中加入了一个新的类。你可以使用 `dump-autoload` 来完成，而不必执行 `install` 或 `update` 命令。
 
-此外，它可以打印一个优化过的，符合 PSR-0 规范的类的索引，这也是出于对性能的可考虑。在大型的应用中会有许多类文件，而 autoloader 会占用每个请求的很大一部分时间，使用 classmaps 或许在开发时不太方便，但它在保证性能的前提下，仍然可以获得 PSR-0 规范带来的便利。
+此外，它可以打印一个优化过的，符合 PSR-0/4 规范的类的索引，这也是出于对性能的可考虑。在大型的应用中会有许多类文件，而 autoloader 会占用每个请求的很大一部分时间，使用 classmaps 或许在开发时不太方便，但它在保证性能的前提下，仍然可以获得 PSR-0/4 规范带来的便利。
 
 <a name="dump-autoload-Options"></a>
 ### 打印自动加载索引-参数
 
-* **--optimize (-o):** 转换 PSR-0 autoloading 到 classmap 获得更快的载入速度。这特别适用于生产环境，但可能需要一些时间来运行，因此它目前不是默认设置。
+* **--optimize (-o):** 转换 PSR-0/4 autoloading 到 classmap 获得更快的载入速度。这特别适用于生产环境，但可能需要一些时间来运行，因此它目前不是默认设置。
+* **--no-dev:** 禁用 autoload-dev 规则。
 
 <a name="licenses"></a>
 ## 查看许可协议 `licenses`
@@ -388,14 +441,18 @@
 
 如果你觉得发现了一个 bug 或是程序行为变得怪异，你可能需要运行 `diagnose` 命令，来帮助你检测一些常见的问题。
 
-    $ php composer.phar diagnose
+```sh
+php composer.phar diagnose
+```
 
 <a name="archive"></a>
 ## 归档 `archive`
 
 此命令用来对指定包的指定版本进行 zip/tar 归档。它也可以用来归档你的整个项目，不包括 excluded/ignored（排除/忽略）的文件。
 
-    $ php composer.phar archive vendor/package 2.0.21 --format=zip
+```sh
+php composer.phar archive vendor/package 2.0.21 --format=zip
+```
 
 <a name="archive-Options"></a>
 ### 归档-参数
@@ -408,7 +465,9 @@
 
 使用 `help` 可以获取指定命令的帮助信息。
 
-    $ php composer.phar help install
+```sh
+php composer.phar help install
+```
 
 <a name="Environment-variables"></a>
 ## 环境变量
@@ -422,7 +481,9 @@
 
 例如：
 
-    $ COMPOSER=composer-other.json php composer.phar install
+```sh
+COMPOSER=composer-other.json php composer.phar install
+```
 
 <a name="COMPOSER_ROOT_VERSION"></a>
 ### COMPOSER_ROOT_VERSION

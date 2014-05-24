@@ -23,21 +23,26 @@
 
 安装 Composer，你只需要下载 `composer.phar` 可执行文件。
 
-    $ curl -sS https://getcomposer.org/installer | php
+```sh
+curl -sS https://getcomposer.org/installer | php
+```
 
 详细请查看 [简介](00-intro.md) 章节。
 
 要检查 Composer 是否正常工作，只需要通过 `php` 来执行 PHAR：
 
-    $ php composer.phar
+```sh
+php composer.phar
+```
 
 这将返回给你一个可执行的命令列表。
 
 > **注意：** 你也可以仅执行 `--check` 选项而无需下载 Composer。
 > 要获取更多的信息请使用 `--help`。
 >
->     $ curl -sS https://getcomposer.org/installer | php -- --check
->     $ curl -sS https://getcomposer.org/installer | php -- --help
+> ```sh
+> curl -sS https://getcomposer.org/installer | php -- --help
+> ```
 
 <a name="composer.json-Project-Setup"></a>
 ## `composer.json`：项目安装
@@ -51,11 +56,13 @@
 
 第一件事情（并且往往只需要做这一件事），你需要在 `composer.json` 文件中指定 `require` key 的值。你只需要简单的告诉 Composer 你的项目需要依赖哪些包。
 
-    {
-        "require": {
-            "monolog/monolog": "1.0.*"
-        }
+```json
+{
+    "require": {
+        "monolog/monolog": "1.0.*"
     }
+}
+```
 
 你可以看到， `require` 需要一个 **包名称** （例如 `monolog/monolog`） 映射到 **包版本** （例如 `1.0.*`） 的对象。
 
@@ -115,6 +122,10 @@
 
 `~` 最好用例子来解释： `~1.2` 相当于 `>=1.2,<2.0`，而 `~1.2.3` 相当于 `>=1.2.3,<1.3`。正如你所看到的这对于遵循 [语义化版本号](http://semver.org/) 的项目最有用。一个常见的用法是标记你所依赖的最低版本，像 `~1.2` （允许1.2以上的任何版本，但不包括2.0）。由于理论上直到2.0应该都没有向后兼容性问题，所以效果很好。你还会看到它的另一种用法，使用 `~` 指定最低版本，但允许版本号的最后一位数字上升。
 
+> **注意：** 虽然 `2.0-beta.1` 严格地说是早于 `2.0`，但是，根据版本约束条件，
+> 例如 `~1.2` 却不会安装这个版本。就像前面所讲的 `~1.2` 只意味着 `.2`
+> 部分可以改变，但是 `1.` 部分是固定的。
+
 <a name="Stability"></a>
 ### 稳定性
 
@@ -125,7 +136,9 @@
 
 获取定义的依赖到你的本地项目，只需要调用 `composer.phar` 运行 `install` 命令。
 
-    $ php composer.phar install
+```sh
+php composer.phar install
+```
 
 接着前面的例子，这将会找到 `monolog/monolog` 的最新版本，并将它下载到 `vendor` 目录。
 这是一个惯例把第三方的代码到一个指定的目录 `vendor`。如果是 monolog 将会创建 `vendor/monolog/monolog` 目录。
@@ -151,11 +164,15 @@
 
 这意味着如果你的依赖更新了新的版本，你将不会获得任何更新。此时要更新你的依赖版本请使用 `update` 命令。这将获取最新匹配的版本（根据你的 `composer.json` 文件）并将新版本更新进锁文件。
 
-    $ php composer.phar update
+```sh
+php composer.phar update
+```
 
 如果只想安装或更新一个依赖，你可以白名单它们：
 
-    $ php composer.phar update monolog/monolog [...]
+```sh
+php composer.phar update monolog/monolog [...]
+```
 
 > **注意：** 对于库，并不一定建议提交锁文件
 > 请参考：[库的锁文件](02-libraries.md#Lock-file).
@@ -174,36 +191,44 @@
 
 对于库的自动加载信息，Composer 生成了一个 `vendor/autoload.php` 文件。你可以简单的引入这个文件，你会得到一个免费的自动加载支持。
 
-    require 'vendor/autoload.php';
+```php
+require 'vendor/autoload.php';
+```
 
 这使得你可以很容易的使用第三方代码。例如：如果你的项目依赖 monolog，你就可以像这样开始使用这个类库，并且他们将被自动加载。
 
-    $log = new Monolog\Logger('name');
-    $log->pushHandler(new Monolog\Handler\StreamHandler('app.log', Monolog\Logger::WARNING));
+```php
+$log = new Monolog\Logger('name');
+$log->pushHandler(new Monolog\Handler\StreamHandler('app.log', Monolog\Logger::WARNING));
 
-    $log->addWarning('Foo');
+$log->addWarning('Foo');
+```
 
 你可以在 `composer.json` 的 `autoload` 字段中增加自己的 autoloader。
 
-    {
-        "autoload": {
-            "psr-0": {"Acme\\": "src/"}
-        }
+```json
+{
+    "autoload": {
+        "psr-4": {"Acme\\": "src/"}
     }
+}
+```
 
-Composer 将注册 [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) autoloader 到 `Acme` 命名空间。
+Composer 将注册一个 [PSR-4](http://www.php-fig.org/psr/psr-4/) autoloader 到 `Acme` 命名空间。
 
-你可以定义一个从命名空间到目录的映射。此时 `src` 会在你项目的根目录，与 `vendor` 文件夹同级。例如 `src/Acme/Foo.php` 文件应该包含 `Acme\Foo` 类。
+你可以定义一个从命名空间到目录的映射。此时 `src` 会在你项目的根目录，与 `vendor` 文件夹同级。例如 `src/Foo.php` 文件应该包含 `Acme\Foo` 类。
 
 添加 `autoload` 字段后，你应该再次运行 `install` 命令来生成 `vendor/autoload.php` 文件。
 
 引用这个文件也将返回 autoloader 的实例，你可以将包含调用的返回值存储在变量中，并添加更多的命名空间。这对于在一个测试套件中自动加载类文件是非常有用的，例如。
 
-    $loader = require 'vendor/autoload.php';
-    $loader->add('Acme\\Test\\', __DIR__);
+```php
+$loader = require 'vendor/autoload.php';
+$loader->add('Acme\\Test\\', __DIR__);
+```
 
-除了 PSR-0 自动加载，classmap 也是支持的。这允许类被自动加载，即使不符合 PSR-0 规范。详细请查看 [自动加载-参考](04-schema.md#autoload)。
+除了 PSR-4 自动加载，classmap 也是支持的。这允许类被自动加载，即使不符合 PSR-0 规范。详细请查看 [自动加载-参考](04-schema.md#autoload)。
 
-> **注意：** Composer 提供了自己的 autoloader。如果你不想使用它，你可以仅仅引入 `vendor/composer/autoload_namespaces.php` 文件，它返回一个关联数组映射了命名空间的目录。
+> **注意：** Composer 提供了自己的 autoloader。如果你不想使用它，你可以仅仅引入 `vendor/composer/autoload_*.php` 文件，它返回一个关联数组，你可以通过这个关联数组配置自己的 autoloader。
 
 &larr; [简介](00-intro.md)  |  [库（资源包）](02-libraries.md) &rarr;

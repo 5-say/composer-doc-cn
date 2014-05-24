@@ -25,13 +25,15 @@
 
 在这样一个模板包的例子中 composer.json 将使用以下设置：
 
-    {
-        "name": "phpdocumentor/template-responsive",
-        "type": "phpdocumentor-template",
-        "require": {
-            "phpdocumentor/template-installer-plugin": "*"
-        }
+```json
+{
+    "name": "phpdocumentor/template-responsive",
+    "type": "phpdocumentor-template",
+    "require": {
+        "phpdocumentor/template-installer-plugin": "*"
     }
+}
+```
 
 > **重要提示：** 为了确保这个模板安装程序在安装模板包之前就已存在，模板包必须写入对此安装程序包的依赖。
 
@@ -52,22 +54,24 @@
 1. [type][1] 属性必须是 `composer-plugin`。
 2. [extra][2] 属性必须包含 `class` 元素，它定义了插件类的名称（包含命名空间）。如果这个包有多个插件类，可以使用数组的形式进行定义。
 
-例：
+实例：
 
-    {
-        "name": "phpdocumentor/template-installer-plugin",
-        "type": "composer-plugin",
-        "license": "MIT",
-        "autoload": {
-            "psr-0": {"phpDocumentor\\Composer": "src/"}
-        },
-        "extra": {
-            "class": "phpDocumentor\\Composer\\TemplateInstallerPlugin"
-        },
-        "require": {
-            "composer-plugin-api": "1.0.0"
-        }
+```json
+{
+    "name": "phpdocumentor/template-installer-plugin",
+    "type": "composer-plugin",
+    "license": "MIT",
+    "autoload": {
+        "psr-0": {"phpDocumentor\\Composer": "src/"}
+    },
+    "extra": {
+        "class": "phpDocumentor\\Composer\\TemplateInstallerPlugin"
+    },
+    "require": {
+        "composer-plugin-api": "1.0.0"
     }
+}
+```
 
 ### 插件类
 
@@ -75,22 +79,26 @@
 
 这个类可以被放在任何位置、使用任何名字，只要能够根据 `extra.class` 中的定义被自动加载即可。
 
-例：
+实例：
 
-    namespace phpDocumentor\Composer;
+```php
+<?php
 
-    use Composer\Composer;
-    use Composer\IO\IOInterface;
-    use Composer\Plugin\PluginInterface;
+namespace phpDocumentor\Composer;
 
-    class TemplateInstallerPlugin implements PluginInterface
+use Composer\Composer;
+use Composer\IO\IOInterface;
+use Composer\Plugin\PluginInterface;
+
+class TemplateInstallerPlugin implements PluginInterface
+{
+    public function activate(Composer $composer, IOInterface $io)
     {
-        public function activate(Composer $composer, IOInterface $io)
-        {
-            $installer = new TemplateInstaller($io, $composer);
-            $composer->getInstallationManager()->addInstaller($installer);
-        }
+        $installer = new TemplateInstaller($io, $composer);
+        $composer->getInstallationManager()->addInstaller($installer);
     }
+}
+```
 
 ### 自定义安装程序类
 
@@ -107,40 +115,44 @@ InstallerInterface 类定义了以下方法（请查阅源码以获得更详细�
 * **uninstall()** 这里你可以定义在移除一个包时需要执行的动作。
 * **getInstallPath()** 这个方法需要返回一个资源包将要安装的位置。_相对于 composer.json 文件的位置。_
 
-例：
+实例：
 
-    namespace phpDocumentor\Composer;
+```php
+<?php
 
-    use Composer\Package\PackageInterface;
-    use Composer\Installer\LibraryInstaller;
+namespace phpDocumentor\Composer;
 
-    class TemplateInstaller extends LibraryInstaller
+use Composer\Package\PackageInterface;
+use Composer\Installer\LibraryInstaller;
+
+class TemplateInstaller extends LibraryInstaller
+{
+    /**
+     * {@inheritDoc}
+     */
+    public function getPackageBasePath(PackageInterface $package)
     {
-        /**
-         * {@inheritDoc}
-         */
-        public function getPackageBasePath(PackageInterface $package)
-        {
-            $prefix = substr($package->getPrettyName(), 0, 23);
-            if ('phpdocumentor/template-' !== $prefix) {
-                throw new \InvalidArgumentException(
-                    'Unable to install template, phpdocumentor templates '
-                    .'should always start their package name with '
-                    .'"phpdocumentor/template-"'
-                );
-            }
-
-            return 'data/templates/'.substr($package->getPrettyName(), 23);
+        $prefix = substr($package->getPrettyName(), 0, 23);
+        if ('phpdocumentor/template-' !== $prefix) {
+            throw new \InvalidArgumentException(
+                'Unable to install template, phpdocumentor templates '
+                .'should always start their package name with '
+                .'"phpdocumentor/template-"'
+            );
         }
 
-        /**
-         * {@inheritDoc}
-         */
-        public function supports($packageType)
-        {
-            return 'phpdocumentor-template' === $packageType;
-        }
+        return 'data/templates/'.substr($package->getPrettyName(), 23);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function supports($packageType)
+    {
+        return 'phpdocumentor-template' === $packageType;
+    }
+}
+```
 
 这个例子演示了，简单的继承 [`Composer\Installer\LibraryInstaller`][5] 类来剥离 `phpdocumentor/template-` 前缀，并用剩余的部分重新组装了一个完全不同的安装路径。
 
