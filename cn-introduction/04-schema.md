@@ -745,9 +745,9 @@ $extra = $event->getComposer()->getPackage()->getExtra();
 <a name="bin"></a>
 ### bin
 
-A set of files that should be treated as binaries and symlinked into the `bin-dir` (from config).
+一组可视为二进制执行文件的文件集合，他们应该（在配置文件中）被连接到 `bin-dir` 文件夹。
 
-See [Vendor Binaries](articles/vendor-binaries.md) for more details.
+详情请见 [Vendor Binaries](https://github.com/5-say/composer-doc-cn/issues/articles/vendor-binaries.md)
 
 可选。
 
