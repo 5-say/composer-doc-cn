@@ -745,9 +745,9 @@ $extra = $event->getComposer()->getPackage()->getExtra();
 <a name="bin"></a>
 ### bin
 
-一组可视为二进制执行文件的文件集合，他们应该（在配置文件中）被连接到 `bin-dir` 文件夹。
+这个属性告知系统有一组文件，它们应该被视为二进制文件，并（在 config 属性中设置）被软链接到 `bin-dir` 目录。
 
-详情请见 [Vendor Binaries](https://github.com/5-say/composer-doc-cn/issues/articles/vendor-binaries.md)
+详细请查看 [Vendor Binaries](https://github.com/5-say/composer-doc-cn/issues/articles/vendor-binaries.md)。
 
 可选。
 
