@@ -2,22 +2,22 @@
     tagline: Expose command-line scripts from packages
 -->
 
-# Vendor binaries 和 `vendor/bin` 目录
+# 二进制供应库和 `vendor/bin` 目录
 
-## 什么是 vendor binary？
+## 什么是二进制供应库？
 
 Any command line script that a Composer package would like to pass along
 to a user who installs the package should be listed as a vendor binary.
 
-一个 Composer 包应该传递给安装它的用户的每一个**命令行脚本**
-都应该作为一个 vendor binary 罗列下来。
+一个 Composer 资源包，想要传递给安装它的用户的任何命令行脚本，
+都应该被列为 `二进制供应库`。
 
 If a package contains other scripts that are not needed by the package
 users (like build or compile scripts) that code should not be listed
 as a vendor binary.
 
-若一个包包含有不被用户所需要的其他脚本（比如 build 或 编译脚本）
-那么这些代码不应该被列为 vendor binary。
+若一个资源包包含有不被用户所需要的其他脚本（比如 build 或 编译脚本）
+那么这些代码不应该被列为二进制供应库。
 
 
 ## 如何定义？
@@ -36,23 +36,28 @@ for any given project.
 }
 ```
 
-## 在 composer.json 里定义 vendor binary 的作用是？
+## 在 composer.json 里定义二进制供应库的作用是？
 
 It instructs Composer to install the package's binaries to `vendor/bin`
 for any project that **depends** on that project.
 
+他指导 Composer 如何安装资源包里的二进制文件到 `vendor/bin`，
+以方便所有**依赖于**该项目的项目引用。
+
 This is a convenient way to expose useful scripts that would
 otherwise be hidden deep in the `vendor/` directory.
 
+这是一个不错的，只暴露有用的脚本，同时把其他用不上的脚本深深地隐藏在 `vendor/` 目录里的
+方法。
 
-## 当 Composer 运行于定义了 vendor binaries 的 composer.json 时发生了什么？
+## 当 Composer 运行于定义了二进制供应库的 composer.json 时发生了什么？
 
 For the binaries that a package defines directly, nothing happens.
 
-对于由某个包直接定义的二进制库，什么也没发生。
+对于被某个包直接定义的二进制库，什么也不会发生。
 
 
-## 当 Composer 运行于标明依赖于某 vendor binaries 的 composer.json 时发生了什么？
+## 当 Composer 运行于标明依赖于某二进制供应库的 composer.json 时发生了什么？
 
 Composer looks for the binaries defined in all of the dependencies. A
 symlink is created from each dependency's binaries to `vendor/bin`.
@@ -62,7 +67,7 @@ Composer会检查所有依赖库里定义的二进制文件。
 
 Say package `my-vendor/project-a` has binaries setup like this:
 
-比如 `my-vendor/project-a` 包的二进制库就是这样安装的：
+比如 `my-vendor/project-a` 资源包的二进制库就是这样安装的：
 
 ```json
 {
@@ -133,9 +138,9 @@ should **not** list the `.bat` file as a binary as it is not needed.
 **不**应该把它们作为二进制文件罗列，因为 Composer 不需要知道它们。
 
 
-## vendor binaries 可以安装在不是 vendor/bin 的地方么？
+## 二进制供应库可以安装在不是 vendor/bin 的地方么？
 
-当然，这里有两种指定 vendor binary 的其他可选位置的方法：
+当然，这里有两种指定二进制供应库的其他可选位置的方法：
 
  1. 在 `composer.json` 文件中的 `bin-dir` 配置属性处设置
  1. 设置环境变量 `COMPOSER_BIN_DIR`
@@ -153,3 +158,6 @@ should **not** list the `.bat` file as a binary as it is not needed.
 Running `composer install` for this `composer.json` will result in
 all of the vendor binaries being installed in `scripts/` instead of
 `vendor/bin/`.
+
+在这个 `composer.json` 上运行 `composer install` 会把所有的二进制供应库
+都安装在 `scripts/` 目录，而不是缺省的 `vendor/bin/` 目录。
