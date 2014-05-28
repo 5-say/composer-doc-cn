@@ -745,9 +745,9 @@ $extra = $event->getComposer()->getPackage()->getExtra();
 <a name="bin"></a>
 ### bin
 
-A set of files that should be treated as binaries and symlinked into the `bin-dir` (from config).
+该属性用于标注一组应被视为二进制脚本的文件，他们会被软链接到（config 对象中的）`bin-dir` 属性所标注的目录，以供其他依赖库调用。
 
-See [Vendor Binaries](articles/vendor-binaries.md) for more details.
+详细请查看 [Vendor Binaries](articles/vendor-binaries.md)。
 
 可选。
 
