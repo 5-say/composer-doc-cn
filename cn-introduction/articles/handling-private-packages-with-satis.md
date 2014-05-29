@@ -2,7 +2,7 @@
     tagline: Host your own composer repository
 -->
 
-# Handling private packages with Satis
+# 用 Satis 处理私有资源包
 
 Satis is a static `composer` repository generator. It is a bit like an ultra-
 lightweight, static file-based version of packagist and can be used to host the
@@ -10,6 +10,8 @@ metadata of your company's private packages, or your own. It basically acts as
 a micro-packagist. You can get it from
 [GitHub](http://github.com/composer/satis) or install via CLI:
 `composer.phar create-project composer/satis --stability=dev`.
+
+Satis 是一个静态的 `composer` 代码库生成器。
 
 ## Setup
 
