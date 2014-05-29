@@ -11,9 +11,12 @@ a micro-packagist. You can get it from
 [GitHub](http://github.com/composer/satis) or install via CLI:
 `composer.phar create-project composer/satis --stability=dev`.
 
-Satis 是一个静态的 `composer` 代码库生成器。
+Satis 是一个静态的 `composer` 代码库生成器。它有一点点类似于一个超级轻量化，基于静态文件版的
+packagist，而且可以被用于托管你公司或你个人的私有资源包的元数据。基本上他就像是一个微型Packagist。你可以在
+[GitHub](http://github.com/composer/satis)下载，或者通过CLI（命令行界面）安装：
+`composer.phar create-project composer/satis --stability=dev`。
 
-## Setup
+## 安装
 
 For example let's assume you have a few packages you want to reuse across your
 company but don't really want to open-source. You would first define a Satis
@@ -78,7 +81,7 @@ Set up a virtual-host that points to that `web/` directory, let's say it is
 `packages.example.org`. Alternatively, with PHP >= 5.4.0, you can use the built-in
 CLI server `php -S localhost:port -t satis-output-dir/` for a temporary solution.
 
-## Usage
+## 使用
 
 In your projects all you need to add now is your own composer repository using
 the `packages.example.org` as URL, then you can require your private packages and
@@ -97,7 +100,7 @@ itself.
 }
 ```
 
-### Security
+### 安全
 
 To secure your private repository you can host it over SSH or SSL using a client
 certificate. In your project you can use the `options` parameter to specify the
@@ -145,7 +148,7 @@ Example using HTTP over SSL using a client certificate:
 
 > **Tip:** See [ssl context options](http://www.php.net/manual/en/context.ssl.php) for more information.
 
-### Downloads
+### 下载
 
 When GitHub or BitBucket repositories are mirrored on your local satis, the build process will include
 the location of the downloads these platforms make available. This means that the repository and your setup depend
@@ -168,7 +171,7 @@ following to your `satis.json`:
 }
 ```
 
-#### Options explained
+#### 配置选项的详细解释
 
  * `directory`: the location of the dist files (inside the `output-dir`)
  * `format`: optional, `zip` (default) or `tar`
@@ -177,7 +180,7 @@ following to your `satis.json`:
 
 Once enabled, all downloads (include those from GitHub and BitBucket) will be replaced with a _local_ version.
 
-#### prefix-url
+#### Url前缀
 
 Prefixing the URL with another host is especially helpful if the downloads end up in a private Amazon S3
 bucket or on a CDN host. A CDN would drastically improve download times and therefore package installation.
@@ -186,7 +189,7 @@ Example: A `prefix-url` of `http://my-bucket.s3.amazonaws.com` (and `directory` 
 which look like the following: `http://my-bucket.s3.amazonaws.com/dist/vendor-package-version-ref.zip`.
 
 
-### Resolving dependencies
+### 处理依赖关系
 
 It is possible to make satis automatically resolve and add all dependencies for your projects. This can be used
 with the Downloads functionality to have a complete local mirror of packages. Just add the following

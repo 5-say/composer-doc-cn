@@ -394,6 +394,11 @@ Currently [`PSR-0`](http://www.php-fig.org/psr/psr-0/) autoloading,
 `files` includes are supported. PSR-4 is the recommended way though since it offers
 greater ease of use (no need to regenerate the autoloader when you add classes).
 
+目前，[`PSR-0`](https://github.com/hfcorriez/fig-standards/blob/zh_CN/%E6%8E%A5%E5%8F%97/PSR-0.md)
+和 [`PSR-4`](https://github.com/hfcorriez/fig-standards/blob/zh_CN/%E6%8E%A5%E5%8F%97/PSR-4-autoloader.md) 风格的自动加载，
+用生成的 `classmap` 自动加载，以及直接 include `文件`，都是被支持的。 不过，介于使用方便性的原因
+（因为不用每次你添加新类都重新生成 Autoloader），我们会推荐PSR-4。
+
 #### PSR-4
 
 Under the `psr-4` key you define a mapping from namespaces to paths, relative to the
@@ -410,7 +415,7 @@ The PSR-4 references are all combined, during install/update, into a single
 key => value array which may be found in the generated file
 `vendor/composer/autoload_psr4.php`.
 
-Example:
+例子如下:
 
 ```json
 {
