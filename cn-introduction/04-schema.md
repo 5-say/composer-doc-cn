@@ -407,6 +407,10 @@ package root. When autoloading a class like `Foo\\Bar\\Baz` a namespace prefix
 file named `src/Bar/Baz.php` and include it if present. Note that as opposed to
 the older PSR-0 style, the prefix (`Foo\\`) is **not** present in the file path.
 
+你要在 `psr-4` 键值下定义一个从命名空间到相对于根资源包的具体路径之间的映射。
+比如当自动加载 `Foo\\Bar\\Baz` 类的时候，`Foo\\` 命名空间前缀指向 `src/` 目录，
+则代表着自动加载器
+
 Namespace prefixes must end in `\\` to avoid conflicts between similar prefixes.
 For example `Foo` would match classes in the `FooBar` namespace so the trailing
 backslashes solve the problem: `Foo\\` and `FooBar\\` are distinct.
