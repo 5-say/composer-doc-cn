@@ -394,6 +394,11 @@ Currently [`PSR-0`](http://www.php-fig.org/psr/psr-0/) autoloading,
 `files` includes are supported. PSR-4 is the recommended way though since it offers
 greater ease of use (no need to regenerate the autoloader when you add classes).
 
+目前，[`PSR-0`](https://github.com/hfcorriez/fig-standards/blob/zh_CN/%E6%8E%A5%E5%8F%97/PSR-0.md)
+和 [`PSR-4`](https://github.com/hfcorriez/fig-standards/blob/zh_CN/%E6%8E%A5%E5%8F%97/PSR-4-autoloader.md) 风格的自动加载，
+用生成的 `classmap` 自动加载，以及直接 include `文件`，都是被支持的。 不过，介于使用方便性的原因
+（因为不用每次你添加新类都重新生成 Autoloader），我们会推荐PSR-4。
+
 #### PSR-4
 
 Under the `psr-4` key you define a mapping from namespaces to paths, relative to the
@@ -401,6 +406,10 @@ package root. When autoloading a class like `Foo\\Bar\\Baz` a namespace prefix
 `Foo\\` pointing to a directory `src/` means that the autoloader will look for a
 file named `src/Bar/Baz.php` and include it if present. Note that as opposed to
 the older PSR-0 style, the prefix (`Foo\\`) is **not** present in the file path.
+
+你要在 `psr-4` 键值下定义一个从命名空间到相对于根资源包的具体路径之间的映射。
+比如当自动加载 `Foo\\Bar\\Baz` 类的时候，`Foo\\` 命名空间前缀指向 `src/` 目录，
+则代表着自动加载器
 
 Namespace prefixes must end in `\\` to avoid conflicts between similar prefixes.
 For example `Foo` would match classes in the `FooBar` namespace so the trailing
@@ -410,7 +419,7 @@ The PSR-4 references are all combined, during install/update, into a single
 key => value array which may be found in the generated file
 `vendor/composer/autoload_psr4.php`.
 
-Example:
+例子如下:
 
 ```json
 {

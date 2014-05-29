@@ -1,11 +1,11 @@
 <!--
     tagline: Solving problems
 -->
-# Troubleshooting
+# 疑难排解
 
 This is a list of common pitfalls on using Composer, and how to avoid them.
 
-## General
+## 通常
 
 1. Before asking anyone, run [`composer diagnose`](../03-cli.md#diagnose) to check
    for common problems. If it all checks out, proceed to the next steps.
@@ -21,7 +21,7 @@ This is a list of common pitfalls on using Composer, and how to avoid them.
    possible interferences with existing vendor installations or `composer.lock`
    entries.
 
-## Package not found
+## 未发现资源包 `Package not found`
 
 1. Double-check you **don't have typos** in your `composer.json` or repository
    branches and tag names.
@@ -38,7 +38,7 @@ This is a list of common pitfalls on using Composer, and how to avoid them.
    your repository, especially when maintaining a third party fork and using
    `replace`.
 
-## Package not found on travis-ci.org
+## 没有在Travis-CI上发现该包`Package not found on travis-ci.org`
 
 1. Check the ["Package not found"](#package-not-found) item above.
 
@@ -53,7 +53,7 @@ This is a list of common pitfalls on using Composer, and how to avoid them.
    Use: `before_script: COMPOSER_ROOT_VERSION=dev-master composer install` to export
    the variable for the call to composer.
 
-## Need to override a package version
+## 某个包的版本会被覆盖 `Need to override a package version`
 
 Let say your project depends on package A which in turn depends on a specific
 version of package B (say 0.1) and you need a different version of that
@@ -74,7 +74,7 @@ composer.json:
 
 See [aliases](aliases.md) for more information.
 
-## Memory limit errors
+## 内存限制错误 `Memory limit errors`
 
 If composer shows memory errors on some commands:
 
@@ -106,14 +106,14 @@ Or, you can increase the limit with a command-line argument:
 php -d memory_limit=-1 composer.phar <...>
 ```
 
-## "The system cannot find the path specified" (Windows)
+## 系统未能找到指定的路径 `"The system cannot find the path specified" (Windows)`
 
 1. Open regedit.
 2. Search for an ```AutoRun``` key inside ```HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor```
    or ```HKEY_CURRENT_USER\Software\Microsoft\Command Processor```.
 3. Check if it contains any path to non-existent file, if it's the case, just remove them.
 
-## API rate limit and OAuth tokens
+## API 速率限制与OAuth 令牌 `API rate limit and OAuth tokens`
 
 Because of GitHub's rate limits on their API it can happen that Composer prompts
 for authentication asking your username and password so it can go ahead with its work.
@@ -128,7 +128,7 @@ manually create a token using the following procedure:
 
 Now Composer should install/update without asking for authentication.
 
-## proc_open(): fork failed errors
+## proc_open()：分支失败错误 `proc_open(): fork failed errors`
 If composer shows proc_open() fork failed on some commands:
 
 `PHP Fatal error: Uncaught exception 'ErrorException' with message 'proc_open(): fork failed - Cannot allocate memory' in phar`
