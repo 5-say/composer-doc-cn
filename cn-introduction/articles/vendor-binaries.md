@@ -6,28 +6,17 @@
 
 ## 什么是二进制供应库？
 
-Any command line script that a Composer package would like to pass along
-to a user who installs the package should be listed as a vendor binary.
-
 一个 Composer 资源包，想要传递给安装它的用户的任何命令行脚本，
-都应该被列为 `二进制供应库`。
+都应该被列入 `二进制供应库`。
 
-If a package contains other scripts that are not needed by the package
-users (like build or compile scripts) that code should not be listed
-as a vendor binary.
-
-若一个资源包包含有不被用户所需要的其他脚本（比如 build 或 编译脚本）
-那么这些代码不应该被列为二进制供应库。
+如果一个资源包，含有不被用户所需要的其他脚本（比如构建或编译脚本）
+那么这些代码不应该被列入二进制供应库。
 
 
 ## 如何定义？
 
-It is defined by adding the `bin` key to a project's `composer.json`.
-It is specified as an array of files so multiple binaries can be added
-for any given project.
-
 它是通过在项目的 `composer.json` 里添加一个 `bin` 键定义的。
-它是以一种文件的数组的形式定义的，这样任意给定项目
+它是以一种文件的数组的形式定义的，这样任何给定的项目
 都可以添加多个二进制文件。
 
 ```json
