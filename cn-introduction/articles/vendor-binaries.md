@@ -67,56 +67,36 @@ Composer 会检查所有依赖包里定义的二进制文件。
 }
 ```
 
-Running `composer install` for this `composer.json` will look at
-all of project-b's dependencies and install them to `vendor/bin`.
-
 在该 `composer.json` 上执行 `composer install` 命令时，
-将会检查 project-b 的所有依赖包，并把它们中定义的二进制库安装到 `vendor/bin`。
+将会检查 project-b 的所有依赖包，并安装它们的二进制库到 `vendor/bin` 目录。
 
-In this case, Composer will make `vendor/my-vendor/project-a/bin/project-a-bin`
-available as `vendor/bin/project-a-bin`. On a Unix-like platform
-this is accomplished by creating a symlink.
-
-这种情况下，Composer 会允许以 `vendor/bin/project-a-bin` 格式访问
-`vendor/my-vendor/project-a/bin/project-a-bin`。在类-Unix 的平台上，
-这是通过创建 symlink 软连接实现的。
+这种情况下，Composer 将使 `vendor/bin/project-a-bin` 可以作为
+`vendor/my-vendor/project-a/bin/project-a-bin` 的访问路径。在类 Unix 平台上，
+这是通过创建软链接实现的。
 
 
 ## 对于 Windows 环境和 .bat 文件呢？
 
-Packages managed entirely by Composer do not *need* to contain any
-`.bat` files for Windows compatibility. Composer handles installation
-of binaries in a special way when run in a Windows environment:
-
-完全由 Composer 管理的包并不*需要*包含任何用以兼容 Windows 的
-`.bat`文件。在 Windows 环境下运行时，Composer 会用一种特殊的方式处理
+完全由 Composer 管理的包并不 *需要* 包含任何用以兼容 Windows 的
+`.bat` 文件。在 Windows 环境下运行时，Composer 会用一种特殊的方式处理
 二进制文件的安装：
 
- * A `.bat` file is generated automatically to reference the binary
- * A Unix-style proxy file with the same name as the binary is generated
-   automatically (useful for Cygwin or Git Bash)
-
  * 一个用以引用此二进制文件的 `.bat` 文件会自动生成
- * 一个与该二进制文件同名的 Unix-风格的代理文件也会自动生成
- （方便 Cygwin 或 Git Bash使用）
+ * 一个与该二进制文件同名的 Unix 风格的代理文件也会自动生成
+ （方便 Cygwin 或 Git Bash 使用）
 
-Packages that need to support workflows that may not include Composer
-are welcome to maintain custom `.bat` files. In this case, the package
-should **not** list the `.bat` file as a binary as it is not needed.
-
-若某包存在不涉及 Composer 的工作流程，
-那么它也可以维护一些定制的 `.bat` 文件。这种情况下，该包
-**不**应该把它们作为二进制文件罗列，因为 Composer 不需要知道它们。
+有时资源包需要维护自定义的 `.bat` 文件来支持工作流，它可以不包含在 Composer 中。
+这种情况下，该资源包 **不** 应该把它们作为二进制文件列出，因为 Composer 不需要知道它们。
 
 
-## 二进制供应库可以安装在不是 vendor/bin 的地方么？
+## 二进制供应库可以安装在 vendor/bin 以外的其它地方么？
 
 当然，这里有两种指定二进制供应库的其他可选位置的方法：
 
  1. 在 `composer.json` 文件中的 `bin-dir` 配置属性处设置
- 1. 设置环境变量 `COMPOSER_BIN_DIR`
+ 2. 设置环境变量 `COMPOSER_BIN_DIR`
 
-前者的案例如下：
+前者的实例如下：
 
 ```json
 {
@@ -125,10 +105,6 @@ should **not** list the `.bat` file as a binary as it is not needed.
     }
 }
 ```
-
-Running `composer install` for this `composer.json` will result in
-all of the vendor binaries being installed in `scripts/` instead of
-`vendor/bin/`.
 
 在这个 `composer.json` 上运行 `composer install` 会把所有的二进制供应库
 都安装在 `scripts/` 目录，而不是缺省的 `vendor/bin/` 目录。
