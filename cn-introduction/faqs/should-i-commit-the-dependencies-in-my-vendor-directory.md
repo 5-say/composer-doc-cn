@@ -2,7 +2,7 @@
 
 一般情况下 **不建议**。vendor 目录（或者你安装依赖的其它目录）都应该被添加进 `.gitignore`/`svn:ignore`/等等。
 
-最好这么做，然后让所有开发人员使用 Composer 来安装依赖关系。同样，build server、CI、deployment tools 等等，应进行修改，使运行 Composer 成为其项目引导的一部分。
+最好这么做，然后让所有开发人员使用 Composer 来安装依赖包。同样，build server、CI、deployment tools 等等，应进行修改，使运行 Composer 成为其项目引导的一部分。
 
 虽然在某些环境下提交它是很让人心动的，但它将导致一些问题：
 

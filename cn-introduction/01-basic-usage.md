@@ -11,7 +11,7 @@
     - [包版本](#Package-Versions)
     - [下一个重要版本（波浪号运算符）](#Next-Significant-Release)
     - [稳定性](#Stability)
-  - [安装依赖关系](#Installing-Dependencies)
+  - [安装依赖包](#Installing-Dependencies)
   - [`composer.lock` - 锁文件](#composer.lock-The-Lock-File)
   - [Packagist](#Packagist)
   - [自动加载](#Autoloading)
@@ -132,7 +132,7 @@ php composer.phar
 默认情况下只有稳定的发行版才会被考虑在内。如果你也想获得 RC、beta、alpha 或 dev 版本，你可以使用 [稳定标志](04-schema.md#Package-links)。你可以对所有的包做 [最小稳定性](04-schema.md#minimum-stability) 设置，而不是每个依赖逐一设置。
 
 <a name="Installing-Dependencies"></a>
-## 安装依赖关系
+## 安装依赖包
 
 获取定义的依赖到你的本地项目，只需要调用 `composer.phar` 运行 `install` 命令。
 

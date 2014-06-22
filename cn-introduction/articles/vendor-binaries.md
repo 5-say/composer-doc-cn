@@ -34,22 +34,15 @@
 否则它们将会被隐藏在 `vendor/` 目录的深处。
 
 
-## 当 Composer 运行于定义了二进制供应库的 composer.json 时发生了什么？
+## 当 Composer 运行到定义了二进制供应库的 composer.json 文件时发生了什么？
 
-For the binaries that a package defines directly, nothing happens.
-
-对于被某个包直接定义的二进制库，什么也不会发生。
+对于被某个资源包直接定义的二进制供应库，什么也不会发生。
 
 
-## 当 Composer 运行于标明依赖于某二进制供应库的 composer.json 时发生了什么？
+## 当 Composer 运行到，列出了二进制供应库依赖关系的 composer.json 文件时发生了什么？
 
-Composer looks for the binaries defined in all of the dependencies. A
-symlink is created from each dependency's binaries to `vendor/bin`.
-
-Composer会检查所有依赖库里定义的二进制文件。
+Composer 会检查所有依赖包里定义的二进制文件。
 并为每一个依赖的二进制库设立一个指向 `vendor/bin` 的软连接。
-
-Say package `my-vendor/project-a` has binaries setup like this:
 
 比如 `my-vendor/project-a` 资源包的二进制库就是这样安装的：
 
@@ -60,16 +53,10 @@ Say package `my-vendor/project-a` has binaries setup like this:
 }
 ```
 
-Running `composer install` for this `composer.json` will not do
-anything with `bin/project-a-bin`.
-
 在该 `composer.json` 上执行 `composer install` 命令，
 不会对 `bin/project-a-bin` 造成任何影响。
 
-Say project `my-vendor/project-b` has requirements setup like this:
-
-但是如果 `my-vendor/project-b` 项目定义有这样的需求：
-
+再比如项目 `my-vendor/project-b` 有这样的需求定义：
 
 ```json
 {
@@ -84,7 +71,7 @@ Running `composer install` for this `composer.json` will look at
 all of project-b's dependencies and install them to `vendor/bin`.
 
 在该 `composer.json` 上执行 `composer install` 命令时，
-会检查 project-b 的所有依赖，并把它们中的二进制库安装到 `vendor/bin`。
+将会检查 project-b 的所有依赖包，并把它们中定义的二进制库安装到 `vendor/bin`。
 
 In this case, Composer will make `vendor/my-vendor/project-a/bin/project-a-bin`
 available as `vendor/bin/project-a-bin`. On a Unix-like platform
