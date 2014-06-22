@@ -32,8 +32,8 @@ Host your own composer repository
 脚本是指一些 Composer 事件的回调，它们在安装资源包的过程中被触发执行。
 - [Troubleshooting](/cn-introduction/articles/troubleshooting.md)  
 Solving problems
-- [Vendor Binaries](/cn-introduction/articles/vendor-binaries.md)  
-Expose command-line scripts from packages
+- [二进制供应库](/cn-introduction/articles/vendor-binaries.md)  
+从资源包中暴露命令行脚本。
 
 ## FAQs
 
