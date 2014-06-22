@@ -27,17 +27,12 @@
 
 ## 在 composer.json 里定义二进制供应库的作用是？
 
-It instructs Composer to install the package's binaries to `vendor/bin`
-for any project that **depends** on that project.
+对于任何 **依赖于** 该资源包的项目，
+它将引导 Composer 安装资源包里的二进制文件到 `vendor/bin` 目录。
 
-他指导 Composer 如何安装资源包里的二进制文件到 `vendor/bin`，
-以方便所有**依赖于**该项目的项目引用。
+这是一个便捷的途径来暴露有用的脚本，
+否则它们将会被隐藏在 `vendor/` 目录的深处。
 
-This is a convenient way to expose useful scripts that would
-otherwise be hidden deep in the `vendor/` directory.
-
-这是一个不错的，只暴露有用的脚本，同时把其他用不上的脚本深深地隐藏在 `vendor/` 目录里的
-方法。
 
 ## 当 Composer 运行于定义了二进制供应库的 composer.json 时发生了什么？
 
