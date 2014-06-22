@@ -56,7 +56,7 @@ Composer 会检查所有依赖包里定义的二进制文件。
 在该 `composer.json` 上执行 `composer install` 命令，
 不会对 `bin/project-a-bin` 造成任何影响。
 
-再比如项目 `my-vendor/project-b` 有这样的需求定义：
+再比如项目 `my-vendor/project-b` 有这样的 require 定义：
 
 ```json
 {

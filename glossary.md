@@ -1,14 +1,22 @@
-# D
+术语表
+===============
 
-## dependencies 依赖包、依赖关系
 
-# P
+## D
 
-## Package 资源包
+### dependencies 依赖包、依赖关系
 
-# V
+## P
 
-## Vendor 供应商
+### Package 资源包
 
-## Vendor Binary 二进制供应库
+## S
+
+### symlink 软链接
+
+## V
+
+### Vendor 供应商
+
+### Vendor Binary 二进制供应库
 
