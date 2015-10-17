@@ -182,7 +182,7 @@ php composer.phar update monolog/monolog [...]
 
 [packagist](https://packagist.org/) 是 Composer 的主要资源库。 一个 Composer 的库基本上是一个包的源：记录了可以得到包的地方。Packagist 的目标是成为大家使用库资源的中央存储平台。这意味着你可以 `require` 那里的任何包。
 
-当你访问 [packagist website](https://packagist.org/) (packagist.org)，你可以浏览和搜索资源包。
+当你访问 [packagist](https://packagist.org/) 网站 (packagist.org)，你可以浏览和搜索资源包。
 
 任何支持 Composer 的开源项目应该发布自己的包在 packagist 上。虽然并不一定要发布在 packagist 上来使用 Composer，但它使我们的编程生活更加轻松。
 
