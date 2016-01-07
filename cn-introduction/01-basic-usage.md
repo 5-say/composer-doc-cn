@@ -227,7 +227,7 @@ $loader = require 'vendor/autoload.php';
 $loader->add('Acme\\Test\\', __DIR__);
 ```
 
-除了 PSR-4 自动加载，classmap 也是支持的。这允许类被自动加载，即使不符合 PSR-4 规范。详细请查看 [自动加载-参考](04-schema.md#autoload)。
+除了 PSR-4 自动加载，Composer 同时支持PSR-0、classmap 和 files自动加载。详细请查看 [自动加载-参考](04-schema.md#autoload)。
 
 > **注意：** Composer 提供了自己的 autoloader。如果你不想使用它，你可以仅仅引入 `vendor/composer/autoload_*.php` 文件，它返回一个关联数组，你可以通过这个关联数组配置自己的 autoloader。
 
