@@ -65,7 +65,15 @@ php composer.phar
 ```
 
 你可以看到， `require` 需要一个 **包名称** （例如 `monolog/monolog`） 映射到 **包版本** （例如 `1.0.*`） 的对象。
-
+同时你还可以声明项目所需的环境版本支持（例下）
+```json
+{
+    "require" : {
+        "php" : "^5.5 || ^7.0",
+        "ext-mbstring": "*"
+    }
+}
+```
 <a name="Package-Names"></a>
 ### 包名称
 
