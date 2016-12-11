@@ -105,7 +105,7 @@ curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 ```
 
-> **注意：** 如果上诉命令因为权限执行失败，
+> **注意：** 如果上述命令因为权限执行失败，
 > 请使用 sudo 再次尝试运行 `mv` 那行命令。
 
 现在只需要运行 `composer` 命令就可以使用 Composer 而不需要输入 `php composer.phar`。
