@@ -1,10 +1,21 @@
-# Introduction
+- [简介](#%E7%AE%80%E4%BB%8B)
+    - [依赖关系管理](#%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E7%AE%A1%E7%90%86)
+    - [System Requirements](#system-requirements)
+    - [Installation - Linux / Unix / OSX](#installation---linux-unix-osx)
+        - [Downloading the Composer Executable](#downloading-the-composer-executable)
+            - [Locally](#locally)
+            - [Globally](#globally)
+    - [Installation - Windows](#installation---windows)
+        - [Using the Installer](#using-the-installer)
+        - [Manual Installation](#manual-installation)
+    - [Using Composer](#using-composer)
 
-Composer is a tool for dependency management in PHP. It allows you to declare
-the libraries your project depends on and it will manage (install/update) them
-for you.
+# 简介
 
-## Dependency management
+Composer 是 PHP 中的依赖关系管理工具。
+它允许您声明您的项目所依赖的库，并且它将为您管理（安装/更新）它们。
+
+## 依赖关系管理
 
 Composer is **not** a package manager in the same sense as Yum or Apt are. Yes,
 it deals with "packages" or libraries, but it manages them on a per-project
