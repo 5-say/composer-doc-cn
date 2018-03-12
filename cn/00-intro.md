@@ -1,6 +1,6 @@
 - [简介](#%E7%AE%80%E4%BB%8B)
     - [依赖关系管理](#%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E7%AE%A1%E7%90%86)
-    - [System Requirements](#system-requirements)
+    - [系统需求](#%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82)
     - [Installation - Linux / Unix / OSX](#installation---linux-unix-osx)
         - [Downloading the Composer Executable](#downloading-the-composer-executable)
             - [Locally](#locally)
@@ -17,35 +17,33 @@ Composer 是 PHP 中的依赖关系管理工具。
 
 ## 依赖关系管理
 
-Composer is **not** a package manager in the same sense as Yum or Apt are. Yes,
-it deals with "packages" or libraries, but it manages them on a per-project
-basis, installing them in a directory (e.g. `vendor`) inside your project. By
-default it does not install anything globally. Thus, it is a dependency
-manager. It does however support a "global" project for convenience via the
-[global](03-cli.md#global) command.
+Composer **并不是** 一个像 Yum 或 Apt 那样的包管理器。
+是的，它处理的是“包”或者库，
+但是它在每个项目的基础上管理它们，
+将它们安装在您项目的一个目录中（例如：`vendor`)。
+默认情况下，它不会在全局范围内安装任何东西。
+因此，它是一个依赖关系管理器。
+然而为了方便，它确实支持通过 [global](03-cli.md#global) 命令来操作一个名为“global”的全局项目。
 
-This idea is not new and Composer is strongly inspired by node's
-[npm](https://www.npmjs.com/) and ruby's [bundler](https://bundler.io/).
+这个想法并不新鲜，Composer 的灵感来源于 node 的 [npm](https://www.npmjs.com/) 和 ruby 的 [bundler](https://bundler.io/)。
 
-Suppose:
+假设：
 
-1. You have a project that depends on a number of libraries.
-1. Some of those libraries depend on other libraries.
+1. 您的项目依赖于大量的库。
+1. 其中一些库依赖于其他库。
 
-Composer:
+Composer：
 
-1. Enables you to declare the libraries you depend on.
-1. Finds out which versions of which packages can and need to be installed, and
-   installs them (meaning it downloads them into your project).
+1. 允许您声明所依赖的库。
+1. 找出哪些包可以被安装，以及需要安装哪些版本，并且安装它们（这意味着将它们下载到您的项目中）。
 
-See the [Basic usage](01-basic-usage.md) chapter for more details on declaring
-dependencies.
+请参阅 [基本用法](01-basic-usage.md) 一章，了解关于声明依赖关系的更多细节。
 
-## System Requirements
+## 系统需求
 
-Composer requires PHP 5.3.2+ to run. A few sensitive php settings and compile
-flags are also required, but when using the installer you will be warned about
-any incompatibilities.
+Composer 需要 PHP 5.3.2+ 来运行。
+还需要一些敏感的 php 设置和编译标志，
+当你使用安装程序时，有任何不兼容的情况你都将收到对应的警告信息。
 
 To install packages from sources instead of simple zip archives, you will need
 git, svn, fossil or hg depending on how the package is version-controlled.
