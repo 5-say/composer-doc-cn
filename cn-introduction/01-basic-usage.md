@@ -166,7 +166,7 @@ php composer.phar install
 <a name="composer.lock-The-Lock-File"></a>
 ## `composer.lock` - 锁文件
 
-在安装依赖后，Composer 将把安装时确切的版本号列表写入 `composer.lock` 文件。这将锁定改项目的特定版本。
+在安装依赖后，Composer 将把安装时确切的版本号列表写入 `composer.lock` 文件。这将锁定该项目的特定版本。
 
 **请提交你应用程序的 `composer.lock` （包括 `composer.json`）到你的版本库中**
 
