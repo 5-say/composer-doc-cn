@@ -238,7 +238,7 @@ Composer 将注册一个 [PSR-4](http://www.php-fig.org/psr/psr-4/) autoloader �
 
 ```php
 $loader = require 'vendor/autoload.php';
-$loader->add('Acme\\Test\\', __DIR__);
+$loader->addPsr4('Acme\\Test\\', __DIR__);
 ```
 
 除了 PSR-4 自动加载，Composer 同时支持PSR-0、classmap 和 files自动加载。详细请查看 [自动加载-参考](04-schema.md#autoload)。
