@@ -12,25 +12,25 @@
 
 ## 文章
 
-- [别名](./articles/aliases.md)
+- [别名](./articles/aliases.md) 
 版本分支别名
-- [自动加载优化](./articles/autoloader-optimization.md)
+- [自动加载优化](./articles/autoloader-optimization.md) 
 如何减少自动加载机制的性能影响
-- [设置和使用自定义安装程序](./articles/custom-installers.md)
+- [设置和使用自定义安装程序](./articles/custom-installers.md) 
 修改某些类型的包的安装方式
-- [处理私人包](./articles/handling-private-packages-with-satis.md)
+- [处理私人包](./articles/handling-private-packages-with-satis.md) 
 托管和安装私人的 Composer packages
-- [HTTP 基础认证](./articles/http-basic-authentication.md)
+- [HTTP 基础认证](./articles/http-basic-authentication.md) 
 访问私有包
-- [设置和使用插件](./articles/plugins.md)
+- [设置和使用插件](./articles/plugins.md) 
 修改并扩展 Composer 的功能
-- [脚本](./articles/scripts.md)
+- [脚本](./articles/scripts.md) 
 脚本是在安装包之前或之后调用的回调
-- [排除故障](./articles/troubleshooting.md)
+- [排除故障](./articles/troubleshooting.md) 
 解决问题
-- [Vendor 二进制文件与 `vendor/bin` 目录](./articles/vendor-binaries.md)
+- [Vendor 二进制文件与 `vendor/bin` 目录](./articles/vendor-binaries.md) 
 从包中暴露命令行脚本
-- [版本与约束](./articles/versions.md)
+- [版本与约束](./articles/versions.md) 
 版本详解
 
 
