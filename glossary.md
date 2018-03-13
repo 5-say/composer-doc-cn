@@ -5,11 +5,11 @@
 
 ## D
 
-### dependencies 依赖包、依赖关系
+### dependencies 依赖、依赖关系
 
 ## P
 
-### Package 资源包
+### Package 包、依赖包
 
 ## S
 

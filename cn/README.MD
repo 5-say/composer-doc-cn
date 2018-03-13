@@ -1,45 +1,45 @@
-## Book
+## 文档
 
-- [Introduction](./00-intro.md)
-- [Basic usage](./01-basic-usage.md)
-- [Libraries](./02-libraries.md)
-- [Command-line interface / Commands](./03-cli.md)
-- [The composer.json Schema](./04-schema.md)
-- [Repositories](./05-repositories.md)
-- [Config](./06-config.md)
-- [Community](./07-community.md)
-
-
-## Articles
-
-- [Aliases](./articles/aliases.md)
-Alias branch names to versions
-- [Autoloader Optimization](./articles/autoloader-optimization.md)
-How to reduce the performance impact of the autoloader
-- [Setting up and using custom installers](./articles/custom-installers.md)
-Modify the way certain types of packages are installed
-- [Handling private packages](./articles/handling-private-packages-with-satis.md)
-Hosting and installing private Composer packages
-- [HTTP basic authentication](./articles/http-basic-authentication.md)
-Access privately hosted packages
-- [Setting up and using plugins](./articles/plugins.md)
-Modify and extend Composer's functionality
-- [Scripts](./articles/scripts.md)
-Script are callbacks that are called before/after installing packages
-- [Troubleshooting](./articles/troubleshooting.md)
-Solving problems
-- [Vendor binaries and the `vendor/bin` directory](./articles/vendor-binaries.md)
-Expose command-line scripts from packages
-- [Versions and constraints](./articles/versions.md)
-Versions explained.
+- [简介](./00-intro.md)
+- [基本用法](./01-basic-usage.md)
+- [库](./02-libraries.md)
+- [命令行界面 / 命令](./03-cli.md)
+- [composer.json 文件结构](./04-schema.md)
+- [资源仓库](./05-repositories.md)
+- [配置](./06-config.md)
+- [社区](./07-community.md)
 
 
-## FAQs
+## 文章
 
-- [How do I install a package to a custom path for my framework?](./faqs/how-do-i-install-a-package-to-a-custom-path-for-my-framework.md)
-- [How do I install Composer programmatically?](./faqs/how-to-install-composer-programmatically.md)
-- [How do I install untrusted packages safely? Is it safe to run Composer as superuser or root?](./faqs/how-to-install-untrusted-packages-safely.md)
-- [Should I commit the dependencies in my vendor directory?](./faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)
-- [Why are unbound version constraints a bad idea?](./faqs/why-are-unbound-version-constraints-a-bad-idea.md)
-- [Why are version constraints combining comparisons and wildcards a bad idea?](./faqs/why-are-version-constraints-combining-comparisons-and-wildcards-a-bad-idea.md)
-- [Why can't Composer load repositories recursively?](./faqs/why-can't-composer-load-repositories-recursively.md)
+- [别名](./articles/aliases.md)
+版本分支别名
+- [自动加载优化](./articles/autoloader-optimization.md)
+如何减少自动加载机制的性能影响
+- [设置和使用自定义安装程序](./articles/custom-installers.md)
+修改某些类型的包的安装方式
+- [处理私人包](./articles/handling-private-packages-with-satis.md)
+托管和安装私人的 Composer packages
+- [HTTP 基础认证](./articles/http-basic-authentication.md)
+访问私有包
+- [设置和使用插件](./articles/plugins.md)
+修改并扩展 Composer 的功能
+- [脚本](./articles/scripts.md)
+脚本是在安装包之前或之后调用的回调
+- [排除故障](./articles/troubleshooting.md)
+解决问题
+- [Vendor 二进制文件与 `vendor/bin` 目录](./articles/vendor-binaries.md)
+从包中暴露命令行脚本
+- [版本与约束](./articles/versions.md)
+版本详解
+
+
+## 常见问题
+
+- [如何将一个包安装到我的框架的自定义路径中？](./faqs/how-do-i-install-a-package-to-a-custom-path-for-my-framework.md)
+- [如何以编程方式安装 Composer？](./faqs/how-to-install-composer-programmatically.md)
+- [如何安全地安装不受信任的包？使用超级用户或 root 用户运行 Composer 是安全的吗？](./faqs/how-to-install-untrusted-packages-safely.md)
+- [我应该提交我的 vendor 目录里的依赖项吗？](./faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)
+- [为什么不绑定版本约束是个坏主意？](./faqs/why-are-unbound-version-constraints-a-bad-idea.md)
+- [为什么在版本约束中将比较符号与通配符结合使用是个坏主意？](./faqs/why-are-version-constraints-combining-comparisons-and-wildcards-a-bad-idea.md)
+- [为什么 Composer 不能递归加载依赖项？](./faqs/why-can't-composer-load-repositories-recursively.md)
