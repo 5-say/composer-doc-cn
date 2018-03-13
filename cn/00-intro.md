@@ -1,8 +1,8 @@
 - [简介](#%E7%AE%80%E4%BB%8B)
     - [依赖关系管理](#%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E7%AE%A1%E7%90%86)
     - [系统需求](#%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82)
-    - [Installation - Linux / Unix / OSX](#installation---linux-unix-osx)
-        - [Downloading the Composer Executable](#downloading-the-composer-executable)
+    - [安装方式 - Linux / Unix / OSX](#%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F---linux-unix-osx)
+        - [下载 Composer 可执行文件](#%E4%B8%8B%E8%BD%BD-composer-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6)
             - [Locally](#locally)
             - [Globally](#globally)
     - [Installation - Windows](#installation---windows)
@@ -30,12 +30,12 @@ Composer **并不是** 一个像 Yum 或 Apt 那样的包管理器。
 假设：
 
 1. 您的项目依赖于大量的库。
-1. 其中一些库依赖于其他库。
+2. 其中一些库依赖于其他库。
 
 Composer：
 
 1. 允许您声明所依赖的库。
-1. 找出哪些包可以被安装，以及需要安装哪些版本，并且安装它们（这意味着将它们下载到您的项目中）。
+2. 找出哪些包可以被安装，以及需要安装哪些版本，并且安装它们（这意味着将它们下载到您的项目中）。
 
 请参阅 [基本用法](01-basic-usage.md) 一章，了解关于声明依赖关系的更多细节。
 
@@ -45,37 +45,31 @@ Composer 需要 PHP 5.3.2+ 来运行。
 还需要一些敏感的 php 设置和编译标志，
 当你使用安装程序时，有任何不兼容的情况你都将收到对应的警告信息。
 
-To install packages from sources instead of simple zip archives, you will need
-git, svn, fossil or hg depending on how the package is version-controlled.
+要从源文件而不是简单的 zip 文件中安装资源包，
+你将需要 git、svn、fossil 或者 hg 版本管理系统，这取决于目标资源包是如何进行版本控制的。
 
-Composer is multi-platform and we strive to make it run equally well on Windows,
-Linux and OSX.
+Composer 是多平台的，并且我们努力让它在 Windows、Linux 和 OSX 上运行得同样出色。
 
-## Installation - Linux / Unix / OSX
+## 安装方式 - Linux / Unix / OSX
 
-### Downloading the Composer Executable
+### 下载 Composer 可执行文件
 
-Composer offers a convenient installer that you can execute directly from the
-commandline. Feel free to [download this file](https://getcomposer.org/installer)
-or review it on [GitHub](https://github.com/composer/getcomposer.org/blob/master/web/installer)
-if you wish to know more about the inner workings of the installer. The source
-is plain PHP.
+Composer 提供了一个便捷的安装程序，您可以直接从命令行执行。请直接 [下载此文件](https://getcomposer.org/installer)。
+或者如果您想了解更多关于安装程序的内部工作原理，可以在 [GitHub](https://github.com/composer/getcomposer.org/blob/master/web/installer) 上查看它，源代码是使用普通的 PHP 进行编写的。
 
-There are in short, two ways to install Composer. Locally as part of your
-project, or globally as a system wide executable.
+简而言之，有两种方式来安装 Composer。
+作为您的项目的一部分，或者作为一个系统范围的全局可执行文件。
 
-#### Locally
+#### 局部安装
 
-Installing Composer locally is a matter of just running the installer in your
-project directory. See [the Download page](https://getcomposer.org/download/)
-for instructions.
+在局部安装 Composer 只是在您的项目目录中运行安装程序。
+请参阅 [下载页面](https://getcomposer.org/download/) 以获得更多指导。
 
-The installer will just check a few PHP settings and then download
-`composer.phar` to your working directory. This file is the Composer binary. It
-is a PHAR (PHP archive), which is an archive format for PHP which can be run on
-the command line, amongst other things.
 
-Now just run `php composer.phar` in order to run Composer.
+安装程序会检查一些PHP设置，然后下载 `composer.phar` 到您的工作目录。
+这是 Composer 的二进制文件。它是一个 PHAR（PHP archive）文件，这是 PHP 的一种存档格式，可以在命令行中运行，也可以在其他地方运行。
+
+现在为了运行 Composer 我们需要执行 `php composer.phar` 。
 
 You can install Composer to a specific directory by using the `--install-dir`
 option and additionally (re)name it as well using the `--filename` option. When

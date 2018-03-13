@@ -3,6 +3,8 @@ composer-doc-cn
 
 Composer 中文文档
 
+- [官方文档](https://getcomposer.org/doc/)
+
 ---
 
 - 希望更多的朋友能够参与此文档的翻译、勘误（您可以 Fork 本项目，并提交 Pull Request）。
