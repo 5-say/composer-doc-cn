@@ -3,8 +3,8 @@
     - [系统需求](#%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82)
     - [安装方式 - Linux / Unix / OSX](#%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F---linux-unix-osx)
         - [下载 Composer 可执行文件](#%E4%B8%8B%E8%BD%BD-composer-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6)
-            - [Locally](#locally)
-            - [Globally](#globally)
+            - [局部安装](#%E5%B1%80%E9%83%A8%E5%AE%89%E8%A3%85)
+            - [全局安装](#%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85)
     - [Installation - Windows](#installation---windows)
         - [Using the Installer](#using-the-installer)
         - [Manual Installation](#manual-installation)
@@ -71,41 +71,35 @@ Composer 提供了一个便捷的安装程序，您可以直接从命令行执�
 
 现在为了运行 Composer 我们需要执行 `php composer.phar` 。
 
-You can install Composer to a specific directory by using the `--install-dir`
-option and additionally (re)name it as well using the `--filename` option. When
-running the installer when following
-[the Download page instructions](https://getcomposer.org/download/) add the
-following parameters:
+您可以使用 `--install-dir` 选项将 Composer 安装到特定的目录，另外也可以使用 `--filename` 选项来将它重命名。
+当运行安装程序时，请遵循 [下载页面的说明](https://getcomposer.org/download/)，添加以下参数：
 
 ```sh
 php composer-setup.php --install-dir=bin --filename=composer
 ```
 
-Now just run `php bin/composer` in order to run Composer.
+现在您只需要执行 `php bin/composer` 命令就可以运行 Composer 了。
 
-#### Globally
+#### 全局安装
 
-You can place the Composer PHAR anywhere you wish. If you put it in a directory
-that is part of your `PATH`, you can access it globally. On unixy systems you
-can even make it executable and invoke it without directly using the `php`
-interpreter.
+您可以把 Composer PHAR 放置在任何你想要的地方。
+如果您将它放在环境变量 `PATH` 的某个目录中，那么您可以在全局中访问它。
+在类 Unix 的操作系统中，您甚至可以让它成为可执行文件，在不直接使用 `php` 解释器的情况下调用它。
 
-After running the installer following [the Download page instructions](https://getcomposer.org/download/)
-you can run this to move composer.phar to a directory that is in your path:
+在运行了 [下载页面的指令](https://getcomposer.org/download/) 进行安装后，您可以使用下面的命令来将 composer.phar 移动到您环境变量 `PATH` 的一个目录中：
 
 ```sh
 mv composer.phar /usr/local/bin/composer
 ```
 
-> **Note:** If the above fails due to permissions, you may need to run it again
-> with sudo.
+> **注意：** 如果上述命令由于权限不足执行失败，您可能需要使用 sudo 再次运行它。
 
-> **Note:** On some versions of OSX the `/usr` directory does not exist by
-> default. If you receive the error "/usr/local/bin/composer: No such file or
-> directory" then you must create the directory manually before proceeding:
-> `mkdir -p /usr/local/bin`.
+> **注意：** 在 OSX 的某些版本中，`/usr` 目录在默认情况下并不存在。
+> 如果您接收到错误 "/usr/local/bin/composer: No such file or directory"
+> 那么您必须在继续之前手动创建该目录：
+> `mkdir -p /usr/local/bin`。
 
-> **Note:** For information on changing your PATH, please read the
+> **注意：** For information on changing your PATH, please read the
 > [Wikipedia article](https://en.wikipedia.org/wiki/PATH_(variable)) and/or use Google.
 
 Now just run `composer` in order to run Composer instead of `php composer.phar`.
