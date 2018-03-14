@@ -94,10 +94,9 @@ mv composer.phar /usr/local/bin/composer
 
 > **注意：** 如果上述命令由于权限不足执行失败，您可能需要使用 sudo 再次运行它。
 
-> **注意：** 在 OSX 的某些版本中，`/usr` 目录在默认情况下并不存在。
-> 如果您接收到错误 "/usr/local/bin/composer: No such file or directory"
-> 那么您必须在继续之前手动创建该目录：
-> `mkdir -p /usr/local/bin`。
+> **注意：** 在 OSX 的某些版本中，`/usr` 目录在默认情况下并不存在。  
+> 如果您接收到错误 "/usr/local/bin/composer: No such file or directory"  
+> 那么您必须在继续之前手动创建该目录：`mkdir -p /usr/local/bin`。
 
 > **注意：** 有关更改您的 PATH 环境变量的资料，请阅读 [维基百科](https://en.wikipedia.org/wiki/PATH_(variable)) 或上网搜索相关资料。
 
