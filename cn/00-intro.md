@@ -5,10 +5,10 @@
         - [下载 Composer 可执行文件](#%E4%B8%8B%E8%BD%BD-composer-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6)
             - [局部安装](#%E5%B1%80%E9%83%A8%E5%AE%89%E8%A3%85)
             - [全局安装](#%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85)
-    - [Installation - Windows](#installation---windows)
-        - [Using the Installer](#using-the-installer)
-        - [Manual Installation](#manual-installation)
-    - [Using Composer](#using-composer)
+    - [安装方式 - Windows](#%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F---windows)
+        - [使用安装程序](#%E4%BD%BF%E7%94%A8%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F)
+        - [手动安装](#%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85)
+    - [使用 Composer](#%E4%BD%BF%E7%94%A8-composer)
 
 # 简介
 
@@ -99,52 +99,43 @@ mv composer.phar /usr/local/bin/composer
 > 那么您必须在继续之前手动创建该目录：
 > `mkdir -p /usr/local/bin`。
 
-> **注意：** For information on changing your PATH, please read the
-> [Wikipedia article](https://en.wikipedia.org/wiki/PATH_(variable)) and/or use Google.
+> **注意：** 有关更改您的 PATH 环境变量的资料，请阅读 [维基百科](https://en.wikipedia.org/wiki/PATH_(variable)) 或上网搜索相关资料。
 
-Now just run `composer` in order to run Composer instead of `php composer.phar`.
+现在您只需要执行 `composer` 命令就可以运行 Composer 了，而不是繁琐的 `php composer.phar`。
 
-## Installation - Windows
+## 安装方式 - Windows
 
-### Using the Installer
+### 使用安装程序
 
-This is the easiest way to get Composer set up on your machine.
+这是让 Composer 在您机器上运行的最简单的方法。
 
-Download and run
-[Composer-Setup.exe](https://getcomposer.org/Composer-Setup.exe). It will
-install the latest Composer version and set up your PATH so that you can just
-call `composer` from any directory in your command line.
+下载并且执行 [Composer-Setup.exe](https://getcomposer.org/Composer-Setup.exe)。
+它将安装最新版本的 Composer 并设置好 PATH 环境变量，因此在任何目录中您都可以在命令行中直接使用 `composer` 命令。
 
-> **Note:** Close your current terminal. Test usage with a new terminal: This is
-> important since the PATH only gets loaded when the terminal starts.
+> **注意：** 关闭当前命令行窗口，重新打开新的终端测试使用：这很重要，因为 PATH 环境变量只在终端启动时才重新加载。
 
-### Manual Installation
+### 手动安装
 
-Change to a directory on your `PATH` and run the installer following
-[the Download page instructions](https://getcomposer.org/download/)
-to download `composer.phar`.
+在任意命令行窗口切换到 `PATH` 环境变量中的一个目录，并且运行 [下载页面中给出的指令](https://getcomposer.org/download/) 以下载 `composer.phar` 文件。
 
-Create a new `composer.bat` file alongside `composer.phar`:
+在 `composer.phar` 文件旁创建一个新的 `composer.bat` 文件：
 
 ```sh
 C:\bin>echo @php "%~dp0composer.phar" %*>composer.bat
 ```
 
-Add the directory to your PATH environment variable if it isn't already.
-For information on changing your PATH variable, please see
-[this article](https://www.computerhope.com/issues/ch000549.htm) and/or
-use Google.
+如果该目录还没有添加进 PATH 环境变量中，请手动添加。
+有关更改您的 PATH 环境变量的资料，请阅读 [这篇文章](https://www.computerhope.com/issues/ch000549.htm) 或上网搜索相关资料。
 
-Close your current terminal. Test usage with a new terminal:
+关闭当前命令行窗口，打开新的命令行窗口进行测试：
 
 ```sh
 C:\Users\username>composer -V
 Composer version 1.0.0 2016-01-10 20:34:53
 ```
 
-## Using Composer
+## 使用 Composer
 
-Now that you've installed Composer, you are ready to use it! Head on over to the
-next chapter for a short and simple demonstration.
+现在您已经安装了 Composer，并可以开始使用它了！在接下来的一章里，我们将做一个简短而简单的演示。
 
-[Basic usage](01-basic-usage.md) &rarr;
+[基本用法](01-basic-usage.md) &rarr;
