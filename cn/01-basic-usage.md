@@ -1,25 +1,36 @@
-# Basic usage
+- [基本用法](#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95)
+  - [简介](#%E7%AE%80%E4%BB%8B)
+  - [`composer.json`：项目设置](#composerjson%EF%BC%9A%E9%A1%B9%E7%9B%AE%E8%AE%BE%E7%BD%AE)
+    - [`require` 键](#require-%E9%94%AE)
+    - [Package Names](#package-names)
+    - [Package Version Constraints](#package-version-constraints)
+  - [Installing Dependencies](#installing-dependencies)
+    - [Installing Without `composer.lock`](#installing-without-composerlock)
+    - [Installing With `composer.lock`](#installing-with-composerlock)
+    - [Commit Your `composer.lock` File to Version Control](#commit-your-composerlock-file-to-version-control)
+  - [Updating Dependencies to their Latest Versions](#updating-dependencies-to-their-latest-versions)
+  - [Packagist](#packagist)
+  - [Platform packages](#platform-packages)
+  - [Autoloading](#autoloading)
 
-## Introduction
+# 基本用法
 
-For our basic usage introduction, we will be installing `monolog/monolog`,
-a logging library. If you have not yet installed Composer, refer to the
-[Intro](00-intro.md) chapter.
+## 简介
 
-> **Note:** for the sake of simplicity, this introduction will assume you
-> have performed a [local](00-intro.md#locally) install of Composer.
+为了我们的基本用法介绍，我们将会安装 `monolog/monolog`，一个日志库。
+如果您还没有安装 Composer，请参考 [简介](00-intro.md) 章节。
 
-## `composer.json`: Project Setup
+> **注意：** 为了简单起见，本介绍将假设您已经完成了一个 Composer 的 [局部安装](00-intro.md#%E5%B1%80%E9%83%A8%E5%AE%89%E8%A3%85)。
 
-To start using Composer in your project, all you need is a `composer.json`
-file. This file describes the dependencies of your project and may contain
-other metadata as well.
+## `composer.json`：项目设置
 
-### The `require` Key
+在你的项目中开始使用 Composer，你所需要的只是一个 `composer.json` 文件。
+这个文件描述了项目的依赖关系，并且可能包含其他元数据。
 
-The first (and often only) thing you specify in `composer.json` is the
-[`require`](04-schema.md#require) key. You are simply telling Composer which
-packages your project depends on.
+### `require` 键
+
+[`require`](04-schema.md#require) key 是第一个（通常也是唯一一个）您需要在 `composer.json` 中指定的东西。
+您只需要简单地告诉 Composer 您的项目所依赖的包。
 
 ```json
 {
@@ -29,17 +40,9 @@ packages your project depends on.
 }
 ```
 
-As you can see, [`require`](04-schema.md#require) takes an object that maps
-**package names** (e.g. `monolog/monolog`) to **version constraints** (e.g.
-`1.0.*`).
+正如您所看到的，[`require`](04-schema.md#require) 需要一个映射 **包名**（例如 `monolog/monolog`）到 **版本限制** 的对象（例如`1.0.*`）。
 
-Composer uses this information to search for the right set of files in package
-"repositories" that you register using the [`repositories`](04-schema.md#repositories)
-key, or in Packagist, the default package repository. In the above example,
-since no other repository has been registered in the `composer.json` file, it is
-assumed that the `monolog/monolog` package is registered on Packagist. (See more
-about Packagist [below](#packagist), or read more about repositories
-[here](05-repositories.md)).
+Composer 使用这些信息在包的 “资源仓库”（使用 [`repositories`](04-schema.md#repositories) 键注册的信息中，或在默认的资源仓库 Packagist 中）搜索正确的文件。在上面的示例中，因为没有其他资源仓库在 `composer.json` 文件中被注册，那么我们假设 `monolog/monolog` 包是在 Packagist 上注册的。（请参阅章末关于 [packagist](#packagist) 的介绍，或在 [资源仓库](05-repositories.md) 一章中了解更多的信息）。
 
 ### Package Names
 
@@ -75,7 +78,7 @@ versions, how versions relate to each other, and on version constraints.
 > to attempt to find the best match for the version constraint you have specified. Be sure to read
 > about versions and package resolution in the [versions article](articles/versions.md).
 
-> **Note:** If you are trying to require a package but Composer throws an error
+> **注意：** If you are trying to require a package but Composer throws an error
 > regarding package stability, the version you have specified may not meet your
 > default minimum stability requirements. By default only stable releases are taken
 > into consideration when searching for valid package versions in your VCS.
@@ -154,7 +157,7 @@ and running `install` again.)
 ```sh
 php composer.phar update
 ```
-> **Note:** Composer will display a Warning when executing an `install` command
+> **注意：** Composer will display a Warning when executing an `install` command
 > if `composer.lock` and `composer.json` are not synchronized.
 
 If you only want to install or update one dependency, you can whitelist them:
@@ -163,7 +166,7 @@ If you only want to install or update one dependency, you can whitelist them:
 php composer.phar update monolog/monolog [...]
 ```
 
-> **Note:** For libraries it is not necessary to commit the lock
+> **注意：** For libraries it is not necessary to commit the lock
 > file, see also: [Libraries - Lock file](02-libraries.md#lock-file).
 
 ## Packagist
@@ -257,7 +260,7 @@ more information.
 
 See also the docs on [optimizing the autoloader](articles/autoloader-optimization.md).
 
-> **Note:** Composer provides its own autoloader. If you don't want to use that
+> **注意：** Composer provides its own autoloader. If you don't want to use that
 > one, you can just include `vendor/composer/autoload_*.php` files, which return
 > associative arrays allowing you to configure your own autoloader.
 
