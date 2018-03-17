@@ -29,7 +29,7 @@
 
 ### `require` 键
 
-[`require`](04-schema.md#require) key 是第一个（通常也是唯一一个）您需要在 `composer.json` 中指定的东西。
+[`require`](04-schema.md#require) 是第一个（通常也是唯一一个）您需要在 `composer.json` 中指定的东西。
 您只需要简单地告诉 Composer 您的项目所依赖的包。
 
 ```json
