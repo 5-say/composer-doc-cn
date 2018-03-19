@@ -53,25 +53,17 @@ Composer 使用这些信息在包的 “资源仓库”（使用 [`repositories`
 
 ### 包版本约束
 
-In our example, we are requesting the Monolog package with the version constraint
-[`1.0.*`](https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*).
-This means any version in the `1.0` development branch, or any version that is
-greater than or equal to 1.0 and less than 1.1 (`>=1.0 <1.1`).
+在我们的示例中，我们要求使用版本限制为 [`1.0.*`](https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*) 的 Monolog 包。
+这意味着在 `1.0` 开发分支中的任何版本，或任何大于等于 1.0 并且小于 1.1（`>=1.0 <1.1`）的版本。
 
-Please read [versions](articles/versions.md) for more in-depth information on
-versions, how versions relate to each other, and on version constraints.
+请阅读有关 [版本](articles/versions.md) 的更深入的信息，了解不同版本之间的关系，以及版本约束。
 
-> **How does Composer download the right files?** When you specify a dependency in
-> `composer.json`, Composer first takes the name of the package that you have requested
-> and searches for it in any repositories that you have registered using the
-> [`repositories`](04-schema.md#repositories) key. If you have not registered
-> any extra repositories, or it does not find a package with that name in the
-> repositories you have specified, it falls back to Packagist (more [below](#packagist)).
+> **Composer 如何下载正确的文件？** 当你在 `composer.json` 中指定一个依赖项时，
+> 首先 Composer 获取您所需要的依赖包名称，并从您在 [`repositories`](04-schema.md#repositories) 键中注册的所有资源仓库中搜索它。
+> 如果您没有额外注册任何资源仓库，或者它没有在您指定的资源仓库中找到对应的包名，那么就又回到了 Packagist 的问题上（更多信息请查看下文关于 [Packagist 平台](#packagist) 的介绍）。
 >
-> When Composer finds the right package, either in Packagist or in a repo you have specified,
-> it then uses the versioning features of the package's VCS (i.e., branches and tags)
-> to attempt to find the best match for the version constraint you have specified. Be sure to read
-> about versions and package resolution in the [versions article](articles/versions.md).
+> 当 Composer 在 Packagist 或您指定的资源仓库中找到了名称正确的依赖包，
+> 它将使用依赖包的 VCS 版本控制特性（例如，分支和标签）来尝试找到与您指定的版本约束最接近的匹配项。请务必阅读 [版本与约束](articles/versions.md) 一文中有关版本和包解析的内容。
 
 > **注意：** If you are trying to require a package but Composer throws an error
 > regarding package stability, the version you have specified may not meet your
