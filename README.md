@@ -6,8 +6,8 @@ Composer 中文文档
 ---
 
 - 希望更多的朋友能够参与此文档的翻译、勘误（您可以 Fork 本项目，并提交 Pull Request）。
-- 部分内容现阶段无法译全，已在 [issues](https://github.com/5-say/composer-doc-cn/issues) 中列出，如果能够收到您的宝贵建议，必将感激不尽。
-- [翻译术语对照表](/glossary.md)
+- 新版本文档翻译缓慢进行中，详见 [1.6分支](https://github.com/5-say/composer-doc-cn/blob/1.6/README.md)
+- 当前文档基本不影响新版 Composer 的使用，新文档在结构以及章节内容上做了比较大的调整，针对性的翻译会逐步完善。
 - [中文翻译贡献者名单](/contributors.md)
 
 ---
@@ -43,14 +43,6 @@ Solving problems
 - [我应该提交 vendor 目录中的依赖包吗？](/cn-introduction/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)
 - [为什么说“比较符”和“通配符”相结合的版本约束是坏主意？](/cn-introduction/faqs/why-are-version-constraints-combining-comparisons-and-wildcards-a-bad-idea.md)
 - [为什么 Composer 不递归加载储存库？](/cn-introduction/faqs/why-can%27t-composer-load-repositories-recursively.md)
-
-## PDF 文档
-
-整个文档也可以作为 [PDF 下载](http://getcomposer.org/book.pdf)。
-
-## API 文档
-
-如果你需要在工作中使用 composer 作为库的管理，你或许也想看看 [API 文档](http://getcomposer.org/apidoc/master/index.html)。
 
 ## 相关文章推荐
 
