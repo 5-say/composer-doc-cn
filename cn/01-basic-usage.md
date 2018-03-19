@@ -65,14 +65,11 @@ Composer 使用这些信息在包的 “资源仓库”（使用 [`repositories`
 > 当 Composer 在 Packagist 或您指定的资源仓库中找到了名称正确的依赖包，
 > 它将使用依赖包的 VCS 版本控制特性（例如，分支和标签）来尝试找到与您指定的版本约束最接近的匹配项。请务必阅读 [版本与约束](articles/versions.md) 一文中有关版本和包解析的内容。
 
-> **注意：** If you are trying to require a package but Composer throws an error
-> regarding package stability, the version you have specified may not meet your
-> default minimum stability requirements. By default only stable releases are taken
-> into consideration when searching for valid package versions in your VCS.
+> **注意：** 如果您尝试使用 require 命令引入一个依赖包，但 Composer 抛出了一个关于包稳定性的错误，这说明您所指定的版本可能无法满足默认的最低稳定性要求。
+> 默认情况下，在 VCS 中搜索有效的包版本时只有稳定的版本才会被考虑。
 >
-> You might run into this if you are trying to require dev, alpha, beta, or RC
-> versions of a package. Read more about stability flags and the `minimum-stability`
-> key on the [schema page](04-schema.md).
+> 如果您试图引入一个包的 dev、alpha、beta 或 RC 版本，您可能会遇到这种情况。
+> 请阅读 [composer.json 文件结构](04-schema.md) 一章中关于稳定性标志以及 `最低稳定性` 的相关内容。
 
 ## Installing Dependencies
 
