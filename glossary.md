@@ -21,3 +21,5 @@
 
 ### Vendor Binary （不做翻译）
 
+### vendor name 所有者名称
+

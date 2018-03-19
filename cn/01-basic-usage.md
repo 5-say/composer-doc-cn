@@ -2,8 +2,8 @@
   - [简介](#%E7%AE%80%E4%BB%8B)
   - [`composer.json`：项目设置](#composerjson%EF%BC%9A%E9%A1%B9%E7%9B%AE%E8%AE%BE%E7%BD%AE)
     - [`require` 键](#require-%E9%94%AE)
-    - [Package Names](#package-names)
-    - [Package Version Constraints](#package-version-constraints)
+    - [包名](#%E5%8C%85%E5%90%8D)
+    - [包版本约束](#%E5%8C%85%E7%89%88%E6%9C%AC%E7%BA%A6%E6%9D%9F)
   - [Installing Dependencies](#installing-dependencies)
     - [Installing Without `composer.lock`](#installing-without-composerlock)
     - [Installing With `composer.lock`](#installing-with-composerlock)
@@ -44,19 +44,14 @@
 
 Composer 使用这些信息在包的 “资源仓库”（使用 [`repositories`](04-schema.md#repositories) 键注册的信息中，或在默认的资源仓库 Packagist 中）搜索正确的文件。在上面的示例中，因为没有其他资源仓库在 `composer.json` 文件中被注册，那么我们假设 `monolog/monolog` 包是在 Packagist 上注册的。（请参阅章末关于 [packagist](#packagist) 的介绍，或在 [资源仓库](05-repositories.md) 一章中了解更多的信息）。
 
-### Package Names
+### 包名
 
-The package name consists of a vendor name and the project's name. Often these
-will be identical - the vendor name just exists to prevent naming clashes. For
-example, it would allow two different people to create a library named `json`.
-One might be named `igorw/json` while the other might be `seldaek/json`.
+包名由所有者的名称与项目的名称构成。通常它们都是相同的 —— 所有者名称的存在，只是为了防止命名冲突。例如，它允许两个不同的人创建一个名为 `json` 的库。一个可能命名为 `igorw/json`，另一个可能是 `seldaek/json`。
 
-Read more about publishing packages and package naming [here](02-libraries.md).
-(Note that you can also specify "platform packages" as dependencies, allowing
-you to require certain versions of server software. See
-[platform packages](#platform-packages) below.)
+请在下一章“[库](02-libraries.md)”中阅读更多关于发布包和包命名的内容。
+（注意：您还可以指定“平台包”作为依赖项，允许您依赖特定版本的服务器软件。请查看章末关于 [平台包](#platform-packages) 的介绍）
 
-### Package Version Constraints
+### 包版本约束
 
 In our example, we are requesting the Monolog package with the version constraint
 [`1.0.*`](https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*).
