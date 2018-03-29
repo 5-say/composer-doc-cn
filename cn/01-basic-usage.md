@@ -96,10 +96,8 @@ Composer 将简单的解析您在 `composer.json` 文件中列出的依赖项，
 
 ### 通过 `composer.lock` 文件安装
 
-This brings us to the second scenario. If there is already a `composer.lock` file as well as a
-`composer.json` file when you run `composer install`, it means either you ran the
-`install` command before, or someone else on the project ran the `install` command and
-committed the `composer.lock` file to the project (which is good).
+这就引出了第二个场景。如果当您运行 `composer install` 命令时已经存在一个与 `composer.json` 相似的 `composer.lock` 文件，
+这意味着要么您在之前已经运行过 `install` 命令，要么当前项目的其他开发者运行了 `install` 命令，并提交了 `composer.lock` 文件。（这么做是正确的）
 
 Either way, running `install` when a `composer.lock` file is present resolves and installs
 all dependencies that you listed in `composer.json`, but Composer uses the exact versions listed
