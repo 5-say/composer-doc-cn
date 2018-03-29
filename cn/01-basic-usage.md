@@ -4,9 +4,9 @@
     - [`require` 键](#require-%E9%94%AE)
     - [包名](#%E5%8C%85%E5%90%8D)
     - [包版本约束](#%E5%8C%85%E7%89%88%E6%9C%AC%E7%BA%A6%E6%9D%9F)
-  - [Installing Dependencies](#installing-dependencies)
-    - [Installing Without `composer.lock`](#installing-without-composerlock)
-    - [Installing With `composer.lock`](#installing-with-composerlock)
+  - [安装依赖](#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96)
+    - [安装时 `composer.lock` 文件不存在](#%E5%AE%89%E8%A3%85%E6%97%B6-composerlock-%E6%96%87%E4%BB%B6%E4%B8%8D%E5%AD%98%E5%9C%A8)
+    - [通过 `composer.lock` 文件安装](#%E9%80%9A%E8%BF%87-composerlock-%E6%96%87%E4%BB%B6%E5%AE%89%E8%A3%85)
     - [Commit Your `composer.lock` File to Version Control](#commit-your-composerlock-file-to-version-control)
   - [Updating Dependencies to their Latest Versions](#updating-dependencies-to-their-latest-versions)
   - [Packagist](#packagist)
@@ -71,37 +71,30 @@ Composer 使用这些信息在包的 “资源仓库”（使用 [`repositories`
 > 如果您试图引入一个包的 dev、alpha、beta 或 RC 版本，您可能会遇到这种情况。
 > 请阅读 [composer.json 文件结构](04-schema.md) 一章中关于稳定性标志以及 `最低稳定性` 的相关内容。
 
-## Installing Dependencies
+## 安装依赖
 
-To install the defined dependencies for your project, just run the
-[`install`](03-cli.md#install) command.
+要为您的项目安装已定义的依赖，只需要运行 [`install`](03-cli.md#install) 命令。
 
 ```sh
 php composer.phar install
 ```
 
-When you run this command, one of two things may happen:
+当您运行此命令时，有两件事情可能会发生：
 
-### Installing Without `composer.lock`
+### 安装时 `composer.lock` 文件不存在
 
-If you have never run the command before and there is also no `composer.lock` file present,
-Composer simply resolves all dependencies listed in your `composer.json` file and downloads
-the latest version of their files into the `vendor` directory in your project. (The `vendor`
-directory is the conventional location for all third-party code in a project). In our
-example from above, you would end up with the Monolog source files in
-`vendor/monolog/monolog/`. If Monolog listed any dependencies, those would also be in
-folders under `vendor/`.
+如果您在此之前并没有运行过 `install` 命令，并且也不存在 `composer.lock` 文件，
+Composer 将简单的解析您在 `composer.json` 文件中列出的依赖项，并将其最新版本的文件下载到您项目的 `vendor` 目录。
+（`vendor` 目录是一个项目中存放所有第三方代码的常规位置）。在我们的例子中，您最终会在 `vendor/monolog/monolog/` 目录中得到 Monolog 的源文件。
+如果 Monolog 列出了其它依赖，它们也将出现在 `vendor/` 目录下。
 
-> **Tip:** If you are using git for your project, you probably want to add
-> `vendor` in your `.gitignore`. You really don't want to add all of that
-> third-party code to your versioned repository.
+> **提示：** 如果您正在为您的项目使用 git，您或许会想要将 `vendor` 目录添加到 `.gitignore` 文件中。
+> 而不是将所有的第三方代码添加到您的版本存储库中。
 
-When Composer has finished installing, it writes all of the packages and the exact versions
-of them that it downloaded to the `composer.lock` file, locking the project to those specific
-versions. You should commit the `composer.lock` file to your project repo so that all people
-working on the project are locked to the same versions of dependencies (more below).
+但 Composer 完成安装时，它将所有下载的包的确切版本写入 `composer.lock` 文件，将项目锁定到那些特定的版本。
+您应该将 `composer.lock` 文件提交到您的项目仓库，因此，所有在项目上工作的人都将被锁定在相同的依赖项（下面会进行详细的介绍）。
 
-### Installing With `composer.lock`
+### 通过 `composer.lock` 文件安装
 
 This brings us to the second scenario. If there is already a `composer.lock` file as well as a
 `composer.json` file when you run `composer install`, it means either you ran the
