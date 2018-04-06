@@ -1,17 +1,22 @@
-# Libraries
+- [库](#%E5%BA%93)
+    - [每个项目都是一个软件包](#%E6%AF%8F%E4%B8%AA%E9%A1%B9%E7%9B%AE%E9%83%BD%E6%98%AF%E4%B8%80%E4%B8%AA%E8%BD%AF%E4%BB%B6%E5%8C%85)
+    - [库的版本控制](#%E5%BA%93%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6)
+        - [VCS Versioning](#vcs-versioning)
+    - [Lock file](#lock-file)
+    - [Publishing to a VCS](#publishing-to-a-vcs)
+    - [Publishing to packagist](#publishing-to-packagist)
 
-This chapter will tell you how to make your library installable through
-Composer.
+# 库
 
-## Every project is a package
+本章将告诉您，如何让您的库可以通过 Composer 进行安装。
 
-As soon as you have a `composer.json` in a directory, that directory is a
-package. When you add a [`require`](04-schema.md#require) to a project, you are
-making a package that depends on other packages. The only difference between
-your project and a library is that your project is a package without a name.
+## 每个项目都是一个软件包
 
-In order to make that package installable you need to give it a name. You do
-this by adding the [`name`](04-schema.md#name) property in `composer.json`:
+只要目录中存在一个 `composer.json` 文件，该目录就是一个包。
+当您通过 [`require`](04-schema.md#require) 向您的项目添加依赖时，您就是在制作一个依赖于其他软件包的软件包。
+您的项目和一个库唯一的区别是，您的项目是一个没有名字的包。
+
+为了使这个软件包可以安装，您需要给它一个名字。您可以通过在 `composer.json` 中添加 [`name`](04-schema.md#name) 属性来执行此操作：
 
 ```json
 {
@@ -22,25 +27,18 @@ this by adding the [`name`](04-schema.md#name) property in `composer.json`:
 }
 ```
 
-In this case the project name is `acme/hello-world`, where `acme` is the vendor
-name. Supplying a vendor name is mandatory.
+在这种情况下，项目名称是 `acme/hello-world`，而 `acme` 是所有者名称。提供所有者名称是强制性的。
 
-> **Note:** If you don't know what to use as a vendor name, your GitHub
-> username is usually a good bet. While package names are case insensitive, the
-> convention is all lowercase and dashes for word separation.
+> **注意：** 如果您不知道如何使用所有者名称，那么您的 GitHub 用户名通常是一个不错的选择。
+> 虽然软件包名称不区分大小写，但惯例全部为小写字母并且为了分词而使用中横线。
 
-## Library Versioning
+## 库的版本控制
 
-In the vast majority of cases, you will be maintaining your library using some
-sort of version control system like git, svn, hg or fossil. In these cases,
-Composer infers versions from your VCS and you **should not** specify a version
-in your `composer.json` file. (See the [Versions article](articles/versions.md)
-to learn about how Composer uses VCS branches and tags to resolve version
-constraints.)
+在绝大多数情况下，您将使用某种类型的版本控制系统（如 git，svn，hg 或 fossil）来维护您的库。
+在这些情况下，Composer 会推断版本控制系统中的版本，并且您不应该在 `composer.json` 文件中直接指定版本。
+（请参阅 [版本与约束](articles/versions.md) 一文，以了解 Composer 如何使用版本控制系统中的分支和标签来解析版本限制。）
 
-If you are maintaining packages by hand (i.e., without a VCS), you'll need to
-specify the version explicitly by adding a `version` value in your `composer.json`
-file:
+如果您手动维护软件包（即没有版本控制系统），则需要通过 `version` 在 `composer.json` 文件中添加值来明确指定版本：
 
 ```json
 {
@@ -48,8 +46,8 @@ file:
 }
 ```
 
-> **Note:** When you add a hardcoded version to a VCS, the version will conflict
-> with tag names. Composer will not be able to determine the version number.
+> **注意：** 当您添加一个硬性的版本号到版本控制系统中时，版本将与标签名称冲突。Composer 将无法确定版本号。
+> When you add a hardcoded version to a VCS, the version will conflict with tag names. Composer will not be able to determine the version number.
 
 ### VCS Versioning
 
