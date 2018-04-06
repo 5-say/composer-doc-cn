@@ -10,8 +10,8 @@
     - [将 `composer.lock` 文件提交给版本控制](#%E5%B0%86-composerlock-%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4%E7%BB%99%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6)
   - [更新依赖项到对应的最新版本](#%E6%9B%B4%E6%96%B0%E4%BE%9D%E8%B5%96%E9%A1%B9%E5%88%B0%E5%AF%B9%E5%BA%94%E7%9A%84%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC)
   - [Packagist](#packagist)
-  - [Platform packages](#platform-packages)
-  - [Autoloading](#autoloading)
+  - [平台软件包](#%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E5%8C%85)
+  - [自动加载](#%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD)
 
 # 基本用法
 
@@ -24,7 +24,7 @@
 
 ## `composer.json`：项目设置
 
-在你的项目中开始使用 Composer，你所需要的只是一个 `composer.json` 文件。
+在您的项目中开始使用 Composer，您所需要的只是一个 `composer.json` 文件。
 这个文件描述了项目的依赖关系，并且可能包含其他元数据。
 
 ### `require` 键
@@ -58,7 +58,7 @@ Composer 使用这些信息在包的 “资源仓库”（使用 [`repositories`
 
 请阅读有关 [版本](articles/versions.md) 的更深入的信息，了解不同版本之间的关系，以及版本约束。
 
-> **Composer 如何下载正确的文件？** 当你在 `composer.json` 中指定一个依赖项时，
+> **Composer 如何下载正确的文件？** 当您在 `composer.json` 中指定一个依赖项时，
 > 首先 Composer 获取您所需要的依赖包名称，并从您在 [`repositories`](04-schema.md#repositories) 键中注册的所有资源仓库中搜索它。
 > 如果您没有额外注册任何资源仓库，或者它没有在您指定的资源仓库中找到对应的包名，那么就又回到了 Packagist 的问题上（更多信息请查看下文关于 [Packagist 平台](#packagist) 的介绍）。
 >
@@ -128,54 +128,37 @@ php composer.phar update
 php composer.phar update monolog/monolog [...]
 ```
 
-> **注意：** For libraries it is not necessary to commit the lock
-> file, see also: [Libraries - Lock file](02-libraries.md#lock-file).
+> **注意：** 对于库，不需要提交锁定文件，另请参阅： [库 - 锁定文件](02-libraries.md#lock-file)。
 
 ## Packagist
 
-[Packagist](https://packagist.org/) is the main Composer repository. A Composer
-repository is basically a package source: a place where you can get packages
-from. Packagist aims to be the central repository that everybody uses. This
-means that you can automatically `require` any package that is available there,
-without further specifying where Composer should look for the package.
+[Packagist](https://packagist.org/) 是主要的 Composer 存储库。
+一个 Composer 存储库基本上是一个依赖包的来源数据：您可以从中获取依赖包的位置。
+Packagist 的目标是成为每个人都使用的中央存储库。这意味着您可以 `require` 在此处找到的任何可用的包，它自动处理，而无需您进一步指定 Composer 应在何处查找包。
 
-If you go to the [Packagist website](https://packagist.org/) (packagist.org),
-you can browse and search for packages.
+如果您去 [Packagist 的网站](https://packagist.org/) (packagist.org)，您可以浏览和搜索依赖包。
 
-Any open source project using Composer is recommended to publish their packages
-on Packagist. A library does not need to be on Packagist to be used by Composer,
-but it enables discovery and adoption by other developers more quickly.
+任何使用 Composer 的开源项目都推荐在 Packagist 上发布他们的软件包。
+一个库并不一定要在 Packagist 上发布，但这么做可以让其他开发人员更快地发现和采用它。
 
-## Platform packages
+## 平台软件包
 
-Composer has platform packages, which are virtual packages for things that are
-installed on the system but are not actually installable by Composer. This
-includes PHP itself, PHP extensions and some system libraries.
+Composer 可以指定平台软件包，这些软件包是安装在系统上但不能由 Composer 实际安装的虚拟软件包。这包括 PHP 本身，PHP 扩展和一些系统库。
 
-* `php` represents the PHP version of the user, allowing you to apply
-  constraints, e.g. `>=5.4.0`. To require a 64bit version of php, you can
-  require the `php-64bit` package.
+* `php` 代表用户的 PHP 版本，允许您应用约束，例如 `>=5.4.0`。如果需要 64 位版本的 php，您可以指定 `php-64bit`。
 
-* `hhvm` represents the version of the HHVM runtime and allows you to apply
-  a constraint, e.g., `>=2.3.3`.
+* `hhvm` 表示 HHVM 运行时的版本，并允许您应用约束，例如 `>=2.3.3`。
 
-* `ext-<name>` allows you to require PHP extensions (includes core
-  extensions). Versioning can be quite inconsistent here, so it's often
-  a good idea to just set the constraint to `*`.  An example of an extension
-  package name is `ext-gd`.
+* `ext-<name>` 允许您指定 PHP 扩展（包括核心扩展）。版本控制在这里可能非常不一致，因此将约束设置为 `*` 是一个好主意。一个扩展包名称的例子是 `ext-gd`。
 
-* `lib-<name>` allows constraints to be made on versions of libraries used by
-  PHP. The following are available: `curl`, `iconv`, `icu`, `libxml`,
-  `openssl`, `pcre`, `uuid`, `xsl`.
+* `lib-<name>` 允许在 PHP 使用的库的版本上进行约束。以下是可选项：`curl`，`iconv`，`icu`，`libxml`，`openssl`，`pcre`，`uuid`，`xsl`。
 
-You can use [`show --platform`](03-cli.md#show) to get a list of your locally
-available platform packages.
+您可以使用 [`show --platform`](03-cli.md#show) 来获取本地可用平台包的列表。
 
-## Autoloading
+## 自动加载
 
-For libraries that specify autoload information, Composer generates a
-`vendor/autoload.php` file. You can simply include this file and start
-using the classes that those libraries provide without any extra work:
+对于指定自动加载信息的库，Composer 会生成一个 `vendor/autoload.php` 文件。
+您可以简单地包含此文件，并开始使用这些库提供的类，而无需额外的工作：
 
 ```php
 require __DIR__ . '/vendor/autoload.php';
@@ -185,8 +168,7 @@ $log->pushHandler(new Monolog\Handler\StreamHandler('app.log', Monolog\Logger::W
 $log->addWarning('Foo');
 ```
 
-You can even add your own code to the autoloader by adding an
-[`autoload`](04-schema.md#autoload) field to `composer.json`.
+您甚至可以通过在 `composer.json` 中添加 [`autoload`](04-schema.md#autoload) 字段将自己的代码添加到自动加载器。
 
 ```json
 {
@@ -196,34 +178,26 @@ You can even add your own code to the autoloader by adding an
 }
 ```
 
-Composer will register a [PSR-4](http://www.php-fig.org/psr/psr-4/) autoloader
-for the `Acme` namespace.
+Composer 将为 `Acme` 命名空间注册一个 [PSR-4](http://www.php-fig.org/psr/psr-4/) 自动加载器。
 
-You define a mapping from namespaces to directories. The `src` directory would
-be in your project root, on the same level as `vendor` directory is. An example
-filename would be `src/Foo.php` containing an `Acme\Foo` class.
+您可以定义从命名空间到目录的映射。`src` 目录将位于您的项目根目录中，与 `vendor` 目录位于同一级别。
+继续上面的例子，若存在 `src/Foo.php` 文件，则其中需包含一个 `Acme\Foo` 类。
 
-After adding the [`autoload`](04-schema.md#autoload) field, you have to re-run
-[`dump-autoload`](03-cli.md#dump-autoload) to re-generate the
-`vendor/autoload.php` file.
+添加 [`autoload`](04-schema.md#autoload) 字段后，您必须重新运行 [`dump-autoload`](03-cli.md#dump-autoload) 以重新生成 `vendor/autoload.php` 文件。
 
-Including that file will also return the autoloader instance, so you can store
-the return value of the include call in a variable and add more namespaces.
-This can be useful for autoloading classes in a test suite, for example.
+包含该文件还将返回自动加载器实例，因此您可以将包含调用的返回值存储在变量中并添加更多命名空间。这对于自动加载测试套件中的类很有用。例如：
 
 ```php
 $loader = require __DIR__ . '/vendor/autoload.php';
 $loader->addPsr4('Acme\\Test\\', __DIR__);
 ```
 
-In addition to PSR-4 autoloading, Composer also supports PSR-0, classmap and
-files autoloading. See the [`autoload`](04-schema.md#autoload) reference for
-more information.
+除 PSR-4 自动加载外，Composer 还支持 PSR-0，classmap 和 files 形式的自动加载。请参阅 [`autoload`](04-schema.md#autoload) 章节以获得更多信息。
 
-See also the docs on [optimizing the autoloader](articles/autoloader-optimization.md).
+另请参阅关于 [优化自动加载器](articles/autoloader-optimization.md) 的文档。
 
-> **注意：** Composer provides its own autoloader. If you don't want to use that
-> one, you can just include `vendor/composer/autoload_*.php` files, which return
-> associative arrays allowing you to configure your own autoloader.
+> **注意：** Composer 提供自己的自动加载器。
+> 如果您不想使用，您可以引入 `vendor/composer/autoload_*.php` 文件，
+> 它将返回对应的关联数组，允许您配置自己的自动加载器。
 
-&larr; [Intro](00-intro.md)  |  [Libraries](02-libraries.md) &rarr;
+&larr; [简介](00-intro.md)  |  [库](02-libraries.md) &rarr;
