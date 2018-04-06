@@ -181,11 +181,11 @@ $log->addWarning('Foo');
 Composer 将为 `Acme` 命名空间注册一个 [PSR-4](http://www.php-fig.org/psr/psr-4/) 自动加载器。
 
 您可以定义从命名空间到目录的映射。`src` 目录将位于您的项目根目录中，与 `vendor` 目录位于同一级别。
-继续上面的例子，若存在 `src/Foo.php` 文件，则其中需包含一个 `Acme\Foo` 类。
+继续上面的例子，若存在 `src/Foo.php` 文件，则其中应包含一个 `Acme\Foo` 类。
 
 添加 [`autoload`](04-schema.md#autoload) 字段后，您必须重新运行 [`dump-autoload`](03-cli.md#dump-autoload) 以重新生成 `vendor/autoload.php` 文件。
 
-包含该文件还将返回自动加载器实例，因此您可以将包含调用的返回值存储在变量中并添加更多命名空间。这对于自动加载测试套件中的类很有用。例如：
+引入该文件还将返回自动加载器实例，因此您可以将 `require` 调用的返回值存储在变量中并添加更多命名空间。这对于自动加载测试套件中的类很有用。例如：
 
 ```php
 $loader = require __DIR__ . '/vendor/autoload.php';
