@@ -7,8 +7,8 @@
   - [安装依赖](#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96)
     - [安装时 `composer.lock` 文件不存在](#%E5%AE%89%E8%A3%85%E6%97%B6-composerlock-%E6%96%87%E4%BB%B6%E4%B8%8D%E5%AD%98%E5%9C%A8)
     - [通过 `composer.lock` 文件安装](#%E9%80%9A%E8%BF%87-composerlock-%E6%96%87%E4%BB%B6%E5%AE%89%E8%A3%85)
-    - [Commit Your `composer.lock` File to Version Control](#commit-your-composerlock-file-to-version-control)
-  - [Updating Dependencies to their Latest Versions](#updating-dependencies-to-their-latest-versions)
+    - [将 `composer.lock` 文件提交给版本控制](#%E5%B0%86-composerlock-%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4%E7%BB%99%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6)
+  - [更新依赖项到对应的最新版本](#%E6%9B%B4%E6%96%B0%E4%BE%9D%E8%B5%96%E9%A1%B9%E5%88%B0%E5%AF%B9%E5%BA%94%E7%9A%84%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC)
   - [Packagist](#packagist)
   - [Platform packages](#platform-packages)
   - [Autoloading](#autoloading)
@@ -99,43 +99,30 @@ Composer 将简单的解析您在 `composer.json` 文件中列出的依赖项，
 这就引出了第二个场景。如果当您运行 `composer install` 命令时已经存在一个与 `composer.json` 相似的 `composer.lock` 文件，
 这意味着要么您在之前已经运行过 `install` 命令，要么当前项目的其他开发者运行了 `install` 命令，并提交了 `composer.lock` 文件。（这么做是正确的）
 
-Either way, running `install` when a `composer.lock` file is present resolves and installs
-all dependencies that you listed in `composer.json`, but Composer uses the exact versions listed
-in `composer.lock` to ensure that the package versions are consistent for everyone
-working on your project. As a result you will have all dependencies requested by your
-`composer.json` file, but they may not all be at the very latest available versions
-(some of the dependencies listed in the `composer.lock` file may have released newer versions since
-the file was created). This is by design, it ensures that your project does not break because of
-unexpected changes in dependencies.
+无论哪种方式，运行 `install` 命令时 `composer.lock` 文件是解析并安装 `composer.json` 中列出的所有依赖项，
+而 Composer 使用 `composer.lock` 中列出的确切版本来确保程序包版本与工作中的每个人保持一致。
+因此，您将拥有 `composer.json` 文件中引入的所有依赖关系 ，但它们可能并不都是最新的可用版本（自 `composer.lock` 文件创建以来，其中列出的某些依赖项可能已经发布了更新的版本）。
+这是有意为之的，它确保您的项目不会因为依赖关系中的意外更改而中断。
 
-### Commit Your `composer.lock` File to Version Control
+### 将 `composer.lock` 文件提交给版本控制
 
-Committing this file to VC is important because it will cause anyone who sets
-up the project to use the exact same
-versions of the dependencies that you are using. Your CI server, production
-machines, other developers in your team, everything and everyone runs on the
-same dependencies, which mitigates the potential for bugs affecting only some
-parts of the deployments. Even if you develop alone, in six months when
-reinstalling the project you can feel confident the dependencies installed are
-still working even if your dependencies released many new versions since then.
-(See note below about using the `update` command.)
+将此文件提交到版本控制系统非常重要，因为它会使得建立项目的任何人使用您正在使用的完全相同版本的依赖。
+您的持续集成服务器，生产环境设备，团队中的其他开发人员，所有人以及每个人都运行在相同的依赖关系上，
+这就减少了只影响部署部分的 bug 发生的可能性。即使您独自开发，在重新安装项目的 6 个月内，您的依赖项发布了许多新版本，您也可以确信安装的依赖仍然有效。
+（请参阅下面关于使用 `update` 命令的注意事项。）
 
-## Updating Dependencies to their Latest Versions
+## 更新依赖项到对应的最新版本
 
-As mentioned above, the `composer.lock` file prevents you from automatically getting
-the latest versions of your dependencies. To update to the latest versions, use the
-[`update`](03-cli.md#update) command. This will fetch the latest matching
-versions (according to your `composer.json` file) and update the lock file
-with the new versions. (This is equivalent to deleting the `composer.lock` file
-and running `install` again.)
+如上所述，`composer.lock` 文件将阻止您自动获取最新版本的依赖关系。
+要更新到最新版本，请使用 [`update`](03-cli.md#update) 命令。这将获取最新的匹配版本（根据您的 `composer.json` 文件）并使用新版本更新锁定文件。
+（这相当于删除 `composer.lock` 文件并再次运行 `install` 命令。）
 
 ```sh
 php composer.phar update
 ```
-> **注意：** Composer will display a Warning when executing an `install` command
-> if `composer.lock` and `composer.json` are not synchronized.
+> **注意：** 当执行 `install` 命令时如果 `composer.lock` 和 `composer.json` 未同步，Composer 将在执行命令时显示警告。
 
-If you only want to install or update one dependency, you can whitelist them:
+如果您只想安装或更新一个依赖项，可以将它们列入白名单（在 `update` 命令参数中申明）：
 
 ```sh
 php composer.phar update monolog/monolog [...]
