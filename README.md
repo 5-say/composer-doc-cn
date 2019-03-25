@@ -1,3 +1,55 @@
+# Composer 中文文档
+
+## 规则
+
+- 本仓库同步自 [英文官方仓库](https://github.com/composer/composer.git) 的 `master` 分支。
+- 所有需要翻译的文档都位于 [doc](doc) 目录内。
+- 保持文档的原始结构，便于与英文文档同步。 （ **不要修改文档的内容结构** ，例如，不要为文档手动添加页内导航等）
+
+## 当前进度
+
+- [ ] [00-intro.md](doc/00-intro.md)
+- [ ] [01-basic-usage.md](doc/01-basic-usage.md)
+- [ ] [02-libraries.md](doc/02-libraries.md)
+- [ ] [03-cli.md](doc/03-cli.md)
+- [ ] [04-schema.md](doc/04-schema.md)
+- [ ] [05-repositories.md](doc/05-repositories.md)
+- [ ] [06-config.md](doc/06-config.md)
+- [ ] [07-community.md](doc/07-community.md)
+
+- [ ] [aliases.md](doc/articles/aliases.md)
+- [ ] [autoloader-optimization.md](doc/articles/autoloader-optimization.md)
+- [ ] [custom-installers.md](doc/articles/custom-installers.md)
+- [ ] [handling-private-packages-with-satis.md](doc/articles/handling-private-packages-with-satis.md)
+- [ ] [http-basic-authentication.md](doc/articles/http-basic-authentication.md)
+- [ ] [plugins.md](doc/articles/plugins.md)
+- [ ] [scripts.md](doc/articles/scripts.md)
+- [ ] [troubleshooting.md](doc/articles/troubleshooting.md)
+- [ ] [vendor-binaries.md](doc/articles/vendor-binaries.md)
+- [ ] [versions.md](doc/articles/versions.md)
+
+- [ ] [how-do-i-install-a-package-to-a-custom-path-for-my-framework.md](doc/faqs/how-do-i-install-a-package-to-a-custom-path-for-my-framework.md)
+- [ ] [how-to-install-composer-programmatically.md](doc/faqs/how-to-install-composer-programmatically.md)
+- [ ] [how-to-install-untrusted-packages-safely.md](doc/faqs/how-to-install-untrusted-packages-safely.md)
+- [ ] [should-i-commit-the-dependencies-in-my-vendor-directory.md](doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)
+- [ ] [which-version-numbering-system-does-composer-itself-use.md](doc/faqs/which-version-numbering-system-does-composer-itself-use.md)
+- [ ] [why-are-unbound-version-constraints-a-bad-idea.md](doc/faqs/why-are-unbound-version-constraints-a-bad-idea.md)
+- [ ] [why-are-version-constraints-combining-comparisons-and-wildcards-a-bad-idea.md](doc/faqs/why-are-version-constraints-combining-comparisons-and-wildcards-a-bad-idea.md)
+- [ ] [why-can't-composer-load-repositories-recursively.md](doc/faqs/why-can't-composer-load-repositories-recursively.md)
+
+## 中文翻译贡献者名单
+
+- [5-say](https://github.com/5-say)
+- [wangsai](https://github.com/wangsai)
+
+## 版权说明
+
+Composer 中文文档采用 MIT 开源许可证发布。
+
+
+---
+
+
 Composer - Dependency Management for PHP
 ========================================
 
