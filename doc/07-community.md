@@ -1,35 +1,35 @@
-# Community
+# 社区
 
-There are many people using Composer already, and quite a few of them are
-contributing.
+已经有很多人在使用 Composer 了，并且有相当一部分人为它做出了
+贡献。
 
-## Contributing
+## 贡献
 
-If you would like to contribute to Composer, please read the
-[README](https://github.com/composer/composer) and
+如果你想为 Composer 贡献出自己的一份力量，请阅读
+[README](https://github.com/composer/composer) 和
 [CONTRIBUTING](https://github.com/composer/composer/blob/master/.github/CONTRIBUTING.md)
-documents.
+两份文档。
 
-The most important guidelines are described as follows:
+下面列出的是最重要的指导原则：
 
-> All code contributions - including those of people having commit access - must
-> go through a pull request and approved by a core developer before being
-> merged. This is to ensure proper review of all the code.
+> 所有贡献的代码 - 包括那些具有 commit 权限的人 - 必须
+> 通过提交一个 pull request 并在合并（merge）前由核心开发人员核准。
+> 这是为了确保对所有代码进行适当的审查。
 >
-> Fork the project, create a feature branch, and send us a pull request.
+> Fork 此项目，然后创建一个特性分支并给我们推送 pull request。
 >
-> To ensure a consistent code base, you should make sure the code follows
-> the [PSR-2 Coding Standards](http://www.php-fig.org/psr/psr-2/).
+> 为了确保代码的一致性，你应当确保代码遵循 
+> [PSR-2 编码规范](http://www.php-fig.org/psr/psr-2/)。
 
-## IRC / mailing list
+## IRC 频道 / 邮件列表
 
-Mailing lists for [user support](https://groups.google.com/group/composer-users) and
-[development](https://groups.google.com/group/composer-dev).
+涉及 [用户支持](https://groups.google.com/group/composer-users) 和
+[开发](https://groups.google.com/group/composer-dev) 的邮件列表。
 
-IRC channels are on irc.freenode.org: [#composer](irc://irc.freenode.org/composer)
-for users and [#composer-dev](irc://irc.freenode.org/composer-dev) for development.
+irc.freenode.org 上的 IRC 频道： [#composer](irc://irc.freenode.org/composer)
+频道是针对用户的；[#composer-dev](irc://irc.freenode.org/composer-dev) 频道是针对开发者的。
 
-Stack Overflow has a growing collection of
-[Composer related questions](https://stackoverflow.com/questions/tagged/composer-php).
+Stack Overflow 上有越来越多的
+[Composer 相关问题](https://stackoverflow.com/questions/tagged/composer-php) 的聚合。
 
 &larr; [Config](06-config.md)
