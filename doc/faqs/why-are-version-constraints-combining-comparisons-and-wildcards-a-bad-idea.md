@@ -1,21 +1,21 @@
-# Why are version constraints combining comparisons and wildcards a bad idea?
+# 为什么既包含了比较操作符又包含了通配符的版本约束是一个坏主意？
 
-This is a fairly common mistake people make, defining version constraints in
-their package requires like `>=2.*` or `>=1.1.*`.
+这是人们常犯的一个错误：在定义版本约束时
+采用了 `>=2.*` 或 `>=1.1.*` 这样的定义。
 
-If you think about it and what it really means though, you will quickly
-realize that it does not make much sense. If we decompose `>=2.*`, you
-have two parts:
+如果你想一想它的真正含义，就会很快
+意识到这种定义方式没有多大意义。如果我们对 `>=2.*` 进行拆解，会
+得到两部分：
 
-- `>=2` which says the package should be in version 2.0.0 or above.
-- `2.*` which says the package should be between version 2.0.0 (inclusive)
-  and 3.0.0 (exclusive).
+- `>=2` 就是说，软件包（package）的版本应当是 2.0.0 或以上。
+- `2.*` 就是说，软件包（package）的版本应该是介于 2.0.0 (包含)
+  和 3.0.0 (不包含)之间。
 
-As you see, both rules agree on the fact that the package must be >=2.0.0,
-but it is not possible to determine if when you wrote that you were thinking
-of a package in version 3.0.0 or not. Should it match because you asked for
-`>=2` or should it not match because you asked for a `2.*`?
+如上所见，这两个规则都一致认为软件包（package）的版本必须 >=2.0.0，
+但是，不能确定你在这样写时是否考虑了
+3.0.0 版本。由于你要求版本号为 `>=2` ，那就应该是符合要求的？
+但是因为你又要求版本号为 `2.*` ，这样看又不应该符合要求？
 
-For this reason, Composer throws an error and says that this is invalid.
-The easy way to fix it is to think about what you really mean, and use only
-one of those rules.
+出于这个原因，Composer 遇到这种情况时将会抛出一个错误并说明这是无效的。
+解决这个问题的简单方法是想一想你的真正意图，然后只使用
+其中的一条规则。
