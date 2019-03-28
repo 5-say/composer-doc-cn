@@ -14,8 +14,8 @@
 - [ ] [03-cli.md](doc/03-cli.md)
 - [ ] [04-schema.md](doc/04-schema.md)
 - [ ] [05-repositories.md](doc/05-repositories.md)
-- [ ] [06-config.md](doc/06-config.md)
-- [ ] [07-community.md](doc/07-community.md)
+- [x] [06-config.md](doc/06-config.md)
+- [x] [07-community.md](doc/07-community.md)
 
 - [ ] [aliases.md](doc/articles/aliases.md)
 - [ ] [autoloader-optimization.md](doc/articles/autoloader-optimization.md)
