@@ -16,7 +16,7 @@
 > 通过提交一个 pull request 并在合并（merge）前由核心开发人员核准。
 > 这是为了确保对所有代码进行适当的审查。
 >
-> Fork 此项目，然后创建一个特性分支并给我们推送 pull request。
+> 一般步骤是：Fork 此项目，然后创建一个特性分支并给我们推送 pull request。
 >
 > 为了确保代码的一致性，你应当确保代码遵循 
 > [PSR-2 编码规范](http://www.php-fig.org/psr/psr-2/)。
