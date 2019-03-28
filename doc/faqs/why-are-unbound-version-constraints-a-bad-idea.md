@@ -1,21 +1,20 @@
-# Why are unbound version constraints a bad idea?
+# 为什么不作版本限制是一个坏主意？
 
-A version constraint without an upper bound such as `*`, `>=3.4` or
-`dev-master` will allow updates to any future version of the dependency.
-This includes major versions breaking backward compatibility.
+没有上限的版本约束，例如 `*`、`>=3.4` 或
+`dev-master`，将允许对依赖项的任何新版本进行更新。
+这也包括破坏向后兼容性的主版本号（major）的更新。
 
-Once a release of your package is tagged, you cannot tweak its dependencies
-anymore in case a dependency breaks BC - you have to do a new release but the
-previous one stays broken.
+一旦你的软件包（package）的一个版本被打了标记（tag），你就不能再调整它的依赖关系了，
+以防某个依赖项破坏向后兼容性 - 这时你能做的是新建一个版本，并保持
+前一个版本的状态。
 
-The only good alternative is to define an upper bound on your constraints,
-which you can increase in a new release after testing that your package is
-compatible with the new major version of your dependency.
+唯一一个好的选择是在版本约束上定义一个上限。
+这样，你可以通过升级依赖项的主版本号，并在你的的软件包（package）上进行测试，如果能够兼容，则可以发布一个新版本，并在新版本中提升这个版本约束的上限。
 
-For example instead of using `>=3.4` you should use `~3.4` which allows all
-versions up to `3.999` but does not include `4.0` and above. The `^` operator
-works very well with libraries following [semantic versioning](https://semver.org).
+例如，不要使用 `>=3.4` 而应该使用 `~3.4` ，这样的版本约束允许
+最高到 `3.999` 版本，但是不包括 `4.0` 及以上版本。`^` 操作符
+能够很好地遵循 [semantic versioning](https://semver.org)。
 
-**Note:** As a package maintainer, you can make the life of your users easier
-by providing an [alias version](../articles/aliases.md) for your development
-branch to allow it to match bound constraints.
+**注意：** 作为软件包的维护者，你可以通过
+为开发分支（development branch）提供一个 [别名版本（alias version）](../articles/aliases.md) 
+以符合版本约束。
