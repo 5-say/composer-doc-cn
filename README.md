@@ -30,9 +30,9 @@
 
 - [ ] [how-do-i-install-a-package-to-a-custom-path-for-my-framework.md](doc/faqs/how-do-i-install-a-package-to-a-custom-path-for-my-framework.md)
 - [ ] [how-to-install-composer-programmatically.md](doc/faqs/how-to-install-composer-programmatically.md)
-- [ ] [how-to-install-untrusted-packages-safely.md](doc/faqs/how-to-install-untrusted-packages-safely.md)
-- [ ] [should-i-commit-the-dependencies-in-my-vendor-directory.md](doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)
-- [ ] [which-version-numbering-system-does-composer-itself-use.md](doc/faqs/which-version-numbering-system-does-composer-itself-use.md)
+- [x] [how-to-install-untrusted-packages-safely.md](doc/faqs/how-to-install-untrusted-packages-safely.md)
+- [x] [should-i-commit-the-dependencies-in-my-vendor-directory.md](doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)
+- [x] [which-version-numbering-system-does-composer-itself-use.md](doc/faqs/which-version-numbering-system-does-composer-itself-use.md)
 - [ ] [why-are-unbound-version-constraints-a-bad-idea.md](doc/faqs/why-are-unbound-version-constraints-a-bad-idea.md)
 - [ ] [why-are-version-constraints-combining-comparisons-and-wildcards-a-bad-idea.md](doc/faqs/why-are-version-constraints-combining-comparisons-and-wildcards-a-bad-idea.md)
 - [ ] [why-can't-composer-load-repositories-recursively.md](doc/faqs/why-can't-composer-load-repositories-recursively.md)
