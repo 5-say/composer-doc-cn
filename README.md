@@ -33,8 +33,8 @@
 - [x] [how-to-install-untrusted-packages-safely.md](doc/faqs/how-to-install-untrusted-packages-safely.md)
 - [x] [should-i-commit-the-dependencies-in-my-vendor-directory.md](doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)
 - [x] [which-version-numbering-system-does-composer-itself-use.md](doc/faqs/which-version-numbering-system-does-composer-itself-use.md)
-- [ ] [why-are-unbound-version-constraints-a-bad-idea.md](doc/faqs/why-are-unbound-version-constraints-a-bad-idea.md)
-- [ ] [why-are-version-constraints-combining-comparisons-and-wildcards-a-bad-idea.md](doc/faqs/why-are-version-constraints-combining-comparisons-and-wildcards-a-bad-idea.md)
+- [x] [why-are-unbound-version-constraints-a-bad-idea.md](doc/faqs/why-are-unbound-version-constraints-a-bad-idea.md)
+- [x] [why-are-version-constraints-combining-comparisons-and-wildcards-a-bad-idea.md](doc/faqs/why-are-version-constraints-combining-comparisons-and-wildcards-a-bad-idea.md)
 - [ ] [why-can't-composer-load-repositories-recursively.md](doc/faqs/why-can't-composer-load-repositories-recursively.md)
 
 ## 中文翻译贡献者名单
