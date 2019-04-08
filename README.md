@@ -8,7 +8,7 @@
 
 ## 当前进度
 
-- [ ] [00-intro.md](doc/00-intro.md)
+- [x] [00-intro.md](doc/00-intro.md)
 - [ ] [01-basic-usage.md](doc/01-basic-usage.md)
 - [ ] [02-libraries.md](doc/02-libraries.md)
 - [ ] [03-cli.md](doc/03-cli.md)

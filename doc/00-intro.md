@@ -1,156 +1,129 @@
-# Introduction
+# 简介
 
-Composer is a tool for dependency management in PHP. It allows you to declare
-the libraries your project depends on and it will manage (install/update) them
-for you.
+Composer 是 PHP 中的依赖关系管理工具。
+它允许你声明你的项目所依赖的库，并且它将为你管理（安装/更新）它们。
 
-## Dependency management
+## 依赖关系管理
 
-Composer is **not** a package manager in the same sense as Yum or Apt are. Yes,
-it deals with "packages" or libraries, but it manages them on a per-project
-basis, installing them in a directory (e.g. `vendor`) inside your project. By
-default it does not install anything globally. Thus, it is a dependency
-manager. It does however support a "global" project for convenience via the 
-[global](03-cli.md#global) command.
+Composer **并不是** 一个像 Yum 或 Apt 那样的包管理器。
+是的，它处理的是“包”或者库，但是它在每个项目的基础上管理它们，将它们安装在你项目的一个目录中（例如：`vendor`)。
+默认情况下，它不会在全局范围内安装任何东西。
+因此，它是一个依赖关系管理器。
+然而为了方便起见，它支持通过 [global](03-cli.md#global) 命令来操作一个名为“global”的全局项目。
 
-This idea is not new and Composer is strongly inspired by node's
-[npm](https://www.npmjs.com/) and ruby's [bundler](https://bundler.io/).
+这个想法并不新鲜，Composer 的灵感来源于 node 的 [npm](https://www.npmjs.com/) 和 ruby 的 [bundler](https://bundler.io/)。
 
-Suppose:
+假设：
 
-1. You have a project that depends on a number of libraries.
-1. Some of those libraries depend on other libraries.
+1. 你有一个依赖于多个库的项目。
+2. 其中一些库又依赖于其他库。
 
-Composer:
+Composer：
 
-1. Enables you to declare the libraries you depend on.
-1. Finds out which versions of which packages can and need to be installed, and
-   installs them (meaning it downloads them into your project).
+1. 允许你声明所依赖的库。
+2. 找出哪些版本的软件包可以和需要安装，并安装它们（意味着它会将它们下载到项目中）。
 
-See the [Basic usage](01-basic-usage.md) chapter for more details on declaring
-dependencies.
+请参阅 [基本用法](01-basic-usage.md) 一章，了解关于声明依赖关系的更多细节。
 
-## System Requirements
+## 系统要求
 
-Composer requires PHP 5.3.2+ to run. A few sensitive php settings and compile
-flags are also required, but when using the installer you will be warned about
-any incompatibilities.
+Composer 需要运行于 PHP 5.3.2+。
+一些敏感的 PHP 设置和编译标志也是必需的，当你使用安装程序时，有任何不兼容的情况你都将收到对应的警告信息。
 
-To install packages from sources instead of simple zip archives, you will need
-git, svn, fossil or hg depending on how the package is version-controlled.
+要从源代码而不是简单的 zip 文件安装软件包，你将需要 git、svn、fossil 或 hg，这取决于软件包的版本控制方式。
 
-Composer is multi-platform and we strive to make it run equally well on Windows,
-Linux and macOS.
+Composer 是多平台的，我们努力使它在 Windows、Linux 和 MacOS 上运行得同样出色。
 
-## Installation - Linux / Unix / macOS
+## 安装 - Linux / Unix / macOS
 
-### Downloading the Composer Executable
+### 下载 Composer 可执行文件
 
-Composer offers a convenient installer that you can execute directly from the
-command line. Feel free to [download this file](https://getcomposer.org/installer)
-or review it on [GitHub](https://github.com/composer/getcomposer.org/blob/master/web/installer)
-if you wish to know more about the inner workings of the installer. The source
-is plain PHP.
+Composer 提供了一个方便的安装程序，可以直接从命令行执行。
+如果你想了解更多关于安装程序内部工作的信息，请 [下载此文件](https://getcomposer.org/installer) 或在 [GitHub](https://github.com/composer/getcomposer.org/blob/master/web/installer) 上查看此文件。
+源码是使用纯 PHP 进行编写的。
 
-There are in short, two ways to install Composer. Locally as part of your
-project, or globally as a system wide executable.
+简而言之，安装 Composer 有两种方法。
+局部安装作为项目的一部分，或者全局安装作为一个系统范围的可执行文件。
 
-#### Locally
+#### 局部安装
 
-To install Composer locally, run the installer in your project directory. See 
-[the Download page](https://getcomposer.org/download/) for instructions.
+要在局部安装 Composer，请在项目目录中运行安装程序。
+相关说明，请参阅[下载页面](https://getcomposer.org/download/)。
 
-The installer will check a few PHP settings and then download `composer.phar`
-to your working directory. This file is the Composer binary. It is a PHAR
-(PHP archive), which is an archive format for PHP which can be run on
-the command line, amongst other things.
+安装程序将检查一些 PHP 设置，然后将 `composer.phar` 下载到你的工作目录。
+它是 Composer 的二进制文件。
+此外它还是一个 PHAR（PHP archive）文件，这是一种 PHP 的存档格式，可以在命令行中执行。
 
-Now run `php composer.phar` in order to run Composer.
+现在，执行 `php composer.phar` 命令就可以运行 Composer 了。
 
-You can install Composer to a specific directory by using the `--install-dir`
-option and additionally (re)name it as well using the `--filename` option. When
-running the installer when following
-[the Download page instructions](https://getcomposer.org/download/) add the
-following parameters:
+你可以使用 `--install dir` 选项将 Composer 安装到特定的目录中，并使用 `--filename` 选项来将它重命名。
+当运行安装程序时请参考 [下载页说明](https://getcomposer.org/download/) 添加以下参数：
 
 ```sh
 php composer-setup.php --install-dir=bin --filename=composer
 ```
 
-Now run `php bin/composer` in order to run Composer.
+现在，执行 `php bin/composer` 命令就可以运行 Composer 了。
 
-#### Globally
+#### 全局安装
 
-You can place the Composer PHAR anywhere you wish. If you put it in a directory
-that is part of your `PATH`, you can access it globally. On Unix systems you
-can even make it executable and invoke it without directly using the `php`
-interpreter.
+你可以把 Composer PHAR 放在任何你想放的地方。
+如果你将它放在属于你的 `PATH` 指向的目录中，你就可以全局访问它。
+在 UNIX 系统上，你甚至可以使其可执行并直接调用它，而无需使用 `php` 解释器。
 
-After running the installer following [the Download page instructions](https://getcomposer.org/download/)
-you can run this to move composer.phar to a directory that is in your path:
+按照 [下载页说明](https://getcomposer.org/download/) 运行安装程序后，你可以使用下面的命令将 composer.phar 移动到 `PATH` 指向的目录中：
 
 ```sh
 mv composer.phar /usr/local/bin/composer
 ```
 
-If you like to install it only for your user and avoid requiring root permissions,
-you can use `~/.local/bin` instead which is available by default on some
-Linux distributions.
+如果你只想为你的当前用户安装它，并且避免使用 root 权限，那么你可以使用 `~/.local/bin`，这在某些 Linux 发行版上是默认的。
 
-> **Note:** If the above fails due to permissions, you may need to run it again
-> with sudo.
+> **注意：** 如果由于权限原因导致上述操作失败，你可能需要使用 sudo 再次运行。
 
-> **Note:** On some versions of macOS the `/usr` directory does not exist by
-> default. If you receive the error "/usr/local/bin/composer: No such file or
-> directory" then you must create the directory manually before proceeding:
-> `mkdir -p /usr/local/bin`.
+**注意：** 在某些版本的 MacOS 上，默认情况下不存在 `/usr` 目录。
+> 如果收到错误提示 "/usr/local/bin/composer: No such file or directory"，则必须手动创建目录，然后才能继续执行以下操作：
+> `mkdir-p/usr/local/bin`。
 
-> **Note:** For information on changing your PATH, please read the
+> **注意：** For information on changing your PATH, please read the
 > [Wikipedia article](https://en.wikipedia.org/wiki/PATH_(variable)) and/or use Google.
 
-Now run `composer` in order to run Composer instead of `php composer.phar`.
+现在你只需要执行 `composer` 命令就可以运行 Composer 了，而不是繁琐的 `php composer.phar`。
 
-## Installation - Windows
+## 安装 - Windows
 
-### Using the Installer
+### 使用安装程序
 
-This is the easiest way to get Composer set up on your machine.
+这是让 Composer 在你机器上运行的最简单的方法。
 
-Download and run
-[Composer-Setup.exe](https://getcomposer.org/Composer-Setup.exe). It will
-install the latest Composer version and set up your PATH so that you can
-call `composer` from any directory in your command line.
+下载并且执行 [Composer-Setup.exe](https://getcomposer.org/Composer-Setup.exe)。
+它将安装最新版本的 Composer 并设置好 PATH 环境变量，以便你可以从命令行中的任何目录调用 `composer` 命令。
 
-> **Note:** Close your current terminal. Test usage with a new terminal: This is
-> important since the PATH only gets loaded when the terminal starts.
+> **注意：** 关闭当前终端。测试新终端的使用情况：
+> 这非常重要，因为 PATH 环境变量只在终端启动时才重新加载。
 
-### Manual Installation
+### 手动安装
 
-Change to a directory on your `PATH` and run the installer following
-[the Download page instructions](https://getcomposer.org/download/)
-to download `composer.phar`.
+在命令行窗口切换到 `PATH` 环境变量中的一个目录，并运行 [下载页说明](https://getcomposer.org/download/) 中给出的指令，以下载 `composer.phar` 文件。
 
-Create a new `composer.bat` file alongside `composer.phar`:
+在 `composer.phar` 文件旁创建一个新的 `composer.bat` 文件：
 
 ```sh
 C:\bin>echo @php "%~dp0composer.phar" %*>composer.bat
 ```
 
-Add the directory to your PATH environment variable if it isn't already.
-For information on changing your PATH variable, please see
-[this article](https://www.computerhope.com/issues/ch000549.htm) and/or
-use Google.
+将目录添加到 PATH 环境变量（如果尚未添加）。
+有关更改 PATH 变量的信息，请参考 [这篇文章](https://www.computerhope.com/issues/ch000549.htm) 或上网搜索相关资料。
 
-Close your current terminal. Test usage with a new terminal:
+关闭当前命令行窗口，打开新的命令行窗口进行测试：
 
 ```sh
 C:\Users\username>composer -V
 Composer version 1.0.0 2016-01-10 20:34:53
 ```
 
-## Using Composer
+## 使用 Composer
 
-Now that you've installed Composer, you are ready to use it! Head on over to the
-next chapter for a short and simple demonstration.
+现在您已经安装了 Composer，并可以开始使用它了！在接下来的一章里，我们将做一个简短而简单的演示。
 
 [Basic usage](01-basic-usage.md) &rarr;
