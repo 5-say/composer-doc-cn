@@ -1,25 +1,21 @@
-# Basic usage
+# 基本用法
 
-## Introduction
+## 简介
 
-For our basic usage introduction, we will be installing `monolog/monolog`,
-a logging library. If you have not yet installed Composer, refer to the
-[Intro](00-intro.md) chapter.
+为了进行基本用法的介绍，我们将安装一个日志库 `monolog/monolog`。
+如果你还没有安装 Composer，请参考 [简介](00-intro.md) 章节。
 
-> **Note:** for the sake of simplicity, this introduction will assume you
-> have performed a [local](00-intro.md#locally) install of Composer.
+> **注意：** 为了简单起见，本章将假定你已经完成了一个 Composer 的 [局部安装](00-intro.md#locally)。
 
-## `composer.json`: Project setup
+## `composer.json`: 项目设置
 
-To start using Composer in your project, all you need is a `composer.json`
-file. This file describes the dependencies of your project and may contain
-other metadata as well.
+要在项目中开始使用 Composer，你只需要一个 `composer.json` 文件。
+这个文件描述了项目的依赖关系，并且可能包含其他的元数据。
 
 ### The `require` key
 
-The first (and often only) thing you specify in `composer.json` is the
-[`require`](04-schema.md#require) key. You are simply telling Composer which
-packages your project depends on.
+[`require`](04-schema.md#require) 是第一个（通常也是唯一一个）你需要在 `composer.json` 中指定的东西。
+你只需要简单地告诉 Composer 你的项目所依赖的包。
 
 ```json
 {
@@ -29,92 +25,71 @@ packages your project depends on.
 }
 ```
 
-As you can see, [`require`](04-schema.md#require) takes an object that maps
-**package names** (e.g. `monolog/monolog`) to **version constraints** (e.g.
-`1.0.*`).
+正如你所看到的，[`require`](04-schema.md#require) 是一个将 **包名**（例如 `monolog/monolog`）映射到 **版本约束**（例如`1.0.*`）的对象。
 
-Composer uses this information to search for the right set of files in package
-"repositories" that you register using the [`repositories`](04-schema.md#repositories)
-key, or in Packagist, the default package repository. In the above example,
-since no other repository has been registered in the `composer.json` file, it is
-assumed that the `monolog/monolog` package is registered on Packagist. (See more
-about Packagist [below](#packagist), or read more about repositories
-[here](05-repositories.md)).
+Composer 使用此信息在自定义的 [`repositories`](04-schema.md#repositories) "存储库"中搜索正确的依赖，
+或在默认包存储库 Packageist 中搜索。
+在上面的例子中，由于在 `composer.json` 文件中没有注册其他存储库，
+所以默认使用 Packaginst 上注册的 `Monolog/Monolog` 包（请参阅 [下文](#packagist) 关于 Packagist 的说明，
+或阅读更多关于 [存储库](05-repositories.md) 的文章）。
 
-### Package names
+### 包名
 
-The package name consists of a vendor name and the project's name. Often these
-will be identical - the vendor name only exists to prevent naming clashes. For
-example, it would allow two different people to create a library named `json`.
-One might be named `igorw/json` while the other might be `seldaek/json`.
+包名由 供应商名称 和 项目名称 组成。通常情况下，这两个名称是相同的 - 供应商名称的存在只是为了防止命名冲突。
+例如，它允许两个不同的人创建一个名为 `json` 的库。一个名为 `igorw/json`，另一个名为 `seldaek/json`。
 
-Read more about publishing packages and package naming [here](02-libraries.md).
-(Note that you can also specify "platform packages" as dependencies, allowing
-you to require certain versions of server software. See
-[platform packages](#platform-packages) below.)
+请在 [这里](02-libraries.md) 阅读有关发布包和包命名的详细信息。（注意，你还可以将 "平台包" 指定为依赖项，
+从而允许你指定某些服务器软件的版本。请参阅下文 [平台包](#platform-packages)。）
 
-### Package version constraints
+### 包版本约束
 
-In our example, we are requesting the Monolog package with the version constraint
-[`1.0.*`](https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*).
-This means any version in the `1.0` development branch, or any version that is
-greater than or equal to 1.0 and less than 1.1 (`>=1.0 <1.1`).
+在我们的示例中，我们请求具有 [`1.0.*`](https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*) 版本约束的 Monolog 包。
+这表示 `1.0` 开发分支中的任何版本，或者大于或等于 1.0 小于 1.1 的任何版本（`>=1.0 <1.1`）。
 
-Please read [versions](articles/versions.md) for more in-depth information on
-versions, how versions relate to each other, and on version constraints.
+请阅读 [版本](articles/versions.md) 章节，了解有关版本、版本如何相互关联以及版本约束的详细信息。
 
-> **How does Composer download the right files?** When you specify a dependency in
-> `composer.json`, Composer first takes the name of the package that you have requested
-> and searches for it in any repositories that you have registered using the
-> [`repositories`](04-schema.md#repositories) key. If you have not registered
-> any extra repositories, or it does not find a package with that name in the
-> repositories you have specified, it falls back to Packagist (more [below](#packagist)).
+> **Composer 如何下载正确的文件？** 当我们在 `composer.json` 文件中指定依赖时，
+> 首先获取您请求的包的名称，并在 [`repositories`](04-schema.md#repositories)kye 注册的存储库中搜索该包。
+> 如果您没有注册任何额外的存储库，或者在您指定的存储库中找不到具有该名称的包，
+> 那么它将返回到 Packaginst 上进行查找（更多信息请参阅 [下文](#packagist)）。
 >
-> When Composer finds the right package, either in Packagist or in a repo you have specified,
-> it then uses the versioning features of the package's VCS (i.e., branches and tags)
-> to attempt to find the best match for the version constraint you have specified. Be sure to read
-> about versions and package resolution in the [versions article](articles/versions.md).
-
-> **Note:** If you are trying to require a package but Composer throws an error
-> regarding package stability, the version you have specified may not meet your
-> default minimum stability requirements. By default only stable releases are taken
-> into consideration when searching for valid package versions in your VCS.
+> 当 Composer 在 Packagist 或指定的存储库中找到正确的包时，
+> 它将使用包的 VCS 版本控制功能（即分支和标记）尝试查找与指定的版本约束最匹配的包。
+> 请务必阅读 [versions 章节](articles/versions.md) 中有关版本和包解析的内容。
 >
-> You might run into this if you are trying to require dev, alpha, beta, or RC
-> versions of a package. Read more about stability flags and the `minimum-stability`
-> key on the [schema page](04-schema.md).
+> **注意：** 如果您试图引入一个包，但 Composer 在包稳定性方面抛出了一个错误，
+> 那么您指定的版本可能不符合默认的最低稳定性要求。默认情况下，
+> 在您的 VCS 中搜索有效的软件包版本时，只考虑稳定的版本。
+>
+> 如果您试图引入包的 dev、alpha、beta 或 RC 版本，可能会遇到这种情况。
+> 请在 [架构页](04-schema.md) 阅读有关稳定性标志和 `minimum-stability` key 的详细信息。
 
-## Installing dependencies
+## 安装依赖项
 
-To install the defined dependencies for your project, run the
-[`install`](03-cli.md#install) command.
+要为项目安装定义的依赖项，请运行 [`install`](03-cli.md#install) 命令。
 
 ```sh
 php composer.phar install
 ```
 
-When you run this command, one of two things may happen:
+运行该命令时，可能会存在以下两种情况：
 
-### Installing without `composer.lock`
+### 安装时不存在 `composer.lock` 文件
 
-If you have never run the command before and there is also no `composer.lock` file present,
-Composer simply resolves all dependencies listed in your `composer.json` file and downloads
-the latest version of their files into the `vendor` directory in your project. (The `vendor`
-directory is the conventional location for all third-party code in a project). In our
-example from above, you would end up with the Monolog source files in
-`vendor/monolog/monolog/`. If Monolog listed any dependencies, those would also be in
-folders under `vendor/`.
+如果之前从未运行过该命令，并且也没有 `composer.lock` 文件，Composer 只需解析 `composer.json` 文件中列出的所有依赖项，
+并将其文件的最新版本下载到项目中的 `vendor` 目录中。（对于项目中的所有第三方代码，`vendor` 目录是默认的存放位置）。
+在上面的示例中，您将获得 Monolog 的源文件，该文件位于 `vendor/monolog/monolog/` 中。
+如果 Monolog 列出了其它依赖项，这些依赖项也将被存放于 `vendor/` 下的对应文件夹中。
 
-> **Tip:** If you are using git for your project, you probably want to add
-> `vendor` in your `.gitignore`. You really don't want to add all of that
-> third-party code to your versioned repository.
+> **提示：** 如果您在项目中使用 Git，建议将 `vendor` 目录添加到您的 `.gitignore` 文件中。
+> 您通常不会希望将所有的这些第三方代码添加到你的版本控制的存储库中。
 
 When Composer has finished installing, it writes all of the packages and the exact versions
 of them that it downloaded to the `composer.lock` file, locking the project to those specific
 versions. You should commit the `composer.lock` file to your project repo so that all people
 working on the project are locked to the same versions of dependencies (more below).
 
-### Installing with `composer.lock`
+### 安装时已存在 `composer.lock` 文件
 
 This brings us to the second scenario. If there is already a `composer.lock` file as well as a
 `composer.json` file when you run `composer install`, it means either you ran the
@@ -130,7 +105,7 @@ working on your project. As a result you will have all dependencies requested by
 the file was created). This is by design, it ensures that your project does not break because of
 unexpected changes in dependencies.
 
-### Commit your `composer.lock` file to version control
+### 提交你的 `composer.lock` 文件到版本库
 
 Committing this file to VC is important because it will cause anyone who sets
 up the project to use the exact same
@@ -142,7 +117,7 @@ reinstalling the project you can feel confident the dependencies installed are
 still working even if your dependencies released many new versions since then.
 (See note below about using the `update` command.)
 
-## Updating dependencies to their latest versions
+## 将依赖项更新到其最新版本
 
 As mentioned above, the `composer.lock` file prevents you from automatically getting
 the latest versions of your dependencies. To update to the latest versions, use the
@@ -155,7 +130,7 @@ and running `install` again.)
 php composer.phar update
 ```
 
-> **Note:** Composer will display a Warning when executing an `install` command
+> **注意：** Composer will display a Warning when executing an `install` command
 > if the `composer.lock` has not been updated since changes were made to the
 > `composer.json` that might affect dependency resolution.
 
@@ -165,7 +140,7 @@ If you only want to install or update one dependency, you can whitelist them:
 php composer.phar update monolog/monolog [...]
 ```
 
-> **Note:** For libraries it is not necessary to commit the lock
+> **注意：** For libraries it is not necessary to commit the lock
 > file, see also: [Libraries - Lock file](02-libraries.md#lock-file).
 
 ## Packagist
@@ -259,7 +234,7 @@ more information.
 
 See also the docs on [optimizing the autoloader](articles/autoloader-optimization.md).
 
-> **Note:** Composer provides its own autoloader. If you don't want to use that
+> **注意：** Composer provides its own autoloader. If you don't want to use that
 > one, you can include `vendor/composer/autoload_*.php` files, which return
 > associative arrays allowing you to configure your own autoloader.
 
