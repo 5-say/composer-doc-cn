@@ -30,7 +30,7 @@
 Composer 使用此信息在自定义的 [`repositories`](04-schema.md#repositories) "存储库"中搜索正确的依赖，
 或在默认包存储库 Packageist 中搜索。
 在上面的例子中，由于在 `composer.json` 文件中没有注册其他存储库，
-所以默认使用 Packaginst 上注册的 `Monolog/Monolog` 包（请参阅 [下文](#packagist) 关于 Packagist 的说明，
+所以默认使用 Packagist 上注册的 `Monolog/Monolog` 包（请参阅 [下文](#packagist) 关于 Packagist 的说明，
 或阅读更多关于 [存储库](05-repositories.md) 的文章）。
 
 ### 包名
@@ -49,9 +49,9 @@ Composer 使用此信息在自定义的 [`repositories`](04-schema.md#repositori
 请阅读 [版本](articles/versions.md) 章节，了解有关版本、版本如何相互关联以及版本约束的详细信息。
 
 > **Composer 如何下载正确的文件？** 当我们在 `composer.json` 文件中指定依赖时，
-> 首先获取您请求的包的名称，并在 [`repositories`](04-schema.md#repositories)kye 注册的存储库中搜索该包。
+> 首先获取您请求的包的名称，并在 [`repositories`](04-schema.md#repositories) kye 注册的存储库中搜索该包。
 > 如果您没有注册任何额外的存储库，或者在您指定的存储库中找不到具有该名称的包，
-> 那么它将返回到 Packaginst 上进行查找（更多信息请参阅 [下文](#packagist)）。
+> 那么它将返回到 Packagist 上进行查找（更多信息请参阅 [下文](#packagist)）。
 >
 > 当 Composer 在 Packagist 或指定的存储库中找到正确的包时，
 > 它将使用包的 VCS 版本控制功能（即分支和标记）尝试查找与指定的版本约束最匹配的包。
@@ -84,110 +84,83 @@ php composer.phar install
 > **提示：** 如果您在项目中使用 Git，建议将 `vendor` 目录添加到您的 `.gitignore` 文件中。
 > 您通常不会希望将所有的这些第三方代码添加到你的版本控制的存储库中。
 
-When Composer has finished installing, it writes all of the packages and the exact versions
-of them that it downloaded to the `composer.lock` file, locking the project to those specific
-versions. You should commit the `composer.lock` file to your project repo so that all people
-working on the project are locked to the same versions of dependencies (more below).
+当 Composer 完成安装后，它会将下载到的所有包及其确切版本写入 `composer.lock` 文件中，并将项目锁定到这些特定版本。
+您应该将 `composer.lock` 文件提交到您的项目中，以便所有处理该项目的人员都被锁定到相同版本的依赖（下文会有更详细的介绍）。
 
 ### 安装时已存在 `composer.lock` 文件
 
-This brings us to the second scenario. If there is already a `composer.lock` file as well as a
-`composer.json` file when you run `composer install`, it means either you ran the
-`install` command before, or someone else on the project ran the `install` command and
-committed the `composer.lock` file to the project (which is good).
+让我们进入第二个场景。如果在运行 `composer install` 时已经有一个 `composer.lock` 文件以及一个 `composer.json` 文件，
+则表示你之前已经运行过 `install` 命令，或者项目中的其他人运行了 `install` 命令，并将 `composer.lock` 文件提交给了项目（这很好）。
 
-Either way, running `install` when a `composer.lock` file is present resolves and installs
-all dependencies that you listed in `composer.json`, but Composer uses the exact versions listed
-in `composer.lock` to ensure that the package versions are consistent for everyone
-working on your project. As a result you will have all dependencies requested by your
-`composer.json` file, but they may not all be at the very latest available versions
-(some of the dependencies listed in the `composer.lock` file may have released newer versions since
-the file was created). This is by design, it ensures that your project does not break because of
-unexpected changes in dependencies.
+不管怎样，当存在 `composer.lock` 文件时运行 `install` 可以解析并安装您在 `composer.json` 中列出的所有依赖项，
+但是 Composer 会使用在 `composer.lock` 中列出的准确版本，以确保包版本对于项目中的每个人都是一致的。
+因此，您将拥有 `composer.json` 文件请求的所有依赖项，但它们可能并非都是最新的可用版本
+（在 `composer.lock` 文件中列出的某些依赖项可能在文件创建后发布了较新的版本）。
+这是预先设计好的，它可以确保项目不会因为依赖项中的某个意外更改而中断。
 
 ### 提交你的 `composer.lock` 文件到版本库
 
-Committing this file to VC is important because it will cause anyone who sets
-up the project to use the exact same
-versions of the dependencies that you are using. Your CI server, production
-machines, other developers in your team, everything and everyone runs on the
-same dependencies, which mitigates the potential for bugs affecting only some
-parts of the deployments. Even if you develop alone, in six months when
-reinstalling the project you can feel confident the dependencies installed are
-still working even if your dependencies released many new versions since then.
-(See note below about using the `update` command.)
+将 `composer.lock` 文件提交到版本库非常重要，因为它会让参与项目的所有人都使用相同版本的依赖项。
+您的 CI 服务器、生产环境、团队中的其他开发人员、所有平台和所有人都在相同的依赖项上运行，
+这减少了影响部署的某些部分的错误的可能性。即使您是单独开发的，在重新安装项目的六个月内，
+即使您的依赖项从那时起发布了许多新版本，您仍然可以确信所安装的依赖项仍在正常工作。
+（更多内容，请参阅下面有关使用 `update` 命令的说明。）
 
 ## 将依赖项更新到其最新版本
 
-As mentioned above, the `composer.lock` file prevents you from automatically getting
-the latest versions of your dependencies. To update to the latest versions, use the
-[`update`](03-cli.md#update) command. This will fetch the latest matching
-versions (according to your `composer.json` file) and update the lock file
-with the new versions. (This is equivalent to deleting the `composer.lock` file
-and running `install` again.)
+如上所述，`composer.lock` 文件会阻止程序自动获取依赖项的最新版本。如需更新到最新版本，请使用[`update`](03-cli.md#update) 命令。
+这将获取最新的匹配版本（根据您的 `composer.json` 文件），并将新的版本号更新进锁文件。
+（这相当于删除 `composer.lock` 文件并再次运行 `install`。）
 
 ```sh
 php composer.phar update
 ```
 
-> **注意：** Composer will display a Warning when executing an `install` command
-> if the `composer.lock` has not been updated since changes were made to the
-> `composer.json` that might affect dependency resolution.
+> **注意：** 如果对 `composer.json` 进行了可能会影响依赖项解析的更改后，未更新 `composer.lock` 文件
+> 则在执行 `install` 命令时，Composer 将显示一条警告。
 
-If you only want to install or update one dependency, you can whitelist them:
+如果只想安装或更新一个依赖项，可以以白名单的方式显示的指定它：
 
 ```sh
 php composer.phar update monolog/monolog [...]
 ```
 
-> **注意：** For libraries it is not necessary to commit the lock
-> file, see also: [Libraries - Lock file](02-libraries.md#lock-file).
+> **注意：** 当前项目作为其它项目的依赖项时，可以不必提交锁文件，详情请参见：[库-锁文件](02-libraries.md#lock-file)。
 
 ## Packagist
 
-[Packagist](https://packagist.org/) is the main Composer repository. A Composer
-repository is basically a package source: a place where you can get packages
-from. Packagist aims to be the central repository that everybody uses. This
-means that you can automatically `require` any package that is available there,
-without further specifying where Composer should look for the package.
+[Packagist](https://packagist.org/) 是主要的 Composer 存储库。Composer 存储库是最基础的包的来源：
+一个你可以从那里得到依赖包的地方。Packagist 的目标是成为每个使用者的中央存储库。
+这意味着您可以简单的 `require` 任何可用的包，而无需进一步指定 Composer 应在何处查找该依赖包。
 
-If you go to the [Packagist website](https://packagist.org/) (packagist.org),
-you can browse and search for packages.
+当您访问 [Packagist 网站](https://packagist.org/)（packagist.org），您就可以浏览和搜索依赖包。
 
-Any open source project using Composer is recommended to publish their packages
-on Packagist. A library does not need to be on Packagist to be used by Composer,
-but it enables discovery and adoption by other developers more quickly.
+建议使用 Composer 的任何开源项目都在 Packagist 上发布其依赖包。
+虽然不需要在 Packagist 上供 Composer 使用，但它可以更快地被其他开发人员发现和采用。
 
-## Platform packages
+## 平台包
 
-Composer has platform packages, which are virtual packages for things that are
-installed on the system but are not actually installable by Composer. This
-includes PHP itself, PHP extensions and some system libraries.
+Composer 具有平台包，这些包是用于系统上安装但 Composer 实际上无法安装的内容的虚拟包。
+这包括 PHP 本身、PHP 扩展和一些系统库。
 
-* `php` represents the PHP version of the user, allowing you to apply
-  constraints, e.g. `^7.1`. To require a 64bit version of php, you can
-  require the `php-64bit` package.
+* `php` 表示用户的 PHP 版本，允许您应用版本约束，例如 `^7.1`。
+如果需要 64 位版本的 PHP，您可以 require `php-64bit` 包。
 
-* `hhvm` represents the version of the HHVM runtime and allows you to apply
-  a constraint, e.g., `^2.3`.
+* `hhvm` 表示 HHVM 运行时的版本并允许您应用约束，例如 `^2.3`.
 
-* `ext-<name>` allows you to require PHP extensions (includes core
-  extensions). Versioning can be quite inconsistent here, so it's often
-  a good idea to set the constraint to `*`.  An example of an extension
-  package name is `ext-gd`.
+* `ext-<name>` 允许您指定 PHP 扩展（包括核心扩展）。
+版本控制在这里可能非常不一致，所以将约束设置为 `*` 通常是一个好主意。
+扩展包名称的一个示例是 `ext-gd`。
 
-* `lib-<name>` allows constraints to be made on versions of libraries used by
-  PHP. The following are available: `curl`, `iconv`, `icu`, `libxml`,
-  `openssl`, `pcre`, `uuid`, `xsl`.
+* `lib-<name>` 允许对 PHP 使用的库版本进行约束。
+以下内容可用：`curl`, `iconv`, `icu`, `libxml`, `openssl`, `pcre`, `uuid`, `xsl`.
 
-You can use [`show --platform`](03-cli.md#show) to get a list of your locally
-available platform packages.
+您可以使用 [`show --platform`](03-cli.md#show) 获取本地可用平台包的列表。
 
-## Autoloading
+## 自动加载
 
-For libraries that specify autoload information, Composer generates a
-`vendor/autoload.php` file. You can simply include this file and start
-using the classes that those libraries provide without any extra work:
+对于指定自动加载信息的库，Composer 生成一个 `vendor/autoload.php` 文件。
+您只需要引用此文件就可以开始使用这些库提供的类，而不需要做任何额外的工作：
 
 ```php
 require __DIR__ . '/vendor/autoload.php';
@@ -197,8 +170,7 @@ $log->pushHandler(new Monolog\Handler\StreamHandler('app.log', Monolog\Logger::W
 $log->addWarning('Foo');
 ```
 
-You can even add your own code to the autoloader by adding an
-[`autoload`](04-schema.md#autoload) field to `composer.json`.
+您甚至可以通过向 `composer.json` 添加一个[`autoload`](04-schema.md#autoload) 字段来向自动加载程序添加您自己的代码。
 
 ```json
 {
@@ -208,34 +180,28 @@ You can even add your own code to the autoloader by adding an
 }
 ```
 
-Composer will register a [PSR-4](http://www.php-fig.org/psr/psr-4/) autoloader
-for the `Acme` namespace.
+Composer 将为 `Acme` 命名空间注册一个 [PSR-4](http://www.php-fig.org/psr/psr-4/) 自动加载程序。
 
-You define a mapping from namespaces to directories. The `src` directory would
-be in your project root, on the same level as `vendor` directory is. An example
-filename would be `src/Foo.php` containing an `Acme\Foo` class.
+定义从命名空间到目录的映射。`src` 目录将位于项目根目录中，与 `vendor` 目录处于同一级别。
+例如，文件名为 `src/Foo.php`，则表示其包含一个 `Acme\Foo` 类。
 
-After adding the [`autoload`](04-schema.md#autoload) field, you have to re-run
-[`dump-autoload`](03-cli.md#dump-autoload) to re-generate the
-`vendor/autoload.php` file.
+添加 [`autoload`](04-schema.md#autoload) 字段后，必须重新运行 [`dump-autoload`](03-cli.md#dump-autoload) 以重新生成 `vendor/autoload.php` 文件。
 
-Including that file will also return the autoloader instance, so you can store
-the return value of the include call in a variable and add more namespaces.
-This can be useful for autoloading classes in a test suite, for example.
+引入该文件还将返回 autoloader 实例，因此可以将 include 调用的返回值存储在变量中，
+并添加更多的命名空间。这对于自动加载测试套件中的类很有用。例如：
 
 ```php
 $loader = require __DIR__ . '/vendor/autoload.php';
 $loader->addPsr4('Acme\\Test\\', __DIR__);
 ```
 
-In addition to PSR-4 autoloading, Composer also supports PSR-0, classmap and
-files autoloading. See the [`autoload`](04-schema.md#autoload) reference for
-more information.
+除了 PSR-4 自动加载之外，Composer 还支持 PSR-0、类映射和文件自动加载。
+相关信息，请参阅 [`autoload`](04-schema.md#autoload)。
 
-See also the docs on [optimizing the autoloader](articles/autoloader-optimization.md).
+另请参阅文档中有关[优化自动加载器](articles/autoloader-optimization.md)的章节。
 
-> **注意：** Composer provides its own autoloader. If you don't want to use that
-> one, you can include `vendor/composer/autoload_*.php` files, which return
-> associative arrays allowing you to configure your own autoloader.
+> **注意：** Composer 提供了自己的自动加载器。如果不想使用该文件，
+> 还可以引用 `vendor/composer/autoload_*.php` 文件，
+> 这些文件返回的关联数组，允许您配置自己的自动加载程序。
 
 &larr; [Intro](00-intro.md)  |  [Libraries](02-libraries.md) &rarr;
